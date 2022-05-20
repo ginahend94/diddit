@@ -1,11 +1,13 @@
 :root {
     --accent-color: 120, 103, 162; /* LAVENDER */
     --main-color: 60, 60, 62; /* DARK MODE BG */
+    --secondary-color: 50, 50, 52; /* DARK MODE SECONDARY */
     --text-color: 235, 235, 235; /* DARK MODE TEXT */
     --grayed-text-color: 133, 133, 133; /* DARK MODE GRAYED-OUT */
     /* LIGHT MODE */
     /*
     --accent-color: 169, 133, 255;
+    --secondary-color: 235, 235, 235;
     --main-color: 255, 255, 255;
     --text-color: 40, 40, 40;
     --grayed-text-color: 133, 133, 133;
@@ -15,6 +17,16 @@
 * {
     box-sizing: border-box;
 }
+
+li {
+    list-style: none;
+    border: solid 1px;
+}
+
+ul {
+    padding: 0;
+}
+
 .wrapper {
     border: solid 3px green;
     display: flex;
@@ -28,5 +40,19 @@
     width:200px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    /* align-items: flex-end; */
+}
+
+.sidebar .project-container {
+    width: 100%;
+    position: relative;
+    padding: 5px;
+    /* display: flex; */
+    align-items: center;
+    margin: 5px;
+}
+.project-options {
+    position: absolute;
+    right: 0;
+
 }
