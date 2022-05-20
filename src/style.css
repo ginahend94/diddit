@@ -40,19 +40,30 @@ ul {
     width:200px;
     display: flex;
     flex-direction: column;
-    /* align-items: flex-end; */
+    align-items: flex-end;
+}
+
+.project-list-container {
+    width:calc(100% - 20px);
 }
 
 .sidebar .project-container {
     width: 100%;
     position: relative;
-    padding: 5px;
-    /* display: flex; */
+    padding: 10px;
+    display: flex;
     align-items: center;
-    margin: 5px;
+    margin: 5px 0;
 }
 .project-options {
     position: absolute;
     right: 0;
+}
 
+.project-title {
+    display: inline-block;
+    max-width: 75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
