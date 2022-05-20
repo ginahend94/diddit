@@ -54,6 +54,7 @@ ul {
     display: flex;
     align-items: center;
     margin: 5px 0;
+    border-radius: 5px;
 }
 .project-options {
     position: absolute;
@@ -66,4 +67,15 @@ ul {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.draggable {
+    background-color: lightsalmon;
+    border-radius: 5px;
+    max-width:295px;
+    transition:.2s;
+}
+
+.draggable.dragging, .draggable.dragging:active {
+    opacity: .7;
 }

@@ -14,28 +14,28 @@
     <div class="wrapper">
         <div class="sidebar">
             <h1>Diddit</h1>
-            <ul class="project-list-container">
-                <li class="project-container" draggable="true">
+            <ul class="project-list-container drag-container" id="sidebar">
+                <li class="project-container drag-element" data-container="sidebar" draggable="false">
                     <span class="project-title">My Project 🌻</span> <span class="tasks">6</span>
-                    <span class="project-options">
+                    <span class="project-options drag">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z" />
                         </svg>
                     </span>
                 </li>
-                <li class="project-container" draggable="true">
+                <li class="project-container drag-element" data-container="sidebar" draggable="false">
                     <span class="project-title">Project 2</span>
-                    <span class="project-options">
+                    <span class="project-options drag">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z" />
                         </svg>
                     </span>
                 </li>
-                <li class="project-container" draggable="true">
+                <li class="project-container drag-element" data-container="sidebar" draggable="false">
                     <span class="project-title">Project 3</span>
-                    <span class="project-options">
+                    <span class="project-options drag">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z" />
@@ -69,80 +69,88 @@
                     <option value="">due date</option>
                     <option value="">custom</option>
                 </select>
-                <div class="projects-container">
-                    <div class="project">
-                        <ul class="tasks">
-                            <li class="task">
-                                <input type="checkbox" name="task" id="1"> <span class="task-text">Plan
-                                    party</span><span class="drag"><svg style="width:24px;height:24px"
-                                        viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
-                                    </svg></span>
-                                <ul class="task">
-                                    <li><input type="checkbox" name="subtask" id="1-1"><span class="task-text">Invite
-                                            guests</span></li>
-                                    <li><input type="checkbox" name="subtask" id="1-2" checked="true"><span
-                                            class="task-text">Plan menu</span></li>
-                                    <li><input type="checkbox" name="subtask" id="1-3"><span class="task-text">Find
-                                            venue</span></li>
-                                </ul>
-                            <li class="due-date">Due by <span class="date">June 3, 2022</span></li>
-                            <li class="priority">High-priority</li>
-                            </li>
-                            <li class="task">
-                                <input type="checkbox" name="task" id="2" checked="true"> <span class="task-text">Find
-                                    outfit</span> <span class="due-date-small">6/10/22</span><span class="drag"><svg
-                                        style="width:24px;height:24px" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
-                                    </svg></span>
-                            </li>
-                            <li class="task">
-                                <input type="checkbox" name="task" id="3"> <span class="task-text">Order
-                                    invitations</span> <span class="due-date-small">6/12/22</span><span
-                                    class="drag"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
-                                    </svg></span>
-                            </li>
-                            <li class="task">
-                                <input type="checkbox" name="task" id="4"> <span class="task-text">Order cake</span>
-                                <ul class="task">
-                                    <li>
-                                        <input type="checkbox" name="subtask" id="4-1"><span class="task-text">Choose
-                                            cake flavor</span>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" name="subtask" id="4-2"><span class="task-text">Choose
-                                            icing flavor</span>
-                                    </li>
-                                    <li class="note">
-                                        Can't be nut-based, Jaime is allergic. Fruit flavor is preferred.
-                                    </li>
-                                </ul>
-                            <li class="due-date">Due by <span class="date">June 8, 2022</span></li>
-                            <li class="priority">Medium-priority</li>
-                            </li>
-                        </ul>
-                        <button class="add-task" style="display:inline-flex; align-items: center;"><svg
+            </header>
+            <div class="projects-container">
+                <div class="project">
+                    <ul class="tasks drag-container" id="001">
+                        <li class="task drag-element drag-element" data-container="001" draggable="false">
+                            <input type="checkbox" name="task" id="1"> <span class="task-text">Plan
+                                party</span><span class="drag"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                                </svg></span>
+                            <ul class="task">
+                                <li><input type="checkbox" name="subtask" id="1-1"><span class="task-text">Invite
+                                        guests</span></li>
+                                <li><input type="checkbox" name="subtask" id="1-2" checked="true"><span
+                                        class="task-text">Plan menu</span></li>
+                                <li><input type="checkbox" name="subtask" id="1-3"><span class="task-text">Find
+                                        venue</span></li>
+                            </ul>
+                            <ul>
+                                <li class="due-date">Due by <span class="date">June 3, 2022</span></li>
+                                <li class="priority">High-priority</li>
+                            </ul>
+                        </li>
+                        <li class="task drag-element" data-container="001" draggable="false">
+                            <input type="checkbox" name="task" id="2" checked="true"> <span class="task-text">Find
+                                outfit</span> <span class="due-date-small">6/10/22</span><span class="drag"><svg
+                                    style="width:24px;height:24px" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                                </svg></span>
+                        </li>
+                        <li class="task drag-element" data-container="001" draggable="false">
+                            <input type="checkbox" name="task" id="3"> <span class="task-text">Order
+                                invitations</span> <span class="due-date-small">6/12/22</span><span class="drag"><svg
+                                    style="width:24px;height:24px" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                                </svg></span>
+                        </li>
+                        <li class="task drag-element" data-container="001" draggable="false">
+                            <input type="checkbox" name="task" id="4"> <span class="task-text">Order cake</span><span class="drag"><svg
                                 style="width:24px;height:24px" viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                    d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
-                            </svg>Add new task...</button>
-                    </div>
-                    <!-- placeholder -->
-                    <button style="display:inline-flex; align-items: center;">
-                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                            </svg></span>
+                            <ul class="task">
+                                <li>
+                                    <input type="checkbox" name="subtask" id="4-1"><span class="task-text">Choose
+                                        cake flavor</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="subtask" id="4-2"><span class="task-text">Choose
+                                        icing flavor</span>
+                                </li>
+                                <li class="note">
+                                    Can't be nut-based, Jaime is allergic. Fruit flavor is preferred.
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="due-date">Due by <span class="date">June 8, 2022</span></li>
+                                <li class="priority">Medium-priority</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <button class="add-task" style="display:inline-flex; align-items: center;"><svg
+                            style="width:24px;height:24px" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
-                        </svg>
-                        New
-                    </button><select name="new" id="new" style="display:inline-flex; align-items: center;">
-                        <option value="list" default>List</option>
-                        <option value="note">Note</option>
-                        <option value="file">File</option>
-                    </select>
+                        </svg>Add new task...</button>
                 </div>
+                <!-- placeholder -->
+                <button style="display:inline-flex; align-items: center;">
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                    </svg>
+                    New
+                </button><select name="new" id="new" style="display:inline-flex; align-items: center;">
+                    <option value="list" default>List</option>
+                    <option value="note">Note</option>
+                    <option value="file">File</option>
+                </select>
+            </div>
         </main>
     </div>
+    <script src="drag.js"></script>
     <!-- emoji picker -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <div class="new-task-modal-container">
