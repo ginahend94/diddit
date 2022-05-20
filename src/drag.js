@@ -19,8 +19,8 @@ icons.forEach(a => {
 
 draggables.forEach(a => {
     a.addEventListener('dragstart', () => {
-        a.style.fontStyle = 'italic'; // CHANGE
-        setTimeout(() => a.style.fontStyle = 'normal', 1); // CHANGE
+        // a.style.fontStyle = 'italic'; // CHANGE
+        // setTimeout(() => a.style.fontStyle = 'normal', 1); // CHANGE
         a.classList.add('dragging');
     });
     a.addEventListener('dragend', () => {

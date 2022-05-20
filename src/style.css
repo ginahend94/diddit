@@ -2,9 +2,10 @@
 
 :root {
     --accent-color: 120, 103, 162; /* LAVENDER */
-    --main-color: 60, 60, 62; /* DARK MODE BG */
-    --secondary-color: 50, 50, 52; /* DARK MODE SECONDARY */
-    --text-color: 235, 235, 235; /* DARK MODE TEXT */
+    --main-color: 50, 50, 52; /* DARK MODE BG */
+    --secondary-color: 40, 40, 42; /* DARK MODE SECONDARY */
+    --tertiary-color: 60, 60, 62; /* DARK MODE TERTIARY */
+    --text-color: 214, 214, 214; /* DARK MODE TEXT */
     --grayed-text-color: 133, 133, 133; /* DARK MODE GRAYED-OUT */
     /* LIGHT MODE */
     /*
@@ -18,7 +19,8 @@
 
 body{
     font-family: 'Roboto', sans-serif;
-    color:rgb(var(--text-color))
+    color:rgb(var(--text-color));
+    overflow: hidden;
 }
 
 * {
@@ -57,13 +59,14 @@ h1 {
     padding: 20px;
     margin: 0;
     font-weight: normal;
+    border-radius: 0 5px 5px 0;
 }
 
 .wrapper {
-    border: solid 3px green;
     display: flex;
     width: 100vw;
     height:100vh;
+    overflow: hidden;
 }
 
 .sidebar {
@@ -77,6 +80,7 @@ h1 {
     overflow: auto;
     resize: horizontal;
     background-color: rgb(var(--secondary-color));
+    transition: none;
 }
 
 .project-list-container {
@@ -95,6 +99,10 @@ h1 {
     align-items: center;
     background-color: rgb(var(--main-color));
     border-radius: 5px;
+    cursor: pointer;
+}
+.sidebar .project-container:hover {
+    background-color: rgb(var(--tertiary-color));
 }
 .project-options {
     position: absolute;
@@ -107,6 +115,11 @@ h1 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.sidebar .tasks {
+    /* font-size: .8rem; */
+    color: rgb(var(--grayed-text-color));
 }
 
 .settings {
@@ -131,12 +144,11 @@ h1 {
 .drag-element {
     border-radius: 5px;
     max-width:295px;
-    transition:.2s;
 }
 
-.drag {
+/* .drag {
     cursor:move;
-}
+} */
 
 .draggable.dragging, .draggable.dragging:active {
     margin: 10px 0;
@@ -147,4 +159,43 @@ main {
     /* width: 100%; */
     background-color: rgb(var(--main-color));
     flex:auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+main header {
+    position: sticky;
+    top:0;
+    left:0;
+    width: 100%;
+    background-color: rgb(var(--secondary-color));
+    padding: 20px;
+    border-bottom: solid 1px rgb(var(--grayed-text-color));
+}
+main h2 {
+    margin: 0;
+}
+
+.projects-container {
+    overflow-y: auto;
+    flex: auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20ch,1fr));
+    /* grid-template-columns: masonry;
+    grid-template-rows: masonry; */
+    gap:20px;
+}
+.project {
+    border: solid 1px rgb(var(--grayed-text-color));
+}
+.task {
+    border: solid 1px rgb(var(--grayed-text-color));
+}
+.task-main {
+    display: flex;
+    justify-content: space-between;
+}
+.sub-task {
+    padding-left: 1rem;
 }
