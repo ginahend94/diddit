@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
+
 :root {
     --accent-color: 120, 103, 162; /* LAVENDER */
     --main-color: 60, 60, 62; /* DARK MODE BG */
@@ -14,17 +16,47 @@
     */
 }
 
+body{
+    font-family: 'Roboto', sans-serif;
+    color:rgb(var(--text-color))
+}
+
 * {
     box-sizing: border-box;
+    transition: .2s;
 }
 
 li {
     list-style: none;
-    border: solid 1px;
 }
 
 ul {
     padding: 0;
+}
+
+button {
+    background-color: rgb(var(--accent-color));
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+    color: inherit;
+}
+button:hover {
+    opacity: .7;
+}
+button:active {
+    opacity: .9;
+}
+
+h1 {
+    background-color: rgb(var(--accent-color));
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    font-weight: normal;
 }
 
 .wrapper {
@@ -35,16 +67,24 @@ ul {
 }
 
 .sidebar {
-    border: solid 1px red;
     height:100%;
-    width:200px;
+    min-width:200px;
+    max-width: 350px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    overflow: auto;
+    resize: horizontal;
+    background-color: rgb(var(--secondary-color));
 }
 
 .project-list-container {
     width:calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    align-items: end;
 }
 
 .sidebar .project-container {
@@ -53,7 +93,7 @@ ul {
     padding: 10px;
     display: flex;
     align-items: center;
-    margin: 5px 0;
+    background-color: rgb(var(--main-color));
     border-radius: 5px;
 }
 .project-options {
@@ -69,8 +109,26 @@ ul {
     white-space: nowrap;
 }
 
+.settings {
+    display: flex;
+    flex-direction: column;
+    align-self: end;
+    margin-right:10px;
+    font-size: .9rem;
+}
+.settings li {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    gap:3px;
+    color: rgb(var(--grayed-text-color));
+    cursor: pointer;
+}
+.settings li:hover {
+    color: rgb(var(--accent-color));
+}
+
 .drag-element {
-    background-color: lightsalmon;
     border-radius: 5px;
     max-width:295px;
     transition:.2s;
@@ -81,6 +139,12 @@ ul {
 }
 
 .draggable.dragging, .draggable.dragging:active {
-    margin: 5px 0;
-    opacity: .7;
+    margin: 10px 0;
+    opacity: .5;
+}
+
+main {
+    /* width: 100%; */
+    background-color: rgb(var(--main-color));
+    flex:auto;
 }
