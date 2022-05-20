@@ -15,6 +15,11 @@ const pageContent = () => {
 
 document.body.appendChild(pageContent())
 
+// Click 
+
+
+
+
 // Object for each to-do created by factory function
 // props:
 // title
@@ -45,3 +50,4 @@ document.body.appendChild(pageContent())
 // share to-dos
 // import/export/batch import
 // upload images to to-do
+// light/dark theme

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diddit - To-do App</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <h1>Diddit</h1>
+            <ul class="projects-list-container">
+                <li class="project-container">
+                    <ul class="project">My Project
+                        <li class="to-dos">To Dos</li>
+                        <li class="notes">Notes</li>
+                        <li class="files">Files</li>
+                    </ul>
+                </li>
+                <li class="project-container">
+                    <ul class="project">Project 2
+                        <li class="to-dos">To Dos</li>
+                        <li class="notes">Notes</li>
+                        <li class="files">Files</li>
+                    </ul>
+                </li>
+                <li class="project-container">
+                    <ul class="project">Project 3
+                        <li class="to-dos">To Dos</li>
+                        <li class="notes">Notes</li>
+                        <li class="files">Files</li>
+                    </ul>
+                </li>
+            </ul>
+            <button>New Project</button>
+            <ul class="settings">
+                <li>Account</li>
+                <li>Settings</li>
+                <li>About</li>
+            </ul>
+        </div>
+        <main>
+            <header><h2>My Project <span class="emoji">🌻</span></h2>
+            <div class="projects-container">
+                <div class="project">
+
+                </div>
+                <!-- placeholder -->
+                <button>New</button><select name="new" id="new">
+                    <option value="list" default>List</option>
+                    <option value="note">Note</option>
+                    <option value="file">File</option>
+                </select>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    <!-- emoji picker -->
+</body>
+</html>
