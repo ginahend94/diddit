@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="wrapper">
         <div class="sidebar">
@@ -43,21 +45,61 @@
             </ul>
         </div>
         <main>
-            <header><h2>My Project <span class="emoji">🌻</span></h2>
-            <div class="projects-container">
-                <div class="project">
-
+            <header>
+                <h2>My Project <span class="emoji">🌻</span></h2>
+                <div class="projects-container">
+                    <div class="project">
+                        <ul class="tasks">
+                            <li class="task">
+                                <ul class="task">
+                                    <input type="checkbox" name="task" id="1"> Plan party
+                                    <li><input type="checkbox" name="subtask" id="1-1">Invite guests</li>
+                                    <li><input type="checkbox" name="subtask" id="1-2" checked="true">Plan menu</li>
+                                    <li><input type="checkbox" name="subtask" id="1-3">Find venue</li>
+                                </ul>
+                                <li class="due-date">Due by <span class="date">June 3, 2022</span></li>
+                                <li class="priority">High-priority</li>
+                            </li>
+                            <li class="task">
+                                <ul class="task">
+                                    <input type="checkbox" name="task" id="2" checked="true"> Find outfit
+                                </ul>
+                            </li>
+                            <li class="task">
+                                <ul class="task">
+                                    <input type="checkbox" name="task" id="3"> Order invitations
+                                </ul>
+                            </li>
+                            <li class="task">
+                                <ul class="task">
+                                    <input type="checkbox" name="task" id="4"> Order cake
+                                    <li><input type="checkbox" name="subtask" id="4-1">Choose cake flavor</li>
+                                    <li><input type="checkbox" name="subtask" id="4-2">Choose icing flavor</li>
+                                    <li><input type="checkbox" name="subtask" id="4-3">Find venue</li>
+                                </ul>
+                                <li class="due-date">Due by <span class="date">June 3, 2022</span></li>
+                                <li class="priority">High-priority</li>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- placeholder -->
+                    <button style="display:inline-flex; align-items: center;">
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                        </svg>
+                        New
+                    </button>
+                    <select name="new" id="new" style="display:inline-flex; align-items: center;">
+                        <option value="list" default>List</option>
+                        <option value="note">Note</option>
+                        <option value="file">File</option>
+                    </select>
                 </div>
-                <!-- placeholder -->
-                <button>New</button><select name="new" id="new">
-                    <option value="list" default>List</option>
-                    <option value="note">Note</option>
-                    <option value="file">File</option>
-                </select>
-            </div>
         </main>
     </div>
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <!-- emoji picker -->
 </body>
+
 </html>
