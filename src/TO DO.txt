@@ -2,3 +2,4 @@ TO DO
 
 favicon
 tour/tutorial
+create modal module
