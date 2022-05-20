@@ -1,3 +1,29 @@
-h1 {
-    color:red;
+:root {
+    --accent-color: 120, 103, 162; /* LAVENDER */
+    --main-color: 60, 60, 62; /* DARK MODE BG */
+    --text-color: 235, 235, 235; /* DARK MODE TEXT */
+    --grayed-text-color: 133, 133, 133; /* DARK MODE GRAYED-OUT */
+    /* LIGHT MODE */
+    /*
+    --accent-color: 169, 133, 255;
+    --main-color: 255, 255, 255;
+    --text-color: 40, 40, 40;
+    --grayed-text-color: 133, 133, 133;
+    */
+}
+
+* {
+    box-sizing: border-box;
+}
+.wrapper {
+    border: solid 3px green;
+    display: flex;
+    width: 100vw;
+    height:100vh;
+}
+
+.sidebar {
+    border: solid 1px red;
+    height:100%;
+    width:200px;
 }

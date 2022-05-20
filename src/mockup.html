@@ -47,6 +47,13 @@
         <main>
             <header>
                 <h2>My Project <span class="emoji">🌻</span></h2>
+                Sort by <select name="sort" id="sort">
+                    <option value="">a-z</option>
+                    <option value="">z-a</option>
+                    <option value="">priority</option>
+                    <option value="">due date</option>
+                    <option value="">custom</option>
+                </select>
                 <div class="projects-container">
                     <div class="project">
                         <ul class="tasks">
@@ -69,11 +76,17 @@
                             </li>
                             <li class="task">
                                 <input type="checkbox" name="task" id="2" checked="true"> <span class="task-text">Find
-                                    outfit</span> <span class="due-date-small">6/10/22</span>
+                                    outfit</span> <span class="due-date-small">6/10/22</span><span class="drag"><svg style="width:24px;height:24px"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                                    </svg></span>
                             </li>
                             <li class="task">
                                 <input type="checkbox" name="task" id="3"> <span class="task-text">Order
-                                    invitations</span> <span class="due-date-small">6/12/22</span>
+                                    invitations</span> <span class="due-date-small">6/12/22</span><span class="drag"><svg style="width:24px;height:24px"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                                    </svg></span>
                             </li>
                             <li class="task">
                                 <input type="checkbox" name="task" id="4"> <span class="task-text">Order cake</span>
@@ -125,11 +138,11 @@
                 Due by <input type="date">
             </div>
             <div class="priority">
-                <select name="priority" id="priority" style="text-align: right;">
+                Priority: <select name="priority" id="priority">
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
-                </select> Priority
+                </select> 
             </div>
             <div class="subtasks">
                 <button>Add subtask...</button>
