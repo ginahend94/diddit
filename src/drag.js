@@ -4,20 +4,23 @@ const icons = document.querySelectorAll('.drag');
 
 icons.forEach(a => {
     a.addEventListener('mousedown', () => {
-        a.parentNode.classList.add('draggable')
-        a.parentNode.draggable = 'true'
+        a.parentNode.classList.add('draggable');
+        a.parentNode.setAttribute('draggable', true);
+    });
+    a.addEventListener('mouseup', () => {
+        a.parentNode.classList.remove('draggable');
+        a.parentNode.setAttribute('draggable', false);
     });
     a.addEventListener('dragend', () => {
-        console.log(a.parentNode.classList)
+        a.parentNode.classList.remove('draggable')
         a.parentNode.setAttribute('draggable', false)
-        setTimeout(() => a.parentNode.classList.remove('draggable'), 2)
     })
 })
 
 draggables.forEach(a => {
     a.addEventListener('dragstart', () => {
-        a.style.background = 'green'; // CHANGE
-        setTimeout(() => a.style.background = 'inherit', 1); // CHANGE
+        a.style.fontStyle = 'italic'; // CHANGE
+        setTimeout(() => a.style.fontStyle = 'normal', 1); // CHANGE
         a.classList.add('dragging');
     });
     a.addEventListener('dragend', () => {

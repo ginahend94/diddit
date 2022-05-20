@@ -69,13 +69,18 @@ ul {
     white-space: nowrap;
 }
 
-.draggable {
+.drag-element {
     background-color: lightsalmon;
     border-radius: 5px;
     max-width:295px;
     transition:.2s;
 }
 
+.drag {
+    cursor:move;
+}
+
 .draggable.dragging, .draggable.dragging:active {
+    margin: 5px 0;
     opacity: .7;
 }
