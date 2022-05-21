@@ -23,6 +23,7 @@
     */
 
     --padding: 10px;
+    --smaller-text: .8rem;
 }
 
 * {
@@ -41,9 +42,9 @@ body {
     grid-template-columns: 200px 1fr;
 }
 
-header>* {
+/* header>* {
     border: solid 1px;
-}
+} */
 
 header {
     width: 100%;
@@ -52,11 +53,33 @@ header {
     grid-template-columns: 200px 1fr;
     grid-column: span 2;
     align-items: center;
-    justify-items: center;
-    height: min-content;
-    padding: 10px;
+    /* padding: 10px; */
+    height: 100px;
 }
 
 h1, h2 {
     margin: 0;
+}
+
+h1 {
+    border: solid 1px;
+    text-align: center;
+    justify-self: center;
+}
+
+.active-project-info {
+    justify-self: start;
+    display: flex;
+    align-items: center;
+    gap:10px;
+    padding: 10px;
+}
+
+.active-project-description {
+    font-size: var(--smaller-text);
+    max-width: 40ch;
+    color: rgb(var(--grayed-text-color));
+    background-color: rgb(var(--secondary-color));
+    padding: 10px;
+    border-radius: 5px;
 }
