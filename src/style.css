@@ -193,7 +193,15 @@ main h2 {
     border-right: solid 10px rgb(var(--tertiary-color));
     border-bottom: solid 1px rgb(var(--tertiary-color));
     padding: 10px;
-    background-color: rgb(var(--secondary-color));
+    /* background-color: rgb(var(--secondary-color)); */
+}
+.task-dragging {
+    border: solid 1px rgb(var(--tertiary-color));
+    background-color: red;
+}
+.task.dragging {
+    background-color: rgb(var(--tertiary-color));
+    color: rgb(var(--grayed-text-color));
 }
 
 .task:first-child {
