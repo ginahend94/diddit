@@ -40,11 +40,14 @@ body {
     overflow: hidden;
     display: grid;
     grid-template-columns: 200px 1fr;
+    grid-template-rows: min-content;
 }
 
-/* header>* {
+body > * {
     border: solid 1px;
-} */
+}
+
+/* header */
 
 header {
     width: 100%;
@@ -82,4 +85,12 @@ h1 {
     background-color: rgb(var(--secondary-color));
     padding: 10px;
     border-radius: 5px;
+}
+
+/* SIDEBAR  */
+
+nav {
+    background-color: rgb(var(--secondary-color));
+    height: 100%;
+
 }
