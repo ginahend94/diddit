@@ -5,7 +5,7 @@ tour/tutorial
 create modal module
 refactor drag fn
 style modal
-style header
+style header height- 670px
 style sidebar
 style task container
 style buttons
