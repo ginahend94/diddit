@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
+
+:root {
+    --accent-color: 120, 103, 162; /* LAVENDER */
+    --main-color: 50, 50, 52; /* DARK MODE BG */
+    --secondary-color: 40, 40, 42; /* DARK MODE SECONDARY */
+    --tertiary-color: 60, 60, 62; /* DARK MODE TERTIARY */
+    --text-color: 234, 234, 234; /* DARK MODE TEXT */
+    --grayed-text-color: 133, 133, 133; /* DARK MODE GRAYED-OUT */
+    /* LIGHT MODE */
+    /*
+    --accent-color: 169, 133, 255;
+    --secondary-color: 235, 235, 235;
+    --main-color: 255, 255, 255;
+    --text-color: 40, 40, 40;
+    --grayed-text-color: 133, 133, 133;
+    */
+    --padding: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(var(--main-color));
+    color:rgb(var(--text-color));
+    overflow: hidden;
+}
+
+header {
+    width: 100%;
+    background-color: rgb(var(--accent-color));
+}
+h1 {
+    margin: 0;
+}
