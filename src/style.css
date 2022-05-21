@@ -34,6 +34,7 @@ li {
 
 ul {
     padding: 0;
+    margin: 0;
 }
 
 button {
@@ -118,7 +119,7 @@ h1 {
 }
 
 .sidebar .tasks {
-    /* font-size: .8rem; */
+    font-size: .9rem;
     color: rgb(var(--grayed-text-color));
 }
 
@@ -126,7 +127,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-self: end;
-    margin-right:10px;
+    margin:10px;
     font-size: .9rem;
 }
 .settings li {
@@ -142,13 +143,13 @@ h1 {
 }
 
 .drag-element {
-    border-radius: 5px;
     max-width:295px;
 }
 
-/* .drag {
-    cursor:move;
-} */
+.project .drag {
+    cursor: move;
+    color: rgb(var(--grayed-text-color));
+}
 
 .draggable.dragging, .draggable.dragging:active {
     margin: 10px 0;
@@ -156,7 +157,6 @@ h1 {
 }
 
 main {
-    /* width: 100%; */
     background-color: rgb(var(--main-color));
     flex:auto;
     position: relative;
@@ -181,17 +181,25 @@ main h2 {
     flex: auto;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20ch,1fr));
-    /* grid-template-columns: masonry;
-    grid-template-rows: masonry; */
+    grid-template-columns: repeat(auto-fill, minmax(25ch,1fr));
     gap:20px;
 }
 .project {
-    border: solid 1px rgb(var(--grayed-text-color));
+    border: solid 1px rgb(var(--secondary-color));
+    border-radius: 5px;
+    padding: 0;
 }
 .task {
-    border: solid 1px rgb(var(--grayed-text-color));
+    border-right: solid 10px rgb(var(--tertiary-color));
+    border-bottom: solid 1px rgb(var(--tertiary-color));
+    padding: 10px;
+    background-color: rgb(var(--secondary-color));
 }
+
+.task:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
 .task-main {
     display: flex;
     justify-content: space-between;
