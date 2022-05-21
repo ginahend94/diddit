@@ -3,3 +3,9 @@ TO DO
 favicon
 tour/tutorial
 create modal module
+refactor drag fn
+style modal
+style header
+style sidebar
+style task container
+style buttons

@@ -5,7 +5,7 @@
     --main-color: 50, 50, 52; /* DARK MODE BG */
     --secondary-color: 40, 40, 42; /* DARK MODE SECONDARY */
     --tertiary-color: 60, 60, 62; /* DARK MODE TERTIARY */
-    --text-color: 214, 214, 214; /* DARK MODE TEXT */
+    --text-color: 234, 234, 234; /* DARK MODE TEXT */
     --grayed-text-color: 133, 133, 133; /* DARK MODE GRAYED-OUT */
     /* LIGHT MODE */
     /*
@@ -118,7 +118,7 @@ h1 {
     white-space: nowrap;
 }
 
-.sidebar .tasks {
+.sidebar .tasks, .due-date-small {
     font-size: .9rem;
     color: rgb(var(--grayed-text-color));
 }
@@ -211,6 +211,7 @@ main h2 {
 .task-main {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .sub-task {
     padding-left: 1rem;

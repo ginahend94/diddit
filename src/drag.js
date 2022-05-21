@@ -19,7 +19,7 @@ icons.forEach(a => {
 
 draggables.forEach(a => {
     a.addEventListener('dragstart', () => {
-        // a.classList.add('task-dragging'); // CHANGE
+        a.style.backgroundColor = 'red'; // CHANGE
         // setTimeout(() => a.classList.remove('task-dragging'), 1); // CHANGE
         a.classList.add('dragging');
     });
@@ -56,3 +56,5 @@ function getDragAfterElement(container, y) {
         }
     }, { offset: Number.NEGATIVE_INFINITY }).element
 }
+
+console.log(getComputedStyle(document.body).getPropertyValue('--tertiary-color'));
