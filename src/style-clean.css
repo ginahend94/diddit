@@ -64,22 +64,6 @@ h1 {
     justify-self: center;
 } 
 
-/* .active-project-info {
-    justify-self: start;
-    display: flex;
-    align-items: center;
-    gap:10px;
-    padding: 10px;
-}
-
-.active-project-description {
-    font-size: var(--smaller-text);
-    max-width: 40ch;
-    color: rgb(var(--grayed-text-color));
-    background-color: rgb(var(--secondary-color));
-    padding: 10px;
-    border-radius: 5px;
-} */
 
 /* SIDEBAR  */
 
@@ -97,7 +81,7 @@ nav {
 
 nav header {
     display: flex;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
     background-color: rgb(var(--accent-color));
     padding: var(--padding);
@@ -189,4 +173,32 @@ nav ul {
 
 .settings-menu li:active {
     color: rgb(var(--accent-color));
+}
+
+/* MAIN */
+
+main {
+    flex: auto;
+}
+
+main header {
+    background-color: rgb(var(--accent-color));
+    height: 100px;
+    padding: var(--padding);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h2 {
+    margin: 0;
+}
+
+.active-project-description {
+    font-size: var(--smaller-text);
+    max-width: 40ch;
+    color: rgb(var(--grayed-text-color));
+    background-color: rgb(var(--secondary-color));
+    padding: 10px;
+    border-radius: 5px;
 }

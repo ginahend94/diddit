@@ -11,10 +11,11 @@ create input module
 create context menu
 add emoji picker
 make side of sidebar draggable
-style header
+show full project title on hover if text is overflowing
 
 
 
 DONE
 style sidebar
 style buttons
+style header
