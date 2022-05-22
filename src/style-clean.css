@@ -50,7 +50,9 @@ body {
 
 /* header */
 
-header {
+
+
+/* header {
     width: 100%;
     background-color: rgb(var(--accent-color));
     display: grid;
@@ -58,18 +60,18 @@ header {
     grid-column: span 2;
     align-items: center;
     /* padding: 10px; */
-    height: 100px;
-}
+    /* height: 100px; */
+/* } 
 
 h1, h2 {
     margin: 0;
 }
-
+*/
 h1 {
     border: solid 1px;
     text-align: center;
     justify-self: center;
-}
+} 
 
 .active-project-info {
     justify-self: start;
@@ -99,17 +101,34 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: end;
-    border: solid 1px;
-    justify-content: space-between;
-    padding: var(--padding);
     overflow: auto;
     resize: horizontal;
+}
+
+nav header {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: rgb(var(--accent-color));
+    padding: var(--padding);
+    width: 100%;
+    height: 100px;
+}
+
+.sidebar-lower {
+    padding: var(--padding);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: solid 1px;
+    height: 100%;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     border: solid 1px;
+    text-align: end;
 }
 
 .project-list-container li {
