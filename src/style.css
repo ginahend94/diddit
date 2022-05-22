@@ -197,7 +197,7 @@ main h2 {
 }
 .task-dragging {
     border: solid 1px rgb(var(--tertiary-color));
-    background-color: red;
+    background-color: rgb(var(--tertiary-color));
 }
 .task.dragging {
     background-color: rgb(var(--tertiary-color));
