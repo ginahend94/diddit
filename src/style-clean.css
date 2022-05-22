@@ -205,11 +205,24 @@ h2 {
     border-radius: 5px;
 }
 
-.to-do-list-container {
+.project-container {
     flex: auto;
     overflow-y: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25ch,1fr));
     gap: 10px;
     padding: var(--padding);
+}
+
+.to-do-list-container {
+    border: solid 1px;
+    border-radius: 5px;
+    padding: var(--padding);
+    list-style: none;
+    margin: 0;
+}
+.to-do-list-container ul {
+    padding: var(--padding);
+    list-style: none;
+    margin: 0;
 }
