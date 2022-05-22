@@ -130,6 +130,7 @@ nav ul {
     flex-direction: column;
     gap:5px;
     align-items: end;
+    margin-bottom: 5px;
 }
 
 .project-info {
@@ -138,9 +139,33 @@ nav ul {
     position: relative;
     padding: 10px;
     display: flex;
+    justify-content: space-between;
     background-color: rgb(var(--main-color));
     border-radius: 5px;
     cursor: pointer;
+    transition: .2s;
+}
+
+.project-options {
+    color: rgb(var(--grayed-text-color));
+    position: absolute;
+    right: 10px;
+    transition: .2s;
+}
+
+.project-options:hover {
+    color: rgb(var(--text-color));
+}
+
+.project-info:hover {
+    background-color: rgb(var(--tertiary-color));
+}
+
+.project-title {
+    max-width: calc(100% - 34px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .settings-menu {
