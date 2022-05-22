@@ -231,23 +231,28 @@ h2 {
 .to-do-list li {
     padding: var(--padding);
     border-bottom: solid 1px rgb(var(--tertiary-color));
+    display: flex;
+    gap:5px;
+    align-items: center;
 }
 
 li.subtask {
-    padding-left: 30px;
+    padding-left: 35px;
 }
 
 .to-do-list input[type=checkbox] {
     position: relative;
-    /* opacity: 0; */
+    opacity: 0;
 }
 
-.to-do-list li input::after {
+.checkbox-container {
     content: "hello";
-    position: absolute;
-    width:50px;
-    height:50px;
-    background-color: red;
+    position: relative;
+    display: inline-block;
+    width:20px;
+    height:20px;
+    border: solid 1px rgb(var(--grayed-text-color));
+    border-radius: 5px;
     top:0;
     left:0;
 }
