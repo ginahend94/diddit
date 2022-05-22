@@ -408,7 +408,12 @@ input[type=checkbox]:checked ~ .task-text::after {
     border-radius: 0 5px 0 0;
 }
 
+.split-button-dropdown.open .split-button-dropdown-list {
+    display: block;
+}
+
 .split-button-dropdown-list {
+    display: none;
     position:absolute;
     right: 0;
     /* top: calc(100% - 5px); */
