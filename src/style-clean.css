@@ -372,3 +372,76 @@ input[type=checkbox]:checked ~ .task-text::after {
 .task:hover .checkmark, .subtask:hover .checkmark {
     box-shadow: 2px -3px 0 2px rgb(var(--tertiary-color)), inset -3px -3px 0 2px rgb(var(--tertiary-color));
 }
+
+.add-new {
+    display: flex;
+    height: min-content;
+    width: min-content;
+    justify-self: center;
+    position: relative;
+}
+
+.split-button-button {
+    border-radius: 5px 0 0 5px;
+    /* padding-right: .5ch; */
+}
+
+.split-button-button:hover + .split-button-dropdown {
+    background-color: rgb(var(--accent-color-bright));
+}
+
+.split-button-button:active + .split-button-dropdown {
+    background-color: rgb(var(--accent-color));
+}
+
+.split-button-dropdown {
+    border-radius: 0 5px 5px 0;
+    display: flex;
+    align-items: center;
+    /* padding-left: .5ch; */
+    border-left: solid 1px rgba(var(--tertiary-color), .2);
+    position: relative;
+    z-index: 1;
+}
+
+.split-button-dropdown:active, .split-button-dropdown.open {
+    border-radius: 0 5px 0 0;
+}
+
+.split-button-dropdown-list {
+    position:absolute;
+    right: 0;
+    /* top: calc(100% - 5px); */
+    top:100%;
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    /* padding-top: 5px; */
+    /* padding: 5px 0 5px 10px; */
+    /* padding-left: 10px; */
+    list-style: none;
+    text-align: left;
+    background-color: rgb(var(--accent-color));
+    border-radius: 0 0 5px 5px;
+    /* z-index: -2; */
+}
+
+.split-button-dropdown-list li {
+    padding: 5px 10px;
+}
+
+.split-button-dropdown-list li:first-child {
+    border-bottom: solid 1px rgba(var(--tertiary-color), .2);
+}
+
+.split-button-dropdown-list li:hover {
+    background-color: rgb(var(--accent-color-bright));
+}
+
+.split-button-dropdown-list li:active {
+    background-color: rgb(var(--accent-color));
+}
+
+.split-button-dropdown-list li:last-child {
+    border-radius: 0 0 5px 5px;
+}
