@@ -13,6 +13,7 @@
     /* DARK MODE TEXT */
     --grayed-text-color: 133, 133, 133;
     /* DARK MODE GRAYED-OUT */
+    --accent-color-bright: 145, 118, 209;
     /* LIGHT MODE */
     /*
     --accent-color: 169, 133, 255;
@@ -51,10 +52,10 @@ button {
     color: inherit;
 }
 button:hover {
-    opacity: .7;
+    background-color: rgb(var(--accent-color-bright));
 }
 button:active {
-    opacity: .9;
+    background-color: rgb(var(--accent-color));
 }
 
 h1 {
@@ -143,13 +144,24 @@ nav ul {
 }
 
 .settings-menu {
-    text-align: end;
     align-self: end;
     color: rgb(var(--grayed-text-color));
+    font-size:.9rem;
 }
 
 .settings-menu li {
     display: flex;
     align-items: center;
+    gap:5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
 
+.settings-menu li:hover {
+    color: rgb(var(--accent-color-bright));
+}
+
+.settings-menu li:active {
+    color: rgb(var(--accent-color));
 }
