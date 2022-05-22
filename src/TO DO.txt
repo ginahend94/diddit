@@ -5,12 +5,16 @@ tour/tutorial
 create modal module
 refactor drag fn
 style modal
-style sidebar
 style task container
-style buttons
 create split button module
 create input module
 create context menu
 add emoji picker
 make side of sidebar draggable
 style header
+
+
+
+DONE
+style sidebar
+style buttons
