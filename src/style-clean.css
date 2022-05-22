@@ -12,8 +12,11 @@
     --text-color: 234, 234, 234;
     /* DARK MODE TEXT */
     --grayed-text-color: 133, 133, 133;
+    /* DARK MODE TEXT BRIGHTER */
+    --text-color-bright: 245, 245, 245;
     /* DARK MODE GRAYED-OUT */
     --accent-color-bright: 145, 118, 209;
+
     /* LIGHT MODE */
     /*
     --accent-color: 169, 133, 255;
@@ -130,11 +133,16 @@ nav ul {
     transition: .2s;
 }
 
+.project-info:hover .project-options {
+    opacity: 1;
+}
+
 .project-options {
     color: rgb(var(--grayed-text-color));
     position: absolute;
     right: 10px;
     transition: .2s;
+    opacity: 0;
 }
 
 .project-options:hover {
@@ -190,6 +198,7 @@ main header {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    box-shadow: 0px 3px 5px rgb(var(--secondary-color));
 }
 
 h2 {
@@ -215,14 +224,14 @@ h2 {
 }
 
 .to-do-list-container {
-    border: solid 1px;
+    border: solid 1px rgb(var(--grayed-text-color));
     border-radius: 5px;
     list-style: none;
     margin: 0;
+    height: fit-content;
 }
 
 .to-do-list-container ul {
-    /* padding-left: var(--padding); */
     padding: 0;
     list-style: none;
     margin: 0;
@@ -235,6 +244,12 @@ h2 {
     gap:5px;
     align-items: center;
     position: relative;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.to-do-list li:first-child {
+    border-radius: 5px;
 }
 
 li.subtask {
@@ -300,18 +315,18 @@ input[type=checkbox]:checked  + label .checkmark {
     height: 20px;
 }
 
-input[type=checkbox] ~ span {
+input[type=checkbox] ~ .task-text {
     position: relative;
     transition: .2s;
     display: inline-block;
 }
 
-input[type=checkbox]:checked ~ span {
+input[type=checkbox]:checked ~ .task-text {
     color:rgb(var(--grayed-text-color));
     transform: skew(-15deg);
 }
 
-input[type=checkbox] ~ span::after {
+input[type=checkbox] ~ .task-text::after {
     position: absolute;
     content: '';
     height: 1px;
@@ -323,15 +338,37 @@ input[type=checkbox] ~ span::after {
     transition: .4s;
 }
 
-input[type=checkbox]:checked ~ span::after {
-    /* position: absolute;
-    content: '';
-    width: 100%;
-    height: 1px;
-    top:50%;
-    left: 0;
-    display: block;
-    background-color: red; */
+input[type=checkbox]:checked ~ .task-text::after {
     width: 100%;
     color: rgb(var(--text-color));
+}
+
+.to-do-list-container button {
+    margin: 10px;
+}
+
+.task:hover, .subtask:hover {
+    background-color: rgb(var(--tertiary-color));
+}
+
+.task:hover .drag, .subtask:hover .drag {
+    opacity: 1;
+}
+
+.drag {
+    position: absolute;
+    right: 10px;
+    top:25%;
+    color: rgb(var(--grayed-text-color));
+    cursor: move;
+    transition: .2s;
+    opacity: 0;
+}
+
+.drag:hover {
+    color: rgb(var(--text-color));
+}
+
+.task:hover .checkmark, .subtask:hover .checkmark {
+    box-shadow: 2px -3px 0 2px rgb(var(--tertiary-color)), inset -3px -3px 0 2px rgb(var(--tertiary-color));
 }
