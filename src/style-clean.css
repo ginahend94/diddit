@@ -241,8 +241,15 @@ li.subtask {
 }
 
 .to-do-list input[type=checkbox] {
-    position: relative;
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 0px;
+    height: 0px;
     opacity: 0;
+    outline: 0px;
+    border: none;
+    cursor: pointer;
 }
 
 .checkbox-container {
@@ -255,4 +262,30 @@ li.subtask {
     border-radius: 5px;
     top:0;
     left:0;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.checkbox-container:hover {
+    border-color: rgb(var(--text-color));
+    background-color: rgb(var(--tertiary-color));
+}
+
+input[type=checkbox] + .checkmark {
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    transform: rotate(45deg);
+    border: solid rgb(var(--accent-color));
+    border-width: 0 3px 3px 0;
+    bottom:3px;
+    left: 7px;
+    transition: .2s;
+    opacity: 0;
+}
+input[type=checkbox]:checked  + .checkmark {
+    opacity: 1;
+    transform: rotate(45deg);
+    width: 10px;
+    height: 20px;
 }
