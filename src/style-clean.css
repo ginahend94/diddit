@@ -179,6 +179,8 @@ nav ul {
 
 main {
     flex: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 main header {
@@ -201,4 +203,13 @@ h2 {
     background-color: rgb(var(--secondary-color));
     padding: 10px;
     border-radius: 5px;
+}
+
+.to-do-list-container {
+    flex: auto;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25ch,1fr));
+    gap: 10px;
+    padding: var(--padding);
 }
