@@ -109,32 +109,18 @@ nav header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     height: 100%;
-    width: 100%;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
 }
+
 .project-list-container {
     display: flex;
     flex-direction: column;
     align-items: end;
-    width: 100%;
-}
-
-.project-list-container li {
-    width: 100%;
-    max-width: 295px;
-    position: relative;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    background-color: rgb(var(--main-color));
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .project-list {
@@ -145,6 +131,25 @@ nav ul {
     align-items: end;
 }
 
+.project-info {
+    width: 100%;
+    max-width: 295px;
+    position: relative;
+    padding: 10px;
+    display: flex;
+    background-color: rgb(var(--main-color));
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .settings-menu {
     text-align: end;
+    align-self: end;
+    color: rgb(var(--grayed-text-color));
+}
+
+.settings-menu li {
+    display: flex;
+    align-items: center;
+
 }
