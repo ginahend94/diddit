@@ -234,6 +234,7 @@ h2 {
     display: flex;
     gap:5px;
     align-items: center;
+    position: relative;
 }
 
 li.subtask {
@@ -264,44 +265,73 @@ li.subtask {
     left:0;
     transition: .2s;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
 }
 
 .checkbox-container:hover {
     border-color: rgb(var(--text-color));
-    background-color: rgb(var(--tertiary-color));
+    /* background-color: rgb(var(--tertiary-color)); */
 }
 
-input[type=checkbox] + .checkmark {
+input[type=checkbox] + label .checkmark {
     position: absolute;
     width: 8px;
     height: 18px;
     transform: rotate(45deg);
     border: solid rgb(var(--accent-color));
     border-width: 0 3px 3px 0;
-    bottom:3px;
-    left: 7px;
+    bottom:15px;
+    left: 20px;
     transition: .2s;
     opacity: 0;
-    transform-style: preserve-3d;
-    box-shadow: 2px -3px 0 2px rgb(var(--main-color)), inset -2px -3px 0 2px rgb(var(--main-color));
+    z-index: 3;
+    cursor: pointer;
+    box-shadow: 2px -3px 0 2px rgb(var(--main-color)), inset -3px -3px 0 2px rgb(var(--main-color));
 }
 
-input[type=checkbox]:checked  + .checkmark {
+.subtask input[type=checkbox] + label .checkmark {
+    left: 45px;
+}
+
+input[type=checkbox]:checked  + label .checkmark {
     opacity: 1;
     transform: rotate(45deg);
     width: 10px;
     height: 20px;
 }
 
-/* .checkmark::after {
-    content: '';
+input[type=checkbox] ~ span {
+    position: relative;
+    transition: .2s;
+    display: inline-block;
+}
+
+input[type=checkbox]:checked ~ span {
+    color:rgb(var(--grayed-text-color));
+    transform: skew(-15deg);
+}
+
+input[type=checkbox] ~ span::after {
     position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: rgb(var(--main-color));
-    transform: rotate(-45deg);
-    transform: translateZ(-1px);
-    right: -6px;
-    top:0px;
-} */
+    content: '';
+    height: 1px;
+    top:50%;
+    left: 0;
+    display: block;
+    background-color: rgb(var(--grayed-text-color));
+    width: 0;
+    transition: .5s;
+}
+
+input[type=checkbox]:checked ~ span::after {
+    /* position: absolute;
+    content: '';
+    width: 100%;
+    height: 1px;
+    top:50%;
+    left: 0;
+    display: block;
+    background-color: red; */
+    width: 100%;
+    color: rgb(var(--text-color));
+}
