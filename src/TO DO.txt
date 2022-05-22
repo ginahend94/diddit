@@ -12,7 +12,8 @@ create context menu
 add emoji picker
 make side of sidebar draggable
 show full project title on hover if text is overflowing
-
+make project options appear on hover
+prevent flash of unstyled page
 
 
 DONE

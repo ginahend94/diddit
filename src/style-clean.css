@@ -217,12 +217,27 @@ h2 {
 .to-do-list-container {
     border: solid 1px;
     border-radius: 5px;
-    padding: var(--padding);
     list-style: none;
     margin: 0;
 }
+
 .to-do-list-container ul {
-    padding: var(--padding);
+    /* padding-left: var(--padding); */
+    padding: 0;
     list-style: none;
     margin: 0;
+}
+
+.to-do-list li {
+    /* padding: var(--padding); */
+    border-bottom: solid 1px rgb(var(--tertiary-color));
+    padding: 0;
+}
+
+.task {
+    padding: var(--padding);
+}
+
+.subtasks li:first-child {
+    border-top: solid 1px rgb(var(--tertiary-color));
 }
