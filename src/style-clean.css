@@ -264,6 +264,7 @@ li.subtask {
     left:0;
     transition: .2s;
     cursor: pointer;
+    z-index: 1;
 }
 
 .checkbox-container:hover {
@@ -273,8 +274,8 @@ li.subtask {
 
 input[type=checkbox] + .checkmark {
     position: absolute;
-    width: 5px;
-    height: 10px;
+    width: 8px;
+    height: 18px;
     transform: rotate(45deg);
     border: solid rgb(var(--accent-color));
     border-width: 0 3px 3px 0;
@@ -282,10 +283,25 @@ input[type=checkbox] + .checkmark {
     left: 7px;
     transition: .2s;
     opacity: 0;
+    transform-style: preserve-3d;
+    box-shadow: 2px -3px 0 2px rgb(var(--main-color)), inset -2px -3px 0 2px rgb(var(--main-color));
 }
+
 input[type=checkbox]:checked  + .checkmark {
     opacity: 1;
     transform: rotate(45deg);
     width: 10px;
     height: 20px;
 }
+
+/* .checkmark::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: rgb(var(--main-color));
+    transform: rotate(-45deg);
+    transform: translateZ(-1px);
+    right: -6px;
+    top:0px;
+} */
