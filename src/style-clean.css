@@ -229,15 +229,10 @@ h2 {
 }
 
 .to-do-list li {
-    /* padding: var(--padding); */
-    border-bottom: solid 1px rgb(var(--tertiary-color));
-    padding: 0;
-}
-
-.task {
     padding: var(--padding);
+    border-bottom: solid 1px rgb(var(--tertiary-color));
 }
 
-.subtasks li:first-child {
-    border-top: solid 1px rgb(var(--tertiary-color));
+li.subtask {
+    padding-left: 30px;
 }
