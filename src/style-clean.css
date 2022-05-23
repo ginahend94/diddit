@@ -223,6 +223,8 @@ h2 {
     padding: var(--padding);
 }
 
+/* TO DO LIST  */
+
 .to-do-list-container {
     border: solid 1px rgb(var(--grayed-text-color));
     border-radius: 5px;
@@ -240,6 +242,7 @@ h2 {
 .to-do-list li {
     padding: var(--padding);
     border-bottom: solid 1px rgb(var(--tertiary-color));
+    border-right: solid 10px rgb(var(--tertiary-color));
     display: flex;
     gap:5px;
     align-items: center;
@@ -255,6 +258,9 @@ h2 {
 li.subtask {
     padding-left: 35px;
 }
+
+
+/* CHECKBOX  */
 
 .to-do-list input[type=checkbox] {
     position: absolute;
@@ -315,6 +321,8 @@ input[type=checkbox]:checked  + label .checkmark {
     height: 20px;
 }
 
+/* COMPLETED TASK TEXT  */
+
 input[type=checkbox] ~ .task-text {
     position: relative;
     transition: .2s;
@@ -351,6 +359,8 @@ input[type=checkbox]:checked ~ .task-text::after {
     background-color: rgb(var(--tertiary-color));
 }
 
+/* DRAG ICON  */
+
 .task:hover .drag, .subtask:hover .drag {
     opacity: 1;
 }
@@ -373,6 +383,8 @@ input[type=checkbox]:checked ~ .task-text::after {
     box-shadow: 2px -3px 0 2px rgb(var(--tertiary-color)), inset -3px -3px 0 2px rgb(var(--tertiary-color));
 }
 
+/* SPLIT BUTTON  */
+
 .add-new {
     display: flex;
     height: min-content;
@@ -383,7 +395,6 @@ input[type=checkbox]:checked ~ .task-text::after {
 
 .split-button-button {
     border-radius: 5px 0 0 5px;
-    /* padding-right: .5ch; */
 }
 
 .split-button-button:hover + .split-button-dropdown {
@@ -398,7 +409,6 @@ input[type=checkbox]:checked ~ .task-text::after {
     border-radius: 0 5px 5px 0;
     display: flex;
     align-items: center;
-    /* padding-left: .5ch; */
     border-left: solid 1px rgba(var(--tertiary-color), .2);
     position: relative;
     z-index: 1;
@@ -416,19 +426,14 @@ input[type=checkbox]:checked ~ .task-text::after {
     display: none;
     position:absolute;
     right: 0;
-    /* top: calc(100% - 5px); */
     top:100%;
     margin: 0;
     width: 100%;
     padding: 0;
-    /* padding-top: 5px; */
-    /* padding: 5px 0 5px 10px; */
-    /* padding-left: 10px; */
     list-style: none;
     text-align: left;
     background-color: rgb(var(--accent-color));
-    border-radius: 0 0 5px 5px;
-    /* z-index: -2; */
+    border-radius: 0 0 5px 5px
 }
 
 .split-button-dropdown-list li {
@@ -449,4 +454,17 @@ input[type=checkbox]:checked ~ .task-text::after {
 
 .split-button-dropdown-list li:last-child {
     border-radius: 0 0 5px 5px;
+}
+
+.task-due-date {
+    color: rgb(var(--grayed-text-color));
+    font-size: .8rem;
+    position: absolute;
+    right:10px;
+    display: block;
+    transition: .2s;
+}
+
+.to-do-list li:hover .task-due-date {
+    display: none;
 }

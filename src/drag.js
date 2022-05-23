@@ -2,30 +2,24 @@ const draggables = document.querySelectorAll('.drag-element');
 const containers = document.querySelectorAll('.drag-container');
 const icons = document.querySelectorAll('.drag');
 
-icons.forEach(a => {
-    a.addEventListener('mousedown', () => {
-        a.parentNode.classList.add('draggable');
-        a.parentNode.setAttribute('draggable', true);
+icons.forEach(icon => {
+    icon.addEventListener('mousedown', () => {
+        icon.parentNode.setAttribute('draggable', true);
     });
-    a.addEventListener('mouseup', () => {
-        a.parentNode.classList.remove('draggable');
-        a.parentNode.setAttribute('draggable', false);
+    icon.addEventListener('mouseup', () => {
+        icon.parentNode.setAttribute('draggable', false);
     });
-    a.addEventListener('dragend', () => {
-        a.parentNode.classList.remove('draggable')
-        a.parentNode.setAttribute('draggable', false)
+    icon.addEventListener('dragend', () => {
+        icon.parentNode.setAttribute('draggable', false)
     })
 })
 
 draggables.forEach(a => {
     a.addEventListener('dragstart', () => {
-        a.style.backgroundColor = 'red'; // CHANGE
-        // setTimeout(() => a.classList.remove('task-dragging'), 1); // CHANGE
         a.classList.add('dragging');
     });
     a.addEventListener('dragend', () => {
         a.classList.remove('dragging');
-        a.classList.remove('draggable');
         a.setAttribute('draggable', false);
     })
 })
@@ -56,5 +50,3 @@ function getDragAfterElement(container, y) {
         }
     }, { offset: Number.NEGATIVE_INFINITY }).element
 }
-
-console.log(getComputedStyle(document.body).getPropertyValue('--tertiary-color'));
