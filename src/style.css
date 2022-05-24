@@ -189,11 +189,10 @@ main h2 {
     border-radius: 5px;
     padding: 0;
 }
-.task {
+/* .task {
     border-right: solid 10px rgb(var(--tertiary-color));
     border-bottom: solid 1px rgb(var(--tertiary-color));
     padding: 10px;
-    /* background-color: rgb(var(--secondary-color)); */
 }
 .task-dragging {
     border: solid 1px rgb(var(--tertiary-color));
@@ -215,4 +214,4 @@ main h2 {
 }
 .sub-task {
     padding-left: 1rem;
-}
+} */

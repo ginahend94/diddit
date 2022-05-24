@@ -17,6 +17,11 @@ icons.forEach(icon => {
 draggables.forEach(a => {
     a.addEventListener('dragstart', () => {
         a.classList.add('dragging');
+        if (a.classList.contains('subtask')) {
+            setTimeout(() => {
+            a.parentNode.parentNode.classList.remove('dragging');
+            }, 1);
+        }
     });
     a.addEventListener('dragend', () => {
         a.classList.remove('dragging');
@@ -29,11 +34,19 @@ containers.forEach(a => {
         e.preventDefault();
         const afterElement = getDragAfterElement(a, e.clientY);
         const draggable = document.querySelector('.dragging');
+        if (draggable.classList.contains('subtask')) {
+            let container = document.getElementById(draggable.dataset.container).querySelector('.subtasks');
+            if (afterElement == null) {
+                container.append(draggable);
+            } else {
+                container.insertBefore(draggable, afterElement);
+            }
+            return
+        }
         if (afterElement == null) {
-            if (a.id != draggable.dataset.container) return
             a.append(draggable);
         } else {
-            a.insertBefore(draggable, afterElement)
+            a.insertBefore(draggable, afterElement);
         }
     })
 })

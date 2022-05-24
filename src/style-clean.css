@@ -61,17 +61,16 @@ button:active {
     background-color: rgb(var(--accent-color));
 }
 
+
+/* SIDEBAR  */
+
 h1 {
     border: solid 1px;
     text-align: center;
     justify-self: center;
 } 
 
-
-/* SIDEBAR  */
-
 nav {
-    /* position: relative; */
     height: 100%;
     min-width: 200px;
     max-width: 350px;
@@ -191,6 +190,8 @@ main {
     flex-direction: column;
 }
 
+/* HEADER  */
+
 main header {
     background-color: rgb(var(--accent-color));
     height: 100px;
@@ -214,6 +215,8 @@ h2 {
     border-radius: 5px;
 }
 
+/* TO DO LIST  */
+
 .project-container {
     flex: auto;
     overflow-y: auto;
@@ -222,8 +225,6 @@ h2 {
     gap: 10px;
     padding: var(--padding);
 }
-
-/* TO DO LIST  */
 
 .to-do-list-container {
     border: solid 1px rgb(var(--grayed-text-color));
@@ -239,30 +240,45 @@ h2 {
     margin: 0;
 }
 
-.to-do-list li {
-    padding: var(--padding);
+.task > .task-container, .subtask {
     border-bottom: solid 1px rgb(var(--tertiary-color));
     border-right: solid 10px rgb(var(--tertiary-color));
+    
+}
+.task-container {
+    padding: var(--padding);
     display: flex;
     gap:5px;
-    align-items: center;
+    /* align-items: center; */
     position: relative;
     transition: .2s;
     cursor: pointer;
 }
 
-.to-do-list li:first-child {
-    border-radius: 5px;
+/* 
+li, li > * {
+} */
+
+.task:first-child > .task-container {
+    border-radius: 5px 5px 0 0;
 }
+
+.task {
+    flex-direction: column;
+}
+/* .task-container {
+    width: 100%;
+} */
 
 li.subtask {
     padding-left: 35px;
+    transition: .2s;
 }
 
 
 /* CHECKBOX  */
 
-.to-do-list input[type=checkbox] {
+.to-do-list .list-checkbox {
     position: absolute;
     top:0;
     left: 0;
@@ -291,10 +307,9 @@ li.subtask {
 
 .checkbox-container:hover {
     border-color: rgb(var(--text-color));
-    /* background-color: rgb(var(--tertiary-color)); */
 }
 
-input[type=checkbox] + label .checkmark {
+.list-checkbox + label .checkmark {
     position: absolute;
     width: 8px;
     height: 18px;
@@ -310,11 +325,7 @@ input[type=checkbox] + label .checkmark {
     box-shadow: 2px -3px 0 2px rgb(var(--main-color)), inset -3px -3px 0 2px rgb(var(--main-color));
 }
 
-.subtask input[type=checkbox] + label .checkmark {
-    left: 45px;
-}
-
-input[type=checkbox]:checked  + label .checkmark {
+.list-checkbox:checked  + label .checkmark {
     opacity: 1;
     transform: rotate(45deg);
     width: 10px;
@@ -323,18 +334,18 @@ input[type=checkbox]:checked  + label .checkmark {
 
 /* COMPLETED TASK TEXT  */
 
-input[type=checkbox] ~ .task-text {
+.list-checkbox ~ .task-text {
     position: relative;
     transition: .2s;
     display: inline-block;
 }
 
-input[type=checkbox]:checked ~ .task-text {
+.list-checkbox:checked ~ .task-text {
     color:rgb(var(--grayed-text-color));
     transform: skew(-15deg);
 }
 
-input[type=checkbox] ~ .task-text::after {
+.list-checkbox ~ .task-text::after {
     position: absolute;
     content: '';
     height: 1px;
@@ -346,7 +357,7 @@ input[type=checkbox] ~ .task-text::after {
     transition: .4s;
 }
 
-input[type=checkbox]:checked ~ .task-text::after {
+.list-checkbox:checked ~ .task-text::after {
     width: 100%;
     color: rgb(var(--text-color));
 }
@@ -355,13 +366,17 @@ input[type=checkbox]:checked ~ .task-text::after {
     margin: 10px;
 }
 
-.task:hover, .subtask:hover {
+.task-container {
+    transition: .2s;
+}
+
+.task > .task-container:hover, .subtask:hover {
     background-color: rgb(var(--tertiary-color));
 }
 
 /* DRAG ICON  */
 
-.task:hover .drag, .subtask:hover .drag {
+.task-container:hover .drag {
     opacity: 1;
 }
 
@@ -379,7 +394,15 @@ input[type=checkbox]:checked ~ .task-text::after {
     color: rgb(var(--text-color));
 }
 
-.task:hover .checkmark, .subtask:hover .checkmark {
+.task > .task-container:hover .checkmark, .subtask:hover .checkmark {
+    box-shadow: 2px -3px 0 2px rgb(var(--tertiary-color)), inset -3px -3px 0 2px rgb(var(--tertiary-color));
+}
+
+.dragging {
+    background-color: rgb(var(--tertiary-color));
+}
+
+.dragging .checkmark {
     box-shadow: 2px -3px 0 2px rgb(var(--tertiary-color)), inset -3px -3px 0 2px rgb(var(--tertiary-color));
 }
 
