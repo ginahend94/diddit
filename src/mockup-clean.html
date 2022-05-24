@@ -269,31 +269,32 @@
         <div class="modal-bg"></div>
         <div class="modal">
             <form class="task-details">
-                <label for="taks-title">Title</label>
-                <input type="text" id="task-title" class="task-title" placeholder="Title">
-                <label for="task-priority">
-                    Priority
-                    <select name="task-priority" id="task-priority">
-                        <option value="none">None</option>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </label>
+                <label for="task-title">Title</label>
+                <input type="text" id="task-title" class="task-title" placeholder="Title" required>
+                <div class="task-priority">
+                    <legend>Priority</legend>
+                    <fieldset name="task-priority" id="task-priority">
+                        <label><input name="priority" type="radio" value="none">None</label>
+                        <label><input name="priority" type="radio" value="low">Low</label>
+                        <label><input name="priority" type="radio" value="medium">Medium</label>
+                        <label><input name="priority" type="radio" value="high">High</label>
+                    </fieldset>
+                </div>
                 <div class="add-subtasks">
                     <label for="add-subtasks">
-                        <input type="checkbox" name="add-subtasks" id="add-subtask">
+                        <input type="checkbox" name="add-subtasks" id="add-subtasks">
                         Add subtasks?
                     </label>
-                    <small class="subtask-directions">
-                        Enter your subtasks below. Add a due date separated by a comma, and a new task on a new line.
-                    </small>
-                    <textarea name="subtasks" id="new-subtasks" cols="30" rows="10" placeholder="e.g. Walk dog, 6/12/22">
-                    </textarea>
+                    <div class="subtask-form">
+                        <small class="subtask-directions">
+                            Enter your subtasks below. Add a due date separated by a comma, and a new task on a new line.
+                        </small>
+                        <textarea name="subtasks" id="new-subtasks" cols="25" rows="5" placeholder="e.g. Walk dog, 6/12/22"></textarea>
+                    </div>
                 </div>
                 <label for="notes">
                     Notes:
-                    <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+                    <textarea name="notes" id="notes" cols="25" rows="5" placeholder="Notes (optional)"></textarea>
                 </label>
                 <div class="buttons">
                     <button class="save" disabled>Save</button>

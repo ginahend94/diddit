@@ -61,6 +61,14 @@ button:active {
     background-color: rgb(var(--accent-color));
 }
 
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+button:disabled:hover {
+    background-color: rgb(var(--accent-color));
+}
+
 
 /* SIDEBAR  */
 
@@ -302,7 +310,7 @@ li.subtask {
     left:0;
     transition: .2s;
     cursor: pointer;
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 .checkbox-container:hover {
@@ -320,7 +328,7 @@ li.subtask {
     left: 20px;
     transition: .2s;
     opacity: 0;
-    z-index: 3;
+    /* z-index: 3; */
     cursor: pointer;
     box-shadow: 2px -3px 0 2px rgb(var(--main-color)), inset -3px -3px 0 2px rgb(var(--main-color));
 }
@@ -434,7 +442,7 @@ li.subtask {
     align-items: center;
     border-left: solid 1px rgba(var(--tertiary-color), .2);
     position: relative;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .split-button-dropdown:active, .split-button-dropdown.open {
@@ -490,4 +498,53 @@ li.subtask {
 
 .to-do-list li:hover .task-due-date {
     display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-container {
+    position:fixed;
+    top:0;
+    left:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.modal-bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--main-color), .5);
+    /* z-index: 9999999999999999999999; */
+    position: fixed;
+}
+.modal {
+    border: solid 1px;
+    background-color: rgb(var(--main-color));
+    width: min-content;
+    padding: var(--padding);
+    border-radius: 5px;
+    z-index: 1;
+}
+.task-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* .task-details > * {
+    border: solid 1px;
+} */
+
+.task-details textarea {
+    resize: none;
+}
+
+.add-subtasks label {
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }
