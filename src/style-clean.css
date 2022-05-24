@@ -61,17 +61,24 @@ button:active {
     background-color: rgb(var(--accent-color));
 }
 
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+button:disabled:hover {
+    background-color: rgb(var(--accent-color));
+}
+
+
+/* SIDEBAR  */
+
 h1 {
     border: solid 1px;
     text-align: center;
     justify-self: center;
 } 
 
-
-/* SIDEBAR  */
-
 nav {
-    /* position: relative; */
     height: 100%;
     min-width: 200px;
     max-width: 350px;
@@ -191,6 +198,8 @@ main {
     flex-direction: column;
 }
 
+/* HEADER  */
+
 main header {
     background-color: rgb(var(--accent-color));
     height: 100px;
@@ -213,6 +222,8 @@ h2 {
     padding: 10px;
     border-radius: 5px;
 }
+
+/* TO DO LIST  */
 
 .project-container {
     flex: auto;
@@ -237,26 +248,45 @@ h2 {
     margin: 0;
 }
 
-.to-do-list li {
-    padding: var(--padding);
+.task > .task-container, .subtask {
     border-bottom: solid 1px rgb(var(--tertiary-color));
+    border-right: solid 10px rgb(var(--tertiary-color));
+    
+}
+.task-container {
+    padding: var(--padding);
     display: flex;
     gap:5px;
-    align-items: center;
+    /* align-items: center; */
     position: relative;
     transition: .2s;
     cursor: pointer;
 }
 
-.to-do-list li:first-child {
-    border-radius: 5px;
+/* 
+li, li > * {
+} */
+
+.task:first-child > .task-container {
+    border-radius: 5px 5px 0 0;
 }
+
+.task {
+    flex-direction: column;
+}
+/* .task-container {
+    width: 100%;
+} */
 
 li.subtask {
     padding-left: 35px;
+    transition: .2s;
 }
 
-.to-do-list input[type=checkbox] {
+
+/* CHECKBOX  */
+
+.to-do-list .list-checkbox {
     position: absolute;
     top:0;
     left: 0;
@@ -280,15 +310,14 @@ li.subtask {
     left:0;
     transition: .2s;
     cursor: pointer;
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 .checkbox-container:hover {
     border-color: rgb(var(--text-color));
-    /* background-color: rgb(var(--tertiary-color)); */
 }
 
-input[type=checkbox] + label .checkmark {
+.list-checkbox + label .checkmark {
     position: absolute;
     width: 8px;
     height: 18px;
@@ -299,34 +328,32 @@ input[type=checkbox] + label .checkmark {
     left: 20px;
     transition: .2s;
     opacity: 0;
-    z-index: 3;
+    /* z-index: 3; */
     cursor: pointer;
     box-shadow: 2px -3px 0 2px rgb(var(--main-color)), inset -3px -3px 0 2px rgb(var(--main-color));
 }
 
-.subtask input[type=checkbox] + label .checkmark {
-    left: 45px;
-}
-
-input[type=checkbox]:checked  + label .checkmark {
+.list-checkbox:checked  + label .checkmark {
     opacity: 1;
     transform: rotate(45deg);
     width: 10px;
     height: 20px;
 }
 
-input[type=checkbox] ~ .task-text {
+/* COMPLETED TASK TEXT  */
+
+.list-checkbox ~ .task-text {
     position: relative;
     transition: .2s;
     display: inline-block;
 }
 
-input[type=checkbox]:checked ~ .task-text {
+.list-checkbox:checked ~ .task-text {
     color:rgb(var(--grayed-text-color));
     transform: skew(-15deg);
 }
 
-input[type=checkbox] ~ .task-text::after {
+.list-checkbox ~ .task-text::after {
     position: absolute;
     content: '';
     height: 1px;
@@ -338,7 +365,7 @@ input[type=checkbox] ~ .task-text::after {
     transition: .4s;
 }
 
-input[type=checkbox]:checked ~ .task-text::after {
+.list-checkbox:checked ~ .task-text::after {
     width: 100%;
     color: rgb(var(--text-color));
 }
@@ -347,11 +374,17 @@ input[type=checkbox]:checked ~ .task-text::after {
     margin: 10px;
 }
 
-.task:hover, .subtask:hover {
+.task-container {
+    transition: .2s;
+}
+
+.task > .task-container:hover, .subtask:hover {
     background-color: rgb(var(--tertiary-color));
 }
 
-.task:hover .drag, .subtask:hover .drag {
+/* DRAG ICON  */
+
+.task-container:hover .drag {
     opacity: 1;
 }
 
@@ -369,9 +402,19 @@ input[type=checkbox]:checked ~ .task-text::after {
     color: rgb(var(--text-color));
 }
 
-.task:hover .checkmark, .subtask:hover .checkmark {
+.task > .task-container:hover .checkmark, .subtask:hover .checkmark {
     box-shadow: 2px -3px 0 2px rgb(var(--tertiary-color)), inset -3px -3px 0 2px rgb(var(--tertiary-color));
 }
+
+.dragging {
+    background-color: rgb(var(--tertiary-color));
+}
+
+.dragging .checkmark {
+    box-shadow: 2px -3px 0 2px rgb(var(--tertiary-color)), inset -3px -3px 0 2px rgb(var(--tertiary-color));
+}
+
+/* SPLIT BUTTON  */
 
 .add-new {
     display: flex;
@@ -383,7 +426,6 @@ input[type=checkbox]:checked ~ .task-text::after {
 
 .split-button-button {
     border-radius: 5px 0 0 5px;
-    /* padding-right: .5ch; */
 }
 
 .split-button-button:hover + .split-button-dropdown {
@@ -398,10 +440,9 @@ input[type=checkbox]:checked ~ .task-text::after {
     border-radius: 0 5px 5px 0;
     display: flex;
     align-items: center;
-    /* padding-left: .5ch; */
     border-left: solid 1px rgba(var(--tertiary-color), .2);
     position: relative;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .split-button-dropdown:active, .split-button-dropdown.open {
@@ -416,19 +457,14 @@ input[type=checkbox]:checked ~ .task-text::after {
     display: none;
     position:absolute;
     right: 0;
-    /* top: calc(100% - 5px); */
     top:100%;
     margin: 0;
     width: 100%;
     padding: 0;
-    /* padding-top: 5px; */
-    /* padding: 5px 0 5px 10px; */
-    /* padding-left: 10px; */
     list-style: none;
     text-align: left;
     background-color: rgb(var(--accent-color));
-    border-radius: 0 0 5px 5px;
-    /* z-index: -2; */
+    border-radius: 0 0 5px 5px
 }
 
 .split-button-dropdown-list li {
@@ -449,4 +485,66 @@ input[type=checkbox]:checked ~ .task-text::after {
 
 .split-button-dropdown-list li:last-child {
     border-radius: 0 0 5px 5px;
+}
+
+.task-due-date {
+    color: rgb(var(--grayed-text-color));
+    font-size: .8rem;
+    position: absolute;
+    right:10px;
+    display: block;
+    transition: .2s;
+}
+
+.to-do-list li:hover .task-due-date {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-container {
+    position:fixed;
+    top:0;
+    left:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.modal-bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--main-color), .5);
+    /* z-index: 9999999999999999999999; */
+    position: fixed;
+}
+.modal {
+    border: solid 1px;
+    background-color: rgb(var(--main-color));
+    width: min-content;
+    padding: var(--padding);
+    border-radius: 5px;
+    z-index: 1;
+}
+.task-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* .task-details > * {
+    border: solid 1px;
+} */
+
+.task-details textarea {
+    resize: none;
+}
+
+.add-subtasks label {
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }
