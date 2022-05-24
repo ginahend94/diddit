@@ -1,6 +1,6 @@
 TO DO
 
-favicon
+add favicon to config
 tour/tutorial
 create modal module
 style modal
@@ -22,3 +22,4 @@ style header
 style done tasks
 style task container
 refactor drag fn
+create favicon
