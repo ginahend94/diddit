@@ -548,3 +548,9 @@ li.subtask {
     gap: 5px;
     align-items: center;
 }
+
+fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
