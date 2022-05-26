@@ -17,7 +17,8 @@ change order of object on reorder (.map?)
 ability to star tasks
 undo/redo
 custom palette w/dynamic favicon
-
+archive projects
+poject tags
 
 DONE
 style sidebar

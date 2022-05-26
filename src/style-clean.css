@@ -581,11 +581,14 @@ label[for="new-task-due-date"] {
     border: none;
     display: flex;
     flex-direction: column;
+    padding: 0;
+    margin: 0;
 }
 
-.task-details fieldset > label {
+.task-details fieldset > * {
     display: flex;
     gap: 5px;
+    align-items: center;
 }
 
 .task-details small {
@@ -643,4 +646,40 @@ position: absolute;
 left:0;
 bottom:0;
 opacity: 0;
+}
+
+.task-priority {
+    display: flex;
+    align-items: baseline;
+    gap:1ch;
+}
+
+.task-priority span#priority-selection {
+    display: flex;
+    align-items: center;
+    gap:1ch;
+}
+
+.task-priority input {
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    position: absolute;
+}
+
+.task-priority-list {
+    position: absolute;
+    box-shadow: 3px 3px 3px rgba(0,0,0, .2);
+}
+
+.task-priority-list label {
+    padding: 5px;
+    background-color: rgb(var(--accent-color));
+    cursor: pointer;
+    position: relative;
+}
+
+.task-priority-list label:hover {
+    background-color: rgb(var(--accent-color-bright));
 }

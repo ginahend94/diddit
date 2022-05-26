@@ -274,7 +274,7 @@
                 <div></div>
             </div>
             <form class="task-details">
-                <input type="text" name="" id="task-title" class="task-title" placeholder="Enter task here..." required>
+                <input type="text" name="task-title" id="task-title" class="task-title" placeholder="Enter task here..." required>
                 <label>
                     Due by
                     <div class="pretty-date-container">
@@ -289,13 +289,17 @@
                 </label>
                 <div class="task-priority">
                     <legend>Priority</legend>
-                    <span id=""></span>
-                    <fieldset name="task-priority" id="task-priority">
-                        <label><input name="priority" type="radio" value="none">None</label>
-                        <label><input name="priority" type="radio" value="low">Low</label>
-                        <label><input name="priority" type="radio" value="medium">Medium</label>
-                        <label><input name="priority" type="radio" value="high">High</label>
-                    </fieldset>
+                    <div>
+                        <span id="priority-selection">None <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                                        </svg></span>
+                        <fieldset name="task-priority" id="task-priority" class="task-priority-list">
+                            <label><input name="priority" type="radio" value="none">None</label>
+                            <label><input name="priority" type="radio" value="low">Low</label>
+                            <label><input name="priority" type="radio" value="medium">Medium</label>
+                            <label><input name="priority" type="radio" value="high">High</label>
+                        </fieldset>
+                    </div>
                 </div>
                 <div class="add-subtasks">
                     <label for="add-subtasks">
@@ -421,6 +425,9 @@
             document.getElementById('pretty-date').value = '';
             document.getElementById('pretty-date').dispatchEvent(new Event('change'));
         })
+
+
+
     </script>
 </body>
 
