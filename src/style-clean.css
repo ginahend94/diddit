@@ -16,6 +16,8 @@
     --text-color-bright: 245, 245, 245;
     /* DARK MODE GRAYED-OUT */
     --accent-color-bright: 145, 118, 209;
+    /* DANGER */
+    --danger: 196, 62, 74;
 
     /* LIGHT MODE */
     /*
@@ -503,31 +505,50 @@ li.subtask {
 .hidden {
     display: none;
 }
+.show {
+    display: flex;
+}
 
+/* MODAL  */
 .modal-container {
     position:fixed;
     top:0;
     left:0;
-    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
+    overflow-y: auto;
 }
 .modal-bg {
     width: 100%;
     height: 100%;
     background-color: rgba(var(--main-color), .5);
-    /* z-index: 9999999999999999999999; */
     position: fixed;
 }
 .modal {
-    border: solid 1px;
+    border: solid 1px rgb(var(--grayed-text-color));
     background-color: rgb(var(--main-color));
     width: min-content;
     padding: var(--padding);
     border-radius: 5px;
+    box-shadow: 5px 5px 3px rgba(0,0,0, .2);
     z-index: 1;
+    position:absolute;
+}
+.drag-bar {
+    width: 100%;
+    height: 15px;
+    cursor: move;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.drag-bar div {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(var(--tertiary-color));
 }
 .task-details {
     display: flex;
@@ -535,12 +556,40 @@ li.subtask {
     gap: 10px;
 }
 
-/* .task-details > * {
-    border: solid 1px;
-} */
+.task-title {
+    padding: 0;
+    font-size: 1.2rem;
+    background-color: transparent;
+    color: rgb(var(--text-color));
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    outline: none;
+}
+label[for="new-task-due-date"] {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.new-task-due-date {
+    background-color: transparent;
+    color: rgb(var(--text-color));
+}
 
-.task-details textarea {
-    resize: none;
+.task-details fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-details fieldset > label {
+    display: flex;
+    gap: 5px;
+}
+
+.task-details small {
+    color: rgb(var(--grayed-text-color));
 }
 
 .add-subtasks label {
@@ -549,8 +598,49 @@ li.subtask {
     align-items: center;
 }
 
-fieldset {
-    border: none;
-    display: flex;
-    flex-direction: column;
+.task-details textarea {
+    resize: none;
+    background-color: transparent;
+    border: solid 1px rgb(var(--grayed-text-color));
+    border-radius: 5px;
+    color: inherit;
+    padding: 5px;
+    outline: none;
+}
+
+.task-details .cancel, .task-details .cancel:active {
+    background-color: rgba(var(--danger),.8);
+}
+
+.task-details .cancel:hover {
+    background-color: rgb(var(--danger));
+}
+
+label[for="pretty-date"] {
+    position: relative;
+    border-bottom: solid 1px;
+    cursor: pointer;
+}
+
+.pretty-date-container {
+    position: relative;
+    font-family: sans-serif;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.pretty-date-container:hover, .task-details textarea:hover, .task-title:hover, .pretty-date-container:focus, .task-details textarea:focus, .task-title:focus {
+    background-color: rgb(var(--tertiary-color));
+}
+#pretty-date {
+display: block;
+width: 0px;
+height: 0px;
+padding: 0;
+outline: none;
+position: absolute;
+left:0;
+bottom:0;
+opacity: 0;
 }

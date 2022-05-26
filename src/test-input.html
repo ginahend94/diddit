@@ -43,18 +43,50 @@
             position: relative;
             padding-bottom: 10px;
         }
-
+        .date-container {
+            position: relative;
+            font-family: sans-serif;
+        }
+#date {
+    display: block;
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    outline: none;
+    position: absolute;
+    left:0;
+    bottom:0;
+    opacity: 0;
+}
     </style>
 </head>
 
 <body>
-    <div class="input-container">
+    <!-- <div class="input-container">
         <label for="input-1" id="input-1-label">
             Title
         </label>
         <input type="text" id="input-1" value="" placeholder="Title">
     </div>
-    <script src="tapInput.js"></script>
+    <script src="tapInput.js"></script> -->
+
+    <div class="date-container">
+        <label for="date"><span id="mm">mm</span> / <span id="dd">dd</span> / <span id="yyyy">yyyy</span></label>
+        <input type="date" name="date" id="date">
+    </div>
+<script>
+    const dateInput = document.getElementById('date');
+    dateInput.addEventListener('change', e => {
+        const mm = document.getElementById('mm');
+        const dd = document.getElementById('dd');
+        const yyyy = document.getElementById('yyyy');
+// yyyy mm dd
+        let dateArray = e.target.value.split('-');
+        yyyy.textContent = dateArray[0];
+        mm.textContent = dateArray[1];
+        dd.textContent = dateArray[2];
+    })
+</script>
 </body>
 
 </html>
