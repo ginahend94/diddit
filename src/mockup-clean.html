@@ -346,7 +346,6 @@
         const modalContainer = document.querySelector('.modal-container');
         const addSubtasks = document.getElementById('add-subtasks');
         addSubtasks.addEventListener('change', e => {
-            console.log(e.target.checked)
             if (e.target.checked) {
                 return document.querySelector('.subtask-form').classList.remove('hidden');
             };
@@ -386,9 +385,27 @@
                 pos2 = pos4 - e.clientY;
                 pos3 = e.clientX;
                 pos4 = e.clientY;
+
                 // set the element's new position:
-                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                elmnt.style.top = (() => {
+                // prevent dragging outside window
+                    if (elmnt.offsetTop - pos2 < 0) {
+                        return '0';
+                    }
+                    if ((elmnt.offsetTop - pos2) >= window.innerHeight - elmnt.offsetHeight / 2) {
+                        return (window.innerHeight - elmnt.offsetHeight / 2) + 'px';
+                    }
+                    return (elmnt.offsetTop - pos2) + "px";
+                })();
+                elmnt.style.left = (() => {
+                    if (elmnt.offsetLeft - pos1 < 0) {
+                        return 0;
+                    }
+                    if ((elmnt.offsetLeft + elmnt.offsetWidth) - pos1 > window.innerWidth) {
+                        return window.innerWidth - elmnt.offsetWidth + 'px';
+                    }
+                    return (elmnt.offsetLeft - pos1) + "px"
+                })();
             }
 
             function closeDragElement() {

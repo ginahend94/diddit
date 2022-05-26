@@ -16,7 +16,7 @@ fix shadow showing up on drag
 change order of object on reorder (.map?)
 ability to star tasks
 undo/redo
-custom pallette w/dynamic favicon
+custom palette w/dynamic favicon
 
 
 DONE
