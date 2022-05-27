@@ -170,7 +170,7 @@ nav ul {
     color: rgb(var(--text-color));
 }
 
-.project-info:hover {
+.project-info:hover, .project-info.active {
     background-color: rgb(var(--tertiary-color));
 }
 

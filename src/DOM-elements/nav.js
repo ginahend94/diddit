@@ -1,7 +1,8 @@
 import icon from "../functions/icon";
 import load from "../functions/load";
 import ProjectManager from "../functions/projectManager";
-// import { Profile } from "../profile";
+import switchActiveProject from "../functions/switchActiveProject";
+
 
 export default Profile => {
 
@@ -36,6 +37,12 @@ export default Profile => {
         projectInfo.append(projectTitle);
         projectTitle.classList.add('project-title');
         projectTitle.textContent = project.name;
+
+        if (project.active) {
+            projectInfo.classList.add('active');
+        }
+
+        projectInfo.addEventListener('click', () => switchActiveProject(project.id, Profile));
 
         projectInfo.append(icon('ic:baseline-more-horiz', ['project-options']));
     });

@@ -1,4 +1,5 @@
 import nav from "../DOM-elements/nav";
+import main from "../DOM-elements/main";
 import load from "./load";
 import save from "./save";
 
@@ -12,4 +13,5 @@ export default () => {
     }
     document.body.innerHTML = '';
     document.body.append(nav(Profile));
+    document.body.append(main(Profile));
 }
