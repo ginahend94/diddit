@@ -19,7 +19,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Diddit - To Do List',
-            favicon: './src/favicon.ico',
+            favicon: './src/images/favicon.ico',
         }),
     ],
     output: {
