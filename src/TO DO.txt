@@ -19,7 +19,7 @@ undo/redo
 custom palette w/dynamic favicon and light/dark text
 archive projects
 poject tags
-profile img
+profile img (iconify icon finder?)
 
 DONE
 style sidebar

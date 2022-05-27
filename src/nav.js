@@ -1,3 +1,4 @@
+import icon from "./icon";
 export default projects => {
 
     const nav = document.createElement('nav');
@@ -7,10 +8,8 @@ export default projects => {
     nav.append(header)
     const h1 = document.createElement('h1');
     header.append(h1);
-    h1.innerHTML = `Diddit.<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="currentColor"
-        d="M19,19H5V5H15V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V11H19M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z" />
-</svg>`;
+    h1.textContent = `Diddit.`;
+    h1.appendChild(icon('mdi:checkbox-marked-outline'));
     
     const sidebarLower = document.createElement('div');
     sidebarLower.classList.add('sidebar-lower');

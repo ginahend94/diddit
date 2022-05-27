@@ -17,6 +17,7 @@
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
+    "@iconify/iconify": "^2.2.1",
     "css-loader": "^6.7.1",
     "style-loader": "^3.3.1"
   }
