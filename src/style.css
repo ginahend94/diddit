@@ -562,7 +562,7 @@ li.subtask {
     height: 1px;
     background-color: rgb(var(--tertiary-color));
 }
-.task-details {
+.modal-inner.task-details {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -590,7 +590,7 @@ label[for="new-task-due-date"] {
     color: rgb(var(--text-color));
 }
 
-.task-details fieldset {
+.modal-inner.task-details fieldset {
     border: none;
     display: flex;
     flex-direction: column;
@@ -598,13 +598,13 @@ label[for="new-task-due-date"] {
     margin: 0;
 }
 
-.task-details fieldset > * {
+.modal-inner.task-details fieldset > * {
     display: flex;
     gap: 5px;
     align-items: center;
 }
 
-.task-details small {
+.modal-inner.task-details small {
     color: rgb(var(--grayed-text-color));
 }
 
@@ -614,7 +614,7 @@ label[for="new-task-due-date"] {
     align-items: center;
 }
 
-.task-details textarea {
+.modal-inner.task-details textarea {
     resize: none;
     background-color: transparent;
     border: solid 1px rgb(var(--grayed-text-color));
@@ -625,11 +625,11 @@ label[for="new-task-due-date"] {
     transition: .2s;
 }
 
-.task-details .cancel, .task-details .cancel:active {
+.modal-inner.task-details .cancel, .modal-inner.task-details .cancel:active {
     background-color: rgba(var(--danger),.8);
 }
 
-.task-details .cancel:hover {
+.modal-inner.task-details .cancel:hover {
     background-color: rgb(var(--danger));
 }
 
@@ -648,7 +648,7 @@ label[for="pretty-date"] {
     cursor: pointer;
     transition: .2s;
 }
-.pretty-date-container:hover, .task-details textarea:hover, .task-title:hover, .pretty-date-container:focus, .task-details textarea:focus, .task-title:focus {
+.pretty-date-container:hover, .modal-inner.task-details textarea:hover, .task-title:hover, .pretty-date-container:focus, .modal-inner.task-details textarea:focus, .task-title:focus {
     background-color: rgb(var(--tertiary-color));
 }
 .pretty-date-container svg {

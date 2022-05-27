@@ -8,5 +8,7 @@ export default () => {
         save('profile', createProfile());
     }
     const profile = load('profile');
+    // Pop up modal
+    
     console.log(profile);
 }
