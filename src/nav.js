@@ -33,12 +33,13 @@ export default projects => {
         projectTitle.classList.add('project-title');
         projectTitle.textContent = project.name;
 
-        const projectOptions = document.createElement('span');
-        projectInfo.append(projectOptions);
-        projectOptions.classList.add('project-options');
-        projectOptions.append(icon('ic:baseline-more-horiz'));
+        projectInfo.append(icon('ic:baseline-more-horiz', ['project-options']));
     });
     
+    const addNewProject = document.createElement('button');
+    projectListContainer.append(addNewProject);
+    addNewProject.textContent = 'New Project';
+    addNewProject.prepend(icon('ic:round-plus'));
      
     return nav;
 }

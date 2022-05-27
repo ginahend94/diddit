@@ -55,6 +55,8 @@ button {
     cursor: pointer;
     transition: .2s;
     color: inherit;
+    display: flex;
+    align-items: center;
 }
 button:hover {
     background-color: rgb(var(--accent-color-bright));
@@ -81,7 +83,13 @@ h1 {
     border: solid 1px;
     text-align: center;
     justify-self: center;
+    display: flex;
+    align-items: center;
 } 
+
+h1 .iconify {
+    font-size: 32px;
+}
 
 nav {
     height: 100%;
