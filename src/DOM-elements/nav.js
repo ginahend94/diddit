@@ -1,7 +1,9 @@
 import icon from "../functions/icon";
+import load from "../functions/load";
 import ProjectManager from "../functions/projectManager";
+// import { Profile } from "../profile";
 
-export default projects => {
+export default Profile => {
 
     const nav = document.createElement('nav');
     nav.classList.add('sidebar');
@@ -25,7 +27,7 @@ export default projects => {
     projectList.classList.add('project-list');
     projectList.id = 'project-list';
 
-    projects.forEach(project => {
+    Profile.projects.forEach(project => {
         const projectInfo = document.createElement('li');
         projectList.append(projectInfo);
         projectInfo.classList.add('project-info');
@@ -43,6 +45,35 @@ export default projects => {
     addNewProject.textContent = 'New Project';
     addNewProject.prepend(icon('ic:round-plus'));
     addNewProject.addEventListener('click', ProjectManager.showModal);
+
+    const settingsMenu = document.createElement('ul');
+    sidebarLower.append(settingsMenu);
+    settingsMenu.classList.add('settings-menu');
+    const account = document.createElement('li');
+    settingsMenu.append(account)
+    let userIcon;
+    let userName;
+    if (load('profile')) {
+        const Profile = load('profile');
+        userIcon = Profile.icon;
+        userName = Profile.name;
+        account.title = 'Account';
+    } else {
+        userIcon = 'mdi:account';
+        userName = 'Account';
+    }
+    account.append(icon(userIcon));
+    account.append(userName);
+    
+    const settings = document.createElement('li');
+    settingsMenu.append(settings);
+    settings.append(icon('mdi:cog'));
+    settings.append('Settings');
+
+    const about = document.createElement('li');
+    settingsMenu.append(about);
+    about.append(icon('mdi:information'));
+    about.append('About');
 
     return nav;
 }

@@ -1,21 +1,9 @@
 import './normalize.css';
 import './style.css';
-import save from './functions/save';
-import load from './functions/load';
-import { Profile } from './profile';
-import nav from './DOM-elements/nav';
+import render from './functions/render';
 
-const render = () => {
-    console.log('yuh')
-}
+render();
 
-const pageContent = () => {
-    document.body.appendChild(nav(Profile.projects));
-    const page = document.createElement('div');
-    return page;
-}
-
-document.body.appendChild(pageContent())
 
 // Click 
 
