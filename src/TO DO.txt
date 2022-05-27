@@ -1,6 +1,6 @@
 TO DO
 
-add favicon to config
+
 tour/tutorial
 create modal module
 create split button module
@@ -20,6 +20,8 @@ custom palette w/dynamic favicon and light/dark text
 archive projects
 poject tags
 profile img (iconify icon finder?)
+fix task text overflow
+
 
 DONE
 style sidebar
@@ -30,3 +32,4 @@ style task container
 refactor drag fn
 create favicon
 style modal
+add favicon to config

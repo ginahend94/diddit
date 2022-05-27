@@ -9,7 +9,7 @@ export default projects => {
     const h1 = document.createElement('h1');
     header.append(h1);
     h1.textContent = `Diddit.`;
-    h1.appendChild(icon('mdi:checkbox-marked-outline'));
+    h1.append(icon('mdi:checkbox-marked-outline'));
     
     const sidebarLower = document.createElement('div');
     sidebarLower.classList.add('sidebar-lower');
@@ -27,10 +27,16 @@ export default projects => {
         const projectInfo = document.createElement('li');
         projectList.append(projectInfo);
         projectInfo.classList.add('project-info');
+
         const projectTitle = document.createElement('span');
         projectInfo.append(projectTitle);
         projectTitle.classList.add('project-title');
         projectTitle.textContent = project.name;
+
+        const projectOptions = document.createElement('span');
+        projectInfo.append(projectOptions);
+        projectOptions.classList.add('project-options');
+        projectOptions.append(icon('ic:baseline-more-horiz'));
     });
     
      

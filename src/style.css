@@ -71,7 +71,10 @@ button:disabled:hover {
     background-color: rgb(var(--accent-color));
 }
 
-
+.iconify {
+    font-size: 24px;
+    display: inline-block;
+}
 /* SIDEBAR  */
 
 h1 {
@@ -135,6 +138,7 @@ nav ul {
     position: relative;
     padding: 10px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background-color: rgb(var(--main-color));
     border-radius: 5px;
