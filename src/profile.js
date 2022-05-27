@@ -1,6 +1,7 @@
 export const Profile = {
         name: 'Gina',
-        colorPalette: 'pink',
+    colorPalette: 'pink',
+        icon: 'bxs:dog',
         projects: [
             {
                 name: 'Website',
@@ -48,4 +49,4 @@ export const Profile = {
                 ],
             },
         ],
-    };
+};

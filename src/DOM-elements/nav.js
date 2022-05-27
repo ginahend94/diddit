@@ -1,4 +1,6 @@
-import icon from "./icon";
+import icon from "../functions/icon";
+import createProject from "../functions/createProject";
+
 export default projects => {
 
     const nav = document.createElement('nav');
@@ -40,6 +42,7 @@ export default projects => {
     projectListContainer.append(addNewProject);
     addNewProject.textContent = 'New Project';
     addNewProject.prepend(icon('ic:round-plus'));
-     
+    addNewProject.addEventListener('click', createProject);
+
     return nav;
 }

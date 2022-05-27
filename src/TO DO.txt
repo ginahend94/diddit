@@ -20,6 +20,7 @@ archive projects
 poject tags
 profile img (iconify icon finder?)
 fix task text overflow
+account button lets you add name, pic, bio
 
 
 DONE

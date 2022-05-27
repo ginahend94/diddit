@@ -1,9 +1,9 @@
 import './normalize.css';
 import './style.css';
-import save from './save';
-import load from './load';
+import save from './functions/save';
+import load from './functions/load';
 import { Profile } from './profile';
-import nav from './nav';
+import nav from './DOM-elements/nav';
 
 const pageContent = () => {
     document.body.appendChild(nav(Profile.projects));

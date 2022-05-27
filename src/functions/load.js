@@ -1,6 +1,7 @@
 export default (name) => {
     if (localStorage.getItem(name) == null) {
-        return console.log(`You haven't set this item yet.`);
+        console.log('You haven\'t created this value yet.')
+        return false;
     }
     return JSON.parse(localStorage.getItem(name));
 }
