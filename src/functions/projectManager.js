@@ -41,13 +41,13 @@ export default (() => {
         };
         profile.projects.push(newProject);
         console.log(profile);
+        save('profile', profile);
         return newProject;
     }
 
     const confirm = (name, description = '', modal) => {
         const project = createProject(name, description);
         Modal.close(modal);
-        save('profile', profile);
         switchActiveProject(project.id, profile);
     }
 
