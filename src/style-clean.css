@@ -566,6 +566,7 @@ li.subtask {
     overflow: hidden;
     text-overflow: ellipsis;
     outline: none;
+    transition: .2s;
 }
 label[for="new-task-due-date"] {
     display: flex;
@@ -609,6 +610,7 @@ label[for="new-task-due-date"] {
     color: inherit;
     padding: 5px;
     outline: none;
+    transition: .2s;
 }
 
 .task-details .cancel, .task-details .cancel:active {
@@ -632,9 +634,16 @@ label[for="pretty-date"] {
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
+    transition: .2s;
 }
 .pretty-date-container:hover, .task-details textarea:hover, .task-title:hover, .pretty-date-container:focus, .task-details textarea:focus, .task-title:focus {
     background-color: rgb(var(--tertiary-color));
+}
+.pretty-date-container svg {
+    transition: .2s;
+}
+.pretty-date-container svg:hover {
+    opacity: .5;
 }
 #pretty-date {
 display: block;
@@ -682,4 +691,12 @@ opacity: 0;
 
 .task-priority-list label:hover {
     background-color: rgb(var(--accent-color-bright));
+}
+
+.task-priority-list label.active {
+    background-color: rgb(var(--accent-color-bright));
+}
+
+.task-priority svg {
+    cursor: pointer;
 }

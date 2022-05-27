@@ -1,15 +1,11 @@
 import './style.css';
 import save from './save';
 import load from './load';
+import nav from './nav';
 
 const pageContent = () => {
     const page = document.createElement('div');
-    page.classList.add('wrapper');
-    page.textContent = 'testing!!??!';
-    const profile = { name: 'gina', age: 27, favoriteColor: 'pink', sayHi: () => console.log('hi, my name is gina') };
-    save('profile', profile);
-    console.log(load('profile'));
-    profile.sayHi();
+    nav();
     return page;
 }
 

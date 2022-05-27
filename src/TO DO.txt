@@ -16,9 +16,10 @@ fix shadow showing up on drag
 change order of object on reorder (.map?)
 ability to star tasks
 undo/redo
-custom palette w/dynamic favicon
+custom palette w/dynamic favicon and light/dark text
 archive projects
 poject tags
+profile img
 
 DONE
 style sidebar
