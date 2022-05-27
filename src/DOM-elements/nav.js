@@ -1,5 +1,5 @@
 import icon from "../functions/icon";
-import createProject from "../functions/createProject";
+import ProjectManager from "../functions/projectManager";
 
 export default projects => {
 
@@ -12,7 +12,7 @@ export default projects => {
     header.append(h1);
     h1.textContent = `Diddit.`;
     h1.append(icon('mdi:checkbox-marked-outline'));
-    
+
     const sidebarLower = document.createElement('div');
     sidebarLower.classList.add('sidebar-lower');
     nav.append(sidebarLower);
@@ -37,12 +37,12 @@ export default projects => {
 
         projectInfo.append(icon('ic:baseline-more-horiz', ['project-options']));
     });
-    
+
     const addNewProject = document.createElement('button');
     projectListContainer.append(addNewProject);
     addNewProject.textContent = 'New Project';
     addNewProject.prepend(icon('ic:round-plus'));
-    addNewProject.addEventListener('click', createProject);
+    addNewProject.addEventListener('click', ProjectManager.showModal);
 
     return nav;
 }

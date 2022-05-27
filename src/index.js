@@ -5,6 +5,10 @@ import load from './functions/load';
 import { Profile } from './profile';
 import nav from './DOM-elements/nav';
 
+const render = () => {
+    console.log('yuh')
+}
+
 const pageContent = () => {
     document.body.appendChild(nav(Profile.projects));
     const page = document.createElement('div');

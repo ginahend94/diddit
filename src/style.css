@@ -517,7 +517,7 @@ li.subtask {
 .hidden {
     display: none;
 }
-.show {
+.shown {
     display: flex;
 }
 
@@ -562,13 +562,19 @@ li.subtask {
     height: 1px;
     background-color: rgb(var(--tertiary-color));
 }
-.modal-inner.task-details {
+.modal-inner {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.task-title {
+.modal .buttons {
+    display: flex;
+    gap:10px;
+    margin-top: 10px;
+}
+
+.modal-inner input[type=text] {
     padding: 0;
     font-size: 1.2rem;
     background-color: transparent;
@@ -604,7 +610,7 @@ label[for="new-task-due-date"] {
     align-items: center;
 }
 
-.modal-inner.task-details small {
+.modal-inner small {
     color: rgb(var(--grayed-text-color));
 }
 
@@ -614,7 +620,7 @@ label[for="new-task-due-date"] {
     align-items: center;
 }
 
-.modal-inner.task-details textarea {
+.modal-inner textarea {
     resize: none;
     background-color: transparent;
     border: solid 1px rgb(var(--grayed-text-color));
@@ -625,11 +631,11 @@ label[for="new-task-due-date"] {
     transition: .2s;
 }
 
-.modal-inner.task-details .cancel, .modal-inner.task-details .cancel:active {
+button.cancel, button.cancel:active {
     background-color: rgba(var(--danger),.8);
 }
 
-.modal-inner.task-details .cancel:hover {
+button.cancel:hover {
     background-color: rgb(var(--danger));
 }
 
