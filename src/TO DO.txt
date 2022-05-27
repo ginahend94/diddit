@@ -3,18 +3,23 @@ TO DO
 add favicon to config
 tour/tutorial
 create modal module
-style modal
 create split button module
 create input module
 create context menu
 add emoji picker
 make side of sidebar draggable
+be able to hide sidebar
 show full project title on hover if text is overflowing
 make project options appear on hover
 prevent flash of unstyled page
 fix shadow showing up on drag
 change order of object on reorder (.map?)
-
+ability to star tasks
+undo/redo
+custom palette w/dynamic favicon and light/dark text
+archive projects
+poject tags
+profile img (iconify icon finder?)
 
 DONE
 style sidebar
@@ -24,3 +29,4 @@ style done tasks
 style task container
 refactor drag fn
 create favicon
+style modal

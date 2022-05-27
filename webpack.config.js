@@ -18,12 +18,12 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'To Do List',
+            title: 'Diddit - To Do List',
         }),
     ],
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),
-        clean:true,
+        clean: true,
     },
 };
