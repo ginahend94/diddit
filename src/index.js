@@ -1,11 +1,13 @@
+import './normalize.css';
 import './style.css';
 import save from './save';
 import load from './load';
+import { Profile } from './profile';
 import nav from './nav';
 
 const pageContent = () => {
+    document.body.appendChild(nav(Profile.projects));
     const page = document.createElement('div');
-    nav();
     return page;
 }
 
