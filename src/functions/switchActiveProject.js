@@ -6,7 +6,13 @@ export default (projectId, Profile) => {
         project.active = false;
     });
 
-    Profile.projects.find(project => project.id == projectId).active = true;
+    const activeProject = Profile.projects.find(project => {
+        return project.id == projectId;
+    });
+    activeProject.active = true;
+    document.title = `${activeProject.name} | Diddit - To-Do List`;
+    
     save('profile', Profile);
+
     render();
 }
