@@ -42,25 +42,18 @@ export default Profile => {
         });
         projectInfo.addEventListener('mouseenter', e => {
             tooltip.tooltip.textContent = project.name;
-            handleTooltip(e, true);
         })
         let timeout;
         projectInfo.addEventListener('mousemove', e => {
+            console.log('ye')
             if (document.body.contains(tooltip.tooltip)) document.body.removeChild(tooltip.tooltip);
             clearTimeout(timeout);
-            timeout = setTimeout(()=> handleTooltip(e,true), 1000)
-            handleTooltip(e, true);
+            timeout = setTimeout(() => handleTooltip(e, true), 1000)
         })
         projectInfo.addEventListener('mouseleave', e => {
-            console.log(document.body.contains(e.relatedTarget))
             clearTimeout(timeout);
-            if (document.body.contains(e.relatedTarget)) document.body.removeChild(tooltip.tooltip);
             handleTooltip(e, false);
         })
-        // projectInfo.addEventListener('mouseenter', e => {
-
-        //     setTimeout(() => console.log(project.name), 500);
-        // })
 
         const projectTitle = document.createElement('span');
         projectInfo.append(projectTitle);
