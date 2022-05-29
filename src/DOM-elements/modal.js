@@ -1,5 +1,5 @@
 export default (() => {
-    const Modal = (classes = [], innerHTML, confirmFunction, confirmText, showCancel, showModalBg, draggable) => {
+    const Modal = (classes = [], modalBody, confirmFunction, confirmText, showCancel, showModalBg, draggable) => {
         const modalContainer = document.createElement('div');
         modalContainer.classList.add('modal-container');
         const modalBg = document.createElement('div');
@@ -20,11 +20,11 @@ export default (() => {
             };
         }
 
-        const modalBody = document.createElement('div');
+        // const modalBody = document.createElement('div');
         modal.append(modalBody);
         modalBody.classList.add('modal-inner');
         classes.forEach(className => modalBody.classList.add(className));
-        modalBody.innerHTML = innerHTML;
+        // modalBody.append(innerHTML);
 
         const buttons = document.createElement('div');
         modal.append(buttons);

@@ -1,7 +1,10 @@
+CUURENTLY
+create modal module
+
+
 TO DO
 
 tour/tutorial
-create modal module
 create split button module
 create input module
 create context menu
