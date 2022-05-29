@@ -1,6 +1,6 @@
 import { getIcon } from "../functions/icon";
 import load from "../functions/load";
-import createToDo from "./to-do";
+import createToDo from "./to-do-container";
 
 export const SplitButton = () => {
     // const profile = load('profile');
@@ -39,6 +39,7 @@ export const SplitButton = () => {
     note.addEventListener('click', e => {
         e.stopPropagation();
         switchOption('Note');
+        console.log(newType)
         closeDropdown();
     })
 
@@ -48,6 +49,7 @@ export const SplitButton = () => {
     list.addEventListener('click', e => {
         e.stopPropagation();
         switchOption('List');
+        console.log(newType)
         closeDropdown();
     })
 
@@ -68,6 +70,7 @@ export const SplitButton = () => {
     const switchOption = option => {
         type.textContent = option;
         newType = option;
+        return newType
     }
 
     // splitButtonButton.addEventListener('click', e => {

@@ -1,5 +1,5 @@
 CUURENTLY
-Create list module
+Create list module (task nodes)
 
 TO DO
 

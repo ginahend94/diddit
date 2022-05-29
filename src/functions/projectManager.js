@@ -13,7 +13,7 @@ if (!load('profile')) {
 const profile = load('profile');
 
 export default (() => {
-// test
+
     const showModal = () => {
         const modalInner = () => {
             const modalBody = document.createElement('div');

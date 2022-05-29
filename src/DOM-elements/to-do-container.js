@@ -1,14 +1,16 @@
 import { v4 as uuidv4 } from "uuid";
 import save from "../functions/save";
 import load from "../functions/load";
+import Modal from "./modal";
+import { createTask } from "../functions/todoManager";
 
 const profile = load('profile');
 
-export default project => {
+export default list => {
 
-    console.log(project)
+    // console.log(project)
 
-    const list = createList(project);
+    // const list = createList(project);
 
     const todoListContainer = document.createElement('div');
     todoListContainer.classList.add('to-do-list-container');
@@ -30,23 +32,6 @@ export default project => {
     return todoListContainer;
 }
 
-const createList = project => {
-    const list = {
-        id: `${project.id}.${uuidv4()}`,
-        tasks: [],
-        container: project.id,
-    }
-    project.lists.push(list);
-    save('profile', profile);
-    console.log(project);
-    return list;
-}
-
 const createTaskNode = list => {
-    
-}
-
-const createTask = list => {
-    console.log(`Will create task with id ${list.id}.${uuidv4()}`);
-
+    console.log('soon bud :)')
 }

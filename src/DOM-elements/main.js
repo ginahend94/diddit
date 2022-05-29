@@ -1,6 +1,8 @@
 // import { getIcon } from "../functions/icon";
 import { SplitButton } from "./split-button";
-import NewList from './to-do'
+import ToDoContainer from './to-do-container';
+import { createList } from '../functions/todoManager';
+import render from '../functions/render';
 
 export default Profile => {
     const main = document.createElement('main');
@@ -25,11 +27,17 @@ export default Profile => {
     main.append(projectContainer);
     projectContainer.classList.add('project-container');
 
-    const splitButton = SplitButton()
+    
+    activeProject.lists.forEach(list => {
+        projectContainer.prepend(ToDoContainer(list));
+    })
+
+    const splitButton = SplitButton();
 
     projectContainer.append(splitButton.addNew);
     splitButton.splitButtonButton.addEventListener('click', () => {
-        projectContainer.prepend(NewList(activeProject));
+        createList(activeProject);
+        render();
     })
 
     return main;
