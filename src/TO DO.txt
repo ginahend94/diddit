@@ -1,6 +1,5 @@
 TO DO
 
-how to render to page on CRUD???
 tour/tutorial
 create modal module
 create split button module
@@ -25,6 +24,7 @@ account button lets you add name, pic, bio
 
 
 DONE
+how to render to page on CRUD???
 style sidebar
 style buttons
 style header

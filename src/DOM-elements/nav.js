@@ -15,7 +15,6 @@ export default Profile => {
     const h1 = document.createElement('h1');
     header.append(h1);
     h1.textContent = `Diddit.`;
-    // h1.append(icon('mdi:checkbox-marked-outline'));
     h1.append(getIcon('checkbox-marked-outline'));
 
     const sidebarLower = document.createElement('div');
@@ -42,9 +41,10 @@ export default Profile => {
 
         if (project.active) {
             projectInfo.classList.add('active');
+        } else {
+            projectInfo.addEventListener('click', () => switchActiveProject(project.id, Profile));
         }
 
-        projectInfo.addEventListener('click', () => switchActiveProject(project.id, Profile));
 
         projectInfo.append(getIcon('dots-horizontal', ['project-options']));
     });
