@@ -1,5 +1,4 @@
 CUURENTLY
-create modal module
 
 
 TO DO
@@ -27,6 +26,7 @@ account button lets you add name, pic, bio
 
 
 DONE
+create modal module
 how to render to page on CRUD???
 style sidebar
 style buttons

@@ -20,11 +20,9 @@ export default (() => {
             };
         }
 
-        // const modalBody = document.createElement('div');
         modal.append(modalBody);
         modalBody.classList.add('modal-inner');
         classes.forEach(className => modalBody.classList.add(className));
-        // modalBody.append(innerHTML);
 
         const buttons = document.createElement('div');
         modal.append(buttons);
