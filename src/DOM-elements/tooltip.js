@@ -13,12 +13,14 @@ export const handleTooltip = (e, boolean,) => {
 
     const showTooltip = () => {
         document.body.append(tooltip.tooltip);
-        tooltip.tooltip.style = `top:${e.clientY + 10}px;left:${e.clientX}px`;
+        tooltip.tooltip.style = `top:${e.clientY + 20}px;left:${e.clientX}px`;
     };
 
     if (mouseIsOver) {
         showTooltip();
     }
-    // if (!mouseIsOver) {
-    // }
+}
+
+export const isOverflowing = (e) => {
+    return (e.offsetWidth < e.scrollWidth);
 }
