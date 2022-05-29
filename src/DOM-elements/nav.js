@@ -53,6 +53,11 @@ export default Profile => {
 
         const projectOptions = getIcon('dots-horizontal', ['project-options'])
         projectInfo.append(projectOptions);
+        projectOptions.addEventListener('click', e => {
+            e.stopPropagation();
+            const menu = contextMenu.generateMenu('projectOptions', project);
+            contextMenu.openMenu(e, menu);
+        })
     });
 
     const addNewProject = document.createElement('button');
@@ -79,7 +84,7 @@ export default Profile => {
     }
     account.append(userIcon);
     account.append(userName);
-    
+
     const settings = document.createElement('li');
     settingsMenu.append(settings);
     settings.append(getIcon('cog'));
