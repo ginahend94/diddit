@@ -4,6 +4,7 @@ import load from "../functions/load";
 import ProjectManager from "../functions/projectManager";
 import switchActiveProject from "../functions/switchActiveProject";
 import contextMenu from "./context-menu";
+import { handleTooltip, tooltip } from "./tooltip";
 
 
 export default Profile => {
@@ -38,7 +39,28 @@ export default Profile => {
             e.preventDefault();
             const menu = contextMenu.generateMenu('projectOptions', project);
             contextMenu.openMenu(e, menu);
+        });
+        projectInfo.addEventListener('mouseenter', e => {
+            tooltip.tooltip.textContent = project.name;
+            handleTooltip(e, true);
         })
+        let timeout;
+        projectInfo.addEventListener('mousemove', e => {
+            if (document.body.contains(tooltip.tooltip)) document.body.removeChild(tooltip.tooltip);
+            clearTimeout(timeout);
+            timeout = setTimeout(()=> handleTooltip(e,true), 1000)
+            handleTooltip(e, true);
+        })
+        projectInfo.addEventListener('mouseleave', e => {
+            console.log(document.body.contains(e.relatedTarget))
+            clearTimeout(timeout);
+            if (document.body.contains(e.relatedTarget)) document.body.removeChild(tooltip.tooltip);
+            handleTooltip(e, false);
+        })
+        // projectInfo.addEventListener('mouseenter', e => {
+
+        //     setTimeout(() => console.log(project.name), 500);
+        // })
 
         const projectTitle = document.createElement('span');
         projectInfo.append(projectTitle);

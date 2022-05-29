@@ -1,5 +1,5 @@
 CUURENTLY
-project options button
+show full project title on hover if text is overflowing
 
 TO DO
 
@@ -10,7 +10,6 @@ create input module
 add emoji picker
 make side of sidebar draggable
 be able to hide sidebar
-show full project title on hover if text is overflowing
 make project options appear on hover
 prevent flash of unstyled page
 fix shadow showing up on drag
@@ -40,3 +39,4 @@ create favicon
 style modal
 add favicon to config
 create context menu
+project options button
