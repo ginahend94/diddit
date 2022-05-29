@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
 export default project => {
+    
     const todoListContainer = document.createElement('div');
     todoListContainer.classList.add('to-do-list-container');
 
@@ -15,4 +16,12 @@ export default project => {
     button.classList.add('add-new-task');
 
     return todoListContainer;
+}
+
+const createList = project => {
+
+}
+
+const createTask = list => {
+
 }
