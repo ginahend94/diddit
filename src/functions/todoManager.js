@@ -1,8 +1,161 @@
 import { v4 as uuidv4 } from "uuid";
 import save from "./save";
 import load from "./load";
+import { format } from "path-browserify";
+import { getIcon } from "./icon";
 
 const profile = load('profile');
+
+export default (() => {
+    const showModal = () => {
+        const modalInner = () => {
+            const taskDetails = document.createElement('form');
+            taskDetails.classList.add('task-details');
+
+            const taskTitle = document.createElement('input');
+            taskDetails.append(taskTitle);
+            taskTitle.type = 'text';
+            taskTitle.name = 'task-title';
+            taskTitle.id = 'task-title';
+            taskTitle.classList.add('task-title');
+            taskTitle.placeholder = 'Enter task here...';
+            taskTitle.required = true;
+
+            const dateLabel = document.createElement('label');
+            taskDetails.append(dateLabel);
+            dateLabel.prepend('Due by');
+            const prettyDateContainer = document.createElement('div');
+            dateLabel.append(prettyDateContainer);
+            const prettyDateLabel = document.createElement('label');
+            prettyDateLabel.for = 'pretty-date';
+            const mmSpan = document.createElement('span');
+            prettyDateLabel.append(mmSpan);
+            mmSpan.textContent = 'mm';
+            mmSpan.id = 'mm';
+            prettyDateLabel.append(' / ');
+            const ddSpan = document.createElement('span');
+            prettyDateLabel.append(ddSpan);
+            ddSpan.textContent = 'dd';
+            ddSpan.id = 'dd';
+            prettyDateLabel.append(' / ');
+            const yyyySpan = document.createElement('span');
+            prettyDateLabel.append(yyyySpan);
+            yyyySpan.textContent = 'yyyy';
+            yyyySpan.id = 'yyyy';
+            
+            const prettyDate = document.createElement('input');
+            prettyDateContainer.append(prettyDate);
+            prettyDate.type = 'date';
+            prettyDate.name = 'pretty-date';
+            prettyDate.id = 'pretty-date';
+
+            const clearButton = getIcon('close-circle');
+            prettyDateContainer.append(clearButton);
+            clearButton.id = 'clr-btn';
+            clearButton.style = 'width:15px;height:15px';
+
+            const taskPriority = document.createElement('div');
+            taskDetails.append(taskPriority);
+            taskPriority.classList.add('task-priority');
+            const legend = document.createElement('legend');
+            taskPriority.append(legend);
+            legend.textContent = 'Priority';
+            const priorityDiv = document.createElement('div');
+            taskPriority.append(priorityDiv);
+            const prioritySelection = document.createElement('span');
+            priorityDiv.append(prioritySelection);
+            prioritySelection.prepend('None');
+            prioritySelection.append(getIcon('chevron-down'));
+
+            const taskPriorityList = document.createElement('fieldset');
+            priorityDiv.append(taskPriorityList);
+            taskPriorityList.name = 'task-priority';
+            taskPriorityList.id = 'task-priority';
+            taskPriorityList.classList.add('task-priority-list');
+
+            const labelNone = document.createElement('label');
+            taskPriorityList.append(labelNone);
+            labelNone.classList.add('active');
+            const inputNone = document.createElement('input');
+            labelNone.append(inputNone);
+            inputNone.name = 'priority';
+            inputNone.type = 'radio';
+            inputNone.value = 'none';
+            inputNone.textContent = 'None';
+            
+            const labelLow = document.createElement('label');
+            taskPriorityList.append(labelLow);
+            const inputLow = document.createElement('input');
+            labelLow.append(inputLow);
+            inputLow.name = 'priority';
+            inputLow.type = 'radio';
+            inputLow.value = 'low';
+            inputLow.textContent = 'Low';
+
+            const labelMedium = document.createElement('label');
+            taskPriorityList.append(labelMedium);
+            const inputMedium = document.createElement('input');
+            labelMedium.append(inputMedium);
+            inputMedium.name = 'priority';
+            inputMedium.type = 'radio';
+            inputMedium.value = 'medium';
+            inputMedium.textContent = 'Medium'
+
+            const labelHigh = document.createElement('label');
+            taskPriorityList.append(labelHigh);
+            labelHigh.classList.add('active');
+            const inputHigh = document.createElement('input');
+            labelHigh.append(inputHigh);
+            inputHigh.name = 'priority';
+            inputHigh.type = 'radio';
+            inputHigh.value = 'high';
+            inputHigh.textContent = 'High';
+            
+            const addSubtasks = document.createElement('div');
+            taskDetails.append(addSubtasks);
+            addSubtasks.classList.add('add-subtasks');
+            const addSubtasksLabel = document.createElement('label');
+            addSubtasks.append(addSubtasksLabel);
+            addSubtasksLabel.for = 'add-subtasks';
+            const addSubtasksCheckbox = document.createElement('input');
+            addSubtasksCheckbox.type = 'checkbox';
+            addSubtasksCheckbox.name = 'add-subtasks';
+            addSubtasksCheckbox.id = 'add-subtasks';
+            addSubtasksLabel.append('Add subtasks');
+
+            const subtaskForm = document.createElement('div');
+            addSubtasks.append(subtaskForm);
+            subtaskForm.classList.add('subtask-form');
+            subtaskForm.classList.add('hidden');
+            const subtaskDirections = document.createElement('small');
+            subtaskForm.append(subtaskDirections);
+            subtaskDirections.classList.add('subtask-directions');
+            subtaskDirections.textContent = 'Enter your subtasks below. Add a due date separated by a comma, and each subtask on its own line.';
+            const subtasks = document.createElement('textarea');
+            subtaskForm.append(subtasks);
+            subtasks.name = 'subtasks';
+            subtasks.id = 'new-subtasks';
+            // subtasks.cols = '25';
+            // subtasks.rows = '5';
+            subtasks.placeholder = 'e.g. Walk dog, 6/12/22';
+
+
+            const notesLabel = document.createElement('label');
+            taskDetails.append(notesLabel);
+            notesLabel.for = 'notes';
+            notesLabel.prepend('Notes:');
+            const notes = document.createElement('textarea');
+            notesLabel.append(notes);
+            notes.name = 'notes';
+            notes.id = 'notes';
+            notes.placeholder = 'Notes (optional)';
+
+            return taskDetails;
+        };
+    }
+
+    return {showModal}
+})()
 
 export const createList = project => {
     const list = {
@@ -27,7 +180,7 @@ export const createTask = (list, taskName) => {
     // console.log(`Will create task with id ${list.id}.${uuidv4()}`);
     const newTask = {
         taskName,
-        classes: [dragElement, dragContainer],
+        classes: ['dragElement', 'dragContainer'],
         id: `${list.id}.${uuidv4()}`,
         container: list.id,
     };
@@ -36,4 +189,5 @@ export const createTask = (list, taskName) => {
         if (oldlist.id == list.id) return oldlist = list;
         return oldlist
     });
+    console.log(profile)
 }
