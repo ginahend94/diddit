@@ -79,6 +79,12 @@ button:disabled:hover {
     width:1em;
     height: 1em;
 }
+.iconify-icon {
+    font-size: 24px;
+    display: inline-block;
+    width:1em;
+    height: 1em;
+}
 /* SIDEBAR  */
 
 h1 {
@@ -89,7 +95,7 @@ h1 {
     align-items: center;
 } 
 
-h1 .iconify {
+h1 .iconify-icon {
     font-size: 32px;
 }
 

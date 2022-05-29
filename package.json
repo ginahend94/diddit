@@ -11,15 +11,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@iconify/json": "^2.1.51",
+    "@iconify/utils": "^1.0.32",
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
+    "@iconify-json/mdi": "^1.1.19",
     "@iconify/iconify": "^2.2.1",
     "css-loader": "^6.7.1",
+    "path-browserify": "^1.0.1",
     "style-loader": "^3.3.1",
+    "url": "^0.11.0",
     "uuid": "^8.3.2"
   }
 }
