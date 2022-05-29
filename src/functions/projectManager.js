@@ -6,12 +6,13 @@ import { v4 as uuidv4 } from "uuid";
 import render from "./render";
 import switchActiveProject from "./switchActiveProject";
 
+if (!load('profile')) {
+    console.log('Creating new profile.');
+    save('profile', createProfile());
+}
+const profile = load('profile');
+
 export default (() => {
-    if (!load('profile')) {
-        console.log('Creating new profile.');
-        save('profile', createProfile());
-    }
-    const profile = load('profile');
 
     const showModal = () => {
         const modalInner = () => {
@@ -85,5 +86,8 @@ export default (() => {
 
 })();
 
+export const EditProject = project => {
+    console.log(`Will eventually edit ${project.name}`);
+}
 
 

@@ -15,6 +15,10 @@ const getSVG = (() => {
         'chevron-down',
         'close-circle',
         'menu',
+        'trash-can-outline',
+        'archive-outline',
+        'square-edit-outline',
+        'content-copy',
     ]
 
     const iconData = mdiIcons.map(icon => {

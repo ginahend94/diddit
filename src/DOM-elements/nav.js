@@ -3,6 +3,7 @@ import { getIcon } from "../functions/icon";
 import load from "../functions/load";
 import ProjectManager from "../functions/projectManager";
 import switchActiveProject from "../functions/switchActiveProject";
+import contextMenu from "./context-menu";
 
 
 export default Profile => {
@@ -33,6 +34,11 @@ export default Profile => {
         const projectInfo = document.createElement('li');
         projectList.append(projectInfo);
         projectInfo.classList.add('project-info');
+        projectInfo.addEventListener('contextmenu', e => {
+            e.preventDefault();
+            const menu = contextMenu.generateMenu('projectOptions', project);
+            contextMenu.openMenu(e, menu);
+        })
 
         const projectTitle = document.createElement('span');
         projectInfo.append(projectTitle);
@@ -45,8 +51,8 @@ export default Profile => {
             projectInfo.addEventListener('click', () => switchActiveProject(project.id, Profile));
         }
 
-
-        projectInfo.append(getIcon('dots-horizontal', ['project-options']));
+        const projectOptions = getIcon('dots-horizontal', ['project-options'])
+        projectInfo.append(projectOptions);
     });
 
     const addNewProject = document.createElement('button');
