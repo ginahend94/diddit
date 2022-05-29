@@ -1,6 +1,10 @@
 import { getIcon } from "../functions/icon";
+import load from "../functions/load";
+import createToDo from "./to-do";
 
-export const splitButton = () => {
+export const SplitButton = () => {
+    // const profile = load('profile');
+    // const project = profile.projects.find(project => project.active);
     const addNew = document.createElement('div');
     addNew.classList.add('add-new');
 
@@ -59,16 +63,25 @@ export const splitButton = () => {
 
     splitButtonBg.addEventListener('click', closeDropdown);
 
-    let newType;
+    let newType = 'List';
 
     const switchOption = option => {
         type.textContent = option;
         newType = option;
     }
 
-    splitButtonButton.addEventListener('click', e => {
-        console.log(`Will create New ${newType}.`)
-    })
+    // splitButtonButton.addEventListener('click', e => {
+    //     switch (newType) {
+    //         case 'List':
+    //             createToDo(project);
+    //             break;
+    //         case 'Note':
+    //             console.log('tbd');
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // })
 
-    return addNew;
+    return {addNew, splitButtonButton, newType};
 }
