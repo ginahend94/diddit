@@ -1,6 +1,6 @@
 import save from "./save"
 import load from "./load"
-import createProfile from "./createProfile";
+import createProfile from "./profile";
 import Modal from "../DOM-elements/modal";
 import { v4 as uuidv4 } from "uuid";
 import render from "./render";
