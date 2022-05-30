@@ -3,6 +3,7 @@ import save from "./save";
 import load from "./load";
 import { format } from "path-browserify";
 import { getIcon } from "./icon";
+import Modal from '../DOM-elements/modal';
 
 const profile = load('profile');
 
@@ -26,8 +27,10 @@ export default (() => {
             dateLabel.prepend('Due by');
             const prettyDateContainer = document.createElement('div');
             dateLabel.append(prettyDateContainer);
+            prettyDateContainer.classList.add('pretty-date-container');
             const prettyDateLabel = document.createElement('label');
-            prettyDateLabel.for = 'pretty-date';
+            prettyDateContainer.append(prettyDateLabel)
+            prettyDateLabel.setAttribute('for', 'pretty-date');
             const mmSpan = document.createElement('span');
             prettyDateLabel.append(mmSpan);
             mmSpan.textContent = 'mm';
@@ -42,7 +45,7 @@ export default (() => {
             prettyDateLabel.append(yyyySpan);
             yyyySpan.textContent = 'yyyy';
             yyyySpan.id = 'yyyy';
-            
+
             const prettyDate = document.createElement('input');
             prettyDateContainer.append(prettyDate);
             prettyDate.type = 'date';
@@ -52,7 +55,7 @@ export default (() => {
             const clearButton = getIcon('close-circle');
             prettyDateContainer.append(clearButton);
             clearButton.id = 'clr-btn';
-            clearButton.style = 'width:15px;height:15px';
+            clearButton.style = 'width:15px;height:15px;font-size:15px';
 
             const taskPriority = document.createElement('div');
             taskDetails.append(taskPriority);
@@ -64,6 +67,7 @@ export default (() => {
             taskPriority.append(priorityDiv);
             const prioritySelection = document.createElement('span');
             priorityDiv.append(prioritySelection);
+            prioritySelection.id = 'priority-selection';
             prioritySelection.prepend('None');
             prioritySelection.append(getIcon('chevron-down'));
 
@@ -81,8 +85,8 @@ export default (() => {
             inputNone.name = 'priority';
             inputNone.type = 'radio';
             inputNone.value = 'none';
-            inputNone.textContent = 'None';
-            
+            labelNone.append('None');
+
             const labelLow = document.createElement('label');
             taskPriorityList.append(labelLow);
             const inputLow = document.createElement('input');
@@ -90,7 +94,7 @@ export default (() => {
             inputLow.name = 'priority';
             inputLow.type = 'radio';
             inputLow.value = 'low';
-            inputLow.textContent = 'Low';
+            labelLow.append('Low');
 
             const labelMedium = document.createElement('label');
             taskPriorityList.append(labelMedium);
@@ -99,25 +103,25 @@ export default (() => {
             inputMedium.name = 'priority';
             inputMedium.type = 'radio';
             inputMedium.value = 'medium';
-            inputMedium.textContent = 'Medium'
+            labelMedium.append('Medium');
 
             const labelHigh = document.createElement('label');
             taskPriorityList.append(labelHigh);
-            labelHigh.classList.add('active');
             const inputHigh = document.createElement('input');
             labelHigh.append(inputHigh);
             inputHigh.name = 'priority';
             inputHigh.type = 'radio';
             inputHigh.value = 'high';
-            inputHigh.textContent = 'High';
-            
+            labelHigh.append('High');
+
             const addSubtasks = document.createElement('div');
             taskDetails.append(addSubtasks);
             addSubtasks.classList.add('add-subtasks');
             const addSubtasksLabel = document.createElement('label');
             addSubtasks.append(addSubtasksLabel);
-            addSubtasksLabel.for = 'add-subtasks';
+            addSubtasksLabel.setAttribute('for', 'add-subtasks');
             const addSubtasksCheckbox = document.createElement('input');
+            addSubtasksLabel.append(addSubtasksCheckbox);
             addSubtasksCheckbox.type = 'checkbox';
             addSubtasksCheckbox.name = 'add-subtasks';
             addSubtasksCheckbox.id = 'add-subtasks';
@@ -139,6 +143,11 @@ export default (() => {
             // subtasks.rows = '5';
             subtasks.placeholder = 'e.g. Walk dog, 6/12/22';
 
+            addSubtasksCheckbox.addEventListener('change', e => {
+                if (!e.target.checked) return subtaskForm.classList.add('hidden');
+                return subtaskForm.classList.remove('hidden');
+            })
+
 
             const notesLabel = document.createElement('label');
             taskDetails.append(notesLabel);
@@ -152,9 +161,49 @@ export default (() => {
 
             return taskDetails;
         };
+        const modal = Modal.create(
+            ['new-task'],
+            modalInner(),
+            () => confirm({
+                taskName: document.getElementById('task-title').value,
+                taskDate: document.getElementById('pretty-date').value,
+                taskPriority: document.getElementById('task-priority').value,
+                subtasks: document.getElementById('new-subtasks').value,
+                notes: document.getElementById('notes').value
+            }),
+            'Save task',
+            true,
+            true,
+            true
+        );
+        Modal.open(modal);
     }
 
-    return {showModal}
+
+    const createTask = (list, taskName) => {
+        // console.log(`Will create task with id ${list.id}.${uuidv4()}`);
+        const newTask = {
+            taskName,
+            classes: ['dragElement', 'dragContainer'],
+            id: `${list.id}.${uuidv4()}`,
+            container: list.id,
+        };
+        list.push(newTask);
+
+        const activeProject = profile.projects[profile.projects.findIndex(list => list.container == project.id)];
+
+        console.log(activeProject);
+
+        activeProject.lists = activeProject.lists.map(oldlist => {
+            if (oldlist.id == list.id) return oldlist = list;
+            return oldlist
+        });
+        console.log(profile)
+        save('profile', profile);
+        return newTask;
+    }
+    return { showModal }
+
 })()
 
 export const createList = project => {
@@ -176,18 +225,3 @@ export const createList = project => {
     return list;
 }
 
-export const createTask = (list, taskName) => {
-    // console.log(`Will create task with id ${list.id}.${uuidv4()}`);
-    const newTask = {
-        taskName,
-        classes: ['dragElement', 'dragContainer'],
-        id: `${list.id}.${uuidv4()}`,
-        container: list.id,
-    };
-    list.push(newTask);
-    profile.projects.lists = profile.projects.lists.map(oldlist => {
-        if (oldlist.id == list.id) return oldlist = list;
-        return oldlist
-    });
-    console.log(profile)
-}

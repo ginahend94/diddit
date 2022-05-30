@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import save from "../functions/save";
 import load from "../functions/load";
 import Modal from "./modal";
-import { createTask } from "../functions/todoManager";
+import newTask from "../functions/todoManager";
 
 const profile = load('profile');
 
@@ -25,7 +25,7 @@ export default list => {
     todoListContainer.append(button);
     button.classList.add('add-new-task');
     button.addEventListener('click', e => {
-        createTask(list);
+        newTask.showModal();
     });
     button.textContent = 'Add new task';
 
