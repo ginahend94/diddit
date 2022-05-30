@@ -525,9 +525,6 @@ li.subtask {
     display: none;
 }
 
-.hidden {
-    display: none;
-}
 .shown {
     display: flex;
 }
@@ -610,7 +607,7 @@ label[for="new-task-due-date"] {
 
 .modal-inner.task-details fieldset {
     border: none;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     padding: 0;
     margin: 0;
@@ -630,6 +627,8 @@ label[for="new-task-due-date"] {
     display: flex;
     gap: 5px;
     align-items: center;
+    width: fit-content;
+    cursor: pointer;
 }
 
 .modal-inner textarea {
@@ -712,6 +711,8 @@ opacity: 0;
 .task-priority-list {
     position: absolute;
     box-shadow: 3px 3px 3px rgba(0,0,0, .2);
+    z-index: 99999;
+    display: none;
 }
 
 .task-priority-list label {
@@ -719,6 +720,7 @@ opacity: 0;
     background-color: rgb(var(--accent-color));
     cursor: pointer;
     position: relative;
+    transition: .2s;
 }
 
 .task-priority-list label:hover {
@@ -735,6 +737,18 @@ opacity: 0;
 
 .task-priority svg {
     cursor: pointer;
+}
+
+#priority-selection {
+    text-transform: capitalize;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px rgb(var(--tertiary-color));
+}
+
+#priority-selection:hover {
+    background-color: rgb(var(--tertiary-color));
 }
 
 /* CONTEXT MENU */
@@ -786,4 +800,9 @@ opacity: 0;
     background-color: rgb(var(--main-color));
     border: solid 1px rgb(var(--tertiary-color));
     box-shadow: 1px 1px 2px rgba(0,0,0, .2);
+}
+
+
+.hidden {
+    display: none;
 }

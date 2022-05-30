@@ -69,13 +69,18 @@ export default (() => {
             priorityDiv.append(prioritySelection);
             prioritySelection.id = 'priority-selection';
             prioritySelection.prepend('None');
-            prioritySelection.append(getIcon('chevron-down'));
+            const chevron = getIcon('chevron-down');
+            prioritySelection.append(chevron);
 
             const taskPriorityList = document.createElement('fieldset');
             priorityDiv.append(taskPriorityList);
             taskPriorityList.name = 'task-priority';
             taskPriorityList.id = 'task-priority';
             taskPriorityList.classList.add('task-priority-list');
+            const taskPriorityListBg = document.createElement('div');
+            taskPriorityList.append(taskPriorityListBg);
+            taskPriorityListBg.classList.add('context-menu-container');
+            taskPriorityListBg.addEventListener('click', () => closePriority());
 
             const labelNone = document.createElement('label');
             taskPriorityList.append(labelNone);
@@ -114,6 +119,30 @@ export default (() => {
             inputHigh.value = 'high';
             labelHigh.append('High');
 
+
+            taskPriorityList.addEventListener('click', () => {
+                closePriority();
+            })
+
+            prioritySelection.addEventListener('click', () => {
+                openPriority();
+            })
+
+            const radios = taskPriorityList.querySelectorAll('input');
+            let selectedPriority;
+            radios.forEach(button => {
+                button.addEventListener('change', e => {
+                    selectedPriority = [...radios].find(a => a.checked).value;
+                    prioritySelection.childNodes[0].textContent = selectedPriority;
+                })
+            })
+            const openPriority = () => {
+                taskPriorityList.style.display = 'flex';
+            }
+            const closePriority = () => {
+                taskPriorityList.style.display = 'none';
+            }
+            
             const addSubtasks = document.createElement('div');
             taskDetails.append(addSubtasks);
             addSubtasks.classList.add('add-subtasks');
@@ -139,8 +168,7 @@ export default (() => {
             subtaskForm.append(subtasks);
             subtasks.name = 'subtasks';
             subtasks.id = 'new-subtasks';
-            // subtasks.cols = '25';
-            // subtasks.rows = '5';
+
             subtasks.placeholder = 'e.g. Walk dog, 6/12/22';
 
             addSubtasksCheckbox.addEventListener('change', e => {
@@ -162,7 +190,7 @@ export default (() => {
             return taskDetails;
         };
         const modal = Modal.create(
-            ['new-task'],
+            [],
             modalInner(),
             () => confirm({
                 taskName: document.getElementById('task-title').value,
@@ -173,12 +201,11 @@ export default (() => {
             }),
             'Save task',
             true,
-            true,
-            true
+            false,
+            false
         );
         Modal.open(modal);
     }
-
 
     const createTask = (list, taskName) => {
         // console.log(`Will create task with id ${list.id}.${uuidv4()}`);
