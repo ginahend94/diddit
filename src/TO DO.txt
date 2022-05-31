@@ -19,6 +19,7 @@ change order of object on reorder (.map?)
 ability to star tasks
 undo/redo
 custom palette w/dynamic favicon and light/dark text
+lil color palette preview
 archive projects
 poject tags
 profile img (iconify icon finder?)
@@ -26,6 +27,8 @@ fix task text overflow
 account button lets you add name, pic, bio
 add calendar
 add sort by due date
+add tooltip to tasks
+add context menu to projects and tasks
 
 
 DONE

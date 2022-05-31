@@ -226,9 +226,9 @@ export default (() => {
             [],
             modalInner.taskDetails,
             () => confirm({
-                taskName: document.getElementById('task-title').value,
-                taskDate: document.getElementById('pretty-date').value,
-                taskPriority: modalInner.getSelectedPriority(),
+                name: document.getElementById('task-title').value,
+                date: new Date(document.getElementById('pretty-date').valueAsDate.toISOString().slice(0, -1)), // Date without timezone
+                priority: modalInner.getSelectedPriority(),
                 subtasks: document.getElementById('new-subtasks').value,
                 notes: document.getElementById('notes').value,
                 listId,
@@ -242,7 +242,7 @@ export default (() => {
 
         const confirm = (options) => {
             const warning = document.querySelector('.modal-inner small');
-            if (!options.taskName) {
+            if (!options.name) {
                 return warning.classList.remove('hidden');
             }
             let subtasks = '';
@@ -267,10 +267,7 @@ export default (() => {
     const createTask = (options) => {
 
         const activeProject = profile.projects[profile.projects.findIndex(project => options.listId.split('.')[0] == project.id)];
-
         const list = activeProject.lists[activeProject.lists.findIndex(list => list.id == options.listId)];
-
-
 
         const { listId, ...noListId } = options;
 
@@ -282,9 +279,7 @@ export default (() => {
         };
         list.tasks.push(newTask);
 
-        console.log(newTask)
-
-
+        console.log(newTask);
 
         activeProject.lists = activeProject.lists.map(oldlist => {
             if (oldlist.id == listId) return oldlist = list;
