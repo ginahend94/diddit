@@ -3,6 +3,7 @@ Create list module (task nodes)
 
 TO DO
 
+all crud actions
 add 
 make modal draggable
 tour/tutorial

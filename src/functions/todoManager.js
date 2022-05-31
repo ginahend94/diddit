@@ -59,10 +59,31 @@ export default (() => {
             prettyDate.name = 'pretty-date';
             prettyDate.id = 'pretty-date';
 
+            
+            prettyDate.addEventListener('change', e => {
+                let dateArray = e.target.value.split('-');
+                if (dateArray.length <= 1) {
+                    yyyy.textContent = 'yyyy';
+                    mm.textContent = 'mm';
+                    dd.textContent = 'dd';
+                    return;
+                }
+                yyyySpan.textContent = dateArray[0];
+                mmSpan.textContent = dateArray[1];
+                ddSpan.textContent = dateArray[2];
+            })
+
+
+
             const clearButton = getIcon('close-circle');
             prettyDateContainer.append(clearButton);
             clearButton.id = 'clr-btn';
             clearButton.style = 'width:15px;height:15px;font-size:15px';
+            clearButton.addEventListener('click', e => {
+                e.preventDefault();
+                prettyDate.value = '';
+                prettyDate.dispatchEvent(new Event('change'));
+            })
 
             const taskPriority = document.createElement('div');
             taskDetails.append(taskPriority);
@@ -150,7 +171,7 @@ export default (() => {
             const closePriority = () => {
                 taskPriorityList.style.display = 'none';
             }
-            
+
             const addSubtasks = document.createElement('div');
             taskDetails.append(addSubtasks);
             addSubtasks.classList.add('add-subtasks');
@@ -198,7 +219,9 @@ export default (() => {
             const getSelectedPriority = () => selectedPriority;
 
             return { taskDetails, getSelectedPriority, listId };
+
         })();
+
         const modal = Modal.create(
             [],
             modalInner.taskDetails,
@@ -216,19 +239,21 @@ export default (() => {
             true
         );
         Modal.open(modal);
-    }
 
-    const confirm = ({ ...options }) => {
-        const warning = document.querySelector('.modal-inner small');
-        if (!options.taskName) {
-            return warning.classList.remove('hidden');
+        const confirm = (options) => {
+            const warning = document.querySelector('.modal-inner small');
+            if (!options.taskName) {
+                return warning.classList.remove('hidden');
+            }
+            console.log(options);
+            Modal.close(modal);
         }
-        console.log(options);
     }
 
-    const createTask = (list, taskName) => {
+    const createTask = (listId, options) => {
+
         const newTask = {
-            taskName,
+            ...options,
             classes: ['dragElement', 'dragContainer'],
             id: `${list.id}.${uuidv4()}`,
             container: list.id,
