@@ -1,9 +1,10 @@
 CUURENTLY
-show full project title on hover if text is overflowing
+make modal draggable
 
 TO DO
 
-make modal draggable
+all crud actions
+add 
 tour/tutorial
 create split button module
 create input module
@@ -17,6 +18,7 @@ change order of object on reorder (.map?)
 ability to star tasks
 undo/redo
 custom palette w/dynamic favicon and light/dark text
+lil color palette preview
 archive projects
 poject tags
 profile img (iconify icon finder?)
@@ -24,9 +26,13 @@ fix task text overflow
 account button lets you add name, pic, bio
 add calendar
 add sort by due date
+add tooltip to tasks
+add context menu to projects and tasks
+change task completion in object
 
 
 DONE
+Create list module (task nodes)
 create modal module
 how to render to page on CRUD???
 style sidebar
@@ -40,3 +46,4 @@ style modal
 add favicon to config
 create context menu
 project options button
+show full project title on hover (custom tooltip)

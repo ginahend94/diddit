@@ -72,7 +72,6 @@ export default (iconName, classes = []) => {
 
 export const getIcon = (iconName, classes = []) => {
 
-    // if (!svgAttrStrings[iconName]) console.log('oof');
     const icon = getSVG.svgAttrStrings[iconName];
     const svg = `<svg ${icon.attributes}>${icon.body}</svg>`
     const i = document.createElement('i');

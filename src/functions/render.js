@@ -14,4 +14,5 @@ export default () => {
     document.body.innerHTML = '';
     document.body.append(nav(Profile));
     document.body.append(main(Profile));
+    console.log('rendered')
 }

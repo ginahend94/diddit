@@ -1,3 +1,10 @@
+// import { getIcon } from "../functions/icon";
+import { SplitButton } from "./split-button";
+import ToDoContainer from './to-do-container';
+import { createList } from '../functions/todoManager';
+import toDoContainer, { createTaskNode } from "./to-do-container";
+import render from '../functions/render';
+
 export default Profile => {
     const main = document.createElement('main');
 
@@ -17,6 +24,27 @@ export default Profile => {
         projectDescription.textContent = activeProject.description;
     }
 
+    const projectContainer = document.createElement('div');
+    main.append(projectContainer);
+    projectContainer.classList.add('project-container');
+
+    
+    activeProject.lists.forEach(list => {
+        const newList = ToDoContainer(list);
+        projectContainer.prepend(newList);
+        list.tasks.forEach(a => {
+            newList.querySelector('.to-do-list').prepend(createTaskNode(a));
+        });
+        
+    })
+
+    const splitButton = SplitButton();
+
+    projectContainer.append(splitButton.addNew);
+    splitButton.splitButtonButton.addEventListener('click', () => {
+        createList(activeProject);
+        render();
+    })
 
     return main;
 }

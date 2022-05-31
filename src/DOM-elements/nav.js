@@ -4,7 +4,7 @@ import load from "../functions/load";
 import ProjectManager from "../functions/projectManager";
 import switchActiveProject from "../functions/switchActiveProject";
 import contextMenu from "./context-menu";
-import { handleTooltip, isOverflowing, tooltip } from "./tooltip";
+import { handleTooltip, tooltip } from "./tooltip";
 
 
 export default Profile => {
