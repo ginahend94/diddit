@@ -41,6 +41,11 @@ export default (() => {
         }
 
         modalBg.addEventListener('click', closeModal.bind(modalBg, modalContainer));
+        modalContainer.addEventListener('keydown', e => {
+            if (e.key !== 'Enter') return;
+            e.preventDefault();
+            confirmFunction();
+        })
 
         return modalContainer;
     };
