@@ -9,7 +9,7 @@ const profile = load('profile');
 
 export default (() => {
     const showModal = () => {
-        const modalInner = () => {
+        const modalInner = (() => {
             const taskDetails = document.createElement('form');
             taskDetails.classList.add('task-details');
 
@@ -90,6 +90,7 @@ export default (() => {
             inputNone.name = 'priority';
             inputNone.type = 'radio';
             inputNone.value = 'none';
+            inputNone.setAttribute('checked', true);
             labelNone.append('None');
 
             const labelLow = document.createElement('label');
@@ -129,7 +130,7 @@ export default (() => {
             })
 
             const radios = taskPriorityList.querySelectorAll('input');
-            let selectedPriority;
+            let selectedPriority = 'none';
             radios.forEach(button => {
                 button.addEventListener('change', e => {
                     selectedPriority = [...radios].find(a => a.checked).value;
@@ -187,24 +188,30 @@ export default (() => {
             notes.id = 'notes';
             notes.placeholder = 'Notes (optional)';
 
-            return taskDetails;
-        };
+            const getSelectedPriority = () => selectedPriority;
+
+            return { taskDetails, getSelectedPriority };
+        })();
         const modal = Modal.create(
             [],
-            modalInner(),
+            modalInner.taskDetails,
             () => confirm({
                 taskName: document.getElementById('task-title').value,
                 taskDate: document.getElementById('pretty-date').value,
-                taskPriority: document.getElementById('task-priority').value,
+                taskPriority: modalInner.getSelectedPriority(),
                 subtasks: document.getElementById('new-subtasks').value,
                 notes: document.getElementById('notes').value
             }),
             'Save task',
             true,
             false,
-            false
+            true
         );
         Modal.open(modal);
+    }
+
+    const confirm = ({ ...options }) => {
+        console.log(options);
     }
 
     const createTask = (list, taskName) => {
