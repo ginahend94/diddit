@@ -192,7 +192,7 @@ export default (() => {
             const subtaskDirections = document.createElement('small');
             subtaskForm.append(subtaskDirections);
             subtaskDirections.classList.add('subtask-directions');
-            subtaskDirections.textContent = 'Enter your subtasks below. Add a due date separated by a comma, and each subtask on its own line.';
+            subtaskDirections.textContent = 'Enter your subtasks below. Add a due date (mm/dd/yyyy format) separated by a comma, and each subtask on its own line.';
             const subtasks = document.createElement('textarea');
             subtaskForm.append(subtasks);
             subtasks.name = 'subtasks';
@@ -250,7 +250,13 @@ export default (() => {
                 subtasks = options.subtasks
                     .split(/\r?\n/)
                     .map(a => {
-                        return a.split(',');
+                        const b = a.split(',');
+                        if (!b[1]) return [b[0]];
+                        let date = b[1].split('/');
+                        console.log(parseInt(date[2]), parseInt(date[0]) - 1, parseInt(date[1]));
+                        const dateFormatted = new Date(parseInt(date[2]), parseInt(date[0]) - 1, parseInt(date[1]));
+                        console.log(dateFormatted);
+                        return [b[0], dateFormatted];
                     })
             }
             createTask({ ...options, subtasks, listId });
@@ -261,10 +267,10 @@ export default (() => {
     const createTask = (options) => {
 
         const activeProject = profile.projects[profile.projects.findIndex(project => options.listId.split('.')[0] == project.id)];
-    
+
         const list = activeProject.lists[activeProject.lists.findIndex(list => list.id == options.listId)];
 
-        console.log(list);
+
 
         const { listId, ...noListId } = options;
 
