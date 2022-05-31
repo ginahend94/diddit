@@ -1,11 +1,10 @@
 CUURENTLY
-Create list module (task nodes)
+make modal draggable
 
 TO DO
 
 all crud actions
 add 
-make modal draggable
 tour/tutorial
 create split button module
 create input module
@@ -33,6 +32,7 @@ change task completion in object
 
 
 DONE
+Create list module (task nodes)
 create modal module
 how to render to page on CRUD???
 style sidebar

@@ -727,9 +727,9 @@ opacity: 0;
     background-color: rgb(var(--accent-color-bright));
 }
 
-.task-priority-list label.active {
+/* .task-priority-list label.active {
     background-color: rgb(var(--accent-color-bright));
-}
+} */
 
 .task-priority-list input[name='priority'] {
     color: red;
