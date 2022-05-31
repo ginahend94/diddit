@@ -64,8 +64,3 @@ export default (() => {
 
     return { create:Modal, open:openModal, close:closeModal }
 })();
-
-// const innerHTML = `<h2>are you sure?</h2><button>yes</button><button>no</button>`;
-// const confirm = Modal.create([confirm], innerHTML, true, false) -> that should return a modal div
-// button.addEventListener('click', Modal.close.bind(button, confirm)) -> arg is div to add hidden class to
-// button.addEventListener('click', Modal.open.bind(button, cofirm))

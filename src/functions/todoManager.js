@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import save from "./save";
 import load from "./load";
-import { format } from "path-browserify";
 import { getIcon } from "./icon";
 import Modal from '../DOM-elements/modal';
 import render from "./render";

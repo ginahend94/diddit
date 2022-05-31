@@ -34,7 +34,8 @@ export default Profile => {
         projectContainer.prepend(newList);
         list.tasks.forEach(a => {
             newList.querySelector('.to-do-list').prepend(createTaskNode(a));
-        })
+        });
+        
     })
 
     const splitButton = SplitButton();

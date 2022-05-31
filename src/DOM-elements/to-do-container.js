@@ -41,7 +41,6 @@ export const createTaskNode = task => {
     taskContainer.classList.add('task-container');
     taskContainer.classList.add(`${task.priority}-priority`);
     taskContainer.addEventListener('click', e => {
-        // console.log(e);
         if (e.target !== taskContainer && e.target !== taskContainer.querySelector('.task-text')) return;
         taskDetails(task);
     })
@@ -140,5 +139,9 @@ export const createTaskNode = task => {
 }
 
 const taskDetails = task => {
-    console.log(task);
+    const showModal = (() => {
+        const modalInner = task => {
+            
+        }
+    })();
 }
