@@ -8,7 +8,7 @@ import Modal from '../DOM-elements/modal';
 const profile = load('profile');
 
 export default (() => {
-    const showModal = () => {
+    const showModal = (listId) => {
         const modalInner = (() => {
             const taskDetails = document.createElement('form');
             taskDetails.classList.add('task-details');
@@ -21,6 +21,13 @@ export default (() => {
             taskTitle.classList.add('task-title');
             taskTitle.placeholder = 'Enter task here...';
             taskTitle.required = true;
+
+            const small = document.createElement('small');
+            taskDetails.append(small);
+            small.style.color = 'rgb(var(--danger))';
+            small.textContent = 'Name is required.';
+            small.classList.add('hidden');
+            taskTitle.addEventListener('input', () => small.classList.add('hidden'));
 
             const dateLabel = document.createElement('label');
             taskDetails.append(dateLabel);
@@ -190,7 +197,7 @@ export default (() => {
 
             const getSelectedPriority = () => selectedPriority;
 
-            return { taskDetails, getSelectedPriority };
+            return { taskDetails, getSelectedPriority, listId };
         })();
         const modal = Modal.create(
             [],
@@ -200,7 +207,8 @@ export default (() => {
                 taskDate: document.getElementById('pretty-date').value,
                 taskPriority: modalInner.getSelectedPriority(),
                 subtasks: document.getElementById('new-subtasks').value,
-                notes: document.getElementById('notes').value
+                notes: document.getElementById('notes').value,
+                listId,
             }),
             'Save task',
             true,
@@ -211,11 +219,14 @@ export default (() => {
     }
 
     const confirm = ({ ...options }) => {
+        const warning = document.querySelector('.modal-inner small');
+        if (!options.taskName) {
+            return warning.classList.remove('hidden');
+        }
         console.log(options);
     }
 
     const createTask = (list, taskName) => {
-        // console.log(`Will create task with id ${list.id}.${uuidv4()}`);
         const newTask = {
             taskName,
             classes: ['dragElement', 'dragContainer'],

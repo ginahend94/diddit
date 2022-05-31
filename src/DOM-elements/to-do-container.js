@@ -25,7 +25,7 @@ export default list => {
     todoListContainer.append(button);
     button.classList.add('add-new-task');
     button.addEventListener('click', e => {
-        newTask.showModal();
+        newTask.showModal(list.id);
     });
     button.textContent = 'Add new task';
 
