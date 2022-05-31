@@ -59,7 +59,7 @@ export default (() => {
             prettyDate.name = 'pretty-date';
             prettyDate.id = 'pretty-date';
 
-            
+
             prettyDate.addEventListener('change', e => {
                 let dateArray = e.target.value.split('-');
                 if (dateArray.length <= 1) {
@@ -245,28 +245,44 @@ export default (() => {
             if (!options.taskName) {
                 return warning.classList.remove('hidden');
             }
-            console.log(options);
+            let subtasks = '';
+            if (options.subtasks) {
+                subtasks = options.subtasks
+                    .split(/\r?\n/)
+                    .map(a => {
+                        return a.split(',');
+                    })
+            }
+            createTask({ ...options, subtasks, listId });
             Modal.close(modal);
         }
     }
 
-    const createTask = (listId, options) => {
+    const createTask = (options) => {
+
+        const activeProject = profile.projects[profile.projects.findIndex(project => options.listId.split('.')[0] == project.id)];
+    
+        const list = activeProject.lists[activeProject.lists.findIndex(list => list.id == options.listId)];
+
+        console.log(list);
+
+        const { listId, ...noListId } = options;
 
         const newTask = {
-            ...options,
+            ...noListId,
             classes: ['dragElement', 'dragContainer'],
-            id: `${list.id}.${uuidv4()}`,
-            container: list.id,
+            id: `${options.listId}.${uuidv4()}`,
+            container: options.listId,
         };
-        list.push(newTask);
+        list.tasks.push(newTask);
 
-        const activeProject = profile.projects[profile.projects.findIndex(list => list.container == project.id)];
+        console.log(newTask)
 
-        console.log(activeProject);
+
 
         activeProject.lists = activeProject.lists.map(oldlist => {
-            if (oldlist.id == list.id) return oldlist = list;
-            return oldlist
+            if (oldlist.id == listId) return oldlist = list;
+            return oldlist;
         });
         console.log(profile)
         save('profile', profile);
