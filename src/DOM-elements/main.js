@@ -2,7 +2,7 @@
 import { SplitButton } from "./split-button";
 import ToDoContainer from './to-do-container';
 import { createList } from '../functions/todoManager';
-import { createTaskNode } from "./to-do-container";
+import toDoContainer, { createTaskNode } from "./to-do-container";
 import render from '../functions/render';
 
 export default Profile => {
@@ -33,7 +33,7 @@ export default Profile => {
         const newList = ToDoContainer(list);
         projectContainer.prepend(newList);
         list.tasks.forEach(a => {
-            newList.prepend(createTaskNode(a));
+            newList.querySelector('.to-do-list').prepend(createTaskNode(a));
         })
     })
 

@@ -1,18 +1,12 @@
-import { v4 as uuidv4 } from "uuid";
-import save from "../functions/save";
 import load from "../functions/load";
-import Modal from "./modal";
 import newTask from "../functions/todoManager";
 import format from "date-fns/format";
 import { getIcon } from "../functions/icon";
+import Modal from "./modal";
 
 const profile = load('profile');
 
 export default list => {
-
-    // console.log(project)
-
-    // const list = createList(project);
 
     const todoListContainer = document.createElement('div');
     todoListContainer.classList.add('to-do-list-container');
@@ -46,11 +40,17 @@ export const createTaskNode = task => {
     taskLi.append(taskContainer);
     taskContainer.classList.add('task-container');
     taskContainer.classList.add(`${task.priority}-priority`);
+    taskContainer.addEventListener('click', e => {
+        // console.log(e);
+        if (e.target !== taskContainer && e.target !== taskContainer.querySelector('.task-text')) return;
+        taskDetails(task);
+    })
 
     const checkboxContainer = document.createElement('label');
     taskContainer.append(checkboxContainer);
     checkboxContainer.classList.add('checkbox-container');
     checkboxContainer.setAttribute('for', `checkbox-${task.id}`);
+    
     const listCheckbox = document.createElement('input');
     taskContainer.append(listCheckbox);
     listCheckbox.id = `checkbox-${task.id}`;
@@ -75,7 +75,7 @@ export const createTaskNode = task => {
         const taskDueDate = document.createElement('span');
         taskContainer.append(taskDueDate);
         taskDueDate.classList.add('task-due-date');
-        taskDueDate.textContent = format(task.date, 'MM/dd/yyyy');
+        taskDueDate.textContent = format(new Date(task.date), 'MM/dd/yyyy');
     }
 
     const dragIcon = getIcon('menu', ['drag']);
@@ -127,7 +127,7 @@ export const createTaskNode = task => {
                 const taskDueDate = document.createElement('span');
                 taskContainer.append(taskDueDate);
                 taskDueDate.classList.add('task-due-date');
-                taskDueDate.textContent = format(item[1], 'MM/dd/yyyy');
+                taskDueDate.textContent = format(new Date(item[1]), 'MM/dd/yyyy');
             }
 
             const dragIcon = getIcon('menu', ['drag']);
@@ -137,4 +137,8 @@ export const createTaskNode = task => {
     }
 
     return taskLi;
+}
+
+const taskDetails = task => {
+    console.log(task);
 }
