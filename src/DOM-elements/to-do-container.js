@@ -34,7 +34,7 @@ export default list => {
     return todoListContainer;
 }
 
-const createTaskNode = task => {
+export const createTaskNode = task => {
     const taskLi = document.createElement('li');
     taskLi.classList.add('task');
     taskLi.classList.add('drag-element');
@@ -56,6 +56,7 @@ const createTaskNode = task => {
     listCheckbox.id = `checkbox-${task.id}`;
     listCheckbox.type = 'checkbox';
     listCheckbox.classList.add('list-checkbox');
+    listCheckbox.checked = task.completed;
 
     const checkmarkContainer = document.createElement('label');
     taskContainer.append(checkmarkContainer);
@@ -81,11 +82,13 @@ const createTaskNode = task => {
     taskContainer.append(dragIcon);
 
     if (task.subtasks) {
+        console.log(task)
         const subtasks = document.createElement('ul');
         taskLi.append(subtasks);
         subtasks.classList.add('subtasks');
 
-        list.subtasks.forEach((item, i) => {
+        task.subtasks.forEach((item, i) => {
+            console.log(item)
             const subtask = document.createElement('li');
             subtasks.append(subtask);
             subtask.classList.add('subtask');
@@ -133,4 +136,5 @@ const createTaskNode = task => {
         })
     }
 
+    return taskLi;
 }

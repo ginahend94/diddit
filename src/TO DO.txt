@@ -29,6 +29,7 @@ add calendar
 add sort by due date
 add tooltip to tasks
 add context menu to projects and tasks
+change task completion in object
 
 
 DONE

@@ -4,6 +4,7 @@ import load from "./load";
 import { format } from "path-browserify";
 import { getIcon } from "./icon";
 import Modal from '../DOM-elements/modal';
+import render from "./render";
 
 const profile = load('profile');
 
@@ -227,7 +228,7 @@ export default (() => {
             modalInner.taskDetails,
             () => confirm({
                 name: document.getElementById('task-title').value,
-                date: new Date(document.getElementById('pretty-date').valueAsDate.toISOString().slice(0, -1)), // Date without timezone
+                date: document.getElementById('pretty-date').value ? new Date(document.getElementById('pretty-date').valueAsDate.toISOString().slice(0, -1)) : '', // Date without timezone
                 priority: modalInner.getSelectedPriority(),
                 subtasks: document.getElementById('new-subtasks').value,
                 notes: document.getElementById('notes').value,
@@ -276,6 +277,7 @@ export default (() => {
             classes: ['dragElement', 'dragContainer'],
             id: `${options.listId}.${uuidv4()}`,
             container: options.listId,
+            completed: false,
         };
         list.tasks.push(newTask);
 
@@ -287,6 +289,7 @@ export default (() => {
         });
         console.log(profile)
         save('profile', profile);
+        render();
         return newTask;
     }
     return { showModal }
