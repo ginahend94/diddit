@@ -280,13 +280,13 @@ export default (() => {
         };
         list.tasks.push(newTask);
 
-        console.log(newTask);
+        // console.log(newTask);
 
         activeProject.lists = activeProject.lists.map(oldlist => {
             if (oldlist.id == listId) return oldlist = list;
             return oldlist;
         });
-        console.log(profile)
+        // console.log(profile)
         save('profile', profile);
         render();
         return newTask;
@@ -314,3 +314,11 @@ export const createList = project => {
     return list;
 }
 
+export const handleCheckbox = (e, task) => {
+    if (e.target.checked) {
+        task.completed = true;
+    } else task.completed = false;
+    console.log(profile)
+    save('profile', profile);
+    return task;
+}

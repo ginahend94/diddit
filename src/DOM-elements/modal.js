@@ -49,7 +49,7 @@ export default (() => {
             confirmFunction();
         })
 
-        dragModal(modalContainer);
+        if (draggable) dragModal(modalContainer);
 
         return modalContainer;
     };
@@ -57,9 +57,9 @@ export default (() => {
     const closeModal = modal => {
         modal.classList.remove('shown');
         modal.classList.add('hidden');
-        document.body.removeChild(modal);
+        if (document.body.contains(modal)) document.body.removeChild(modal);
     };
-
+    
     const openModal = modal => {
         document.body.append(modal);
         modal.classList.remove('hidden');

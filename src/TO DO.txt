@@ -1,8 +1,12 @@
-CUURENTLY
-make modal draggable
+CURRENTLY
+change task completion in object
 
 TO DO
 
+email/share to do list
+auto focus new task input
+priority color
+task details modal
 all crud actions
 add 
 tour/tutorial
@@ -28,10 +32,10 @@ add calendar
 add sort by due date
 add tooltip to tasks
 add context menu to projects and tasks
-change task completion in object
 
 
 DONE
+make modal draggable
 Create list module (task nodes)
 create modal module
 how to render to page on CRUD???
