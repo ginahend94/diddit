@@ -3,7 +3,6 @@ import ToDoContainer from './to-do-container';
 import { createList } from '../functions/todoManager';
 import { createTaskNode } from "./to-do-container";
 import render from '../functions/render';
-import drag from "../functions/drag";
 
 export default Profile => {
     
@@ -46,8 +45,6 @@ export default Profile => {
         createList(activeProject);
         render();
     })
-
-    drag(main);
 
     return main;
 }

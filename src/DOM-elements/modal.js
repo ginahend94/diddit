@@ -1,3 +1,5 @@
+import {dragModal} from "../functions/drag";
+
 export default (() => {
     const Modal = (classes = [], modalBody, confirmFunction, confirmText, showCancel, showModalBg, draggable) => {
         const modalContainer = document.createElement('div');
@@ -46,6 +48,8 @@ export default (() => {
             e.preventDefault();
             confirmFunction();
         })
+
+        dragModal(modalContainer);
 
         return modalContainer;
     };

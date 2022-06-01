@@ -46,6 +46,7 @@ export default (page) => {
                 return
             }
             if (afterElement == null) {
+                if (a == draggable) return;
                 a.append(draggable);
             } else {
                 a.insertBefore(draggable, afterElement);
@@ -66,3 +67,61 @@ export default (page) => {
         }, { offset: Number.NEGATIVE_INFINITY }).element
     }
 };
+
+export const dragModal = (modalContainer) => {
+    const dragElements = modalContainer.querySelectorAll('.modal');
+        dragElements.forEach(element => dragElement(element));
+
+        function dragElement(modal) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            modal.querySelector('.drag-bar').onmousedown = dragMouseDown;
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                modalContainer.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                modalContainer.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+
+                // set the element's new position:
+                modal.style.top = (() => {
+                // prevent dragging outside window
+                    if (modal.offsetTop - pos2 < 0) {
+                        return '0';
+                    }
+                    if ((modal.offsetTop - pos2) >= window.innerHeight - modal.offsetHeight / 2) {
+                        return (window.innerHeight - modal.offsetHeight / 2) + 'px';
+                    }
+                    return (modal.offsetTop - pos2) + "px";
+                })();
+                modal.style.left = (() => {
+                    if (modal.offsetLeft - pos1 < 0) {
+                        return 0;
+                    }
+                    if ((modal.offsetLeft + modal.offsetWidth) - pos1 > window.innerWidth) {
+                        return window.innerWidth - modal.offsetWidth + 'px';
+                    }
+                    return (modal.offsetLeft - pos1) + "px"
+                })();
+            }
+
+            function closeDragElement() {
+                /* stop moving when mouse button is released:*/
+                modalContainer.onmouseup = null;
+                modalContainer.onmousemove = null;
+            }
+        }
+} 
