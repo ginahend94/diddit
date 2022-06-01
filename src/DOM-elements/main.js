@@ -1,11 +1,12 @@
-// import { getIcon } from "../functions/icon";
 import { SplitButton } from "./split-button";
 import ToDoContainer from './to-do-container';
 import { createList } from '../functions/todoManager';
-import toDoContainer, { createTaskNode } from "./to-do-container";
+import { createTaskNode } from "./to-do-container";
 import render from '../functions/render';
+import drag from "../functions/drag";
 
 export default Profile => {
+    
     const main = document.createElement('main');
 
     const activeProject = Profile.projects.find(project => {
@@ -45,6 +46,8 @@ export default Profile => {
         createList(activeProject);
         render();
     })
+
+    drag(main);
 
     return main;
 }
