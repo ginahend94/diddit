@@ -2,6 +2,7 @@ import nav from "../DOM-elements/nav";
 import main from "../DOM-elements/main";
 import load from "./load";
 import save from "./save";
+import drag from "./drag";
 
 export default () => {
     let Profile;
@@ -14,5 +15,7 @@ export default () => {
     document.body.innerHTML = '';
     document.body.append(nav(Profile));
     document.body.append(main(Profile));
+
+    drag(document.body);
     console.log('rendered')
 }

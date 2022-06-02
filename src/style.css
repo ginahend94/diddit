@@ -102,14 +102,15 @@ h1 .iconify-icon {
 
 nav {
     height: 100%;
+    max-height: 100%;
     min-width: 200px;
     max-width: 350px;
     display: flex;
     flex-direction: column;
     background-color: rgb(var(--secondary-color));
-    overflow: auto;
-    resize: horizontal;
+    position: relative;
 }
+
 
 nav header {
     display: flex;
@@ -126,7 +127,27 @@ nav header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    /* flex: 1; */
     height: 100%;
+    position: relative;
+}
+
+.side-drag {
+    position: absolute;
+    width: 5px;
+    height:100%;
+    background-color: rgb(var(--tertiary-color));
+    cursor: col-resize;
+    right:0;
+    top:0;
+    opacity: 0;
+    transition: .2s;
+}
+.side-drag.visible {
+    opacity: 1;
+}
+.side-drag:hover {
+    opacity: 1;
 }
 
 nav ul {
@@ -138,15 +159,21 @@ nav ul {
     display: flex;
     flex-direction: column;
     align-items: end;
+    flex: 1;
+    /* border: solid 1px; */
+    max-height: calc(100% - 150px);
 }
 
 .project-list {
     width:calc(100% - 20px);
     display: flex;
     flex-direction: column;
+    flex:1;
     gap:5px;
     align-items: end;
     margin-bottom: 5px;
+    overflow: auto;
+    max-height: 100%;
 }
 
 .project-info {
@@ -726,10 +753,6 @@ opacity: 0;
 .task-priority-list label:hover {
     background-color: rgb(var(--accent-color-bright));
 }
-
-/* .task-priority-list label.active {
-    background-color: rgb(var(--accent-color-bright));
-} */
 
 .task-priority-list input[name='priority'] {
     color: red;

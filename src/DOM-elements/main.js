@@ -1,11 +1,11 @@
-// import { getIcon } from "../functions/icon";
 import { SplitButton } from "./split-button";
 import ToDoContainer from './to-do-container';
 import { createList } from '../functions/todoManager';
-import toDoContainer, { createTaskNode } from "./to-do-container";
+import { createTaskNode } from "./to-do-container";
 import render from '../functions/render';
 
 export default Profile => {
+    
     const main = document.createElement('main');
 
     const activeProject = Profile.projects.find(project => {

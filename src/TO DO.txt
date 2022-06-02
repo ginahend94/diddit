@@ -1,19 +1,25 @@
-CUURENTLY
-make modal draggable
+CURRENTLY
+make side of sidebar draggable
 
 TO DO
 
+fix shadow showing up on drag
+make project titles draggable
+change task completion in object
+collapse projects
+email/share to do list
+auto focus new task input
+priority color
+task details modal
 all crud actions
-add 
+add keyboard shortcuts
 tour/tutorial
 create split button module
 create input module
 add emoji picker
-make side of sidebar draggable
 be able to hide sidebar
 make project options appear on hover
 prevent flash of unstyled page
-fix shadow showing up on drag
 change order of object on reorder (.map?)
 ability to star tasks
 undo/redo
@@ -28,10 +34,10 @@ add calendar
 add sort by due date
 add tooltip to tasks
 add context menu to projects and tasks
-change task completion in object
 
 
 DONE
+make modal draggable
 Create list module (task nodes)
 create modal module
 how to render to page on CRUD???

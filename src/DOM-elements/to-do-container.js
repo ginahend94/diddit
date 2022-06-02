@@ -1,5 +1,5 @@
 import load from "../functions/load";
-import newTask from "../functions/todoManager";
+import newTask, { handleCheckbox } from "../functions/todoManager";
 import format from "date-fns/format";
 import { getIcon } from "../functions/icon";
 import Modal from "./modal";
@@ -49,7 +49,7 @@ export const createTaskNode = task => {
     taskContainer.append(checkboxContainer);
     checkboxContainer.classList.add('checkbox-container');
     checkboxContainer.setAttribute('for', `checkbox-${task.id}`);
-    
+
     const listCheckbox = document.createElement('input');
     taskContainer.append(listCheckbox);
     listCheckbox.id = `checkbox-${task.id}`;
@@ -77,17 +77,15 @@ export const createTaskNode = task => {
         taskDueDate.textContent = format(new Date(task.date), 'MM/dd/yyyy');
     }
 
-    const dragIcon = getIcon('menu', ['drag']);
+    const dragIcon = getIcon('drag', ['drag']);
     taskContainer.append(dragIcon);
 
     if (task.subtasks) {
-        console.log(task)
         const subtasks = document.createElement('ul');
         taskLi.append(subtasks);
         subtasks.classList.add('subtasks');
 
         task.subtasks.forEach((item, i) => {
-            console.log(item)
             const subtask = document.createElement('li');
             subtasks.append(subtask);
             subtask.classList.add('subtask');
@@ -129,11 +127,25 @@ export const createTaskNode = task => {
                 taskDueDate.textContent = format(new Date(item[1]), 'MM/dd/yyyy');
             }
 
-            const dragIcon = getIcon('menu', ['drag']);
+            const dragIcon = getIcon('drag', ['drag']);
             taskContainer.append(dragIcon);
 
         })
     }
+
+    const activeProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id == task.container.split('.')[0];
+    })]
+
+    const activeList = activeProject.lists[activeProject.lists.findIndex(a => a.id = task.container)];
+
+    const inputs = Array.from(taskLi.querySelectorAll('input[type="checkbox"]'));
+    inputs.forEach(input => {
+        input.addEventListener('change', e => {
+            handleCheckbox(e, task);
+            editTask(task);
+        })
+    })
 
     return taskLi;
 }
@@ -141,7 +153,29 @@ export const createTaskNode = task => {
 const taskDetails = task => {
     const showModal = (() => {
         const modalInner = task => {
-            
+
         }
     })();
+}
+
+const editTask = task => {
+    const activeProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id == task.container.split('.')[0];
+    })]
+
+    const activeList = activeProject.lists[activeProject.lists.findIndex(a => {
+        return a.id = task.container;
+    })];
+
+    let activeTask = activeList.tasks[activeList.tasks.findIndex(a => {
+        return a.id = task.id;
+    })]
+
+    console.log(activeTask);
+    // activeTask = task;
+
+    // console.log(task)
+
+    return task;
+
 }
