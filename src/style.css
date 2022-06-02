@@ -108,23 +108,9 @@ nav {
     flex-direction: column;
     background-color: rgb(var(--secondary-color));
     overflow: auto;
-    resize: horizontal;
     position: relative;
 }
 
-.side-drag {
-    position: absolute;
-    width: 10px;
-    height:100%;
-    background-color: rgb(var(--tertiary-color));
-    cursor: col-resize;
-    right:0;
-    opacity: 0;
-    transition: .2s;
-}
-.side-drag:hover {
-    opacity: 1;
-}
 
 nav header {
     display: flex;
@@ -142,6 +128,25 @@ nav header {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    position: relative;
+}
+
+.side-drag {
+    position: absolute;
+    width: 5px;
+    height:100%;
+    background-color: rgb(var(--tertiary-color));
+    cursor: col-resize;
+    right:0;
+    top:0;
+    opacity: 0;
+    transition: .2s;
+}
+.side-drag.visible {
+    opacity: 1;
+}
+.side-drag:hover {
+    opacity: 1;
 }
 
 nav ul {
@@ -153,6 +158,8 @@ nav ul {
     display: flex;
     flex-direction: column;
     align-items: end;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .project-list {

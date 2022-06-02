@@ -114,7 +114,7 @@ export default Profile => {
     about.append('About');
 
     const sideDrag = document.createElement('div');
-    nav.append(sideDrag);
+    sidebarLower.append(sideDrag);
     sideDrag.classList.add('side-drag');
 
     resizeSidebar(nav);

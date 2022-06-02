@@ -139,8 +139,22 @@ export const resizeSidebar = (nav) => {
         xpos = nav.getBoundingClientRect().width + sideDrag.getBoundingClientRect().width / 2;
         dragging = true;
         console.log(xpos);
-        console.log(e.clientX)
-        )
+        sideDrag.classList.add('visible');
+        document.body.style.userSelect = 'none';
+        document.body.style.cursor = 'col-resize';
     })
     
+    document.body.addEventListener('mousemove', e => {
+        xpos = e.clientX;
+        if (!dragging) return;
+        nav.style.width = xpos + 'px';
+        console.log(nav.style)
+    })
+
+    document.body.addEventListener('mouseup', e => {
+        document.body.style.cursor = 'auto';
+        dragging = false;
+        sideDrag.classList.remove('visible');
+        document.body.style.userSelect = 'auto';
+    })
 }

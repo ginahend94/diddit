@@ -9,7 +9,7 @@ auto focus new task input
 priority color
 task details modal
 all crud actions
-add 
+add keyboard shortcuts
 tour/tutorial
 create split button module
 create input module
