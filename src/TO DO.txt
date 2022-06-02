@@ -1,11 +1,11 @@
 CURRENTLY
-make side of sidebar draggable
+change task completion in object
+
 
 TO DO
 
 fix shadow showing up on drag
 make project titles draggable
-change task completion in object
 collapse projects
 email/share to do list
 auto focus new task input
@@ -37,6 +37,7 @@ add context menu to projects and tasks
 
 
 DONE
+make side of sidebar draggable
 make modal draggable
 Create list module (task nodes)
 create modal module
