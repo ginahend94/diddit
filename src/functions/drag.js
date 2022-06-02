@@ -36,7 +36,8 @@ export default (page) => {
             const afterElement = getDragAfterElement(a, e.clientY);
             const draggable = page.querySelector('.dragging');
             if (draggable.classList.contains('subtask')) {
-                let container = page.getElementById(draggable.dataset.container).querySelector('.subtasks');
+                let container = page.getElementById(draggable.dataset.container)
+                    .querySelector('.subtasks');
                 console.log(container)
                 if (afterElement == null) {
                     container.append(draggable);
@@ -55,7 +56,8 @@ export default (page) => {
     })
 
     function getDragAfterElement(container, y) {
-        const draggableElements = [...container.querySelectorAll(`.drag-element:not(.dragging)`)].filter(a => a.dataset.container == page.querySelector('.dragging').dataset.container);
+        const draggableElements = [...container.querySelectorAll(`.drag-element:not(.dragging)`)]
+            .filter(a => a.dataset.container == page.querySelector('.dragging').dataset.container);
         return draggableElements.reduce((closest, child) => {
             const box = child.getBoundingClientRect();
             const offset = y - box.top - box.height / 2;
@@ -125,3 +127,20 @@ export const dragModal = (modalContainer) => {
             }
         }
 } 
+
+export const resizeSidebar = (nav) => {
+    const sideDrag = nav.querySelector('.side-drag');
+    let xpos;
+    let dragging = false;
+    console.log();
+    console.log(nav)
+
+    sideDrag.addEventListener('mousedown', e => {
+        xpos = nav.getBoundingClientRect().width + sideDrag.getBoundingClientRect().width / 2;
+        dragging = true;
+        console.log(xpos);
+        console.log(e.clientX)
+        )
+    })
+    
+}

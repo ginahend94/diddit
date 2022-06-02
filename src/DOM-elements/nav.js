@@ -5,6 +5,7 @@ import ProjectManager from "../functions/projectManager";
 import switchActiveProject from "../functions/switchActiveProject";
 import contextMenu from "./context-menu";
 import { handleTooltip, tooltip } from "./tooltip";
+import { resizeSidebar } from "../functions/drag";
 
 
 export default Profile => {
@@ -111,6 +112,12 @@ export default Profile => {
     settingsMenu.append(about);
     about.append(getIcon('information'));
     about.append('About');
+
+    const sideDrag = document.createElement('div');
+    nav.append(sideDrag);
+    sideDrag.classList.add('side-drag');
+
+    resizeSidebar(nav);
 
     return nav;
 }

@@ -109,6 +109,21 @@ nav {
     background-color: rgb(var(--secondary-color));
     overflow: auto;
     resize: horizontal;
+    position: relative;
+}
+
+.side-drag {
+    position: absolute;
+    width: 10px;
+    height:100%;
+    background-color: rgb(var(--tertiary-color));
+    cursor: col-resize;
+    right:0;
+    opacity: 0;
+    transition: .2s;
+}
+.side-drag:hover {
+    opacity: 1;
 }
 
 nav header {
@@ -726,10 +741,6 @@ opacity: 0;
 .task-priority-list label:hover {
     background-color: rgb(var(--accent-color-bright));
 }
-
-/* .task-priority-list label.active {
-    background-color: rgb(var(--accent-color-bright));
-} */
 
 .task-priority-list input[name='priority'] {
     color: red;
