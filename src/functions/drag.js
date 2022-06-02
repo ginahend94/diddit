@@ -132,8 +132,6 @@ export const resizeSidebar = (nav) => {
     const sideDrag = nav.querySelector('.side-drag');
     let xpos;
     let dragging = false;
-    console.log();
-    console.log(nav)
 
     sideDrag.addEventListener('mousedown', e => {
         xpos = nav.getBoundingClientRect().width + sideDrag.getBoundingClientRect().width / 2;
