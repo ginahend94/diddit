@@ -3,7 +3,10 @@ make side of sidebar draggable
 
 TO DO
 
+fix shadow showing up on drag
+make project titles draggable
 change task completion in object
+collapse projects
 email/share to do list
 auto focus new task input
 priority color
@@ -17,7 +20,6 @@ add emoji picker
 be able to hide sidebar
 make project options appear on hover
 prevent flash of unstyled page
-fix shadow showing up on drag
 change order of object on reorder (.map?)
 ability to star tasks
 undo/redo
