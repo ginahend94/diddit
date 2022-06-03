@@ -164,11 +164,11 @@ const editTask = task => {
     })]
 
     const activeList = activeProject.lists[activeProject.lists.findIndex(a => {
-        return a.id = task.container;
+        return a.id == task.container;
     })];
 
     let activeTask = activeList.tasks[activeList.tasks.findIndex(a => {
-        return a.id = task.id;
+        return a.id == task.id;
     })]
 
     console.log(activeTask);
