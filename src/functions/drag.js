@@ -36,9 +36,8 @@ export default (page) => {
             const afterElement = getDragAfterElement(a, e.clientY);
             const draggable = page.querySelector('.dragging');
             if (draggable.classList.contains('subtask')) {
-                let container = page.getElementById(draggable.dataset.container)
+                let container = page.querySelector(`[id='${draggable.dataset.container}']`)
                     .querySelector('.subtasks');
-                console.log(container)
                 if (afterElement == null) {
                     container.append(draggable);
                 } else {
