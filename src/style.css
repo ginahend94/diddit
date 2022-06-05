@@ -313,6 +313,10 @@ h2 {
     cursor: pointer;
 }
 
+.subtask-container {
+    cursor: auto;
+}
+
 /* 
 li, li > * {
 } */
@@ -829,3 +833,10 @@ opacity: 0;
 .hidden {
     display: none;
 }
+
+.modal-inner.show-task-details {
+    min-width: 200px;
+    width: max-content;
+}
+
+
