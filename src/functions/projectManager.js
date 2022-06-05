@@ -2,7 +2,8 @@ import save from "./save"
 import load from "./load"
 import createProfile from "./profile";
 import Modal from "../DOM-elements/modal";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
+import generateId from "./generateId";
 import render from "./render";
 import switchActiveProject from "./switchActiveProject";
 
@@ -59,7 +60,7 @@ export default (() => {
         const newProject = {
             name,
             description,
-            id: uuidv4(),
+            id: generateId(),
             active: false,
             archived: false,
             lists: [],

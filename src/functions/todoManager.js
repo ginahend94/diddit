@@ -1,4 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
+import generateId from "./generateId";
 import save from "./save";
 import load from "./load";
 import { getIcon } from "./icon";
@@ -274,19 +275,17 @@ export default (() => {
         const newTask = {
             ...noListId,
             classes: ['dragElement', 'dragContainer'],
-            id: `${options.listId}.${uuidv4()}`,
+            id: `${options.listId}.${generateId()}`,
             container: options.listId,
             completed: false,
         };
         list.tasks.push(newTask);
 
-        // console.log(newTask);
-
         activeProject.lists = activeProject.lists.map(oldlist => {
             if (oldlist.id == listId) return oldlist = list;
             return oldlist;
         });
-        // console.log(profile)
+        
         save('profile', profile);
         render();
         return newTask;
@@ -297,7 +296,7 @@ export default (() => {
 
 export const createList = project => {
     const list = {
-        id: `${project.id}.${uuidv4()}`,
+        id: `${project.id}.${generateId()}`,
         tasks: [],
         container: project.id,
     }
@@ -314,7 +313,25 @@ export const handleCheckbox = (e, task) => {
     if (e.target.checked) {
         task.completed = true;
     } else task.completed = false;
-    console.log(profile)
     save('profile', profile);
     return task;
+}
+
+export const editTask = task => {
+    const activeProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id == task.container.split('.')[0];
+    })]
+
+    const activeList = activeProject.lists[activeProject.lists.findIndex(a => {
+        return a.id == task.container;
+    })];
+
+    activeList.tasks = activeList.tasks.map(taskObj => {
+        if (taskObj.id == task.id) {
+            return taskObj = task;
+        }
+        return taskObj;
+    })
+
+    save('profile', profile);
 }
