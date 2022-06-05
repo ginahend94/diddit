@@ -307,7 +307,6 @@ h2 {
     padding: var(--padding);
     display: flex;
     gap:5px;
-    /* align-items: center; */
     position: relative;
     transition: .2s;
     cursor: pointer;
@@ -317,9 +316,6 @@ h2 {
     cursor: auto;
 }
 
-/* 
-li, li > * {
-} */
 
 .task:first-child > .task-container {
     border-radius: 5px 5px 0 0;
@@ -328,9 +324,6 @@ li, li > * {
 .task {
     flex-direction: column;
 }
-/* .task-container {
-    width: 100%;
-} */
 
 li.subtask {
     padding-left: 35px;
@@ -364,7 +357,6 @@ li.subtask {
     left:0;
     transition: .2s;
     cursor: pointer;
-    /* z-index: 2; */
 }
 
 .checkbox-container:hover {
@@ -382,7 +374,6 @@ li.subtask {
     left: 20px;
     transition: .2s;
     opacity: 0;
-    /* z-index: 3; */
     cursor: pointer;
     box-shadow: 2px -3px 0 2px rgb(var(--main-color)), inset -3px -3px 0 2px rgb(var(--main-color));
 }
@@ -834,9 +825,41 @@ opacity: 0;
     display: none;
 }
 
+/* TASK DETAILS */
+
 .modal-inner.show-task-details {
     min-width: 200px;
     width: max-content;
 }
 
+.modal-inner .task-details.title {
+    margin: 0;
+    background-color: rgb(var(--accent-color));
+    padding: 5px;
+}
+
+.modal-inner .task-details.due-date {
+    
+}
+
+.modal-inner .task-details.priority {
+    text-transform: capitalize;
+    background-color: rgb(var(--tertiary-color));
+    padding: 5px;
+}
+
+.modal-inner .task-details.subtasks {
+    margin: 0;
+}
+
+.modal-inner .task-details.subtasks h4 {
+    margin: 0 0 0 -40px;
+}
+.modal-inner .task-details.subtasks li ul {
+    font-style: italic;
+    list-style: none;
+    padding: 0;
+    font-size: .8rem;
+    color: rgb(var(--grayed-text-color));
+}
 

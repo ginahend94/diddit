@@ -159,13 +159,13 @@ const taskDetails = task => {
                 const dueDate = document.createElement('div');
                 taskDetails.append(dueDate);
                 dueDate.classList.add('task-details', 'due-date');
-                dueDate.textContent = task.date;
+                dueDate.textContent = `Due ${format(new Date(task.date), 'MM/dd/yyyy')}`;
             }
 
             const priority = document.createElement('div');
             taskDetails.append(priority);
             priority.classList.add('task-details', 'priority');
-            priority.textContent = `${task.priority=='none'?'No ':task.priority = '-'}Priority`;
+            priority.textContent = `${task.priority=='none'?'No ':task.priority + '-'}Priority`;
 
             if (task.subtasks.length) {
                 const subtasks = document.createElement('ul');
@@ -178,23 +178,41 @@ const taskDetails = task => {
 
                 task.subtasks.forEach(subtask => {
                     const li = document.createElement('li');
-                    subtasks.append('li');
+                    subtasks.append(li);
                     li.textContent = subtask[0];
                     if (!subtask[1]) return; 
                     const ul = document.createElement('ul');
                     li.append(ul);
                     const date = document.createElement('li');
                     ul.append(date);
-                    date.textContent = `Due ${subtask[1]}`;
+                    date.textContent = `Due ${format(new Date(subtask[1]), 'MM/dd/yyyy')}`;
                 })
             }
 
             if (task.notes.trim()) {
-                const notes = document.createElement('p');
+                
+                const notes = document.createElement('div');
                 taskDetails.append(notes);
                 notes.classList.add('task-details', 'notes');
-                notes.textContent = task.notes;
+
+                const notesHeading = document.createElement('h4');
+                notes.append(notesHeading);
+                notesHeading.textContent = 'Notes:';
+
+                const notesBody = document.createElement('p');
+                notes.append(notesBody);
+                notesBody.textContent = task.notes;
             }
+
+            const editButton = document.createElement('button');
+            taskDetails.append(editButton);
+            editButton.prepend(getIcon('square-edit-outline'));
+            editButton.append('Edit task');
+            editButton.style.width = 'fit-content';
+            editButton.addEventListener('click', e => {
+                Modal.close(modal);
+                
+            })
 
             return taskDetails;
         }
