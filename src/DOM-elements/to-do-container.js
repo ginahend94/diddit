@@ -1,4 +1,5 @@
 import load from "../functions/load";
+import save from "../functions/save";
 import newTask, { handleCheckbox } from "../functions/todoManager";
 import format from "date-fns/format";
 import { getIcon } from "../functions/icon";
@@ -164,18 +165,16 @@ const editTask = task => {
     })]
 
     const activeList = activeProject.lists[activeProject.lists.findIndex(a => {
+        console.log(a.id)
         return a.id == task.container;
     })];
 
-    let activeTask = activeList.tasks[activeList.tasks.findIndex(a => {
-        return a.id == task.id;
-    })]
+    activeList.tasks = activeList.tasks.map(taskObj => {
+        if (taskObj.id == task.id) {
+            return taskObj = task;
+        }
+        return taskObj;
+    })
 
-    console.log(activeTask);
-    // activeTask = task;
-
-    // console.log(task)
-
-    return task;
-
+    save('profile', profile);
 }

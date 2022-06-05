@@ -301,16 +301,12 @@ export const createList = project => {
         tasks: [],
         container: project.id,
     }
-    console.log(project);
     project.lists.push(list);
-    console.log(project);
-    console.log(profile);
     profile.projects = profile.projects.map(oldproject => {
         if (oldproject.id == project.id) return oldproject = project;
         return oldproject
     });
     save('profile', profile);
-    console.log(profile);
     return list;
 }
 

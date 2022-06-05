@@ -33,7 +33,8 @@ export default Profile => {
         const newList = ToDoContainer(list);
         projectContainer.prepend(newList);
         list.tasks.forEach(a => {
-            newList.querySelector('.to-do-list').prepend(createTaskNode(a));
+            // console.log(a)
+            newList.querySelector('.to-do-list').append(createTaskNode(a));
         });
         
     })
