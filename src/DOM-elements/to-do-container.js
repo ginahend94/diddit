@@ -1,6 +1,6 @@
 import load from "../functions/load";
 import save from "../functions/save";
-import newTask, { handleCheckbox } from "../functions/todoManager";
+import newTask, { handleCheckbox, editTask } from "../functions/todoManager";
 import format from "date-fns/format";
 import { getIcon } from "../functions/icon";
 import Modal from "./modal";
@@ -96,7 +96,7 @@ export const createTaskNode = task => {
 
             const taskContainer = document.createElement('div');
             subtask.append(taskContainer);
-            taskContainer.classList.add('task-container');
+            taskContainer.classList.add('task-container', 'subtask-container');
 
             const checkboxContainer = document.createElement('label');
             taskContainer.append(checkboxContainer);
@@ -134,12 +134,6 @@ export const createTaskNode = task => {
         })
     }
 
-    const activeProject = profile.projects[profile.projects.findIndex(a => {
-        return a.id == task.container.split('.')[0];
-    })]
-
-    const activeList = activeProject.lists[activeProject.lists.findIndex(a => a.id = task.container)];
-
     const inputs = Array.from(taskLi.querySelectorAll('input[type="checkbox"]'));
     inputs.forEach(input => {
         input.addEventListener('change', e => {
@@ -152,29 +146,68 @@ export const createTaskNode = task => {
 }
 
 const taskDetails = task => {
-    const showModal = (() => {
-        const modalInner = task => {
+    const showDetailModal = (() => {
+        const modalInner = () => {
+            const taskDetails = document.createElement('div');
 
+            const title = document.createElement('h3');
+            taskDetails.append(title);
+            title.classList.add('task-details', 'title')
+            title.textContent = task.name;
+
+            if (task.date) {
+                const dueDate = document.createElement('div');
+                taskDetails.append(dueDate);
+                dueDate.classList.add('task-details', 'due-date');
+                dueDate.textContent = task.date;
+            }
+
+            const priority = document.createElement('div');
+            taskDetails.append(priority);
+            priority.classList.add('task-details', 'priority');
+            priority.textContent = `${task.priority=='none'?'No ':task.priority = '-'}Priority`;
+
+            if (task.subtasks.length) {
+                const subtasks = document.createElement('ul');
+                taskDetails.append(subtasks);
+                subtasks.classList.add('task-details', 'subtasks');
+
+                const subtaskHeading = document.createElement('h4');
+                subtasks.append(subtaskHeading);
+                subtaskHeading.textContent = 'Subtasks:';
+
+                task.subtasks.forEach(subtask => {
+                    const li = document.createElement('li');
+                    subtasks.append('li');
+                    li.textContent = subtask[0];
+                    if (!subtask[1]) return; 
+                    const ul = document.createElement('ul');
+                    li.append(ul);
+                    const date = document.createElement('li');
+                    ul.append(date);
+                    date.textContent = `Due ${subtask[1]}`;
+                })
+            }
+
+            if (task.notes.trim()) {
+                const notes = document.createElement('p');
+                taskDetails.append(notes);
+                notes.classList.add('task-details', 'notes');
+                notes.textContent = task.notes;
+            }
+
+            return taskDetails;
         }
+
+        const modal = Modal.create(
+            ['show-task-details'],
+            modalInner(),
+            () => Modal.close(modal),
+            'Close',
+            false,
+            true,
+            true
+        );
+        Modal.open(modal);
     })();
-}
-
-const editTask = task => {
-    const activeProject = profile.projects[profile.projects.findIndex(a => {
-        return a.id == task.container.split('.')[0];
-    })]
-
-    const activeList = activeProject.lists[activeProject.lists.findIndex(a => {
-        console.log(a.id)
-        return a.id == task.container;
-    })];
-
-    activeList.tasks = activeList.tasks.map(taskObj => {
-        if (taskObj.id == task.id) {
-            return taskObj = task;
-        }
-        return taskObj;
-    })
-
-    save('profile', profile);
 }
