@@ -1,5 +1,4 @@
 CURRENTLY
-change task completion in object
 
 
 TO DO
@@ -39,6 +38,7 @@ add context menu to projects and tasks
 
 
 DONE
+change task completion in object
 make side of sidebar draggable
 make modal draggable
 Create list module (task nodes)

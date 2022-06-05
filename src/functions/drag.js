@@ -136,7 +136,6 @@ export const resizeSidebar = (nav) => {
     sideDrag.addEventListener('mousedown', e => {
         xpos = nav.getBoundingClientRect().width + sideDrag.getBoundingClientRect().width / 2;
         dragging = true;
-        console.log(xpos);
         sideDrag.classList.add('visible');
         document.body.style.userSelect = 'none';
         document.body.style.cursor = 'col-resize';
@@ -146,7 +145,6 @@ export const resizeSidebar = (nav) => {
         xpos = e.clientX;
         if (!dragging) return;
         nav.style.width = xpos + 'px';
-        console.log(nav.style)
     })
 
     document.body.addEventListener('mouseup', e => {
