@@ -253,6 +253,7 @@ main {
 main header {
     background-color: rgb(var(--accent-color));
     height: 100px;
+    min-height: 100px;
     padding: var(--padding);
     display: flex;
     justify-content: space-around;
