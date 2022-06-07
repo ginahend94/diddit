@@ -3,6 +3,7 @@ edit task (create modal to edit task in)
 
 TO DO
 
+add formatted date to task object
 fix subtask completion
 add multiple classes with one line
 change crossout background color

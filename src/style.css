@@ -839,9 +839,9 @@ opacity: 0;
     padding: 5px;
 }
 
-.modal-inner .task-details.due-date {
+/* .modal-inner .task-details.due-date {
     
-}
+} */
 
 .modal-inner .task-details.priority {
     text-transform: capitalize;
