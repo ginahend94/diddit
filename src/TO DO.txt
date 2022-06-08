@@ -1,10 +1,9 @@
 CURRENTLY
-edit task (create modal to edit task in)
+fix subtask completion
 
 TO DO
 
-add formatted date to task object
-fix subtask completion
+fix task crossout animation
 add multiple classes with one line
 change crossout background color
 add new note (split button -> pass in getter of var from splitbutton obj that holds value selected from dropdown)
@@ -42,6 +41,8 @@ add context menu to projects and tasks
 
 
 DONE
+add formatted date to task object
+edit task (create modal to edit task in)
 change task completion in object
 make side of sidebar draggable
 make modal draggable

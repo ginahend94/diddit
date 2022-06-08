@@ -252,14 +252,12 @@ export default (() => {
             if (options.subtasks) {
                 subtasks = options.subtasks
                     .split(/\r?\n/)
-                    .map(a => {
+                    .map((a, i) => {
                         const b = a.split(',');
-                        if (!b[1]) return [b[0]];
+                        if (!b[1]) return { subtaskName: b[0], subtaskCompleted: false, subtaskId: i };
                         let date = b[1].split('/');
-                        // console.log(parseInt(date[2]), parseInt(date[0]) - 1, parseInt(date[1]));
                         const dateFormatted = new Date(parseInt(date[2]), parseInt(date[0]) - 1, parseInt(date[1]));
-                        // console.log(dateFormatted);
-                        return [b[0], dateFormatted];
+                        return { subtaskName: b[0], subtaskDate: dateFormatted, subtaskCompleted: false, subtaskId: i };
                     })
             }
             createTask({ ...options, subtasks, listId });
@@ -282,6 +280,10 @@ export default (() => {
             completed: false,
             ...(options.date && { dateFormatted: format(new Date(options.date), 'MM/dd/yyyy') })
         };
+        newTask.subtasks.forEach(a => {
+            a.subtaskId = `${newTask.id}.${a.subtaskId}`;
+        })
+        console.log(newTask.subtasks);
         list.tasks.push(newTask);
         console.log(newTask)
 
@@ -314,9 +316,12 @@ export const createList = project => {
 }
 
 export const handleCheckbox = (e, task) => {
-    if (e.target.checked) {
-        task.completed = true;
-    } else task.completed = false;
+    if (e.target.classList.contains('subtask-checkbox')) {
+        const subtask = task.subtasks[task.subtasks.findIndex(a => a.subtaskId == e.target.id.slice(9))]
+        subtask.subtaskCompleted = e.target.checked;
+    } else {
+        task.completed = e.target.checked;
+    }
     save('profile', profile);
     return task;
 }
@@ -495,8 +500,6 @@ export const taskDetails = task => {
                     mmSpan.textContent = dateArray[1];
                     ddSpan.textContent = dateArray[2];
                 })
-
-
 
                 const clearButton = getIcon('close-circle');
                 prettyDateContainer.append(clearButton);
