@@ -2,7 +2,6 @@ CURRENTLY
 
 TO DO
 
-replace date with formatted date
 make subtask highlight dimmer
 add multiple classes with one line
 change crossout background color
@@ -41,6 +40,7 @@ add context menu to projects and tasks
 
 
 DONE
+replace date with formatted date
 fix task crossout animation
 fix subtask completion
 add formatted date to task object

@@ -317,7 +317,6 @@ export const createList = project => {
 }
 
 export const handleCheckbox = (e, task) => {
-    console.log(task) // TEST
     if (e.target.classList.contains('subtask-checkbox')) {
         const subtask = task.subtasks[task.subtasks.findIndex(a => a.id == e.target.id.slice(9))]
         subtask.completed = e.target.checked;
@@ -362,7 +361,7 @@ export const taskDetails = task => {
                 const dueDate = document.createElement('div');
                 taskDetails.append(dueDate);
                 dueDate.classList.add('task-details', 'due-date');
-                dueDate.textContent = `Due ${format(new Date(task.date), 'MM/dd/yyyy')}`;
+                dueDate.textContent = `Due ${task.dateFormatted}`;
             }
 
             const priority = document.createElement('div');
@@ -711,7 +710,6 @@ export const taskDetails = task => {
                 if (options().subtasks) {
                     console.log(options().subtasks)
                     subtasks = options().subtasks
-                        // .split(/\r?\n/)
                         .filter(a => !!a.text)
                         .map((subtask, i) => {
                             const fullLineArray = subtask.text.split(',');

@@ -77,7 +77,7 @@ export const createTaskNode = task => {
         const taskDueDate = document.createElement('span');
         taskContainer.append(taskDueDate);
         taskDueDate.classList.add('task-due-date');
-        taskDueDate.textContent = format(new Date(task.date), 'MM/dd/yyyy');
+        taskDueDate.textContent = task.dateFormatted;
     }
 
     const dragIcon = getIcon('drag', ['drag']);
