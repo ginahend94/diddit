@@ -406,23 +406,24 @@ li.subtask {
     top:50%;
     left: 0;
     display: block;
-    background-color: rgb(var(--grayed-text-color));
+    /* background-color: rgb(var(--grayed-text-color)); */
+    background-color: rgb(var(--text-color));
     width: 0;
     transition: .4s;
 }
 
 .list-checkbox:checked ~ .task-text::after {
     width: 100%;
-    color: rgb(var(--text-color));
+    background-color: rgb(var(--grayed-text-color));
 }
 
 .to-do-list-container button {
     margin: 10px;
 }
 
-.task-container {
+/* .task-container {
     transition: .2s;
-}
+} */
 
 .task > .task-container:hover, .subtask:hover {
     background-color: rgb(var(--tertiary-color));

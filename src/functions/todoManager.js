@@ -280,7 +280,7 @@ export default (() => {
             completed: false,
             ...(options.date && { dateFormatted: format(new Date(options.date), 'MM/dd/yyyy') })
         };
-        newTask.subtasks.forEach(a => {
+        if (newTask.subtasks.length) newTask.subtasks.forEach(a => {
             a.subtaskId = `${newTask.id}.${a.subtaskId}`;
         })
         console.log(newTask.subtasks);
