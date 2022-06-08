@@ -1,8 +1,8 @@
 CURRENTLY
+add new note (split button -> pass in getter of var from splitbutton obj that holds value selected from dropdown)
 
 TO DO
 
-add new note (split button -> pass in getter of var from splitbutton obj that holds value selected from dropdown)
 sort function
 fix shadow showing up on drag
 make project titles draggable

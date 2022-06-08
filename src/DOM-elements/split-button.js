@@ -73,6 +73,8 @@ export const SplitButton = () => {
         return newType
     }
 
+    const getNewType = () => newType;
+
     // splitButtonButton.addEventListener('click', e => {
     //     switch (newType) {
     //         case 'List':
@@ -86,5 +88,5 @@ export const SplitButton = () => {
     //     }
     // })
 
-    return {addNew, splitButtonButton, newType};
+    return {addNew, splitButtonButton, getNewType};
 }
