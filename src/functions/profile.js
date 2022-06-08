@@ -1,5 +1,5 @@
 // import { v4 as uuidv4 } from "uuid";
-import generateId from "./generateId";
+import generateId from "./generateId.js";
 
 export default (name = 'User', icon = null, colorPalette = 'default', bio = 'You haven\'t created a bio yet.') => ({
     name,
