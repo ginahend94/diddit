@@ -406,10 +406,9 @@ li.subtask {
     top:50%;
     left: 0;
     display: block;
-    /* background-color: rgb(var(--grayed-text-color)); */
     background-color: rgb(var(--text-color));
     width: 0;
-    transition: .4s;
+    transition:width .4s, background-color .2s;
 }
 
 .list-checkbox:checked ~ .task-text::after {
