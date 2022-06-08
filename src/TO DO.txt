@@ -1,5 +1,4 @@
 CURRENTLY
-fix task crossout animation
 
 TO DO
 
@@ -42,6 +41,7 @@ add context menu to projects and tasks
 
 
 DONE
+fix task crossout animation
 fix subtask completion
 add formatted date to task object
 edit task (create modal to edit task in)
