@@ -1,4 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
+import generateId from "./generateId";
 
 export default (name = 'User', icon = null, colorPalette = 'default', bio = 'You haven\'t created a bio yet.') => ({
     name,
@@ -9,7 +10,7 @@ export default (name = 'User', icon = null, colorPalette = 'default', bio = 'You
         {
             name: 'My Project',
             description: '',
-            id: uuidv4(),
+            id: generateId(),
             active: true,
             archived: false,
             lists: [],

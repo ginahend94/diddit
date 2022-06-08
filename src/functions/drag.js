@@ -36,9 +36,8 @@ export default (page) => {
             const afterElement = getDragAfterElement(a, e.clientY);
             const draggable = page.querySelector('.dragging');
             if (draggable.classList.contains('subtask')) {
-                let container = page.getElementById(draggable.dataset.container)
+                let container = page.querySelector(`[id='${draggable.dataset.container}']`)
                     .querySelector('.subtasks');
-                console.log(container)
                 if (afterElement == null) {
                     container.append(draggable);
                 } else {
@@ -132,13 +131,10 @@ export const resizeSidebar = (nav) => {
     const sideDrag = nav.querySelector('.side-drag');
     let xpos;
     let dragging = false;
-    console.log();
-    console.log(nav)
 
     sideDrag.addEventListener('mousedown', e => {
         xpos = nav.getBoundingClientRect().width + sideDrag.getBoundingClientRect().width / 2;
         dragging = true;
-        console.log(xpos);
         sideDrag.classList.add('visible');
         document.body.style.userSelect = 'none';
         document.body.style.cursor = 'col-resize';
@@ -148,7 +144,6 @@ export const resizeSidebar = (nav) => {
         xpos = e.clientX;
         if (!dragging) return;
         nav.style.width = xpos + 'px';
-        console.log(nav.style)
     })
 
     document.body.addEventListener('mouseup', e => {
