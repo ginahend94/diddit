@@ -3,6 +3,7 @@ fix task crossout animation
 
 TO DO
 
+replace date with formatted date
 make subtask highlight dimmer
 add multiple classes with one line
 change crossout background color

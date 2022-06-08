@@ -1,6 +1,7 @@
 import load from "../functions/load";
 import save from "../functions/save";
-import newTask, { handleCheckbox, editTask, taskDetails } from "../functions/todoManager";
+// editTask 
+import newTask, { handleCheckbox, taskDetails, editTask } from "../functions/todoManager";
 import format from "date-fns/format";
 import { getIcon } from "../functions/icon";
 import Modal from "./modal";
@@ -87,13 +88,12 @@ export const createTaskNode = task => {
         taskLi.append(subtasks);
         subtasks.classList.add('subtasks');
 
-        task.subtasks.forEach((item, i) => {
+        task.subtasks.forEach((item) => {
             const subtask = document.createElement('li');
             subtasks.append(subtask);
             subtask.classList.add('subtask');
             subtask.classList.add('drag-element');
-            // subtask.id = `${task.id}.${i}`;
-            subtask.id = item.subtaskId;
+            subtask.id = item.id;
             subtask.dataset.container = task.id;
 
             const taskContainer = document.createElement('div');
@@ -103,17 +103,17 @@ export const createTaskNode = task => {
             const checkboxContainer = document.createElement('label');
             taskContainer.append(checkboxContainer);
             checkboxContainer.classList.add('checkbox-container');
-            checkboxContainer.setAttribute('for', `checkbox-${subtask.id}`);
+            checkboxContainer.setAttribute('for', `checkbox-${item.id}`);
             const listCheckbox = document.createElement('input');
             taskContainer.append(listCheckbox);
-            listCheckbox.id = `checkbox-${subtask.id}`;
+            listCheckbox.id = `checkbox-${item.id}`;
             listCheckbox.type = 'checkbox';
             listCheckbox.classList.add('list-checkbox', 'subtask-checkbox');
-            listCheckbox.checked = item.subtaskCompleted;
+            listCheckbox.checked = item.completed;
 
             const checkmarkContainer = document.createElement('label');
             taskContainer.append(checkmarkContainer);
-            checkmarkContainer.setAttribute('for', `checkbox-${subtask.id}`);
+            checkmarkContainer.setAttribute('for', `checkbox-${item.id}`);
 
             const checkmark = document.createElement('span');
             checkmarkContainer.append(checkmark);
@@ -122,13 +122,13 @@ export const createTaskNode = task => {
             const taskText = document.createElement('span');
             taskContainer.append(taskText);
             taskText.classList.add('task-text');
-            taskText.textContent = item.subtaskName;
+            taskText.textContent = item.name;
 
-            if (item.subtaskDate) {
+            if (item.date) {
                 const taskDueDate = document.createElement('span');
                 taskContainer.append(taskDueDate);
                 taskDueDate.classList.add('task-due-date');
-                taskDueDate.textContent = format(new Date(item.subtaskDate), 'MM/dd/yyyy');
+                taskDueDate.textContent = item.dateFormatted;
             }
 
             const dragIcon = getIcon('drag', ['drag']);

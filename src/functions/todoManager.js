@@ -254,10 +254,11 @@ export default (() => {
                     .split(/\r?\n/)
                     .map((a, i) => {
                         const b = a.split(',');
-                        if (!b[1]) return { subtaskName: b[0], subtaskCompleted: false, subtaskId: i };
+                        if (!b[1]) return { name: b[0], completed: false, id: i };
                         let date = b[1].split('/');
-                        const dateFormatted = new Date(parseInt(date[2]), parseInt(date[0]) - 1, parseInt(date[1]));
-                        return { subtaskName: b[0], subtaskDate: dateFormatted, subtaskCompleted: false, subtaskId: i };
+                        const dueDate = new Date(parseInt(date[2]), parseInt(date[0]) - 1, parseInt(date[1]));
+                        const dateFormatted = format(dueDate, 'MM/dd/yyyy');
+                        return { name: b[0], date: dueDate, dateFormatted, completed: false, id: i };
                     })
             }
             createTask({ ...options, subtasks, listId });
@@ -281,7 +282,7 @@ export default (() => {
             ...(options.date && { dateFormatted: format(new Date(options.date), 'MM/dd/yyyy') })
         };
         if (newTask.subtasks.length) newTask.subtasks.forEach(a => {
-            a.subtaskId = `${newTask.id}.${a.subtaskId}`;
+            a.id = `${newTask.id}.${a.id}`;
         })
         console.log(newTask.subtasks);
         list.tasks.push(newTask);
@@ -316,9 +317,10 @@ export const createList = project => {
 }
 
 export const handleCheckbox = (e, task) => {
+    console.log(task) // TEST
     if (e.target.classList.contains('subtask-checkbox')) {
-        const subtask = task.subtasks[task.subtasks.findIndex(a => a.subtaskId == e.target.id.slice(9))]
-        subtask.subtaskCompleted = e.target.checked;
+        const subtask = task.subtasks[task.subtasks.findIndex(a => a.id == e.target.id.slice(9))]
+        subtask.completed = e.target.checked;
     } else {
         task.completed = e.target.checked;
     }
@@ -341,9 +343,9 @@ export const editTask = task => {
         }
         return oldTask;
     })
-
+    
     save('profile', profile);
-    render();
+    // render();
 }
 
 export const taskDetails = task => {
@@ -380,13 +382,13 @@ export const taskDetails = task => {
                 task.subtasks.forEach(subtask => {
                     const li = document.createElement('li');
                     subtasks.append(li);
-                    li.textContent = subtask[0];
-                    if (!subtask[1]) return;
+                    li.textContent = subtask.name;
+                    if (!subtask.date) return;
                     const ul = document.createElement('ul');
                     li.append(ul);
                     const date = document.createElement('li');
                     ul.append(date);
-                    date.textContent = `Due ${format(new Date(subtask[1]), 'MM/dd/yyyy')}`;
+                    date.textContent = `Due ${subtask.dateFormatted}`;
                 })
             }
 
@@ -625,14 +627,21 @@ export const taskDetails = task => {
                 subtasks.name = 'subtasks';
                 subtasks.id = 'new-subtasks';
                 const taskSubtasks = () => {
+                    // console.log(task.subtasks)
                     if (!task.subtasks) return '';
-                    let string = '';
+                    let string = {};
+                    string.text = '';
+                    string.completed = [];
                     task.subtasks.forEach(subtask => {
-                        string += `${subtask[0]}${subtask[1] ? ', ' + format(new Date(subtask[1]), 'MM/dd/yyyy') : ''}\n`;
+                        // console.log(subtask)
+                        string.text += `${subtask.name}${subtask.date ? ', ' + subtask.dateFormatted : ''}\n`;
+                        string.completed.push(subtask.completed);
                     })
+                    // console.log(string)
                     return string;
                 }
-                subtasks.value = taskSubtasks();
+                subtasks.data = taskSubtasks();
+                subtasks.value = subtasks.data.text;
 
                 subtasks.placeholder = 'e.g. Walk dog, 6/12/22';
 
@@ -657,9 +666,10 @@ export const taskDetails = task => {
                 const getTaskTitle = () => taskTitle.value;
                 const getTaskDate = () => prettyDate.value;
                 const getSubtasks = () => subtasks.value;
+                const getSubtaskCompletion = () => subtasks.data.completed;
                 const getNotes = () => notes.value;
 
-                return { taskDetails, getSelectedPriority, getTaskTitle, getTaskDate, getSubtasks, getNotes };
+                return { taskDetails, getSelectedPriority, getTaskTitle, getTaskDate, getSubtasks, getSubtaskCompletion, getNotes };
 
             })();
 
@@ -680,7 +690,15 @@ export const taskDetails = task => {
                 // date: modalInner.getTaskDate ? new Date(modalInner.getTaskDate().valueAsDate.toISOString().slice(0, -1)) : '', // Date without timezone
                 date: modalInner.getTaskDate(),
                 priority: modalInner.getSelectedPriority(),
-                subtasks: modalInner.getSubtasks(),
+                subtasks: (() => {
+                    const subtaskText = modalInner.getSubtasks().split(/\r?\n/);
+                    let result = [];
+                    for (let i = 0; i < subtaskText.length; i++) {
+                        result.push({ text: subtaskText[i], completed: modalInner.getSubtaskCompletion()[i] });
+                    }
+                    return result;
+                })(),
+                // subtasks: { text:modalInner.getSubtasks(), completed:modalInner.getSubtaskCompletion() },
                 notes: modalInner.getNotes(),
             })
 
@@ -691,15 +709,18 @@ export const taskDetails = task => {
                 }
                 let subtasks = '';
                 if (options().subtasks) {
+                    console.log(options().subtasks)
                     subtasks = options().subtasks
-                        .split(/\r?\n/)
-                        .filter(a => !!a)
-                        .map(a => {
-                            const b = a.split(',');
-                            if (!b[1]) return [b[0].trim()];
-                            let date = b[1].split('/');
-                            const dateFormatted = new Date(parseInt(date[2]), parseInt(date[0]) - 1, parseInt(date[1]));
-                            return [b[0], dateFormatted];
+                        // .split(/\r?\n/)
+                        .filter(a => !!a.text)
+                        .map((subtask, i) => {
+                            const fullLineArray = subtask.text.split(',');
+                            let subtaskInfo = {name:fullLineArray[0].trim(), id: i, completed: subtask.completed}
+                            if (!fullLineArray[1]) return { ...subtaskInfo };
+                            let date = fullLineArray[1].split('/');
+                            const dueDate = new Date(parseInt(date[2]), parseInt(date[0]) - 1, parseInt(date[1]));
+                            const dateFormatted = format(dueDate, 'MM/dd/yyyy');
+                            return { ...subtaskInfo, dateFormatted, date:dueDate };
                         })
                 }
                 saveTask({ ...options(), subtasks });
@@ -714,8 +735,12 @@ export const taskDetails = task => {
                     container: task.container,
                     completed: task.completed,
                 };
+                if (newTask.subtasks.length) newTask.subtasks.forEach(a => {
+                    a.id = `${newTask.id}.${a.id}`;
+                })
 
                 editTask(newTask);
+                render();
             }
         }
     })();
