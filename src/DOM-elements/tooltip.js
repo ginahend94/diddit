@@ -1,10 +1,6 @@
-export const tooltip = ((e, boolean) => {
+export const tooltip = (() => {
     const tooltip = document.createElement('div');
     tooltip.classList.add('tooltip');
-
-    let mouseIsOver = boolean;
-
-
     return { tooltip };
 })();
 

@@ -1,8 +1,8 @@
 CURRENTLY
+add multiple classes with one line
 
 TO DO
 
-add multiple classes with one line
 change crossout background color
 add new note (split button -> pass in getter of var from splitbutton obj that holds value selected from dropdown)
 sort function

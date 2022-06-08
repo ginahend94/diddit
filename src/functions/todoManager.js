@@ -190,8 +190,7 @@ export default (() => {
 
             const subtaskForm = document.createElement('div');
             addSubtasks.append(subtaskForm);
-            subtaskForm.classList.add('subtask-form');
-            subtaskForm.classList.add('hidden');
+            subtaskForm.classList.add('subtask-form', 'hidden');
             const subtaskDirections = document.createElement('small');
             subtaskForm.append(subtaskDirections);
             subtaskDirections.classList.add('subtask-directions');

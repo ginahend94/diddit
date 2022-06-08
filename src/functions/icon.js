@@ -76,8 +76,7 @@ export const getIcon = (iconName, classes = []) => {
     const icon = getSVG.svgAttrStrings[iconName];
     const svg = `<svg ${icon.attributes}>${icon.body}</svg>`
     const i = document.createElement('i');
-    i.classList.add('iconify-icon');
-    classes.forEach(className => i.classList.add(className));
+    i.classList.add('iconify-icon', ...classes);
     i.innerHTML = svg;
 
     return i;
