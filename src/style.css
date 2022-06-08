@@ -421,14 +421,13 @@ li.subtask {
     margin: 10px;
 }
 
-/* .task-container {
-    transition: .2s;
-} */
 
-.task > .task-container:hover, .subtask:hover {
+.task > .task-container:hover  {
     background-color: rgb(var(--tertiary-color));
 }
-
+.subtask:hover {
+    background-color: rgba(var(--tertiary-color), .3);
+}
 /* DRAG ICON  */
 
 .task-container:hover .drag {
@@ -489,7 +488,6 @@ li.subtask {
     align-items: center;
     border-left: solid 1px rgba(var(--tertiary-color), .2);
     position: relative;
-    /* z-index: 1; */
 }
 
 .split-button-dropdown:active, .split-button-dropdown.open {
@@ -502,8 +500,6 @@ li.subtask {
 
 .split-button-dropdown-list {
     display: none;
-    /* opacity: 0;
-    pointer-events: none; */
     position:absolute;
     right: 0;
     top:100%;
@@ -839,10 +835,6 @@ opacity: 0;
     background-color: rgb(var(--accent-color));
     padding: 5px;
 }
-
-/* .modal-inner .task-details.due-date {
-    
-} */
 
 .modal-inner .task-details.priority {
     text-transform: capitalize;
