@@ -47,7 +47,7 @@ export default () => {
         textBox.classList.add('note-text-box');
         textBox.contentEditable = true;
         textBox.style = ``;
-        textBox.addEventListener('blur', e => console.log(textBox.innerHTML))
+        // textBox.addEventListener('blur', e => console.log(textBox.innerHTML))
 
         const getText = () => textBox.innerHTML;
         const getTitle = () => titleInput.value;
@@ -66,11 +66,15 @@ export default () => {
     );
     Modal.open(modal);
 
+    modal.querySelector('.modal').addEventListener('keydown', e => {
+        if (e.key == 'Enter') e.stopPropagation();
+    })
+
     const confirm = () => {
         console.log('okey')
         console.log(modalInner().getTitle())
         console.log(modalInner().getText())
     }
 
-    console.log(modal)
+    console.log(modal.querySelector('.modal'))
 }
