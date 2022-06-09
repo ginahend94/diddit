@@ -1,4 +1,5 @@
 import { SplitButton } from "./split-button";
+import createNew from "../functions/createNew";
 import ToDoContainer from './to-do-container';
 import { createList } from '../functions/todoManager';
 import { createTaskNode } from "./to-do-container";
@@ -43,8 +44,8 @@ export default Profile => {
 
     projectContainer.append(splitButton.addNew);
     splitButton.splitButtonButton.addEventListener('click', () => {
-        createList(activeProject);
-        render();
+        createNew(splitButton.getNewType());
+        // render();
     })
 
     return main;

@@ -856,3 +856,17 @@ opacity: 0;
     color: rgb(var(--grayed-text-color));
 }
 
+/* NEW NOTE  */
+.new-note-modal .style-buttons {
+    display: flex;
+    gap:2px;
+}
+
+.new-note-modal > * {
+    border: solid 1px;
+}
+
+.note-text-box {
+    height:300px;
+    padding: var(--padding);
+}

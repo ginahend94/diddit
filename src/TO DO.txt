@@ -1,5 +1,6 @@
 CURRENTLY
 add new note (split button -> pass in getter of var from splitbutton obj that holds value selected from dropdown)
+-last selection should stay
 
 TO DO
 
