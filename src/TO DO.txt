@@ -1,9 +1,11 @@
 CURRENTLY
 add new note (split button -> pass in getter of var from splitbutton obj that holds value selected from dropdown)
 -last selection should stay
+-add tooltips to style buttons
 
 TO DO
 
+set modal notes (new/edit task) to flex - column
 sort function
 fix shadow showing up on drag
 make project titles draggable
@@ -35,9 +37,11 @@ add calendar
 add sort by due date
 add tooltip to tasks
 add context menu to projects and tasks
+remove unnecessary comments
 
 
 DONE
+fix modal width
 change crossout background color
 add multiple classes with one line
 make subtask highlight dimmer

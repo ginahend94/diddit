@@ -2,13 +2,9 @@ import Modal from "../DOM-elements/modal";
 import icon from "./icon";
 
 export default () => {
-    const modalInner = () => {
+    const modalInner = (() => {
         const noteBody = document.createElement('div');
 
-        const titleInput = document.createElement('input');
-        noteBody.append(titleInput);
-        titleInput.setAttribute('type', 'text');
-        titleInput.placeholder = 'Unitled Note'
 
         const styleButtons = document.createElement('div');
         noteBody.append(styleButtons);
@@ -31,17 +27,40 @@ export default () => {
             ['clarity:tags-solid', ['tags-button']],
             ['clarity:undo-line', ['undo-button']],
             ['clarity:redo-line', ['redo-button']],
-            ['clarity:image-solid', ['image-button']],
+            // ['clarity:image-solid', ['image-button']],
             ['bx:happy-alt', ['emoji-button']],
+            ['carbon:spell-check', ['spell-check-button']]
         ];
+
+        let spellCheckOn = true;
 
         buttonNames.forEach(button => {
             const a = document.createElement('button');
             styleButtons.append(a);
             a.classList.add(...button[1]);
+            if (a.classList.contains('spell-check-button')) {
+                a.addEventListener('click', e => {
+                    spellCheckOn = !spellCheckOn;
+                    textBox.spellcheck = spellCheckOn;
+                    a.classList.remove(`spell-check-${!spellCheckOn}`);
+                    a.classList.add(`spell-check-${spellCheckOn}`);
+                    // console.log(`Spell check is ${spellCheckOn ? 'on' : 'off'}.`);
+                })
+            }
             a.append(icon(...button));
+            a.addEventListener('click', e => {
+                console.log(window.getSelection().getRangeAt(0))
+                const textBefore = window.getSelection().focusNode.textContent.innerHTML.slice(0, window.getSelection().anchorOffset);
+                const textAfter = window.getSelection().focusNode.textContent.innerHTML.slice(window.getSelection().anchorOffset);
+                console.log(`${textBefore}<span class="text-${a.classList.toString().split('-')[0]}">${textAfter}</span>`);
+            })
         });
 
+        const titleInput = document.createElement('input');
+        noteBody.append(titleInput);
+        titleInput.setAttribute('type', 'text');
+        titleInput.placeholder = 'Unitled Note'
+        
         const textBox = document.createElement('div');
         noteBody.append(textBox);
         textBox.classList.add('note-text-box');
@@ -53,11 +72,11 @@ export default () => {
         const getTitle = () => titleInput.value;
 
         return { noteBody, getText, getTitle };
-    }
+    })();
 
     const modal = Modal.create(
         ['new-note-modal'],
-        modalInner().noteBody,
+        modalInner.noteBody,
         () => confirm(),
         'Save note',
         true,
@@ -72,9 +91,7 @@ export default () => {
 
     const confirm = () => {
         console.log('okey')
-        console.log(modalInner().getTitle())
-        console.log(modalInner().getText())
+        console.log(modalInner.getTitle())
+        console.log(modalInner.getText())
     }
-
-    console.log(modal.querySelector('.modal'))
 }
