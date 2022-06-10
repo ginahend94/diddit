@@ -1,7 +1,15 @@
 import Modal from "../DOM-elements/modal";
+import load from './load';
+import save from './save';
 import icon from "./icon";
+import generateId from './generateId';
+import format from "date-fns/format";
 
 export default () => {
+
+    const profile = load('profile');
+    const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
+
     const modalInner = (() => {
         const noteBody = document.createElement('div');
 
@@ -99,9 +107,33 @@ export default () => {
     })
 
     const confirm = () => {
-        console.log('okey')
+        console.log(activeProject);
         console.log(modalInner.getTitle())
         console.log(modalInner.getText())
+        saveNote(createNote());
+        console.log(profile);
+    }
+
+    const createNote = () => {
+        const newNote = {
+            name: modalInner.getTitle(),
+            content: modalInner.getText(),
+            id: `${activeProject.id}.${generateId()}`,
+            dateCreatedFormatted: format(new Date(), 'MM-dd-yyyy'),
+            dateCreated: new Date(),
+        }
+        activeProject.notes.push(newNote);
+        return newNote;
+    }
+
+    const saveNote = note => {
+        activeProject.notes = activeProject.notes.map(oldNote => {
+            if (oldNote.id == note.id) {
+                return oldNote = note;
+            }
+            return oldNote;
+        })
+        save('profile', profile);
     }
 
     const insertTab = () => {
