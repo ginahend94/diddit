@@ -1,33 +1,34 @@
 import { getIcon } from "../functions/icon";
-import load from "../functions/load";
-import createToDo from "./to-do-container";
+import save from '../functions/save';
+import load from '../functions/load';
 
 export const SplitButton = () => {
-    // const profile = load('profile');
-    // const project = profile.projects.find(project => project.active);
+    
     const addNew = document.createElement('div');
     addNew.classList.add('add-new');
-
+    
     const splitButtonButton = document.createElement('button');
     addNew.append(splitButtonButton);
     splitButtonButton.classList.add('split-button-button');
     splitButtonButton.textContent = 'New';
-
+    
     const splitButtonDropdown = document.createElement('button')
     addNew.append(splitButtonDropdown);
     splitButtonDropdown.classList.add('split-button-dropdown');
     splitButtonDropdown.addEventListener('click', e => {
         openDropdown();
     })
+    
+    const newType = load('newType');
 
     const type = document.createElement('span');
     splitButtonDropdown.append(type);
-    type.textContent = 'List';
+    type.textContent = newType;
     splitButtonDropdown.append(getIcon('chevron-down'));
-
+    
     const splitButtonBg = document.createElement('div');
     splitButtonBg.classList.add('context-menu-container');
-
+    
     const splitButtonDropdownList = document.createElement('ul');
     splitButtonDropdown.append(splitButtonDropdownList);
     splitButtonDropdownList.classList.add('split-button-dropdown-list');
@@ -65,28 +66,15 @@ export const SplitButton = () => {
 
     splitButtonBg.addEventListener('click', closeDropdown);
 
-    let newType = 'List';
+    const getNewType = () => newType;
+    const setNewType = (type) => save('newType', type);
 
     const switchOption = option => {
         type.textContent = option;
-        newType = option;
+        setNewType(option);
         return newType
     }
 
-    const getNewType = () => newType;
-
-    // splitButtonButton.addEventListener('click', e => {
-    //     switch (newType) {
-    //         case 'List':
-    //             createToDo(project);
-    //             break;
-    //         case 'Note':
-    //             console.log('tbd');
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // })
 
     return {addNew, splitButtonButton, getNewType};
 }

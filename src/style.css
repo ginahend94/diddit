@@ -569,7 +569,8 @@ li.subtask {
 .modal {
     border: solid 1px rgb(var(--grayed-text-color));
     background-color: rgb(var(--main-color));
-    width: min-content;
+    width: clamp(250px, 500px, calc(100% - 40px));
+    max-width:calc(100% - 40px);
     padding: var(--padding);
     border-radius: 5px;
     box-shadow: 5px 5px 3px rgba(0,0,0, .2);
@@ -626,7 +627,6 @@ label[for="new-task-due-date"] {
 
 .modal-inner.task-details fieldset {
     border: none;
-    /* display: flex; */
     flex-direction: column;
     padding: 0;
     margin: 0;
@@ -746,9 +746,9 @@ opacity: 0;
     background-color: rgb(var(--accent-color-bright));
 }
 
-.task-priority-list input[name='priority'] {
+/* .task-priority-list input[name='priority'] {
     color: red;
-}
+} */
 
 .task-priority svg {
     cursor: pointer;
@@ -854,5 +854,45 @@ opacity: 0;
     padding: 0;
     font-size: .8rem;
     color: rgb(var(--grayed-text-color));
+}
+
+/* NEW NOTE  */
+.new-note-modal .style-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 34px);
+    /* flex-wrap: wrap; */
+    gap:2px;
+    font-size: .8em;
+}
+
+.new-note-modal .style-buttons button {
+    padding: 5px;
+}
+
+.note-text-box {
+    height:300px;
+    padding: var(--padding);
+    overflow-y: auto;
+    border: solid 1px;
+}
+
+button.spell-check-false {
+    opacity: .5;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.strikethrough {
+    text-decoration: line-through;
 }
 
