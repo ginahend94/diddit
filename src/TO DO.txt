@@ -1,8 +1,8 @@
 CURRENTLY
-add outline to inputs
 
 TO DO
 
+add outline to inputs
 set modal notes (new/edit task) to flex - column
 sort function
 fix shadow showing up on drag
