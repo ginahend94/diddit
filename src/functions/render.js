@@ -12,6 +12,7 @@ export default () => {
         Profile = createProfile();
         save('profile', Profile)
     }
+    if (!load('newType')) save('newType', 'List');
     document.body.innerHTML = '';
     document.body.append(nav(Profile));
     document.body.append(main(Profile));
