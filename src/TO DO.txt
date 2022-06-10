@@ -1,9 +1,8 @@
 CURRENTLY
--last selection should stay
+add outline to inputs
 
 TO DO
 
-add outline to inputs
 set modal notes (new/edit task) to flex - column
 sort function
 fix shadow showing up on drag
@@ -45,6 +44,7 @@ add rich text features to notes
 
 
 DONE
+-last selection should stay
 -add tab
 add new note (split button -> pass in getter of var from splitbutton obj that holds value selected from dropdown)
 fix modal width
