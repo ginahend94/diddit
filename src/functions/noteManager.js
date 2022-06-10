@@ -7,7 +7,7 @@ export default () => {
 
 
         const styleButtons = document.createElement('div');
-        noteBody.append(styleButtons);
+        // noteBody.append(styleButtons);
         styleButtons.classList.add('style-buttons');
 
         const buttonNames = [
@@ -27,7 +27,6 @@ export default () => {
             ['clarity:tags-solid', ['tags-button']],
             ['clarity:undo-line', ['undo-button']],
             ['clarity:redo-line', ['redo-button']],
-            // ['clarity:image-solid', ['image-button']],
             ['bx:happy-alt', ['emoji-button']],
             ['carbon:spell-check', ['spell-check-button']]
         ];
@@ -38,40 +37,50 @@ export default () => {
             const a = document.createElement('button');
             styleButtons.append(a);
             a.classList.add(...button[1]);
+            a.append(icon(...button));
             if (a.classList.contains('spell-check-button')) {
+                a.classList.add(`spell-check-${spellCheckOn}`);
                 a.addEventListener('click', e => {
                     spellCheckOn = !spellCheckOn;
                     textBox.spellcheck = spellCheckOn;
                     a.classList.remove(`spell-check-${!spellCheckOn}`);
                     a.classList.add(`spell-check-${spellCheckOn}`);
-                    // console.log(`Spell check is ${spellCheckOn ? 'on' : 'off'}.`);
+                    textBox.focus();
                 })
+                return;
             }
-            a.append(icon(...button));
             a.addEventListener('click', e => {
-                console.log(window.getSelection().getRangeAt(0))
-                const textBefore = window.getSelection().focusNode.textContent.innerHTML.slice(0, window.getSelection().anchorOffset);
-                const textAfter = window.getSelection().focusNode.textContent.innerHTML.slice(window.getSelection().anchorOffset);
-                console.log(`${textBefore}<span class="text-${a.classList.toString().split('-')[0]}">${textAfter}</span>`);
+                editSelection();
             })
         });
 
         const titleInput = document.createElement('input');
         noteBody.append(titleInput);
         titleInput.setAttribute('type', 'text');
-        titleInput.placeholder = 'Unitled Note'
-        
+        titleInput.placeholder = 'Untitled Note'
+
         const textBox = document.createElement('div');
         noteBody.append(textBox);
         textBox.classList.add('note-text-box');
         textBox.contentEditable = true;
-        textBox.style = ``;
-        // textBox.addEventListener('blur', e => console.log(textBox.innerHTML))
+        textBox.addEventListener('keydown', e => {
+            if (e.key != 'Tab') return;
+            e.preventDefault();
+            insertTab();
+        })
 
-        const getText = () => textBox.innerHTML;
-        const getTitle = () => titleInput.value;
+        const getText = () => {
+            if (textBox.innerHTML) return textBox.innerHTML;
+            return '--No content--';
+        }
+        const getTitle = () => {
+            if (titleInput.value) return titleInput.value;
+            return 'Untitled Note';
+        }
 
-        return { noteBody, getText, getTitle };
+        const getTextBox = () => textBox;
+
+        return { noteBody, getText, getTitle, getTextBox };
     })();
 
     const modal = Modal.create(
@@ -93,5 +102,21 @@ export default () => {
         console.log('okey')
         console.log(modalInner.getTitle())
         console.log(modalInner.getText())
+    }
+
+    const insertTab = () => {
+        if (!window.getSelection) return;
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
+        const range = selection.getRangeAt(0);
+        range.collapse(true);
+        const span = document.createElement('span');
+        span.append(document.createTextNode('\t'));
+        span.style.whiteSpace = 'pre';
+        range.insertNode(span);
+        range.setStartAfter(span)
+        range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
     }
 }

@@ -1,10 +1,9 @@
 CURRENTLY
-add new note (split button -> pass in getter of var from splitbutton obj that holds value selected from dropdown)
 -last selection should stay
--add tooltips to style buttons
 
 TO DO
 
+add outline to inputs
 set modal notes (new/edit task) to flex - column
 sort function
 fix shadow showing up on drag
@@ -38,9 +37,16 @@ add sort by due date
 add tooltip to tasks
 add context menu to projects and tasks
 remove unnecessary comments
+save spellcheck, new type selection in localstorage
+add rich text features to notes
+-add tooltips to style buttons
+-paste plain text
+-new <p> on enter/double enter
 
 
 DONE
+-add tab
+add new note (split button -> pass in getter of var from splitbutton obj that holds value selected from dropdown)
 fix modal width
 change crossout background color
 add multiple classes with one line

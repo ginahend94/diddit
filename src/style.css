@@ -872,6 +872,27 @@ opacity: 0;
 .note-text-box {
     height:300px;
     padding: var(--padding);
-    overflow: auto;
+    overflow-y: auto;
     border: solid 1px;
 }
+
+button.spell-check-false {
+    opacity: .5;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
