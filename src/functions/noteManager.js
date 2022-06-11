@@ -4,6 +4,7 @@ import save from './save';
 import icon from "./icon";
 import generateId from './generateId';
 import format from "date-fns/format";
+import render from './render';
 
 export default () => {
 
@@ -77,14 +78,32 @@ export default () => {
             insertTab();
         })
 
-        const getText = () => {
-            if (textBox.innerHTML) return textBox.innerHTML;
-            return '--No content--';
-        }
-        const getTitle = () => {
-            if (titleInput.value) return titleInput.value;
-            return 'Untitled Note';
-        }
+        // const getText = () => {
+        //     if (textBox.innerHTML) return textBox.innerHTML;
+        //     return '--No content--';
+        // }
+        // const getTitle = () => {
+        //     if (titleInput.value) return titleInput.value;
+        //     let untitledNotes = 0;
+        //     if (activeProject.notes.length) {
+        //         console.log('beep')
+        //         activeProject.notes.map((note) => {
+        //             console.log(note.name.includes('Untitled Note'))
+        //             if (note.name.trim() == 'Untitled Note') {
+        //                 console.log('ooop its untitled')
+        //                 ++untitledNotes;
+        //             }
+        //             console.log(untitledNotes)
+        //             return nextNote;
+        //         })
+        //     }
+        //     console.log(untitledNotes);
+        //     return `Untitled Note${untitledNotes ? ' (' + untitledNotes + ')' : ''}`;
+        // }
+
+        const getTitle = () => titleInput.value;
+
+        const getText = () => textBox.innerHTML;
 
         const getTextBox = () => textBox;
 
@@ -107,11 +126,26 @@ export default () => {
     })
 
     const confirm = () => {
-        console.log(activeProject);
         console.log(modalInner.getTitle())
-        console.log(modalInner.getText())
+        if (!modalInner.getTitle() && !modalInner.getText()) {
+            const warningModalInner = () => {
+                const body = document.createElement('div')
+                body.textContent = 'Note must have at least a title or content.';
+                return body;
+            }
+            let warningModal = Modal.create(
+                [],
+                warningModalInner(),
+                () => Modal.close(warningModal),
+                'OK',
+                false,
+                true,
+                false
+            )
+            return Modal.open(warningModal);
+        }
+        Modal.close(modal);
         saveNote(createNote());
-        console.log(profile);
     }
 
     const createNote = () => {
@@ -134,6 +168,7 @@ export default () => {
             return oldNote;
         })
         save('profile', profile);
+        render();
     }
 
     const insertTab = () => {

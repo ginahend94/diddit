@@ -281,8 +281,18 @@ h2 {
     overflow-y: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25ch,1fr));
+    grid-template-rows: min-content;
     gap: 10px;
     padding: var(--padding);
+}
+
+.lists-header, .notes-header {
+    font-size: 2rem;
+    grid-column: 1 / -1;
+    align-self: end;
+    margin: 0;
+    color: rgba(var(--grayed-text-color), .5);
+    justify-self: center;
 }
 
 .to-do-list-container {
@@ -331,6 +341,50 @@ li.subtask {
     transition: .2s;
 }
 
+/* NOTES  */
+.note-container {
+    border: solid 1px rgb(var(--grayed-text-color));
+    border-radius: 5px;
+    position: relative;
+    background-color: rgb(var(--tertiary-color));
+    display: flex;
+    flex-direction: column;
+}
+
+.note-container .note-options {
+    position: absolute;
+    top:10px;
+    right:5px;
+    cursor: pointer;
+    color: rgb(var(--grayed-text-color));
+    transition: .2s;
+}
+
+.note-container .note-options:hover {
+    color: rgb(var(--text-color));
+}
+
+.note-container .note-header {
+    font-size: 1.1rem;
+    margin: 0;
+    border-radius: 5px 5px 0 0;
+    padding: 10px;
+    background-color: rgb(var(--tertiary-color));
+    max-width: calc(100% - 30px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap;
+    max-height: 75px;
+}
+
+.note-container .note-body {
+    padding: 15px 10px 10px;
+    margin-top: 5px;
+    border-top: solid 1px rgb(var(--grayed-text-color));
+    background-color: rgb(var(--main-color));
+    flex: 1;
+    border-radius: 0 0 5px 5px;
+}
 
 /* CHECKBOX  */
 

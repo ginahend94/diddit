@@ -9,6 +9,7 @@ const getSVG = (() => {
         'checkbox-marked-outline',
         'plus',
         'dots-horizontal',
+        'dots-vertical',
         'account',
         'cog',
         'information',

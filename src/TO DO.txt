@@ -1,6 +1,7 @@
 CURRENTLY
 have note appear
 Edit note
+context menu
 
 TO DO
 
