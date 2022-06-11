@@ -18,7 +18,7 @@ export default (note, i) => {
     const noteBody = document.createElement('div');
     noteContainer.append(noteBody);
     noteBody.classList.add('note-body');
-    noteBody.innerHTML = note.content || 'No content';
+    noteBody.innerHTML = note.content;
 
     return noteContainer;
 }

@@ -386,6 +386,12 @@ li.subtask {
     border-radius: 0 0 5px 5px;
 }
 
+.note-container .note-body:empty::after {
+    content: 'No content';
+    color: rgb(var(--grayed-text-color));
+    font-style: italic;
+}
+
 /* CHECKBOX  */
 
 .to-do-list .list-checkbox {
