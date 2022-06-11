@@ -1,5 +1,6 @@
 import { EditProject } from "../functions/projectManager";
 import { getIcon } from "../functions/icon";
+import { editNote, deleteNote, duplicateNote } from '../functions/noteManager';
 
 export default (() => {
     const menuTypes = {
@@ -24,6 +25,23 @@ export default (() => {
                 function: () => console.log('will delete'),
                 icon: 'trash-can-outline',
             },
+        ],
+        noteOptions: [
+            {
+                option: 'Edit note',
+                function: editNote,
+                icon: 'square-edit-outline',
+            },
+            {
+                option: 'Duplicate note',
+                function: duplicateNote,
+                icon: 'content-copy',
+            },
+            {
+                option: 'Delete note',
+                function: deleteNote,
+                icon: 'trash-can-outline',
+            }
         ],
     };
 

@@ -1,4 +1,6 @@
 import { getIcon } from "../functions/icon";
+import contextMenu from "./context-menu";
+
 export default (note, i) => {
     const noteContainer = document.createElement('div');
     noteContainer.classList.add('note-container');
@@ -7,7 +9,8 @@ export default (note, i) => {
     const noteOptions = getIcon('dots-vertical', ['note-options']);
     noteContainer.append(noteOptions);
     noteOptions.addEventListener('click', e => {
-        console.log('will show options');
+        const menu = contextMenu.generateMenu('noteOptions', note);
+        contextMenu.openMenu(e, menu);
     })
 
     const noteHeader = document.createElement('h5');
@@ -19,6 +22,12 @@ export default (note, i) => {
     noteContainer.append(noteBody);
     noteBody.classList.add('note-body');
     noteBody.innerHTML = note.content;
+
+    noteContainer.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        const menu = contextMenu.generateMenu('noteOptions', note);
+        contextMenu.openMenu(e, menu);
+    });
 
     return noteContainer;
 }

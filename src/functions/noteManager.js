@@ -187,3 +187,15 @@ export default () => {
         selection.addRange(range);
     }
 }
+
+export const editNote = (note) => {
+    console.log(`Will edit ${note.name}.`);
+}
+
+export const duplicateNote = note => {
+    console.log(`Will duplicate ${note.name}.`)
+}
+
+export const deleteNote = note => {
+    console.log(`Will delete ${note.name}.`)
+}

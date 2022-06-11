@@ -1,7 +1,6 @@
 CURRENTLY
-have note appear
-Edit note
 context menu
+Edit note
 
 TO DO
 
@@ -48,6 +47,7 @@ collapse/hide notes
 
 
 DONE
+have note appear
 Save note
 -last selection should stay
 -add tab
