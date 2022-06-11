@@ -189,7 +189,73 @@ export default () => {
 }
 
 export const editNote = (note) => {
-    console.log(`Will edit ${note.name}.`);
+    console.log(note.id);
+    const modalInner = (() => {
+        const noteBody = document.createElement('div');
+
+        const titleInput = document.createElement('input');
+        noteBody.append(titleInput);
+        titleInput.setAttribute('type', 'text');
+        titleInput.placeholder = note.name || 'Untitled';
+        titleInput.value = note.name || 'Untitled';
+
+        const textBox = document.createElement('div');
+        noteBody.append(textBox);
+        textBox.classList.add('note-text-box');
+        textBox.contentEditable = true;
+        textBox.addEventListener('keydown', e => {
+            if (e.key != 'Tab') return;
+            e.preventDefault();
+            insertTab();
+        })
+
+        const getTitle = () => titleInput.value;
+
+        const getText = () => textBox.innerHTML;
+
+        const getTextBox = () => textBox;
+
+        return { noteBody, getText, getTitle, getTextBox };
+    })();
+
+    const modal = Modal.create(
+        ['new-note-modal'],
+        modalInner.noteBody,
+        () => confirm(),
+        'Save note',
+        true,
+        false,
+        true
+    );
+    Modal.open(modal);
+
+    modal.querySelector('.modal').addEventListener('keydown', e => {
+        if (e.key == 'Enter') e.stopPropagation();
+    })
+
+    const confirm = () => {
+        console.log(modalInner.getTitle())
+        if (!modalInner.getTitle() && !modalInner.getText()) {
+            const warningModalInner = () => {
+                const body = document.createElement('div')
+                body.textContent = 'Note must have at least a title or content.';
+                return body;
+            }
+            let warningModal = Modal.create(
+                [],
+                warningModalInner(),
+                () => Modal.close(warningModal),
+                'OK',
+                false,
+                true,
+                false
+            )
+            return Modal.open(warningModal);
+        }
+        Modal.close(modal);
+        saveNote(createNote());
+    }
+    
 }
 
 export const duplicateNote = note => {

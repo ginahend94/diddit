@@ -1,9 +1,9 @@
 CURRENTLY
-context menu
 Edit note
 
 TO DO
 
+refactor edit and create modals DRYly
 add outline to inputs
 set modal notes (new/edit task) to flex - column
 sort function
@@ -47,6 +47,7 @@ collapse/hide notes
 
 
 DONE
+context menu
 have note appear
 Save note
 -last selection should stay
