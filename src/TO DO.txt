@@ -1,5 +1,9 @@
 CURRENTLY
 all crud actions
+-delete task
+-delete note
+-edit project
+-delete project
 
 TO DO
 
@@ -11,7 +15,6 @@ collapse projects
 email/share to do list
 auto focus new task input
 priority color
-task details modal
 add keyboard shortcuts
 tour/tutorial
 create split button module
@@ -43,8 +46,11 @@ add rich text features to notes
 collapse/hide notes
 refactor edit and create modals DRYly
 add note creation date to details
+make context menu move if off screen
 
 DONE
+Fix modal sizing
+task details modal
 add outline to inputs
 Edit note
 context menu
