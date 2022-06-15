@@ -6,10 +6,10 @@ import generateId from './generateId';
 import format from "date-fns/format";
 import render from './render';
 
-export default () => {
+const profile = load('profile');
+const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
+const newNote = () => {
 
-    const profile = load('profile');
-    const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
 
     const modalInner = (() => {
         const noteBody = document.createElement('div');
@@ -160,16 +160,7 @@ export default () => {
         return newNote;
     }
 
-    const saveNote = note => {
-        activeProject.notes = activeProject.notes.map(oldNote => {
-            if (oldNote.id == note.id) {
-                return oldNote = note;
-            }
-            return oldNote;
-        })
-        save('profile', profile);
-        render();
-    }
+
 
     const insertTab = () => {
         if (!window.getSelection) return;
@@ -186,6 +177,19 @@ export default () => {
         selection.removeAllRanges();
         selection.addRange(range);
     }
+}
+export default newNote;
+
+const saveNote = note => {
+    activeProject.notes = activeProject.notes.map(oldNote => {
+        if (oldNote.id == note.id) {
+            return oldNote = note;
+        }
+        return oldNote;
+    })
+    save('profile', profile);
+    render();
+    console.log(activeProject)
 }
 
 export const editNote = (note) => {
@@ -208,6 +212,7 @@ export const editNote = (note) => {
             e.preventDefault();
             insertTab();
         })
+        textBox.innerHTML = note.content;
 
         const getTitle = () => titleInput.value;
 
@@ -253,9 +258,23 @@ export const editNote = (note) => {
             return Modal.open(warningModal);
         }
         Modal.close(modal);
-        saveNote(createNote());
+        saveNote(updateNote());
     }
-    
+
+    const updateNote = () => {
+        console.log(modalInner.getTitle())
+        const newNote = {
+            ...note,
+            name: modalInner.getTitle(),
+            content: modalInner.getText(),
+            dateEditedFormatted: format(new Date(), 'MM-dd-yyyy'),
+            dateEdited: new Date(),
+        }
+        console.log(newNote);
+        return newNote;
+    }
+
+
 }
 
 export const duplicateNote = note => {

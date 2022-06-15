@@ -105,12 +105,12 @@ export default Profile => {
 
     const settings = document.createElement('li');
     settingsMenu.append(settings);
-    settings.append(getIcon('cog'));
+    settings.append(getIcon('cog-outline'));
     settings.append('Settings');
 
     const about = document.createElement('li');
     settingsMenu.append(about);
-    about.append(getIcon('information'));
+    about.append(getIcon('information-outline'));
     about.append('About');
 
     const sideDrag = document.createElement('div');

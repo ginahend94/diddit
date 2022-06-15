@@ -1,9 +1,8 @@
 CURRENTLY
-Edit note
+refactor edit and create modals DRYly
 
 TO DO
 
-refactor edit and create modals DRYly
 add outline to inputs
 set modal notes (new/edit task) to flex - column
 sort function
@@ -47,6 +46,7 @@ collapse/hide notes
 
 
 DONE
+Edit note
 context menu
 have note appear
 Save note
