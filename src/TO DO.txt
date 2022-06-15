@@ -1,4 +1,5 @@
 CURRENTLY
+all crud actions
 
 TO DO
 
@@ -11,7 +12,6 @@ email/share to do list
 auto focus new task input
 priority color
 task details modal
-all crud actions
 add keyboard shortcuts
 tour/tutorial
 create split button module
@@ -42,7 +42,7 @@ add rich text features to notes
 -new <p> on enter/double enter
 collapse/hide notes
 refactor edit and create modals DRYly
-
+add note creation date to details
 
 DONE
 add outline to inputs
