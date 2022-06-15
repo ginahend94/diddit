@@ -629,7 +629,8 @@ li.subtask {
 .modal {
     border: solid 1px rgb(var(--grayed-text-color));
     background-color: rgb(var(--main-color));
-    width: clamp(250px, 500px, calc(100% - 40px));
+    /* width: clamp(500px, max-content, calc(100% - 40px));
+    width: min(500px, 100% - 40px); */
     max-width:calc(100% - 40px);
     padding: var(--padding);
     border-radius: 5px;
