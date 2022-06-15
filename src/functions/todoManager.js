@@ -210,7 +210,8 @@ export default (() => {
 
             const notesLabel = document.createElement('label');
             taskDetails.append(notesLabel);
-            notesLabel.for = 'notes';
+            notesLabel.setAttribute('for', 'notes');
+            notesLabel.classList.add('note')
             notesLabel.prepend('Notes:');
             const notes = document.createElement('textarea');
             notesLabel.append(notes);
@@ -219,8 +220,9 @@ export default (() => {
             notes.placeholder = 'Notes (optional)';
 
             const getSelectedPriority = () => selectedPriority;
+            const shouldAddSubtasks = () => addSubtasksCheckbox.checked;
 
-            return { taskDetails, getSelectedPriority, listId };
+            return { taskDetails, getSelectedPriority, listId, addSubtasks:shouldAddSubtasks };
 
         })();
 
@@ -248,7 +250,7 @@ export default (() => {
                 return warning.classList.remove('hidden');
             }
             let subtasks = '';
-            if (options.subtasks) {
+            if (modalInner.addSubtasks() && options.subtasks) {
                 subtasks = options.subtasks
                     .split(/\r?\n/)
                     .map((a, i) => {
@@ -651,7 +653,8 @@ export const taskDetails = task => {
 
                 const notesLabel = document.createElement('label');
                 taskDetails.append(notesLabel);
-                notesLabel.for = 'notes';
+                notesLabel.classList.add('notes')
+                notesLabel.setAttribute('for', 'notes');
                 notesLabel.prepend('Notes:');
                 const notes = document.createElement('textarea');
                 notesLabel.append(notes);

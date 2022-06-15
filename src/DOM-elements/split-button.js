@@ -19,7 +19,7 @@ export const SplitButton = () => {
         openDropdown();
     })
     
-    const newType = load('newType');
+    let newType = load('newType');
 
     const type = document.createElement('span');
     splitButtonDropdown.append(type);
@@ -67,7 +67,10 @@ export const SplitButton = () => {
     splitButtonBg.addEventListener('click', closeDropdown);
 
     const getNewType = () => newType;
-    const setNewType = (type) => save('newType', type);
+    const setNewType = (type) => {
+        newType = type;
+        save('newType', newType);
+    }
 
     const switchOption = option => {
         type.textContent = option;

@@ -11,7 +11,7 @@ export default (() => {
 
         const modal = document.createElement('div');
         modalContainer.append(modal);
-        modal.classList.add('modal');
+        modal.classList.add('modal', ...classes);
 
         if (draggable) {
             const dragBar = document.createElement('div');
@@ -24,7 +24,6 @@ export default (() => {
 
         modal.append(modalBody);
         modalBody.classList.add('modal-inner');
-        classes.forEach(className => modalBody.classList.add(className));
 
         const buttons = document.createElement('div');
         modal.append(buttons);

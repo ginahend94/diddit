@@ -1,10 +1,12 @@
 CURRENTLY
-Save note
-have note appear
+all crud actions
+-delete task
+-delete note
+-edit project
+-delete project
 
 TO DO
 
-add outline to inputs
 set modal notes (new/edit task) to flex - column
 sort function
 fix shadow showing up on drag
@@ -13,8 +15,6 @@ collapse projects
 email/share to do list
 auto focus new task input
 priority color
-task details modal
-all crud actions
 add keyboard shortcuts
 tour/tutorial
 create split button module
@@ -43,9 +43,19 @@ add rich text features to notes
 -add tooltips to style buttons
 -paste plain text
 -new <p> on enter/double enter
-
+collapse/hide notes
+refactor edit and create modals DRYly
+add note creation date to details
+make context menu move if off screen
 
 DONE
+Fix modal sizing
+task details modal
+add outline to inputs
+Edit note
+context menu
+have note appear
+Save note
 -last selection should stay
 -add tab
 add new note (split button -> pass in getter of var from splitbutton obj that holds value selected from dropdown)
