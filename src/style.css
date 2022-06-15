@@ -629,8 +629,6 @@ li.subtask {
 .modal {
     border: solid 1px rgb(var(--grayed-text-color));
     background-color: rgb(var(--main-color));
-    /* width: clamp(500px, max-content, calc(100% - 40px));
-    width: min(500px, 100% - 40px); */
     max-width:calc(100% - 40px);
     padding: var(--padding);
     border-radius: 5px;
@@ -883,7 +881,7 @@ opacity: 0;
 
 /* TASK DETAILS */
 
-.modal-inner.show-task-details {
+.show-task-details .modal-inner {
     min-width: 200px;
     width: max-content;
 }
@@ -916,6 +914,14 @@ opacity: 0;
 }
 
 /* NEW NOTE  */
+.modal.new-note-modal {
+    height: auto;
+    max-width: calc(100% - 40px);
+    min-width: 500px;
+    overflow-x: hidden;
+    resize: horizontal;
+}
+
 .new-note-modal .style-buttons {
     display: grid;
     grid-template-columns: repeat(auto-fill, 34px);
