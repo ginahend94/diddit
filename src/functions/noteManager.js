@@ -126,7 +126,6 @@ const newNote = () => {
     })
 
     const confirm = () => {
-        console.log(modalInner.getTitle())
         if (!modalInner.getTitle() && !modalInner.getText()) {
             const warningModalInner = () => {
                 const body = document.createElement('div')
@@ -189,7 +188,6 @@ const saveNote = note => {
     })
     save('profile', profile);
     render();
-    console.log(activeProject)
 }
 
 export const editNote = (note) => {
