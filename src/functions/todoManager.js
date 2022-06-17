@@ -829,7 +829,7 @@ const deleteTask = (task) => {
 
     activeList.tasks = activeList.tasks.filter(otherTask => {
         return task.id !== otherTask.id;
-    })
+    });
 
     save('profile', profile);
     render();

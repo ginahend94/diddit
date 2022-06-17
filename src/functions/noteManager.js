@@ -298,13 +298,23 @@ export const deleteNoteWarning = (note) => {
 }
 
 export const duplicateNote = note => {
-    console.log(`Will duplicate ${note.name}.`)
+    const newId = `${activeProject.id}.${generateId()}`
+    const duplicatedNote = {
+        ...note,
+        id:newId,
+    }
+    activeProject.notes.push(duplicatedNote);
+    console.log(activeProject);
+    save('profile', profile);
+    render();
 }
 
 export const deleteNote = note => {
     activeProject.notes = activeProject.notes.filter(otherNote => {
         return note.id !== otherNote.id;
     })
+    console.log(activeProject)
+    console.log(profile)
     save('profile', profile);
     render();
 }
