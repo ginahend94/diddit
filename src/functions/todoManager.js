@@ -345,7 +345,6 @@ export const editTask = task => {
     })
     
     save('profile', profile);
-    // render();
 }
 
 export const taskDetails = task => {
@@ -627,19 +626,15 @@ export const taskDetails = task => {
                 subtasks.name = 'subtasks';
                 subtasks.id = 'new-subtasks';
                 const taskSubtasks = () => {
-                    // console.log(task.subtasks)
-                    // if (!task.subtasks) return '';
                     let string = {};
                     string.text = '';
                     string.completed = [];
                     if (task.subtasks) {
                         task.subtasks.forEach(subtask => {
-                            // console.log(subtask)
                             string.text += `${subtask.name}${subtask.date ? ', ' + subtask.dateFormatted : ''}\n`;
                             string.completed.push(subtask.completed);
                         })
                     }
-                    // console.log(string)
                     return string;
                 }
                 subtasks.data = taskSubtasks();
@@ -758,5 +753,5 @@ export const duplicateTask = task => {
 }
 
 export const deleteTask = (task) => {
-    console.log('will delete')
+    console.log(task.name)
 }
