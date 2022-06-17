@@ -1,7 +1,7 @@
 import { EditProject } from "../functions/projectManager";
 import { getIcon } from "../functions/icon";
 import { editNote, deleteNote, duplicateNote } from '../functions/noteManager';
-import { taskDetails, deleteTask, duplicateTask } from "../functions/todoManager";
+import { taskDetails, deleteTaskWarning, duplicateTask } from "../functions/todoManager";
 
 export default (() => {
     const menuTypes = {
@@ -57,7 +57,7 @@ export default (() => {
             },
             {
                 option: 'Delete task',
-                function: deleteTask,
+                function: deleteTaskWarning,
                 icon: 'trash-can-outline',
             }
         ]
