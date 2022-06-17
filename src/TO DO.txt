@@ -1,8 +1,7 @@
 CURRENTLY
--dupe task
+-delete note
 
 all crud actions
--delete note
 -dupe note
 -edit project
 -dupe project
@@ -53,6 +52,7 @@ add note creation date to details
 make context menu move if off screen
 
 DONE
+-dupe task
 -delete task
 -fix subtasks "undefined"
 Fix modal sizing
