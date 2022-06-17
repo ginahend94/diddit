@@ -1,6 +1,6 @@
 import { EditProject } from "../functions/projectManager";
 import { getIcon } from "../functions/icon";
-import { editNote, deleteNote, duplicateNote } from '../functions/noteManager';
+import { editNote, deleteNoteWarning, duplicateNote } from '../functions/noteManager';
 import { taskDetails, deleteTaskWarning, duplicateTask } from "../functions/todoManager";
 
 export default (() => {
@@ -40,7 +40,7 @@ export default (() => {
             },
             {
                 option: 'Delete note',
-                function: deleteNote,
+                function: deleteNoteWarning,
                 icon: 'trash-can-outline',
             }
         ],

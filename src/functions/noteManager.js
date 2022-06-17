@@ -277,10 +277,36 @@ export const editNote = (note) => {
 
 }
 
+export const deleteNoteWarning = (note) => {
+    const modalInner = () => {
+        const div = document.createElement('div');
+        div.innerHTML = `Are you sure you want to delete "${note.name || 'Untitled Note'}"? <br /><strong>This cannot be undone.</strong>`;
+        return div;
+    }
+
+    const deleteModal = Modal.create(
+        [],
+        modalInner(),
+        () => {
+            Modal.close(deleteModal);
+            deleteNote(note);
+        },
+        'Delete',
+        true,
+        true,
+        false
+    );
+    Modal.open(deleteModal);
+}
+
 export const duplicateNote = note => {
     console.log(`Will duplicate ${note.name}.`)
 }
 
 export const deleteNote = note => {
-    console.log(`Will delete ${note.name}.`)
+    activeProject.notes = activeProject.notes.filter(otherNote => {
+        return note.id !== otherNote.id;
+    })
+    save('profile', profile);
+    render();
 }

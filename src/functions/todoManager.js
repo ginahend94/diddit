@@ -720,7 +720,6 @@ export const taskDetails = task => {
                 date: new Date(modalInner.getTaskDate()),
                 priority: modalInner.getSelectedPriority(),
                 subtasks: (() => {
-                    console.log(!!modalInner.getSubtasks().trim())
                     if (!modalInner.getSubtasks().trim()) return '';
                     const subtaskText = modalInner.getSubtasks().split(/\r?\n/);
                     let result = [];
@@ -794,7 +793,6 @@ export const duplicateTask = task => {
         id:newTaskId,
     }
     activeList.tasks.push(duplicatedTask);
-    console.log(activeList);
     save('profile', profile);
     render();
 }
