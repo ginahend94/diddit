@@ -88,7 +88,7 @@ export default (() => {
 
     const closeMenu = (contextMenu) => {
         contextMenu.classList.add('hidden');
-        document.body.removeChild(contextMenu);
+        if (document.body.contains(contextMenu)) document.body.removeChild(contextMenu);
     }
 
     return { generateMenu, openMenu }

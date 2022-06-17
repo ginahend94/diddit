@@ -285,7 +285,6 @@ export default (() => {
         if (newTask.subtasks.length) newTask.subtasks.forEach(a => {
             a.id = `${newTask.id}.${a.id}`;
         })
-        console.log(newTask.subtasks);
         list.tasks.push(newTask);
         console.log(newTask)
 
@@ -419,7 +418,7 @@ export const taskDetails = task => {
                 editTaskDetails();
             })
 
-            
+
 
             const deleteButton = document.createElement('button');
             buttons.append(deleteButton);
@@ -436,352 +435,368 @@ export const taskDetails = task => {
                 const deleteModal = Modal.create(
                     [],
                     modalInner(),
-                () => {
-                    Modal.close(modal);
-                    deleteTask(task);
-                },
+                    () => {
+                        Modal.close(modal);
+                        deleteTask(task);
+                    },
                     'Delete',
                     true,
                     true,
                     false
                 );
-            Modal.open(deleteModal);
-        })
+                Modal.open(deleteModal);
+            })
 
-        return taskDetails;
-    }
+            return taskDetails;
+        }
 
         const modal = Modal.create(
-        ['show-task-details'],
-        modalInner(),
-        () => Modal.close(modal),
-        'Close',
-        false,
-        true,
-        true
-    );
-    Modal.open(modal);
-
-    const editTaskDetails = () => {
-        const modalInner = (() => {
-            const taskDetails = document.createElement('form');
-            taskDetails.classList.add('task-details');
-
-            const taskTitle = document.createElement('input');
-            taskDetails.append(taskTitle);
-            taskTitle.type = 'text';
-            taskTitle.name = 'task-title';
-            taskTitle.id = 'task-title';
-            taskTitle.classList.add('task-title');
-            taskTitle.placeholder = task.name;
-            taskTitle.required = true;
-            taskTitle.value = task.name;
-
-            const small = document.createElement('small');
-            taskDetails.append(small);
-            small.style.color = 'rgb(var(--danger))';
-            small.textContent = 'Name is required.';
-            small.classList.add('hidden');
-            taskTitle.addEventListener('input', () => small.classList.add('hidden'));
-
-            const dateSplit = (task.date ? task.dateFormatted : 'mm/dd/yyyy').split('/');
-            const mm = dateSplit[0];
-            const dd = dateSplit[1];
-            const yyyy = dateSplit[2];
-
-            const dateLabel = document.createElement('label');
-            taskDetails.append(dateLabel);
-            dateLabel.prepend('Due by');
-            const prettyDateContainer = document.createElement('div');
-            dateLabel.append(prettyDateContainer);
-            prettyDateContainer.classList.add('pretty-date-container');
-            const prettyDateLabel = document.createElement('label');
-            prettyDateContainer.append(prettyDateLabel)
-            prettyDateLabel.setAttribute('for', 'pretty-date');
-            const mmSpan = document.createElement('span');
-            prettyDateLabel.append(mmSpan);
-            mmSpan.textContent = mm;
-            mmSpan.id = 'mm';
-            prettyDateLabel.append(' / ');
-            const ddSpan = document.createElement('span');
-            prettyDateLabel.append(ddSpan);
-            ddSpan.textContent = dd;
-            ddSpan.id = 'dd';
-            prettyDateLabel.append(' / ');
-            const yyyySpan = document.createElement('span');
-            prettyDateLabel.append(yyyySpan);
-            yyyySpan.textContent = 'yyyy';
-            yyyySpan.id = yyyy;
-
-            const prettyDate = document.createElement('input');
-            prettyDateContainer.append(prettyDate);
-            prettyDate.type = 'date';
-            prettyDate.name = 'pretty-date';
-            prettyDate.id = 'pretty-date';
-            if (task.date) prettyDate.value = format(new Date(task.date), 'yyyy-MM-dd');
-
-
-            prettyDate.addEventListener('change', e => {
-                let dateArray = e.target.value.split('-');
-                if (dateArray.length <= 1) {
-                    yyyy.textContent = 'yyyy';
-                    mm.textContent = 'mm';
-                    dd.textContent = 'dd';
-                    return;
-                }
-                yyyySpan.textContent = dateArray[0];
-                mmSpan.textContent = dateArray[1];
-                ddSpan.textContent = dateArray[2];
-            })
-
-            const clearButton = getIcon('close-circle');
-            prettyDateContainer.append(clearButton);
-            clearButton.id = 'clr-btn';
-            clearButton.style = 'width:15px;height:15px;font-size:15px';
-            clearButton.addEventListener('click', e => {
-                e.preventDefault();
-                prettyDate.value = '';
-                prettyDate.dispatchEvent(new Event('change'));
-            })
-
-            const taskPriority = document.createElement('div');
-            taskDetails.append(taskPriority);
-            taskPriority.classList.add('task-priority');
-            const legend = document.createElement('legend');
-            taskPriority.append(legend);
-            legend.textContent = 'Priority';
-            const priorityDiv = document.createElement('div');
-            taskPriority.append(priorityDiv);
-            const prioritySelection = document.createElement('span');
-            priorityDiv.append(prioritySelection);
-            prioritySelection.id = 'priority-selection';
-            prioritySelection.prepend('None');
-            const chevron = getIcon('chevron-down');
-            prioritySelection.append(chevron);
-
-            const taskPriorityList = document.createElement('fieldset');
-            priorityDiv.append(taskPriorityList);
-            taskPriorityList.name = 'task-priority';
-            taskPriorityList.id = 'task-priority';
-            taskPriorityList.classList.add('task-priority-list');
-            const taskPriorityListBg = document.createElement('div');
-            taskPriorityList.append(taskPriorityListBg);
-            taskPriorityListBg.classList.add('context-menu-container');
-            taskPriorityListBg.addEventListener('click', () => closePriority());
-
-            const labelNone = document.createElement('label');
-            taskPriorityList.append(labelNone);
-            labelNone.classList.add('active');
-            const inputNone = document.createElement('input');
-            labelNone.append(inputNone);
-            inputNone.name = 'priority';
-            inputNone.type = 'radio';
-            inputNone.value = 'none';
-            inputNone.setAttribute('checked', true);
-            labelNone.append('None');
-
-            const labelLow = document.createElement('label');
-            taskPriorityList.append(labelLow);
-            const inputLow = document.createElement('input');
-            labelLow.append(inputLow);
-            inputLow.name = 'priority';
-            inputLow.type = 'radio';
-            inputLow.value = 'low';
-            labelLow.append('Low');
-
-            const labelMedium = document.createElement('label');
-            taskPriorityList.append(labelMedium);
-            const inputMedium = document.createElement('input');
-            labelMedium.append(inputMedium);
-            inputMedium.name = 'priority';
-            inputMedium.type = 'radio';
-            inputMedium.value = 'medium';
-            labelMedium.append('Medium');
-
-            const labelHigh = document.createElement('label');
-            taskPriorityList.append(labelHigh);
-            const inputHigh = document.createElement('input');
-            labelHigh.append(inputHigh);
-            inputHigh.name = 'priority';
-            inputHigh.type = 'radio';
-            inputHigh.value = 'high';
-            labelHigh.append('High');
-
-
-            taskPriorityList.addEventListener('click', () => {
-                closePriority();
-            })
-
-            prioritySelection.addEventListener('click', () => {
-                openPriority();
-            })
-
-            const radios = taskPriorityList.querySelectorAll('input');
-            let selectedPriority = task.priority;
-            radios.forEach(button => {
-                button.addEventListener('change', e => {
-                    selectedPriority = [...radios].find(a => a.checked).value;
-                    prioritySelection.childNodes[0].textContent = selectedPriority;
-                })
-            })
-            const openPriority = () => {
-                taskPriorityList.style.display = 'flex';
-            }
-            const closePriority = () => {
-                taskPriorityList.style.display = 'none';
-            }
-
-            const addSubtasks = document.createElement('div');
-            taskDetails.append(addSubtasks);
-            addSubtasks.classList.add('add-subtasks');
-            const addSubtasksLabel = document.createElement('label');
-            addSubtasks.append(addSubtasksLabel);
-            addSubtasksLabel.setAttribute('for', 'add-subtasks');
-            const addSubtasksCheckbox = document.createElement('input');
-            addSubtasksLabel.append(addSubtasksCheckbox);
-            if (task.subtasks) addSubtasksCheckbox.checked = true;
-            addSubtasksCheckbox.type = 'checkbox';
-            addSubtasksCheckbox.name = 'add-subtasks';
-            addSubtasksCheckbox.id = 'add-subtasks';
-            addSubtasksLabel.append('Add subtasks');
-
-            const subtaskForm = document.createElement('div');
-            addSubtasks.append(subtaskForm);
-            subtaskForm.classList.add('subtask-form');
-            if (!task.subtasks) subtaskForm.classList.add('hidden');
-            const subtaskDirections = document.createElement('small');
-            subtaskForm.append(subtaskDirections);
-            subtaskDirections.classList.add('subtask-directions');
-            subtaskDirections.textContent = 'Enter your subtasks below. Add a due date (mm/dd/yyyy format) separated by a comma, and each subtask on its own line.';
-            const subtasks = document.createElement('textarea');
-            subtaskForm.append(subtasks);
-            subtasks.name = 'subtasks';
-            subtasks.id = 'new-subtasks';
-            const taskSubtasks = () => {
-                let string = {};
-                string.text = '';
-                string.completed = [];
-                if (task.subtasks) {
-                    task.subtasks.forEach(subtask => {
-                        string.text += `${subtask.name}${subtask.date ? ', ' + subtask.dateFormatted : ''}\n`;
-                        string.completed.push(subtask.completed);
-                    })
-                }
-                return string;
-            }
-            subtasks.data = taskSubtasks();
-            subtasks.value = subtasks.data.text;
-
-            subtasks.placeholder = 'e.g. Walk dog, 6/12/22';
-
-            addSubtasksCheckbox.addEventListener('change', e => {
-                if (!e.target.checked) return subtaskForm.classList.add('hidden');
-                return subtaskForm.classList.remove('hidden');
-            })
-
-
-            const notesLabel = document.createElement('label');
-            taskDetails.append(notesLabel);
-            notesLabel.classList.add('notes')
-            notesLabel.setAttribute('for', 'notes');
-            notesLabel.prepend('Notes:');
-            const notes = document.createElement('textarea');
-            notesLabel.append(notes);
-            notes.name = 'notes';
-            notes.id = 'notes';
-            notes.placeholder = 'Notes (optional)';
-            notes.value = task.notes;
-
-            const getSelectedPriority = () => selectedPriority;
-            const getTaskTitle = () => taskTitle.value;
-            const getTaskDate = () => prettyDate.value;
-            const getSubtasks = () => subtasks.value;
-            const getSubtaskCompletion = () => subtasks.data.completed;
-            const getNotes = () => notes.value;
-
-            return { taskDetails, getSelectedPriority, getTaskTitle, getTaskDate, getSubtasks, getSubtaskCompletion, getNotes };
-
-        })();
-
-        Modal.close(modal);
-        const editDetailsModal = Modal.create(
-            ['edit-task-modal'],
-            modalInner.taskDetails,
-            () => confirm(),
-            'Save',
-            true,
+            ['show-task-details'],
+            modalInner(),
+            () => Modal.close(modal),
+            'Close',
+            false,
             true,
             true
-        )
-        Modal.open(editDetailsModal);
+        );
+        Modal.open(modal);
 
-        const options = () => ({
-            name: modalInner.getTaskTitle(),
-            // date: modalInner.getTaskDate ? new Date(modalInner.getTaskDate().valueAsDate.toISOString().slice(0, -1)) : '', // Date without timezone
-            date: new Date(modalInner.getTaskDate()),
-            priority: modalInner.getSelectedPriority(),
-            subtasks: (() => {
-                console.log(!!modalInner.getSubtasks().trim())
-                if (!modalInner.getSubtasks().trim()) return '';
-                const subtaskText = modalInner.getSubtasks().split(/\r?\n/);
-                let result = [];
-                for (let i = 0; i < subtaskText.length; i++) {
-                    result.push({ text: subtaskText[i], completed: modalInner.getSubtaskCompletion()[i] });
-                }
-                return result;
-            })(),
-            // subtasks: { text:modalInner.getSubtasks(), completed:modalInner.getSubtaskCompletion() },
-            notes: modalInner.getNotes(),
-        })
+        const editTaskDetails = () => {
+            const modalInner = (() => {
+                const taskDetails = document.createElement('form');
+                taskDetails.classList.add('task-details');
 
-        const confirm = () => {
-            const warning = document.querySelector('.modal-inner small');
-            if (!options().name) {
-                return warning.classList.remove('hidden');
-            }
-            let subtasks = '';
-            if (options().subtasks) {
-                subtasks = options().subtasks
-                    .filter(a => !!a.text)
-                    .map((subtask, i) => {
-                        const fullLineArray = subtask.text.split(',');
-                        let subtaskInfo = { name: fullLineArray[0].trim(), id: i, completed: subtask.completed }
-                        if (!fullLineArray[1]) return { ...subtaskInfo };
-                        let date = fullLineArray[1].split('/');
-                        const dueDate = new Date(parseInt(date[2]), parseInt(date[0]) - 1, parseInt(date[1]));
-                        const dateFormatted = format(dueDate, 'MM/dd/yyyy');
-                        return { ...subtaskInfo, dateFormatted, date: dueDate };
+                const taskTitle = document.createElement('input');
+                taskDetails.append(taskTitle);
+                taskTitle.type = 'text';
+                taskTitle.name = 'task-title';
+                taskTitle.id = 'task-title';
+                taskTitle.classList.add('task-title');
+                taskTitle.placeholder = task.name;
+                taskTitle.required = true;
+                taskTitle.value = task.name;
+
+                const small = document.createElement('small');
+                taskDetails.append(small);
+                small.style.color = 'rgb(var(--danger))';
+                small.textContent = 'Name is required.';
+                small.classList.add('hidden');
+                taskTitle.addEventListener('input', () => small.classList.add('hidden'));
+
+                const dateSplit = (task.date ? task.dateFormatted : 'mm/dd/yyyy').split('/');
+                const mm = dateSplit[0];
+                const dd = dateSplit[1];
+                const yyyy = dateSplit[2];
+
+                const dateLabel = document.createElement('label');
+                taskDetails.append(dateLabel);
+                dateLabel.prepend('Due by');
+                const prettyDateContainer = document.createElement('div');
+                dateLabel.append(prettyDateContainer);
+                prettyDateContainer.classList.add('pretty-date-container');
+                const prettyDateLabel = document.createElement('label');
+                prettyDateContainer.append(prettyDateLabel)
+                prettyDateLabel.setAttribute('for', 'pretty-date');
+                const mmSpan = document.createElement('span');
+                prettyDateLabel.append(mmSpan);
+                mmSpan.textContent = mm;
+                mmSpan.id = 'mm';
+                prettyDateLabel.append(' / ');
+                const ddSpan = document.createElement('span');
+                prettyDateLabel.append(ddSpan);
+                ddSpan.textContent = dd;
+                ddSpan.id = 'dd';
+                prettyDateLabel.append(' / ');
+                const yyyySpan = document.createElement('span');
+                prettyDateLabel.append(yyyySpan);
+                yyyySpan.textContent = 'yyyy';
+                yyyySpan.id = yyyy;
+
+                const prettyDate = document.createElement('input');
+                prettyDateContainer.append(prettyDate);
+                prettyDate.type = 'date';
+                prettyDate.name = 'pretty-date';
+                prettyDate.id = 'pretty-date';
+                if (task.date) prettyDate.value = format(new Date(task.date), 'yyyy-MM-dd');
+
+
+                prettyDate.addEventListener('change', e => {
+                    let dateArray = e.target.value.split('-');
+                    if (dateArray.length <= 1) {
+                        yyyy.textContent = 'yyyy';
+                        mm.textContent = 'mm';
+                        dd.textContent = 'dd';
+                        return;
+                    }
+                    yyyySpan.textContent = dateArray[0];
+                    mmSpan.textContent = dateArray[1];
+                    ddSpan.textContent = dateArray[2];
+                })
+
+                const clearButton = getIcon('close-circle');
+                prettyDateContainer.append(clearButton);
+                clearButton.id = 'clr-btn';
+                clearButton.style = 'width:15px;height:15px;font-size:15px';
+                clearButton.addEventListener('click', e => {
+                    e.preventDefault();
+                    prettyDate.value = '';
+                    prettyDate.dispatchEvent(new Event('change'));
+                })
+
+                const taskPriority = document.createElement('div');
+                taskDetails.append(taskPriority);
+                taskPriority.classList.add('task-priority');
+                const legend = document.createElement('legend');
+                taskPriority.append(legend);
+                legend.textContent = 'Priority';
+                const priorityDiv = document.createElement('div');
+                taskPriority.append(priorityDiv);
+                const prioritySelection = document.createElement('span');
+                priorityDiv.append(prioritySelection);
+                prioritySelection.id = 'priority-selection';
+                prioritySelection.prepend('None');
+                const chevron = getIcon('chevron-down');
+                prioritySelection.append(chevron);
+
+                const taskPriorityList = document.createElement('fieldset');
+                priorityDiv.append(taskPriorityList);
+                taskPriorityList.name = 'task-priority';
+                taskPriorityList.id = 'task-priority';
+                taskPriorityList.classList.add('task-priority-list');
+                const taskPriorityListBg = document.createElement('div');
+                taskPriorityList.append(taskPriorityListBg);
+                taskPriorityListBg.classList.add('context-menu-container');
+                taskPriorityListBg.addEventListener('click', () => closePriority());
+
+                const labelNone = document.createElement('label');
+                taskPriorityList.append(labelNone);
+                labelNone.classList.add('active');
+                const inputNone = document.createElement('input');
+                labelNone.append(inputNone);
+                inputNone.name = 'priority';
+                inputNone.type = 'radio';
+                inputNone.value = 'none';
+                inputNone.setAttribute('checked', true);
+                labelNone.append('None');
+
+                const labelLow = document.createElement('label');
+                taskPriorityList.append(labelLow);
+                const inputLow = document.createElement('input');
+                labelLow.append(inputLow);
+                inputLow.name = 'priority';
+                inputLow.type = 'radio';
+                inputLow.value = 'low';
+                labelLow.append('Low');
+
+                const labelMedium = document.createElement('label');
+                taskPriorityList.append(labelMedium);
+                const inputMedium = document.createElement('input');
+                labelMedium.append(inputMedium);
+                inputMedium.name = 'priority';
+                inputMedium.type = 'radio';
+                inputMedium.value = 'medium';
+                labelMedium.append('Medium');
+
+                const labelHigh = document.createElement('label');
+                taskPriorityList.append(labelHigh);
+                const inputHigh = document.createElement('input');
+                labelHigh.append(inputHigh);
+                inputHigh.name = 'priority';
+                inputHigh.type = 'radio';
+                inputHigh.value = 'high';
+                labelHigh.append('High');
+
+
+                taskPriorityList.addEventListener('click', () => {
+                    closePriority();
+                })
+
+                prioritySelection.addEventListener('click', () => {
+                    openPriority();
+                })
+
+                const radios = taskPriorityList.querySelectorAll('input');
+                let selectedPriority = task.priority;
+                radios.forEach(button => {
+                    button.addEventListener('change', e => {
+                        selectedPriority = [...radios].find(a => a.checked).value;
+                        prioritySelection.childNodes[0].textContent = selectedPriority;
                     })
-            }
-            saveTask({ ...options(), subtasks });
-            Modal.close(editDetailsModal);
-        }
+                })
+                const openPriority = () => {
+                    taskPriorityList.style.display = 'flex';
+                }
+                const closePriority = () => {
+                    taskPriorityList.style.display = 'none';
+                }
 
-        const saveTask = (options) => {
-            const newTask = {
-                ...task,
-                ...options,
-                // classes: task.classes,
-                // id: task.id,
-                // container: task.container,
-                // completed: task.completed,
-            };
-            if (newTask.subtasks.length) newTask.subtasks.forEach(a => {
-                a.id = `${newTask.id}.${a.id}`;
+                const addSubtasks = document.createElement('div');
+                taskDetails.append(addSubtasks);
+                addSubtasks.classList.add('add-subtasks');
+                const addSubtasksLabel = document.createElement('label');
+                addSubtasks.append(addSubtasksLabel);
+                addSubtasksLabel.setAttribute('for', 'add-subtasks');
+                const addSubtasksCheckbox = document.createElement('input');
+                addSubtasksLabel.append(addSubtasksCheckbox);
+                if (task.subtasks) addSubtasksCheckbox.checked = true;
+                addSubtasksCheckbox.type = 'checkbox';
+                addSubtasksCheckbox.name = 'add-subtasks';
+                addSubtasksCheckbox.id = 'add-subtasks';
+                addSubtasksLabel.append('Add subtasks');
+
+                const subtaskForm = document.createElement('div');
+                addSubtasks.append(subtaskForm);
+                subtaskForm.classList.add('subtask-form');
+                if (!task.subtasks) subtaskForm.classList.add('hidden');
+                const subtaskDirections = document.createElement('small');
+                subtaskForm.append(subtaskDirections);
+                subtaskDirections.classList.add('subtask-directions');
+                subtaskDirections.textContent = 'Enter your subtasks below. Add a due date (mm/dd/yyyy format) separated by a comma, and each subtask on its own line.';
+                const subtasks = document.createElement('textarea');
+                subtaskForm.append(subtasks);
+                subtasks.name = 'subtasks';
+                subtasks.id = 'new-subtasks';
+                const taskSubtasks = () => {
+                    let string = {};
+                    string.text = '';
+                    string.completed = [];
+                    if (task.subtasks) {
+                        task.subtasks.forEach(subtask => {
+                            string.text += `${subtask.name}${subtask.date ? ', ' + subtask.dateFormatted : ''}\n`;
+                            string.completed.push(subtask.completed);
+                        })
+                    }
+                    return string;
+                }
+                subtasks.data = taskSubtasks();
+                subtasks.value = subtasks.data.text;
+
+                subtasks.placeholder = 'e.g. Walk dog, 6/12/22';
+
+                addSubtasksCheckbox.addEventListener('change', e => {
+                    if (!e.target.checked) return subtaskForm.classList.add('hidden');
+                    return subtaskForm.classList.remove('hidden');
+                })
+
+
+                const notesLabel = document.createElement('label');
+                taskDetails.append(notesLabel);
+                notesLabel.classList.add('notes')
+                notesLabel.setAttribute('for', 'notes');
+                notesLabel.prepend('Notes:');
+                const notes = document.createElement('textarea');
+                notesLabel.append(notes);
+                notes.name = 'notes';
+                notes.id = 'notes';
+                notes.placeholder = 'Notes (optional)';
+                notes.value = task.notes;
+
+                const getSelectedPriority = () => selectedPriority;
+                const getTaskTitle = () => taskTitle.value;
+                const getTaskDate = () => prettyDate.value;
+                const getSubtasks = () => subtasks.value;
+                const getSubtaskCompletion = () => subtasks.data.completed;
+                const getNotes = () => notes.value;
+
+                return { taskDetails, getSelectedPriority, getTaskTitle, getTaskDate, getSubtasks, getSubtaskCompletion, getNotes };
+
+            })();
+
+            Modal.close(modal);
+            const editDetailsModal = Modal.create(
+                ['edit-task-modal'],
+                modalInner.taskDetails,
+                () => confirm(),
+                'Save',
+                true,
+                true,
+                true
+            )
+            Modal.open(editDetailsModal);
+
+            const options = () => ({
+                name: modalInner.getTaskTitle(),
+                // date: modalInner.getTaskDate ? new Date(modalInner.getTaskDate().valueAsDate.toISOString().slice(0, -1)) : '', // Date without timezone
+                date: new Date(modalInner.getTaskDate()),
+                priority: modalInner.getSelectedPriority(),
+                subtasks: (() => {
+                    console.log(!!modalInner.getSubtasks().trim())
+                    if (!modalInner.getSubtasks().trim()) return '';
+                    const subtaskText = modalInner.getSubtasks().split(/\r?\n/);
+                    let result = [];
+                    for (let i = 0; i < subtaskText.length; i++) {
+                        result.push({ text: subtaskText[i], completed: modalInner.getSubtaskCompletion()[i] });
+                    }
+                    return result;
+                })(),
+                // subtasks: { text:modalInner.getSubtasks(), completed:modalInner.getSubtaskCompletion() },
+                notes: modalInner.getNotes(),
             })
 
-            editTask(newTask);
-            render();
-        }
-    }
+            const confirm = () => {
+                const warning = document.querySelector('.modal-inner small');
+                if (!options().name) {
+                    return warning.classList.remove('hidden');
+                }
+                let subtasks = '';
+                if (options().subtasks) {
+                    subtasks = options().subtasks
+                        .filter(a => !!a.text)
+                        .map((subtask, i) => {
+                            const fullLineArray = subtask.text.split(',');
+                            let subtaskInfo = { name: fullLineArray[0].trim(), id: i, completed: subtask.completed }
+                            if (!fullLineArray[1]) return { ...subtaskInfo };
+                            let date = fullLineArray[1].split('/');
+                            const dueDate = new Date(parseInt(date[2]), parseInt(date[0]) - 1, parseInt(date[1]));
+                            const dateFormatted = format(dueDate, 'MM/dd/yyyy');
+                            return { ...subtaskInfo, dateFormatted, date: dueDate };
+                        })
+                }
+                saveTask({ ...options(), subtasks });
+                Modal.close(editDetailsModal);
+            }
 
-    return { editTaskDetails }
-})();
-return { editTask: showDetailModal.editTaskDetails }
+            const saveTask = (options) => {
+                const newTask = {
+                    ...task,
+                    ...options,
+                    // classes: task.classes,
+                    // id: task.id,
+                    // container: task.container,
+                    // completed: task.completed,
+                };
+                if (newTask.subtasks.length) newTask.subtasks.forEach(a => {
+                    a.id = `${newTask.id}.${a.id}`;
+                })
+
+                editTask(newTask);
+                render();
+            }
+        }
+
+        return { editTaskDetails }
+    })();
+    return { editTask: showDetailModal.editTaskDetails }
 }
 
 export const duplicateTask = task => {
-    console.log('will dupe')
+    const activeProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id == task.container.split('.')[0];
+    })]
+
+    const activeList = activeProject.lists[activeProject.lists.findIndex(a => {
+        return a.id == task.container;
+    })];
+
+    const newTaskId = `${activeList.id}.${generateId()}`;
+    const duplicatedTask = {
+        ...task,
+        id:newTaskId,
+    }
+    activeList.tasks.push(duplicatedTask);
+    console.log(activeList);
+    save('profile', profile);
+    render();
 }
 
 export const deleteTaskWarning = (task) => {
@@ -794,9 +809,9 @@ export const deleteTaskWarning = (task) => {
     const deleteModal = Modal.create(
         [],
         modalInner(),
-    () => {
-        deleteTask(task);
-    },
+        () => {
+            deleteTask(task);
+        },
         'Delete',
         true,
         true,

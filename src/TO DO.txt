@@ -1,7 +1,7 @@
 CURRENTLY
+-dupe task
 
 all crud actions
--dupe task
 -delete note
 -dupe note
 -edit project
