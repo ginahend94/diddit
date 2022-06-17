@@ -1,6 +1,7 @@
 import { EditProject } from "../functions/projectManager";
 import { getIcon } from "../functions/icon";
 import { editNote, deleteNote, duplicateNote } from '../functions/noteManager';
+import { taskDetails, deleteTask, duplicateTask } from "../functions/todoManager";
 
 export default (() => {
     const menuTypes = {
@@ -43,6 +44,23 @@ export default (() => {
                 icon: 'trash-can-outline',
             }
         ],
+        taskOptions: [
+            {
+                option: 'Edit task',
+                function: task => taskDetails(task).editTask(task),
+                icon: 'square-edit-outline',
+            },
+            {
+                option: 'Duplicate task',
+                function: duplicateTask,
+                icon: 'content-copy',
+            },
+            {
+                option: 'Delete task',
+                function: deleteTask,
+                icon: 'trash-can-outline',
+            }
+        ]
     };
 
     const generateMenu = (menuType, project) => {

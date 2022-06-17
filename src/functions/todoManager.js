@@ -628,15 +628,17 @@ export const taskDetails = task => {
                 subtasks.id = 'new-subtasks';
                 const taskSubtasks = () => {
                     // console.log(task.subtasks)
-                    if (!task.subtasks) return '';
+                    // if (!task.subtasks) return '';
                     let string = {};
                     string.text = '';
                     string.completed = [];
-                    task.subtasks.forEach(subtask => {
-                        // console.log(subtask)
-                        string.text += `${subtask.name}${subtask.date ? ', ' + subtask.dateFormatted : ''}\n`;
-                        string.completed.push(subtask.completed);
-                    })
+                    if (task.subtasks) {
+                        task.subtasks.forEach(subtask => {
+                            // console.log(subtask)
+                            string.text += `${subtask.name}${subtask.date ? ', ' + subtask.dateFormatted : ''}\n`;
+                            string.completed.push(subtask.completed);
+                        })
+                    }
                     // console.log(string)
                     return string;
                 }
@@ -689,9 +691,11 @@ export const taskDetails = task => {
             const options = () => ({
                 name: modalInner.getTaskTitle(),
                 // date: modalInner.getTaskDate ? new Date(modalInner.getTaskDate().valueAsDate.toISOString().slice(0, -1)) : '', // Date without timezone
-                date: modalInner.getTaskDate(),
+                date: new Date(modalInner.getTaskDate()),
                 priority: modalInner.getSelectedPriority(),
                 subtasks: (() => {
+                    console.log(!!modalInner.getSubtasks().trim())
+                    if (!modalInner.getSubtasks().trim()) return '';
                     const subtaskText = modalInner.getSubtasks().split(/\r?\n/);
                     let result = [];
                     for (let i = 0; i < subtaskText.length; i++) {
@@ -710,7 +714,6 @@ export const taskDetails = task => {
                 }
                 let subtasks = '';
                 if (options().subtasks) {
-                    console.log(options().subtasks)
                     subtasks = options().subtasks
                         .filter(a => !!a.text)
                         .map((subtask, i) => {
@@ -729,11 +732,12 @@ export const taskDetails = task => {
 
             const saveTask = (options) => {
                 const newTask = {
+                    ...task,
                     ...options,
-                    classes: task.classes,
-                    id: task.id,
-                    container: task.container,
-                    completed: task.completed,
+                    // classes: task.classes,
+                    // id: task.id,
+                    // container: task.container,
+                    // completed: task.completed,
                 };
                 if (newTask.subtasks.length) newTask.subtasks.forEach(a => {
                     a.id = `${newTask.id}.${a.id}`;
@@ -743,5 +747,16 @@ export const taskDetails = task => {
                 render();
             }
         }
+
+        return {editTaskDetails}
     })();
+    return {editTask:showDetailModal.editTaskDetails}
+}
+
+export const duplicateTask = task => {
+    console.log('will dupe')
+}
+
+export const deleteTask = (task) => {
+    console.log('will delete')
 }

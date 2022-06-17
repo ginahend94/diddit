@@ -1,8 +1,13 @@
 CURRENTLY
+-fix subtasks "undefined"
+
 all crud actions
 -delete task
+-dupe task
 -delete note
+-dupe note
 -edit project
+-dupe project
 -delete project
 
 TO DO

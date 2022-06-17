@@ -5,6 +5,7 @@ import newTask, { handleCheckbox, taskDetails, editTask } from "../functions/tod
 import format from "date-fns/format";
 import { getIcon } from "../functions/icon";
 import Modal from "./modal";
+import contextMenu from "./context-menu";
 // import modalInnerTemplate from './create-edit-task'
 
 const profile = load('profile');
@@ -47,6 +48,11 @@ export const createTaskNode = task => {
         if (e.target !== taskContainer && e.target !== taskContainer.querySelector('.task-text')) return;
         taskDetails(task);
     })
+    taskContainer.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        const menu = contextMenu.generateMenu('taskOptions', task);
+        contextMenu.openMenu(e, menu);
+    });
 
     const checkboxContainer = document.createElement('label');
     taskContainer.append(checkboxContainer);
