@@ -1,8 +1,6 @@
 CURRENTLY
--fix subtasks "undefined"
 
 all crud actions
--delete task
 -dupe task
 -delete note
 -dupe note
@@ -12,6 +10,7 @@ all crud actions
 
 TO DO
 
+prevent empty titles in new proj/task/list/note
 set modal notes (new/edit task) to flex - column
 sort function
 fix shadow showing up on drag
@@ -54,6 +53,8 @@ add note creation date to details
 make context menu move if off screen
 
 DONE
+-delete task
+-fix subtasks "undefined"
 Fix modal sizing
 task details modal
 add outline to inputs
