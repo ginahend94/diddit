@@ -1,11 +1,11 @@
 CURRENTLY
--delete note
 
 all crud actions
--dupe note
 -edit project
 -dupe project
 -delete project
+-delete list
+-dupe list
 
 TO DO
 
@@ -52,6 +52,8 @@ add note creation date to details
 make context menu move if off screen
 
 DONE
+-dupe note
+-delete note
 -dupe task
 -delete task
 -fix subtasks "undefined"

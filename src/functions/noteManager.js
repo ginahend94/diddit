@@ -6,10 +6,13 @@ import generateId from './generateId';
 import format from "date-fns/format";
 import render from './render';
 
-const profile = load('profile');
-const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
+console.log('running noteManager')
+// const profile = load('profile');
+// console.log(profile);
 const newNote = () => {
-
+    const profile = load('profile');
+    console.log(profile);
+    const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
 
     const modalInner = (() => {
         const noteBody = document.createElement('div');
@@ -126,7 +129,6 @@ const newNote = () => {
     })
 
     const confirm = () => {
-        console.log(modalInner.getTitle())
         if (!modalInner.getTitle() && !modalInner.getText()) {
             const warningModalInner = () => {
                 const body = document.createElement('div')
@@ -156,7 +158,10 @@ const newNote = () => {
             dateCreatedFormatted: format(new Date(), 'MM-dd-yyyy'),
             dateCreated: new Date(),
         }
+        console.log(profile);
         activeProject.notes.push(newNote);
+        save('profile', profile);
+        console.log(profile);
         return newNote;
     }
 
@@ -181,15 +186,25 @@ const newNote = () => {
 export default newNote;
 
 const saveNote = note => {
+    const profile = load('profile');
+    console.log(profile);
+    const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
+
     activeProject.notes = activeProject.notes.map(oldNote => {
         if (oldNote.id == note.id) {
             return oldNote = note;
         }
         return oldNote;
-    })
+    });
+    console.log(activeProject.notes.map(oldNote => {
+        if (oldNote.id == note.id) {
+            return oldNote = note;
+        }
+        return oldNote;
+    }))
+    console.log(profile)
     save('profile', profile);
     render();
-    console.log(activeProject)
 }
 
 export const editNote = (note) => {
@@ -277,10 +292,54 @@ export const editNote = (note) => {
 
 }
 
+export const deleteNoteWarning = (note) => {
+    const modalInner = () => {
+        const div = document.createElement('div');
+        div.innerHTML = `Are you sure you want to delete "${note.name || 'Untitled Note'}"? <br /><strong>This cannot be undone.</strong>`;
+        return div;
+    }
+
+    const deleteModal = Modal.create(
+        [],
+        modalInner(),
+        () => {
+            Modal.close(deleteModal);
+            deleteNote(note);
+        },
+        'Delete',
+        true,
+        true,
+        false
+    );
+    Modal.open(deleteModal);
+}
+
 export const duplicateNote = note => {
-    console.log(`Will duplicate ${note.name}.`)
+    const profile = load('profile');
+    console.log(profile);
+    const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
+
+    const newId = `${activeProject.id}.${generateId()}`
+    const duplicatedNote = {
+        ...note,
+        id:newId,
+    }
+    activeProject.notes.push(duplicatedNote);
+    console.log(activeProject);
+    save('profile', profile);
+    render();
 }
 
 export const deleteNote = note => {
-    console.log(`Will delete ${note.name}.`)
+    const profile = load('profile');
+    console.log(profile);
+    const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
+
+    console.log(profile);
+    activeProject.notes = activeProject.notes.filter(otherNote => {
+        return note.id !== otherNote.id;
+    })
+    console.log(profile)
+    save('profile', profile);
+    render();
 }
