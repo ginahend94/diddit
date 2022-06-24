@@ -1,7 +1,7 @@
 CURRENTLY
+-edit project
 
 all crud actions
--edit project
 -dupe project
 -delete project
 -delete list
@@ -50,6 +50,7 @@ collapse/hide notes
 refactor edit and create modals DRYly
 add note creation date to details
 make context menu move if off screen
+add "no tasks" message in todolist
 
 DONE
 -dupe note

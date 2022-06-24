@@ -1,4 +1,4 @@
-import { EditProject } from "../functions/projectManager";
+import { editProject, duplicateProject, archiveProject, deleteProjectWarning } from "../functions/projectManager";
 import { getIcon } from "../functions/icon";
 import { editNote, deleteNoteWarning, duplicateNote } from '../functions/noteManager';
 import { taskDetails, deleteTaskWarning, duplicateTask } from "../functions/todoManager";
@@ -8,22 +8,22 @@ export default (() => {
         projectOptions: [
             {
                 option: 'Edit project',
-                function: EditProject,
+                function: editProject,
                 icon: 'square-edit-outline',
             },
             {
                 option: 'Duplicate project',
-                function: () => console.log('will dupe'),
+                function: duplicateProject,
                 icon: 'content-copy',
             },
             {
                 option: 'Archive project',
-                function: () => console.log('will archive'),
+                function: archiveProject,
                 icon: 'archive-outline',
             },
             {
                 option: 'Delete project',
-                function: () => console.log('will delete'),
+                function: deleteProjectWarning,
                 icon: 'trash-can-outline',
             },
         ],

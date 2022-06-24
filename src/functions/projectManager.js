@@ -87,8 +87,49 @@ export default (() => {
 
 })();
 
-export const EditProject = project => {
-    console.log(`Will eventually edit ${project.name}`);
+export const editProject = project => {
+    const modalInner = () => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'text');
+        input.value = project.name;
+        input.placeholder = project.name;
+        return input;
+    }
 }
+
+export const archiveProject = project => {
+    console.log(`Will eventually archive ${project.name}`);
+}
+
+export const deleteProjectWarning = project => {
+    const modalInner = () => {
+        const div = document.createElement('div');
+        div.innerHTML = `Are you sure you want to delete "${project.name}"? <br /><strong>This cannot be undone.</strong>`;
+        return div;
+    }
+
+    const deleteModal = Modal.create(
+        [],
+        modalInner(),
+        () => {
+            Modal.close(deleteModal);
+            deleteProject(project);
+        },
+        'Delete',
+        true,
+        true,
+        false
+    );
+    Modal.open(deleteModal);
+}
+
+const deleteProject = project => {
+    console.log(`Will eventually delete ${project.name}`);
+}
+
+export const duplicateProject = project => {
+    console.log(`Will eventually duplicate ${project.name}`);
+}
+
 
 
