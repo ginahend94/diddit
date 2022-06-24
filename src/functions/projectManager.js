@@ -88,12 +88,57 @@ export default (() => {
 })();
 
 export const editProject = project => {
-    const modalInner = () => {
+    
+    const modalInner = (() => {
+        const modalBody = document.createElement('div');
+        const h3 = document.createElement('h3');
+        modalBody.append(h3)
+        h3.textContent = 'Edit project';
+
         const input = document.createElement('input');
-        input.setAttribute('type', 'text');
-        input.value = project.name;
+        modalBody.append(input);
+        input.type = 'text';
+        input.id = 'new-project-name';
         input.placeholder = project.name;
-        return input;
+        input.required = true;
+        input.value = project.name;
+
+        const textarea = document.createElement('textarea');
+        modalBody.append(textarea)
+        textarea.id = 'new-project-description';
+        textarea.placeholder = project.description || 'Description (optional)';
+        textarea.value = project.description;
+
+        const small = document.createElement('small');
+        modalBody.append(small);
+        small.style.color = 'rgb(var(--danger))';
+        small.textContent = 'Name is required.';
+        small.classList.add('hidden');
+        input.addEventListener('input', () => small.classList.add('hidden'));
+        
+        const getName = () => input.value;
+        const getDescription = () => textarea.value;
+
+        return { modalBody, getName, getDescription, small }
+    })();
+
+    const modal = Modal.create(
+        [],
+        modalInner.modalBody,
+        () => console.log('ok'),
+        'Save',
+        true,
+        false,
+        true
+    )
+    Modal.open(modal);
+
+    const confirm = () => { 
+        const warning = modalInner.small;
+        if (!modalInner.getName) {
+            return warning.classList.remove('hidden');
+        }
+        
     }
 }
 
