@@ -94,7 +94,7 @@ export default Profile => {
     if (load('profile')) {
         const Profile = load('profile');
         userIcon = icon(Profile.icon) || getIcon('account');
-        userName = Profile.name;
+        userName = Profile.name || 'User';
         account.title = 'Account';
     } else {
         userIcon = getIcon('account');

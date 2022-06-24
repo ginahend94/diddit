@@ -6,9 +6,6 @@ import { getIcon } from "./icon";
 import Modal from '../DOM-elements/modal';
 import render from "./render";
 import format from "date-fns/format";
-// import modalInner from "../DOM-elements/create-edit-task";
-
-const profile = load('profile');
 
 export default (() => {
     const showModal = (listId) => {
@@ -269,6 +266,7 @@ export default (() => {
 
     const createTask = (options) => {
 
+        const profile = load('profile');
         const activeProject = profile.projects[profile.projects.findIndex(project => options.listId.split('.')[0] == project.id)];
         const list = activeProject.lists[activeProject.lists.findIndex(list => list.id == options.listId)];
 
@@ -286,7 +284,6 @@ export default (() => {
             a.id = `${newTask.id}.${a.id}`;
         })
         list.tasks.push(newTask);
-        console.log(newTask)
 
         activeProject.lists = activeProject.lists.map(oldlist => {
             if (oldlist.id == listId) return oldlist = list;
@@ -302,6 +299,7 @@ export default (() => {
 })()
 
 export const createList = project => {
+    const profile = load('profile');
     const list = {
         id: `${project.id}.${generateId()}`,
         tasks: [],
@@ -317,6 +315,7 @@ export const createList = project => {
 }
 
 export const handleCheckbox = (e, task) => {
+    const profile = load('profile');
     if (e.target.classList.contains('subtask-checkbox')) {
         const subtask = task.subtasks[task.subtasks.findIndex(a => a.id == e.target.id.slice(9))]
         subtask.completed = e.target.checked;
@@ -328,6 +327,7 @@ export const handleCheckbox = (e, task) => {
 }
 
 export const editTask = task => {
+    const profile = load('profile');
     const activeProject = profile.projects[profile.projects.findIndex(a => {
         return a.id == task.container.split('.')[0];
     })]
@@ -779,6 +779,7 @@ export const taskDetails = task => {
 }
 
 export const duplicateTask = task => {
+    const profile = load('profile');
     const activeProject = profile.projects[profile.projects.findIndex(a => {
         return a.id == task.container.split('.')[0];
     })]
@@ -819,6 +820,7 @@ export const deleteTaskWarning = (task) => {
 }
 
 const deleteTask = (task) => {
+    const profile = load('profile');
     const activeProject = profile.projects[profile.projects.findIndex(a => {
         return a.id == task.container.split('.')[0];
     })]

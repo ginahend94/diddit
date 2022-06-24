@@ -1,7 +1,8 @@
 // import { v4 as uuidv4 } from "uuid";
 import generateId from "./generateId.js";
+import load from "./load.js";
 
-export default (name = 'User', icon = null, colorPalette = 'default', bio = 'You haven\'t created a bio yet.') => ({
+export default (name = '', icon = null, colorPalette = 'default', bio = '') => ({
     name,
     bio,
     icon,
@@ -19,6 +20,8 @@ export default (name = 'User', icon = null, colorPalette = 'default', bio = 'You
         }
     ],
 });
+
+export const Profile = load('profile');
 
 // EXAMPLE PROFILE
 export const gina = {

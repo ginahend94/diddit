@@ -5,6 +5,8 @@ all crud actions
 -edit project
 -dupe project
 -delete project
+-delete list
+-dupe list
 
 TO DO
 

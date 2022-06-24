@@ -19,4 +19,5 @@ export default () => {
 
     drag(document.body);
     console.log('rendered')
+    // console.log(Profile)
 }
