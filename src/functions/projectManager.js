@@ -6,6 +6,7 @@ import Modal from "../DOM-elements/modal";
 import generateId from "./generateId";
 import render from "./render";
 import switchActiveProject from "./switchActiveProject";
+import profile from "./profile";
 
 if (!load('profile')) {
     console.log('Creating new profile.');
@@ -89,7 +90,7 @@ export default (() => {
 })();
 
 export const editProject = project => {
-    
+
     const modalInner = (() => {
         const modalBody = document.createElement('div');
         const h3 = document.createElement('h3');
@@ -110,7 +111,7 @@ export const editProject = project => {
         small.textContent = 'Name is required.';
         small.classList.add('hidden');
         input.addEventListener('input', () => small.classList.add('hidden'));
-        
+
         const textarea = document.createElement('textarea');
         modalBody.append(textarea)
         textarea.id = 'new-project-description';
@@ -134,12 +135,12 @@ export const editProject = project => {
     )
     Modal.open(modal);
 
-    const confirm = () => { 
+    const confirm = () => {
         const warning = modalInner.small;
         if (!modalInner.getName()) {
             return warning.classList.remove('hidden');
         }
-        
+
         const newProject = {
             ...project,
             name: modalInner.getName(),
@@ -182,7 +183,40 @@ const deleteProject = project => {
 }
 
 export const duplicateProject = project => {
+    const profile = load('profile');
     console.log(`Will eventually duplicate ${project.name}`);
+    const test = {
+        projects: [
+            {
+                name: 'My Project (copy)'
+            }, {
+                name: 'My Project (copy 2)'
+            }, {
+                name: 'My Project (copy 3)'
+            }
+        ]
+    }
+    const howManyCopies = (prof, proj) => {
+        let regex = new RegExp(`${proj.name}`);
+        const plainTitle = proj.name.slice(0, proj.name.search(/\(copy/)).trim();
+        console.log(plainTitle);
+
+
+        let count = 0;
+        for (let project in prof.projects) {
+            if (prof.projects[project].name.includes(`${proj.name} (copy`)) {
+                ++count;
+            }
+        }
+        console.log(count)
+        return count;
+    }
+    const duplicatedProject = {
+        ...project,
+        name: `${project.name} (copy${howManyCopies(profile, project)?' ' + howManyCopies(profile, project):''})`,
+        id: generateId(),
+    }
+    console.log(duplicatedProject)
 }
 
 const saveProject = project => {
