@@ -1,14 +1,14 @@
 CURRENTLY
--edit project
+-dupe project
 
 all crud actions
--dupe project
 -delete project
 -delete list
 -dupe list
 
 TO DO
 
+add "copy #" to note dupes
 add secret fill profile button
 note boxes height => max(fit-content, 150px), OR min-height
 prevent empty titles in new proj/task/list/note
@@ -57,6 +57,7 @@ remove fill-profile button
 set max height and expand for description
 
 DONE
+-edit project
 -dupe note
 -delete note
 -dupe task
