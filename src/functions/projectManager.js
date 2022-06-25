@@ -196,15 +196,14 @@ export const duplicateProject = project => {
             }
         ]
     }
+    const plainTitle = project.name.slice(0, project.name.search(/\(copy/)).trim();
     const howManyCopies = (prof, proj) => {
-        let regex = new RegExp(`${proj.name}`);
         const plainTitle = proj.name.slice(0, proj.name.search(/\(copy/)).trim();
         console.log(plainTitle);
 
-
         let count = 0;
         for (let project in prof.projects) {
-            if (prof.projects[project].name.includes(`${proj.name} (copy`)) {
+            if (prof.projects[project].name.includes(`${plainTitle} (copy`)) {
                 ++count;
             }
         }
@@ -213,7 +212,7 @@ export const duplicateProject = project => {
     }
     const duplicatedProject = {
         ...project,
-        name: `${project.name} (copy${howManyCopies(profile, project)?' ' + howManyCopies(profile, project):''})`,
+        name: `${plainTitle} (copy${howManyCopies(profile, project) ? ' ' + parseInt(howManyCopies(profile, project) + 1) : ''})`,
         id: generateId(),
     }
     console.log(duplicatedProject)
