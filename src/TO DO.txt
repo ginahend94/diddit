@@ -9,6 +9,7 @@ all crud actions
 
 TO DO
 
+note boxes height => max(fit-content, 150px), OR min-height
 prevent empty titles in new proj/task/list/note
 set modal notes (new/edit task) to flex - column
 sort function

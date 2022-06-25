@@ -103,12 +103,6 @@ export const editProject = project => {
         input.required = true;
         input.value = project.name;
 
-        const textarea = document.createElement('textarea');
-        modalBody.append(textarea)
-        textarea.id = 'new-project-description';
-        textarea.placeholder = project.description || 'Description (optional)';
-        textarea.value = project.description;
-
         const small = document.createElement('small');
         modalBody.append(small);
         small.style.color = 'rgb(var(--danger))';
@@ -116,6 +110,12 @@ export const editProject = project => {
         small.classList.add('hidden');
         input.addEventListener('input', () => small.classList.add('hidden'));
         
+        const textarea = document.createElement('textarea');
+        modalBody.append(textarea)
+        textarea.id = 'new-project-description';
+        textarea.placeholder = project.description || 'Description (optional)';
+        textarea.value = project.description;
+
         const getName = () => input.value;
         const getDescription = () => textarea.value;
 
@@ -125,7 +125,7 @@ export const editProject = project => {
     const modal = Modal.create(
         [],
         modalInner.modalBody,
-        () => console.log('ok'),
+        () => confirm(),
         'Save',
         true,
         false,
@@ -135,7 +135,7 @@ export const editProject = project => {
 
     const confirm = () => { 
         const warning = modalInner.small;
-        if (!modalInner.getName) {
+        if (!modalInner.getName()) {
             return warning.classList.remove('hidden');
         }
         
