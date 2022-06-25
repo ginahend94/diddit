@@ -11,10 +11,11 @@ if (!load('profile')) {
     console.log('Creating new profile.');
     save('profile', createProfile());
 }
-const profile = load('profile');
+// const profile = load('profile');
 
 export default (() => {
 
+    const profile = load('profile');
     const showModal = () => {
         const modalInner = () => {
             const modalBody = document.createElement('div');
@@ -139,6 +140,14 @@ export const editProject = project => {
             return warning.classList.remove('hidden');
         }
         
+        const newProject = {
+            ...project,
+            name: modalInner.getName(),
+            description: modalInner.getDescription(),
+        }
+        saveProject(newProject);
+        Modal.close(modal);
+        render();
     }
 }
 
@@ -176,5 +185,14 @@ export const duplicateProject = project => {
     console.log(`Will eventually duplicate ${project.name}`);
 }
 
+const saveProject = project => {
+    const profile = load('profile');
 
-
+    profile.projects = profile.projects.map(oldProject => {
+        if (oldProject.id === project.id) {
+            return oldProject = project;
+        }
+        return oldProject;
+    })
+    save('profile', profile);
+}

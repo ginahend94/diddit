@@ -9,6 +9,7 @@ all crud actions
 
 TO DO
 
+add secret fill profile button
 note boxes height => max(fit-content, 150px), OR min-height
 prevent empty titles in new proj/task/list/note
 set modal notes (new/edit task) to flex - column
@@ -51,7 +52,9 @@ collapse/hide notes
 refactor edit and create modals DRYly
 add note creation date to details
 make context menu move if off screen
-add "no tasks" message in todolist
+add "no tasks" message in todolist\
+remove fill-profile button
+set max height and expand for description
 
 DONE
 -dupe note

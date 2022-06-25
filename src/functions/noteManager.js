@@ -186,7 +186,7 @@ const newNote = () => {
 export default newNote;
 
 const saveNote = note => {
-    const profile = load('profile');
+    // const profile = load('profile');
     console.log(profile);
     const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
 
@@ -196,13 +196,13 @@ const saveNote = note => {
         }
         return oldNote;
     });
-    console.log(activeProject.notes.map(oldNote => {
-        if (oldNote.id == note.id) {
-            return oldNote = note;
-        }
-        return oldNote;
-    }))
-    console.log(profile)
+    // console.log(activeProject.notes.map(oldNote => {
+    //     if (oldNote.id == note.id) {
+    //         return oldNote = note;
+    //     }
+    //     return oldNote;
+    // }))
+    // console.log(profile)
     save('profile', profile);
     render();
 }
@@ -285,7 +285,7 @@ export const editNote = (note) => {
             dateEditedFormatted: format(new Date(), 'MM-dd-yyyy'),
             dateEdited: new Date(),
         }
-        console.log(newNote);
+        // console.log(newNote);
         return newNote;
     }
 
