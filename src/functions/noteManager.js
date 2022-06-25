@@ -6,7 +6,6 @@ import generateId from './generateId';
 import format from "date-fns/format";
 import render from './render';
 
-console.log('running noteManager')
 // const profile = load('profile');
 // console.log(profile);
 const newNote = () => {
