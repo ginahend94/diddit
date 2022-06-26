@@ -1,7 +1,6 @@
 CURRENTLY
 
 all crud actions
--fix duped proj name being cut off
 -set up deleted project page
 -delete list
 -dupe list
@@ -62,6 +61,7 @@ list max height
 add user acct tooltip
 
 DONE
+-fix duped proj name being cut off
 -delete project
 -dupe project
 make project options appear on hover

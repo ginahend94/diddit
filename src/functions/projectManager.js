@@ -196,13 +196,8 @@ const deleteProject = project => {
 
 export const duplicateProject = project => {
     const profile = load('profile');
-    // console.log(`Will eventually duplicate ${project.name}`);
-
-    const plainTitle = project.name.slice(0, project.name.search(/\(copy/)).trim();
+    const plainTitle = project.name.search(/\(copy/) < 0 ? project.name.trim() : project.name.slice(0, project.name.search(/\(copy/)).trim();
     const howManyCopies = (prof) => {
-        // const plainTitle = proj.name.slice(0, proj.name.search(/\(copy/)).trim();
-        console.log(project.name);
-        console.log(plainTitle);
         let count = 0;
         for (let project in prof.projects) {
             if (prof.projects[project].name.includes(`${plainTitle} (copy`)) {

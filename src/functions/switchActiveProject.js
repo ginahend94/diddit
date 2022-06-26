@@ -3,7 +3,6 @@ import save from "./save";
 import load from "./load";
 
 export default (projectId) => {
-    console.log('switcheroo')
     const profile = load('profile');
     profile.projects.forEach(project => {
         project.active = false;
@@ -15,9 +14,6 @@ export default (projectId) => {
     activeProject.active = true;
     document.title = `${activeProject.name + ' | '}Diddit - To-Do List`;
 
-    console.log(profile)
     save('profile', profile);
-    console.log(load('profile'))
-
     render();
 }
