@@ -28,7 +28,7 @@ export default Profile => {
         main.append(noProject);
         noProject.classList.add('no-projects');
         const button = document.createElement('button');
-        main.append(button);
+        noProject.append(button);
         button.textContent = 'Create New Project';
         button.classList.add('no-projects-button');
         button.prepend(getIcon('plus'));

@@ -966,3 +966,8 @@ button.spell-check-false {
     text-decoration: line-through;
 }
 
+.no-projects {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
