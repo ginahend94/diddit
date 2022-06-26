@@ -185,7 +185,7 @@ const newNote = () => {
 export default newNote;
 
 const saveNote = note => {
-    // const profile = load('profile');
+    const profile = load('profile');
     console.log(profile);
     const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
 
