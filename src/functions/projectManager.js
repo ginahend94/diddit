@@ -179,7 +179,19 @@ export const deleteProjectWarning = project => {
 }
 
 const deleteProject = project => {
-    console.log(`Will eventually delete ${project.name}`);
+    const profile = load('profile');
+    let prevProj;
+    const updatedProjects = profile.projects.filter((oldProject, i) => {
+        if (oldProject.id === project.id) {
+            prevProj = i - 1 < 0 ? 0 : i - 1;
+            console.log(prevProj)
+        }
+        return oldProject.id !== project.id
+    })
+    profile.projects = updatedProjects;
+    save('profile', profile);
+    switchActiveProject(profile.projects[prevProj].id);
+    render();
 }
 
 export const duplicateProject = project => {
@@ -187,9 +199,10 @@ export const duplicateProject = project => {
     // console.log(`Will eventually duplicate ${project.name}`);
 
     const plainTitle = project.name.slice(0, project.name.search(/\(copy/)).trim();
-    const howManyCopies = (prof, proj) => {
-        const plainTitle = proj.name.slice(0, proj.name.search(/\(copy/)).trim();
-
+    const howManyCopies = (prof) => {
+        // const plainTitle = proj.name.slice(0, proj.name.search(/\(copy/)).trim();
+        console.log(project.name);
+        console.log(plainTitle);
         let count = 0;
         for (let project in prof.projects) {
             if (prof.projects[project].name.includes(`${plainTitle} (copy`)) {
@@ -200,20 +213,14 @@ export const duplicateProject = project => {
     }
     const duplicatedProject = {
         ...project,
-        name: `${plainTitle} (copy${howManyCopies(profile, project) ? ' ' + parseInt(howManyCopies(profile, project) + 1) : ''})`,
+        name: `${plainTitle} (copy${howManyCopies(profile) ? ' ' + parseInt(howManyCopies(profile) + 1) : ''})`,
         id: generateId(),
     }
 
-    // console.log(profile.projects.findIndex(proj => proj.id == project.id));
-    // console.log(project)
-    // const newProjectList = [...profile.projects.slice(0, profile.projects.findIndex(proj => proj.id == project.id) + 1) ...profile.projects.slice(profile.projects.findIndex(proj => proj.id == project.id) + 1)]
     const projectsCopy = profile.projects.slice(0);
     projectsCopy.splice(profile.projects.findIndex(proj => proj.id == project.id) + 1, 0, duplicatedProject);
-    console.log(profile.projects);
-    console.log(projectsCopy)
 
     profile.projects = projectsCopy;
-    console.log(duplicatedProject.id)
     save('profile', profile);
     switchActiveProject(duplicatedProject.id)
     render();

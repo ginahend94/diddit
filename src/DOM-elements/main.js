@@ -11,6 +11,7 @@ export default Profile => {
     const main = document.createElement('main');
 
     const activeProject = Profile.projects.find(project => {
+        // console.log(project)
         return project.active
     });
 

@@ -1,8 +1,8 @@
 CURRENTLY
--dupe project
 
 all crud actions
--delete project
+-fix duped proj name being cut off
+-set up deleted project page
 -delete list
 -dupe list
 
@@ -58,8 +58,12 @@ drag project names
 localstorage sidebar width
 localstorage scroll spot on page
 add title to lists
+list max height
+add user acct tooltip
 
 DONE
+-delete project
+-dupe project
 make project options appear on hover
 set modal notes (new/edit task) to flex - column
 -edit project
