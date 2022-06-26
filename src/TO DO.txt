@@ -1,7 +1,8 @@
 CURRENTLY
+-set up deleted project page
+-no projects nav text
 
 all crud actions
--set up deleted project page
 -delete list
 -dupe list
 

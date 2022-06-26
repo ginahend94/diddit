@@ -5,20 +5,36 @@ import { createList } from '../functions/todoManager';
 import { createTaskNode } from "./to-do-container";
 import createNoteNode from './note-container';
 import render from '../functions/render';
+import { getIcon } from "../functions/icon";
+import ProjectManager from "../functions/projectManager";
 
 export default Profile => {
     
     const main = document.createElement('main');
 
     const activeProject = Profile.projects.find(project => {
-        // console.log(project)
         return project.active
     });
+
+
 
     const header = document.createElement('header');
     main.append(header);
     const h2 = document.createElement('h2');
     header.append(h2);
+    if (!activeProject) {
+        header.textContent = 'Click the button below to create a project.'
+        const noProject = document.createElement('div');
+        main.append(noProject);
+        noProject.classList.add('no-projects');
+        const button = document.createElement('button');
+        main.append(button);
+        button.textContent = 'Create New Project';
+        button.classList.add('no-projects-button');
+        button.prepend(getIcon('plus'));
+        button.addEventListener('click', ProjectManager.showModal);
+        return main;
+    }
     h2.textContent = activeProject.name;
     if (activeProject.description) {
         const projectDescription = document.createElement('p');

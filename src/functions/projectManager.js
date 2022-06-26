@@ -184,13 +184,14 @@ const deleteProject = project => {
     const updatedProjects = profile.projects.filter((oldProject, i) => {
         if (oldProject.id === project.id) {
             prevProj = i - 1 < 0 ? 0 : i - 1;
-            console.log(prevProj)
         }
         return oldProject.id !== project.id
     })
     profile.projects = updatedProjects;
     save('profile', profile);
-    switchActiveProject(profile.projects[prevProj].id);
+    if (profile.projects.length) {
+        switchActiveProject(profile.projects[prevProj].id);
+    }
     render();
 }
 
