@@ -6,7 +6,6 @@ import generateId from './generateId';
 import format from "date-fns/format";
 import render from './render';
 
-console.log('running noteManager')
 // const profile = load('profile');
 // console.log(profile);
 const newNote = () => {
@@ -196,13 +195,13 @@ const saveNote = note => {
         }
         return oldNote;
     });
-    console.log(activeProject.notes.map(oldNote => {
-        if (oldNote.id == note.id) {
-            return oldNote = note;
-        }
-        return oldNote;
-    }))
-    console.log(profile)
+    // console.log(activeProject.notes.map(oldNote => {
+    //     if (oldNote.id == note.id) {
+    //         return oldNote = note;
+    //     }
+    //     return oldNote;
+    // }))
+    // console.log(profile)
     save('profile', profile);
     render();
 }
@@ -285,7 +284,7 @@ export const editNote = (note) => {
             dateEditedFormatted: format(new Date(), 'MM-dd-yyyy'),
             dateEdited: new Date(),
         }
-        console.log(newNote);
+        // console.log(newNote);
         return newNote;
     }
 

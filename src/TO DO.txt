@@ -1,16 +1,15 @@
 CURRENTLY
 
 all crud actions
--edit project
--dupe project
--delete project
 -delete list
 -dupe list
 
 TO DO
 
+add "copy #" to note dupes
+add secret fill profile button
+note boxes height => max(fit-content, 150px), OR min-height
 prevent empty titles in new proj/task/list/note
-set modal notes (new/edit task) to flex - column
 sort function
 fix shadow showing up on drag
 make project titles draggable
@@ -24,7 +23,6 @@ create split button module
 create input module
 add emoji picker
 be able to hide sidebar
-make project options appear on hover
 prevent flash of unstyled page
 change order of object on reorder (.map?)
 ability to star tasks
@@ -50,8 +48,26 @@ collapse/hide notes
 refactor edit and create modals DRYly
 add note creation date to details
 make context menu move if off screen
+add "no tasks" message in todolist\
+remove fill-profile button
+set max height and expand for description
+insert duplicate after original
+drag project names
+localstorage sidebar width
+localstorage scroll spot on page
+add title to lists
+list max height
+add user acct tooltip
 
 DONE
+-no projects nav text
+-set up deleted project page
+-fix duped proj name being cut off
+-delete project
+-dupe project
+make project options appear on hover
+set modal notes (new/edit task) to flex - column
+-edit project
 -dupe note
 -delete note
 -dupe task

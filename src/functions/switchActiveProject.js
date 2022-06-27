@@ -1,18 +1,19 @@
 import render from "./render";
 import save from "./save";
+import load from "./load";
 
-export default (projectId, Profile) => {
-    Profile.projects.forEach(project => {
+export default (projectId) => {
+    const profile = load('profile');
+    profile.projects.forEach(project => {
         project.active = false;
     });
 
-    const activeProject = Profile.projects.find(project => {
+    const activeProject = profile.projects[profile.projects.findIndex(project => {
         return project.id == projectId;
-    });
+    })];
     activeProject.active = true;
-    document.title = `${activeProject.name} | Diddit - To-Do List`;
-    
-    save('profile', Profile);
+    document.title = `${activeProject.name + ' | '}Diddit - To-Do List`;
 
+    save('profile', profile);
     render();
 }

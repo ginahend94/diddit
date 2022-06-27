@@ -176,6 +176,13 @@ nav ul {
     max-height: 100%;
 }
 
+.project-list:empty::after {
+    content: 'Click the button below to create a project.';
+    color: rgb(var(--grayed-text-color));
+    font-style: italic;
+    max-width: 20ch;
+}
+
 .project-info {
     width: 100%;
     max-width: 295px;
@@ -966,3 +973,8 @@ button.spell-check-false {
     text-decoration: line-through;
 }
 
+.no-projects {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}

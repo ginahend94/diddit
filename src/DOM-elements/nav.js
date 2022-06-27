@@ -66,7 +66,7 @@ export default Profile => {
         if (project.active) {
             projectInfo.classList.add('active');
         } else {
-            projectInfo.addEventListener('click', () => switchActiveProject(project.id, Profile));
+            projectInfo.addEventListener('click', () => switchActiveProject(project.id));
         }
 
         const projectOptions = getIcon('dots-horizontal', ['project-options'])
