@@ -847,10 +847,15 @@ export const duplicateList = list => {
         ...list,
         id:`${activeProject.id}.${generateId()}`,
     }
+    
+    for (let task of duplicatedList.tasks) {
+        task.container = duplicatedList.id;
+        task.id = `${duplicatedList.id}.${generateId()}`;
+    }
+
     const oldListIndex = activeProject.lists.findIndex(oldList => oldList.id == list.id);
     const newLists = activeProject.lists.slice(0);
     newLists.splice(parseInt(oldListIndex + 1), 0, duplicatedList);
-    console.log(newLists);
     console.log(`Will dupe List ${list.id}`);
     activeProject.lists = newLists;
     save('profile', profile);

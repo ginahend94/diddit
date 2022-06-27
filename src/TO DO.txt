@@ -1,13 +1,9 @@
 CURRENTLY
--delete list
---add context menu
---add options button
-
-all crud actions
--dupe list
+fix duped project ids
 
 TO DO
 
+archive project
 add "copy #" to note dupes
 add secret fill profile button
 note boxes height => max(fit-content, 150px), OR min-height
@@ -62,6 +58,12 @@ list max height
 add user acct tooltip
 
 DONE
+fix duped list checkboxes
+all crud actions
+-dupe list
+--add options button
+--add context menu
+-delete list
 -no projects nav text
 -set up deleted project page
 -fix duped proj name being cut off
