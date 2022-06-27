@@ -26,7 +26,7 @@ create input module
 add emoji picker
 be able to hide sidebar
 prevent flash of unstyled page
-change order of object on reorder (.map?)
+change order of object on reorder (.map?) (children? index = child index?)
 ability to star tasks
 undo/redo
 custom palette w/dynamic favicon and light/dark text

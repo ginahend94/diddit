@@ -879,5 +879,16 @@ export const deleteListWarning = list => {
 }
 
 const deleteList = list => {
-    console.log(`Will delete List ${list.id}`);
+    const profile = load('profile');
+    const activeProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id == list.container.split('.')[0];
+    })];
+
+    const filteredLists = activeProject.lists.filter(oldList => {
+        return oldList.id !== list.id;
+    });
+
+    activeProject.lists = filteredLists;
+    save('profile', profile);
+    render();
 }
