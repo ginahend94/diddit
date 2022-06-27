@@ -1,5 +1,4 @@
 CURRENTLY
--no projects nav text
 
 all crud actions
 -delete list
@@ -61,6 +60,7 @@ list max height
 add user acct tooltip
 
 DONE
+-no projects nav text
 -set up deleted project page
 -fix duped proj name being cut off
 -delete project
