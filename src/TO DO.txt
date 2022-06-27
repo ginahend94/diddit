@@ -1,8 +1,10 @@
 CURRENTLY
 -delete list
--dupe list
+--add context menu
+--add options button
 
 all crud actions
+-dupe list
 
 TO DO
 
