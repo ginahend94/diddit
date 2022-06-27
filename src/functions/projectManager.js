@@ -6,17 +6,14 @@ import Modal from "../DOM-elements/modal";
 import generateId from "./generateId";
 import render from "./render";
 import switchActiveProject from "./switchActiveProject";
-import profile from "./profile";
 
 if (!load('profile')) {
     console.log('Creating new profile.');
     save('profile', createProfile());
 }
-// const profile = load('profile');
 
 export default (() => {
 
-    const profile = load('profile');
     const showModal = () => {
         const modalInner = () => {
             const modalBody = document.createElement('div');
@@ -59,6 +56,8 @@ export default (() => {
     }
 
     const createProject = (name, description) => {
+
+        const profile = load('profile');
         const newProject = {
             name,
             description,
@@ -187,10 +186,14 @@ const deleteProject = project => {
         }
         return oldProject.id !== project.id
     })
+    console.log(`projects before deletion of ${project.name}: `, profile.projects)
     profile.projects = updatedProjects;
     save('profile', profile);
+    console.log(`projects after deletion of ${project.name}: `, profile.projects)
     if (profile.projects.length) {
         switchActiveProject(profile.projects[prevProj].id);
+    } else {
+        document.title = 'Diddit - To-Do List'
     }
     render();
 }
