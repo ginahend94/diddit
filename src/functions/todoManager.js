@@ -823,7 +823,7 @@ const deleteTask = (task) => {
     const profile = load('profile');
     const activeProject = profile.projects[profile.projects.findIndex(a => {
         return a.id == task.container.split('.')[0];
-    })]
+    })];
 
     const activeList = activeProject.lists[activeProject.lists.findIndex(a => {
         return a.id == task.container;
@@ -838,7 +838,23 @@ const deleteTask = (task) => {
 }
 
 export const duplicateList = list => {
+    const profile = load('profile');
+    const activeProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id == list.container.split('.')[0];
+    })];
+
+    const duplicatedList = {
+        ...list,
+        id:`${activeProject.id}.${generateId()}`,
+    }
+    const oldListIndex = activeProject.lists.findIndex(oldList => oldList.id == list.id);
+    const newLists = activeProject.lists.slice(0);
+    newLists.splice(parseInt(oldListIndex + 1), 0, duplicatedList);
+    console.log(newLists);
     console.log(`Will dupe List ${list.id}`);
+    activeProject.lists = newLists;
+    save('profile', profile);
+    render();
 }
 
 export const deleteListWarning = list => {
@@ -860,7 +876,6 @@ export const deleteListWarning = list => {
         false
     );
     Modal.open(deleteModal);
-
 }
 
 const deleteList = list => {
