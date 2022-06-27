@@ -14,13 +14,17 @@ export default list => {
 
     const todoListContainer = document.createElement('div');
     todoListContainer.classList.add('to-do-list-container');
+    todoListContainer.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        const menu = contextMenu.generateMenu('listOptions', list);
+        contextMenu.openMenu(e, menu);
+    });
 
     const todoList = document.createElement('ul');
     todoListContainer.append(todoList);
     todoList.classList.add('to-do-list');
     todoList.classList.add('drag-container');
     todoList.id = list.id;
-
     const button = document.createElement('button');
     todoListContainer.append(button);
     button.classList.add('add-new-task');
@@ -28,6 +32,8 @@ export default list => {
         newTask.showModal(list.id);
     });
     button.textContent = 'Add new task';
+
+    
 
     return todoListContainer;
 }
@@ -50,6 +56,7 @@ export const createTaskNode = task => {
     })
     taskContainer.addEventListener('contextmenu', e => {
         e.preventDefault();
+        e.stopPropagation();
         const menu = contextMenu.generateMenu('taskOptions', task);
         contextMenu.openMenu(e, menu);
     });
