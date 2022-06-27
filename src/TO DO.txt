@@ -1,8 +1,8 @@
 CURRENTLY
-
-all crud actions
 -delete list
 -dupe list
+
+all crud actions
 
 TO DO
 
