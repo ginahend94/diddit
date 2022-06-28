@@ -1,8 +1,8 @@
 CURRENTLY
+archive project
 
 TO DO
 
-archive project
 add "copy #" to note dupes
 add secret fill profile button
 note boxes height => max(fit-content, 150px), OR min-height
