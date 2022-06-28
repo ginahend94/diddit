@@ -264,7 +264,7 @@ main header {
     min-height: 100px;
     padding: var(--padding);
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     box-shadow: 0px 3px 5px rgb(var(--secondary-color));
 }

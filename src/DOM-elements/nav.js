@@ -73,6 +73,7 @@ export default Profile => {
         projectInfo.append(projectOptions);
         projectOptions.addEventListener('click', e => {
             e.stopPropagation();
+            console.log('hi')
             const menu = contextMenu.generateMenu('projectOptions', project);
             contextMenu.openMenu(e, menu);
         })

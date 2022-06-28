@@ -6,11 +6,8 @@ import generateId from './generateId';
 import format from "date-fns/format";
 import render from './render';
 
-// const profile = load('profile');
-// console.log(profile);
 const newNote = () => {
     const profile = load('profile');
-    console.log(profile);
     const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
 
     const modalInner = (() => {
@@ -186,7 +183,6 @@ export default newNote;
 
 const saveNote = note => {
     const profile = load('profile');
-    console.log(profile);
     const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
 
     activeProject.notes = activeProject.notes.map(oldNote => {
@@ -195,19 +191,11 @@ const saveNote = note => {
         }
         return oldNote;
     });
-    // console.log(activeProject.notes.map(oldNote => {
-    //     if (oldNote.id == note.id) {
-    //         return oldNote = note;
-    //     }
-    //     return oldNote;
-    // }))
-    // console.log(profile)
     save('profile', profile);
     render();
 }
 
 export const editNote = (note) => {
-    console.log(note.id);
     const modalInner = (() => {
         const noteBody = document.createElement('div');
 
@@ -253,7 +241,6 @@ export const editNote = (note) => {
     })
 
     const confirm = () => {
-        console.log(modalInner.getTitle())
         if (!modalInner.getTitle() && !modalInner.getText()) {
             const warningModalInner = () => {
                 const body = document.createElement('div')
@@ -276,7 +263,6 @@ export const editNote = (note) => {
     }
 
     const updateNote = () => {
-        console.log(modalInner.getTitle())
         const newNote = {
             ...note,
             name: modalInner.getTitle(),
@@ -315,7 +301,6 @@ export const deleteNoteWarning = (note) => {
 
 export const duplicateNote = note => {
     const profile = load('profile');
-    console.log(profile);
     const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
 
     const newId = `${activeProject.id}.${generateId()}`
@@ -324,21 +309,17 @@ export const duplicateNote = note => {
         id:newId,
     }
     activeProject.notes.push(duplicatedNote);
-    console.log(activeProject);
     save('profile', profile);
     render();
 }
 
 export const deleteNote = note => {
     const profile = load('profile');
-    console.log(profile);
     const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
 
-    console.log(profile);
     activeProject.notes = activeProject.notes.filter(otherNote => {
         return note.id !== otherNote.id;
     })
-    console.log(profile)
     save('profile', profile);
     render();
 }
