@@ -26,6 +26,34 @@ export default () => {
         userBio.classList.add('user-bio');
         userBio.textContent = profile.bio || 'Go to "Settings" to create a bio.';
 
+        const menu = document.createElement('ul');
+        body.append(menu);
+        const projects = document.createElement('li');
+        menu.append(projects);
+        projects.textContent = 'Projects';
+        projects.addEventListener('click', e => {
+            console.log('Projects: ', profile.projects);
+        })
+
+        const archive = document.createElement('li');
+        menu.append(archive);
+        archive.textContent = 'Archive';
+        archive.addEventListener('click', e => {
+            const archived = profile.projects.filter(a => a.archived);
+            console.log('Archived Projects: ', archived);
+        })
+
         return body
     }
+
+    const modal = Modal.create(
+        ['user-profile'],
+        modalInner(),
+        () => Modal.close(modal),
+        'Close',
+        false,
+        true,
+        true
+    )
+    Modal.open(modal);
 }
