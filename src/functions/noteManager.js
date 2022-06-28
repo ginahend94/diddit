@@ -154,10 +154,8 @@ const newNote = () => {
             dateCreatedFormatted: format(new Date(), 'MM-dd-yyyy'),
             dateCreated: new Date(),
         }
-        console.log(profile);
         activeProject.notes.push(newNote);
         save('profile', profile);
-        console.log(profile);
         return newNote;
     }
 
