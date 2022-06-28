@@ -56,6 +56,7 @@ localstorage scroll spot on page
 add title to lists
 list max height
 add user acct tooltip
+change user color accent bright to hsl
 
 DONE
 archive project

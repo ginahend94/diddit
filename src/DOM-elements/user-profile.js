@@ -24,20 +24,20 @@ export default () => {
         const userBio = document.createElement('p');
         body.append(userBio);
         userBio.classList.add('user-bio');
-        userBio.textContent = profile.bio || 'Go to "Settings" to create a bio.';
+        userBio.textContent = profile.bio;
 
         const menu = document.createElement('ul');
         body.append(menu);
         const projects = document.createElement('li');
         menu.append(projects);
-        projects.textContent = 'Projects';
+        projects.append(getIcon('folder-outline'), ' Projects');
         projects.addEventListener('click', e => {
             console.log('Projects: ', profile.projects);
         })
 
         const archive = document.createElement('li');
         menu.append(archive);
-        archive.textContent = 'Archive';
+        archive.append(getIcon('archive-outline'), ' Archive');
         archive.addEventListener('click', e => {
             const archived = profile.projects.filter(a => a.archived);
             console.log('Archived Projects: ', archived);

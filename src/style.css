@@ -994,3 +994,60 @@ button.spell-check-false {
     justify-content: center;
     padding: 20px;
 }
+
+/* PROFILE */
+.user-profile {
+    width: min(50%, 500px);
+    min-width: min(300px, 100%);
+}
+
+.user-profile header {
+    background-color: rgb(var(--accent-color));
+    margin: auto -11px;
+    border-top:solid 1px rgb(var(--grayed-text-color));
+    border-bottom: solid 1px rgb(var(--grayed-text-color));
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    padding: 10px;
+    gap:10px;
+}
+
+.user-icon {
+    font-size: 2rem;
+    margin: 10px;
+}
+
+.user-bio {
+    border: solid 1px rgb(var(--grayed-text-color));
+    box-shadow: inset 1px 1px 5px rgb(var(--secondary-color));
+    border-radius: 5px;
+    padding: 10px;
+    
+}
+
+.user-bio:empty::after {
+    content: 'Go to "Settings" to create a bio.';
+    color: rgb(var(--grayed-text-color));
+    font-style: italic;
+}
+
+.user-profile ul {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    justify-content: space-evenly;
+    /* color: rgb(var(--accent-color)); */
+}
+
+.user-profile li {
+    transition: .2s;
+    display: flex;
+    align-items: center;
+    gap:5px;
+    cursor: pointer;
+}
+
+.user-profile li:hover {
+    color: rgb(var(--accent-color-bright));
+}

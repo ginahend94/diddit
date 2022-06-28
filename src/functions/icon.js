@@ -21,6 +21,7 @@ const getSVG = (() => {
         'square-edit-outline',
         'content-copy',
         'drag',
+        'folder-outline',
     ]
 
     const iconData = mdiIcons.map(icon => {
