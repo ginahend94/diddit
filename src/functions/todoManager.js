@@ -791,7 +791,7 @@ export const duplicateTask = task => {
     const newTaskId = `${activeList.id}.${generateId()}`;
     const duplicatedTask = {
         ...task,
-        id:newTaskId,
+        id: newTaskId,
     }
     activeList.tasks.push(duplicatedTask);
     save('profile', profile);
@@ -823,7 +823,7 @@ const deleteTask = (task) => {
     const profile = load('profile');
     const activeProject = profile.projects[profile.projects.findIndex(a => {
         return a.id == task.container.split('.')[0];
-    })]
+    })];
 
     const activeList = activeProject.lists[activeProject.lists.findIndex(a => {
         return a.id == task.container;
@@ -833,6 +833,67 @@ const deleteTask = (task) => {
         return task.id !== otherTask.id;
     });
 
+    save('profile', profile);
+    render();
+}
+
+export const duplicateList = list => {
+    const profile = load('profile');
+    const activeProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id == list.container.split('.')[0];
+    })];
+
+    const duplicatedList = {
+        ...list,
+        id:`${activeProject.id}.${generateId()}`,
+    }
+    
+    for (let task of duplicatedList.tasks) {
+        task.container = duplicatedList.id;
+        task.id = `${duplicatedList.id}.${generateId()}`;
+    }
+
+    const oldListIndex = activeProject.lists.findIndex(oldList => oldList.id == list.id);
+    const newLists = activeProject.lists.slice(0);
+    newLists.splice(parseInt(oldListIndex + 1), 0, duplicatedList);
+    console.log(`Will dupe List ${list.id}`);
+    activeProject.lists = newLists;
+    save('profile', profile);
+    render();
+}
+
+export const deleteListWarning = list => {
+    const modalInner = () => {
+        const div = document.createElement('div');
+        div.innerHTML = `Are you sure you want to delete this list and all of its tasks? <br /><strong>This cannot be undone.</strong>`
+        return div;
+    }
+
+    const deleteModal = Modal.create(
+        [],
+        modalInner(),
+        () => {
+            deleteList(list);
+        },
+        'Delete',
+        true,
+        true,
+        false
+    );
+    Modal.open(deleteModal);
+}
+
+const deleteList = list => {
+    const profile = load('profile');
+    const activeProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id == list.container.split('.')[0];
+    })];
+
+    const filteredLists = activeProject.lists.filter(oldList => {
+        return oldList.id !== list.id;
+    });
+
+    activeProject.lists = filteredLists;
     save('profile', profile);
     render();
 }

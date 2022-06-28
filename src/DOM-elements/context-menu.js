@@ -1,7 +1,7 @@
 import { editProject, duplicateProject, archiveProject, deleteProjectWarning } from "../functions/projectManager";
 import { getIcon } from "../functions/icon";
 import { editNote, deleteNoteWarning, duplicateNote } from '../functions/noteManager';
-import { taskDetails, deleteTaskWarning, duplicateTask } from "../functions/todoManager";
+import { taskDetails, deleteTaskWarning, duplicateTask, deleteListWarning, duplicateList } from "../functions/todoManager";
 
 export default (() => {
     const menuTypes = {
@@ -58,6 +58,18 @@ export default (() => {
             {
                 option: 'Delete task',
                 function: deleteTaskWarning,
+                icon: 'trash-can-outline',
+            }
+        ],
+        listOptions: [
+            {
+                option: 'Duplicate list',
+                function: duplicateList,
+                icon: 'content-copy',
+            },
+            {
+                option: 'Delete list',
+                function: deleteListWarning,
                 icon: 'trash-can-outline',
             }
         ]

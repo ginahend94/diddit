@@ -197,19 +197,20 @@ nav ul {
     transition: .2s;
 }
 
-.project-info:hover .project-options {
+.project-info:hover .project-options, .button-container:hover .list-options {
     opacity: 1;
 }
 
-.project-options {
+.project-options, .list-options {
     color: rgb(var(--grayed-text-color));
     position: absolute;
     right: 10px;
     transition: .2s;
     opacity: 0;
+    cursor: pointer;
 }
 
-.project-options:hover {
+.project-options:hover, .list-options:hover {
     color: rgb(var(--text-color));
 }
 
@@ -308,12 +309,26 @@ h2 {
     list-style: none;
     margin: 0;
     height: fit-content;
+    position: relative;
+    flex-direction: column;
 }
 
 .to-do-list-container ul {
     padding: 0;
     list-style: none;
     margin: 0;
+}
+
+.list-options {
+    display: inline-block;
+    bottom:50%;
+    position: relative;
+}
+
+.to-do-list-container .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .task > .task-container, .subtask {

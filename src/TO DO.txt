@@ -1,11 +1,9 @@
 CURRENTLY
--delete list
--dupe list
-
-all crud actions
+fix duped project ids
 
 TO DO
 
+archive project
 add "copy #" to note dupes
 add secret fill profile button
 note boxes height => max(fit-content, 150px), OR min-height
@@ -24,7 +22,7 @@ create input module
 add emoji picker
 be able to hide sidebar
 prevent flash of unstyled page
-change order of object on reorder (.map?)
+change order of object on reorder (.map?) (children? index = child index?)
 ability to star tasks
 undo/redo
 custom palette w/dynamic favicon and light/dark text
@@ -60,6 +58,12 @@ list max height
 add user acct tooltip
 
 DONE
+fix duped list checkboxes
+all crud actions
+-dupe list
+--add options button
+--add context menu
+-delete list
 -no projects nav text
 -set up deleted project page
 -fix duped proj name being cut off

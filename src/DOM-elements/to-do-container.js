@@ -14,6 +14,11 @@ export default list => {
 
     const todoListContainer = document.createElement('div');
     todoListContainer.classList.add('to-do-list-container');
+    todoListContainer.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        const menu = contextMenu.generateMenu('listOptions', list);
+        contextMenu.openMenu(e, menu);
+    });
 
     const todoList = document.createElement('ul');
     todoListContainer.append(todoList);
@@ -21,13 +26,24 @@ export default list => {
     todoList.classList.add('drag-container');
     todoList.id = list.id;
 
+    const buttonContainer = document.createElement('div');
+    todoListContainer.append(buttonContainer);
+    buttonContainer.classList.add('button-container');
+
     const button = document.createElement('button');
-    todoListContainer.append(button);
+    buttonContainer.append(button);
     button.classList.add('add-new-task');
     button.addEventListener('click', e => {
         newTask.showModal(list.id);
     });
     button.textContent = 'Add new task';
+
+    const optionsButton = getIcon('dots-vertical', ['list-options']);
+    buttonContainer.append(optionsButton);
+    optionsButton.addEventListener('click', e => {
+        const menu = contextMenu.generateMenu('listOptions', list);
+        contextMenu.openMenu(e, menu);
+    })
 
     return todoListContainer;
 }
@@ -50,6 +66,7 @@ export const createTaskNode = task => {
     })
     taskContainer.addEventListener('contextmenu', e => {
         e.preventDefault();
+        e.stopPropagation();
         const menu = contextMenu.generateMenu('taskOptions', task);
         contextMenu.openMenu(e, menu);
     });
@@ -69,6 +86,8 @@ export const createTaskNode = task => {
     const checkmarkContainer = document.createElement('label');
     taskContainer.append(checkmarkContainer);
     checkmarkContainer.setAttribute('for', `checkbox-${task.id}`);
+    // console.log(task.id)
+    // console.log(task)
 
     const checkmark = document.createElement('span');
     checkmarkContainer.append(checkmark);
