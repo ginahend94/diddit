@@ -1,5 +1,6 @@
 CURRENTLY
-archive project
+Access archived projects
+Unarchive projects
 
 TO DO
 
@@ -57,6 +58,7 @@ list max height
 add user acct tooltip
 
 DONE
+archive project
 fix duped project ids
 fix duped list checkboxes
 all crud actions

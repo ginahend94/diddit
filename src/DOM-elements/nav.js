@@ -6,6 +6,7 @@ import switchActiveProject from "../functions/switchActiveProject";
 import contextMenu from "./context-menu";
 import { handleTooltip, tooltip } from "./tooltip";
 import { resizeSidebar } from "../functions/drag";
+import openProfile from './user-profile';
 
 
 export default Profile => {
@@ -92,6 +93,9 @@ export default Profile => {
     settingsMenu.classList.add('settings-menu');
     const account = document.createElement('li');
     settingsMenu.append(account)
+    account.addEventListener('click', () => {
+        openProfile();
+    })
     let userIcon;
     let userName;
     if (load('profile')) {
