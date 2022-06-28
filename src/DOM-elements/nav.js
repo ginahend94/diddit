@@ -33,6 +33,9 @@ export default Profile => {
     projectList.id = 'project-list';
 
     Profile.projects.forEach(project => {
+        if (project.archived) {
+            return console.log(`${project.name} is archived.`);
+        }
         const projectInfo = document.createElement('li');
         projectList.append(projectInfo);
         projectInfo.classList.add('project-info');

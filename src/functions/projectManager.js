@@ -152,7 +152,13 @@ export const editProject = project => {
 }
 
 export const archiveProject = project => {
-    console.log(`Will eventually archive ${project.name}`);
+    const profile = load('profile');
+    const archivedProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id === project.id;
+    })]
+    archivedProject.archived = true;
+    saveProject(archivedProject)
+    render();
 }
 
 export const deleteProjectWarning = project => {
