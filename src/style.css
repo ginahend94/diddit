@@ -180,7 +180,7 @@ nav ul {
     content: 'Click the button below to create a project.';
     color: rgb(var(--grayed-text-color));
     font-style: italic;
-    max-width: 20ch;
+    max-width: 100%;
 }
 
 .project-info {
