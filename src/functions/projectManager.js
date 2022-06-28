@@ -186,10 +186,8 @@ const deleteProject = project => {
         }
         return oldProject.id !== project.id
     })
-    console.log(`projects before deletion of ${project.name}: `, profile.projects)
     profile.projects = updatedProjects;
     save('profile', profile);
-    console.log(`projects after deletion of ${project.name}: `, profile.projects)
     if (profile.projects.length) {
         switchActiveProject(profile.projects[prevProj].id);
     } else {
@@ -219,7 +217,31 @@ export const duplicateProject = project => {
     const projectsCopy = profile.projects.slice(0);
     projectsCopy.splice(profile.projects.findIndex(proj => proj.id == project.id) + 1, 0, duplicatedProject);
 
+    console.log(duplicatedProject)
+    for (let list in duplicatedProject.lists) {
+        let lists = duplicatedProject.lists;
+        lists[list].id = `${duplicatedProject.id}.${generateId()}`;
+        lists[list].container = `${duplicatedProject.id}`;
+
+        for (let task in lists[list].tasks) {
+            let tasks = lists[list].tasks;
+            tasks[task].id = `${lists[list].id}.${generateId()}`;
+            tasks[task].container = `${lists[list].id}`;
+            
+            for (let subtask in tasks[task].subtasks) {
+                let subtasks = tasks[task].subtasks;
+                subtasks[subtask].id = `${tasks[task].id}.${subtask}`;
+            }
+        }
+    }
+
+    for (let note in duplicatedProject.notes) {
+        let notes = duplicatedProject.notes;
+        notes[note].id = `${duplicatedProject.id}.${generateId()}`;
+    }
+
     profile.projects = projectsCopy;
+    console.log(profile)
     save('profile', profile);
     switchActiveProject(duplicatedProject.id)
     render();

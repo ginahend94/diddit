@@ -1,5 +1,4 @@
 CURRENTLY
-fix duped project ids
 
 TO DO
 
@@ -58,6 +57,7 @@ list max height
 add user acct tooltip
 
 DONE
+fix duped project ids
 fix duped list checkboxes
 all crud actions
 -dupe list
