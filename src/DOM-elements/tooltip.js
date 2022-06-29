@@ -24,11 +24,11 @@ export const isOverflowing = (e) => {
 export const createTooltip = (element, text) => {
     let timeout;
     const observer = new MutationObserver((mutationList) => {
-        const removedNodes = [...mutationList];
-        removedNodes.forEach(record => {
-            [...record.removedNodes].forEach(a => {
+        mutationList.forEach(record => {
+            record.removedNodes.forEach(a => {
                 if (a.classList.contains('modal-container')) {
                     clearTimeout(timeout);
+                    observer.disconnect();
                 }
             })
         })
