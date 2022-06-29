@@ -18,10 +18,12 @@ const getSVG = (() => {
         'menu',
         'trash-can-outline',
         'archive-outline',
+        'archive-arrow-up-outline',
         'square-edit-outline',
         'content-copy',
         'drag',
         'folder-outline',
+        'chevron-left',
     ]
 
     const iconData = mdiIcons.map(icon => {

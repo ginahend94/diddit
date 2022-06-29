@@ -3,6 +3,7 @@ import save from "../functions/save";
 import load from "../functions/load";
 import { getIcon } from "../functions/icon";
 import icon from '../functions/icon';
+import { unarchiveProject } from '../functions/projectManager';
 
 export default () => {
     const profile = load('profile');
@@ -40,7 +41,6 @@ export default () => {
         archive.append(getIcon('archive-outline'), ' Archive');
         archive.addEventListener('click', e => {
             const archived = profile.projects.filter(a => a.archived);
-            console.log('Archived Projects: ', archived);
             showArchive();
         })
 
@@ -62,25 +62,44 @@ export default () => {
         const modalBody = modal.querySelector('.modal-inner');
         let innerHTML =
             `<table class="archived-projects">
-                <th>
-                    <td>Name</td>
-                    <td>Description</td>
-                    <td>Date Created</td>
-                </th>
-                <tbody>`;
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Date Created</th>
+                    <th>Unarchive</th>
+                </tr>`;
         modalBody.innerHTML = (() => {
-            for (let project of profile.projects) {
-                if (project.archive) {
+            for (let project in profile.projects) {
+                if (profile.projects[project].archived) {
                     innerHTML +=
                         `<tr>
-                            <td>${profile.projects[project].name}</td>
+                            <td class="project-name">${profile.projects[project].name}</td>
                             <td class="project-description">${profile.projects[project].description}</td>
                             <td class="project-date">${profile.projects[project].dateCreatedFormatted}</td>
-                        </tr>`
+                            <td class="unarchive-project"><button data-project='${profile.projects[project].id}'></button></td>
+                        </tr>`;
                 }
             }
+            innerHTML += `</table>`;
+            return innerHTML;
         })()
-        innerHTML += `</tbody></table>`;
+        const unarchiveButtons = modalBody.querySelectorAll('.unarchive-project button');
+        unarchiveButtons.forEach(button => {
+            button.append(getIcon('archive-arrow-up-outline'));
+            button.title = 'Unarchive Project';
+            button.addEventListener('click', () => {
+                const id = button.dataset.project;
+                unarchiveProject(id);
+            })
+        });
+        const backButton = document.createElement('button');
+        modalBody.append(backButton);
+        backButton.classList.add('back-button');
+        backButton.append(getIcon('chevron-left'), ' Back');
+        backButton.addEventListener('click', e => {
+            modalBody.innerHTML = '';
+            modalBody.append(modalInner());
+        })
     }
 
 }

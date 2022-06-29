@@ -166,6 +166,17 @@ export const archiveProject = project => {
     render();
 }
 
+export const unarchiveProject = id => {
+    const profile = load('profile');
+    const archivedProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id === id;
+    })]
+    archivedProject.archived = false;
+    saveProject(archivedProject);
+    switchActiveProject(id);
+    render();
+}
+
 export const deleteProjectWarning = project => {
     const modalInner = () => {
         const div = document.createElement('div');
