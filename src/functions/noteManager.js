@@ -5,6 +5,7 @@ import icon from "./icon";
 import generateId from './generateId';
 import format from "date-fns/format";
 import render from './render';
+import copyTitle from "./howManyCopies";
 
 const newNote = () => {
     const profile = load('profile');
@@ -301,10 +302,23 @@ export const duplicateNote = note => {
     const profile = load('profile');
     const activeProject = profile.projects[profile.projects.findIndex(a => a.active)];
 
+    // const plainTitle = note.name.search(/\(copy/) < 0 ? note.name.trim() : note.name.slice(0, note.name.search(/\(copy/)).trim();
+    // const howManyCopies = (prof, projType) => {
+    //     let count = 0;
+    //     for (let project in prof[projType]) {
+    //         if (prof[projType][project].name.includes(`${plainTitle} (copy`)) {
+    //             ++count;
+    //         }
+    //     }
+    //     return count;
+    // }
+
     const newId = `${activeProject.id}.${generateId()}`
     const duplicatedNote = {
         ...note,
-        id:newId,
+        id: newId,
+        // name: `${plainTitle} (copy${howManyCopies(activeProject, 'notes') ? ' ' + parseInt(howManyCopies(activeProject, 'notes') + 1) : ''})`,
+        name: copyTitle(activeProject, 'notes', note),
     }
     activeProject.notes.push(duplicatedNote);
     save('profile', profile);
