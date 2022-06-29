@@ -32,6 +32,14 @@
     --smaller-text: .8rem;
 }
 
+.fill-profile-button {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top:0;
+    left: 0;
+}
+
 * {
     box-sizing: border-box;
     font-weight: normal;
