@@ -1,10 +1,8 @@
 CURRENTLY
-Access archived projects
-Unarchive projects
+add "copy #" to note dupes
 
 TO DO
 
-add "copy #" to note dupes
 add secret fill profile button
 note boxes height => max(fit-content, 150px), OR min-height
 prevent empty titles in new proj/task/list/note
@@ -58,8 +56,11 @@ list max height
 add user acct tooltip
 change user color accent bright to hsl
 find and display dates according to locale
+projects table in profile
 
 DONE
+Access archived projects
+Unarchive projects
 archive project
 fix duped project ids
 fix duped list checkboxes
