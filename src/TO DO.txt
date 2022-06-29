@@ -1,9 +1,8 @@
 CURRENTLY
-add "copy #" to note dupes
+add secret fill profile button
 
 TO DO
-
-add secret fill profile button
+fix line breaks in notes
 note boxes height => max(fit-content, 150px), OR min-height
 prevent empty titles in new proj/task/list/note
 sort function
@@ -57,8 +56,10 @@ add user acct tooltip
 change user color accent bright to hsl
 find and display dates according to locale
 projects table in profile
+remove "required" from inputs
 
 DONE
+add "copy #" to note dupes
 Access archived projects
 Unarchive projects
 archive project
