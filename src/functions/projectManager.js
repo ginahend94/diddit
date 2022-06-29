@@ -6,6 +6,7 @@ import Modal from "../DOM-elements/modal";
 import generateId from "./generateId";
 import render from "./render";
 import switchActiveProject from "./switchActiveProject";
+import format from "date-fns/format";
 
 if (!load('profile')) {
     console.log('Creating new profile.');
@@ -67,6 +68,8 @@ export default (() => {
             lists: [],
             notes: [],
             files: [],
+            dateCreated: new Date(),
+            dateCreatedFormatted: format(new Date(), 'yyyy-MM-dd'),
         };
         profile.projects.push(newProject);
         console.log(profile);
@@ -144,6 +147,8 @@ export const editProject = project => {
             ...project,
             name: modalInner.getName(),
             description: modalInner.getDescription(),
+            dateEdited: new Date(),
+            dateEditedFormatted: format(new Date(), 'yyyy-MM-dd'),
         }
         saveProject(newProject);
         Modal.close(modal);
@@ -152,7 +157,24 @@ export const editProject = project => {
 }
 
 export const archiveProject = project => {
-    console.log(`Will eventually archive ${project.name}`);
+    const profile = load('profile');
+    const archivedProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id === project.id;
+    })]
+    archivedProject.archived = true;
+    saveProject(archivedProject)
+    render();
+}
+
+export const unarchiveProject = id => {
+    const profile = load('profile');
+    const archivedProject = profile.projects[profile.projects.findIndex(a => {
+        return a.id === id;
+    })]
+    archivedProject.archived = false;
+    saveProject(archivedProject);
+    switchActiveProject(id);
+    render();
 }
 
 export const deleteProjectWarning = project => {

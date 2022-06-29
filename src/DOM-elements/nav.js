@@ -4,8 +4,9 @@ import load from "../functions/load";
 import ProjectManager from "../functions/projectManager";
 import switchActiveProject from "../functions/switchActiveProject";
 import contextMenu from "./context-menu";
-import { handleTooltip, tooltip } from "./tooltip";
+import { createTooltip, handleTooltip, tooltip } from "./tooltip";
 import { resizeSidebar } from "../functions/drag";
+import openProfile from './user-profile';
 
 
 export default Profile => {
@@ -33,6 +34,9 @@ export default Profile => {
     projectList.id = 'project-list';
 
     Profile.projects.forEach(project => {
+        if (project.archived) {
+            return console.log(`${project.name} is archived.`);
+        }
         const projectInfo = document.createElement('li');
         projectList.append(projectInfo);
         projectInfo.classList.add('project-info');
@@ -43,20 +47,7 @@ export default Profile => {
             contextMenu.openMenu(e, menu);
         });
 
-        projectInfo.addEventListener('mouseenter', e => {
-            tooltip.tooltip.textContent = project.name;
-        })
-        let timeout;
-        projectInfo.addEventListener('mousemove', e => {
-            if (document.body.contains(tooltip.tooltip)) document.body.removeChild(tooltip.tooltip);
-            clearTimeout(timeout);
-            timeout = setTimeout(() => handleTooltip(e, true), 500)
-        })
-        projectInfo.addEventListener('mouseleave', e => {
-            if (document.body.contains(tooltip.tooltip)) document.body.removeChild(tooltip.tooltip);
-            clearTimeout(timeout);
-            handleTooltip(e, false);
-        })
+        createTooltip(projectInfo, project.name);
 
         const projectTitle = document.createElement('span');
         projectInfo.append(projectTitle);
@@ -89,6 +80,9 @@ export default Profile => {
     settingsMenu.classList.add('settings-menu');
     const account = document.createElement('li');
     settingsMenu.append(account)
+    account.addEventListener('click', () => {
+        openProfile();
+    })
     let userIcon;
     let userName;
     if (load('profile')) {

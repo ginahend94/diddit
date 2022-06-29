@@ -1,4 +1,5 @@
 // import { v4 as uuidv4 } from "uuid";
+import { format } from "date-fns";
 import generateId from "./generateId.js";
 import load from "./load.js";
 
@@ -17,6 +18,8 @@ export default (name = '', icon = null, colorPalette = 'default', bio = '') => (
             lists: [],
             notes: [],
             files: [],
+            dateCreated: new Date(),
+            dateCreatedFormatted: format(new Date(), 'yyyy-MM-dd')
         }
     ],
 });

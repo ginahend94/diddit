@@ -36,6 +36,7 @@ export default Profile => {
         return main;
     }
     h2.textContent = activeProject.name;
+    if (activeProject.archived) h2.append(' (Archived)');
     if (activeProject.description) {
         const projectDescription = document.createElement('p');
         header.append(projectDescription);
