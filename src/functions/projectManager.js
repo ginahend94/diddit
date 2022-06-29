@@ -221,19 +221,9 @@ const deleteProject = project => {
 
 export const duplicateProject = project => {
     const profile = load('profile');
-    // const plainTitle = project.name.search(/\(copy/) < 0 ? project.name.trim() : project.name.slice(0, project.name.search(/\(copy/)).trim();
-    // const howManyCopies = (prof) => {
-    //     let count = 0;
-    //     for (let project in prof.projects) {
-    //         if (prof.projects[project].name.includes(`${plainTitle} (copy`)) {
-    //             ++count;
-    //         }
-    //     }
-    //     return count;
     // }
     const duplicatedProject = {
         ...project,
-        // name: `${plainTitle} (copy${howManyCopies(profile, 'projects', plainTitle) ? ' ' + parseInt(howManyCopies(profile, 'projects', plainTitle) + 1) : ''})`,
         id: generateId(),
         name: copyTitle(profile, 'projects', project),
     }
