@@ -57,6 +57,7 @@ add title to lists
 list max height
 add user acct tooltip
 change user color accent bright to hsl
+find and display dates according to locale
 
 DONE
 archive project

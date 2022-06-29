@@ -8,10 +8,10 @@ export default () => {
     const profile = load('profile');
     const modalInner = () => {
         const body = document.createElement('div');
-        
+
         const header = document.createElement('header');
         body.append(header);
-        
+
         const profileIcon = icon(profile.icon) || getIcon('account');
         header.append(profileIcon);
         profileIcon.classList.add('user-icon');
@@ -41,6 +41,7 @@ export default () => {
         archive.addEventListener('click', e => {
             const archived = profile.projects.filter(a => a.archived);
             console.log('Archived Projects: ', archived);
+            showArchive();
         })
 
         return body
@@ -56,4 +57,30 @@ export default () => {
         true
     )
     Modal.open(modal);
+
+    const showArchive = () => {
+        const modalBody = modal.querySelector('.modal-inner');
+        let innerHTML =
+            `<table class="archived-projects">
+                <th>
+                    <td>Name</td>
+                    <td>Description</td>
+                    <td>Date Created</td>
+                </th>
+                <tbody>`;
+        modalBody.innerHTML = (() => {
+            for (let project of profile.projects) {
+                if (project.archive) {
+                    innerHTML +=
+                        `<tr>
+                            <td>${profile.projects[project].name}</td>
+                            <td class="project-description">${profile.projects[project].description}</td>
+                            <td class="project-date">${profile.projects[project].dateCreatedFormatted}</td>
+                        </tr>`
+                }
+            }
+        })()
+        innerHTML += `</tbody></table>`;
+    }
+
 }

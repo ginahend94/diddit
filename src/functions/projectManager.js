@@ -6,6 +6,7 @@ import Modal from "../DOM-elements/modal";
 import generateId from "./generateId";
 import render from "./render";
 import switchActiveProject from "./switchActiveProject";
+import format from "date-fns/format";
 
 if (!load('profile')) {
     console.log('Creating new profile.');
@@ -67,6 +68,8 @@ export default (() => {
             lists: [],
             notes: [],
             files: [],
+            dateCreated: new Date(),
+            dateCreatedFormatted: format(new Date(), 'yyyy-MM-dd'),
         };
         profile.projects.push(newProject);
         console.log(profile);
@@ -144,6 +147,8 @@ export const editProject = project => {
             ...project,
             name: modalInner.getName(),
             description: modalInner.getDescription(),
+            dateEdited: new Date(),
+            dateEditedFormatted: format(new Date(), 'yyyy-MM-dd'),
         }
         saveProject(newProject);
         Modal.close(modal);

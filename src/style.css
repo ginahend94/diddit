@@ -1051,3 +1051,7 @@ button.spell-check-false {
 .user-profile li:hover {
     color: rgb(var(--accent-color-bright));
 }
+
+.user-profile li:active {
+    color: rgb(var(--accent-color));
+}
