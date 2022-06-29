@@ -4,6 +4,7 @@ import load from "../functions/load";
 import { getIcon } from "../functions/icon";
 import icon from '../functions/icon';
 import { unarchiveProject } from '../functions/projectManager';
+import { createTooltip } from "./tooltip";
 
 export default () => {
     const profile = load('profile');
@@ -31,20 +32,24 @@ export default () => {
         body.append(menu);
         const projects = document.createElement('li');
         menu.append(projects);
-        projects.append(getIcon('folder-outline'), ' Projects');
-        projects.addEventListener('click', e => {
+        projects.append(getIcon('folder-outline'), ` Projects (${profile.projects.length})`);
+        projects.addEventListener('click', () => {
             console.log('Projects: ', profile.projects);
         })
 
         const archive = document.createElement('li');
         menu.append(archive);
-        archive.append(getIcon('archive-outline'), ' Archive');
-        archive.addEventListener('click', e => {
-            const archived = profile.projects.filter(a => a.archived);
+        archive.append(getIcon('archive-outline'), ` Archive (${profile.projects.filter(a => a.archived).length})`);
+        if (!profile.projects.some(a => a.archived)) {
+            archive.classList.add('disabled-link');
+            createTooltip(archive, 'You have no projects archived.');
+            return body;
+        }
+        archive.addEventListener('click', () => {
             showArchive();
         })
 
-        return body
+        return body;
     }
 
     const modal = Modal.create(
@@ -86,7 +91,8 @@ export default () => {
         const unarchiveButtons = modalBody.querySelectorAll('.unarchive-project button');
         unarchiveButtons.forEach(button => {
             button.append(getIcon('archive-arrow-up-outline'));
-            button.title = 'Unarchive Project';
+            // button.title = 'Unarchive Project';
+            createTooltip(button, 'Unarchive Project');
             button.addEventListener('click', () => {
                 const id = button.dataset.project;
                 unarchiveProject(id);
