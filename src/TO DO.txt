@@ -1,5 +1,4 @@
 CURRENTLY
-add secret fill profile button
 
 TO DO
 fix line breaks in notes
@@ -57,8 +56,10 @@ change user color accent bright to hsl
 find and display dates according to locale
 projects table in profile
 remove "required" from inputs
+fix width of lists on fullscreen
 
 DONE
+add secret fill profile button
 add "copy #" to note dupes
 Access archived projects
 Unarchive projects
