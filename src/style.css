@@ -874,10 +874,6 @@ label[for="pretty-date"] {
     background-color: rgb(var(--accent-color-bright));
 }
 
-/* .task-priority-list input[name='priority'] {
-    color: red;
-} */
-
 .task-priority svg {
     cursor: pointer;
 }
@@ -896,6 +892,10 @@ label[for="pretty-date"] {
 
 .modal .notes>* {
     display: block;
+}
+
+.task-details.notes {
+    white-space: pre-wrap;
 }
 
 /* CONTEXT MENU */

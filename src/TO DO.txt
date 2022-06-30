@@ -1,7 +1,6 @@
 CURRENTLY
 
 TO DO
-fix line breaks in notes
 note boxes height => max(fit-content, 150px), OR min-height
 prevent empty titles in new proj/task/list/note
 sort function
@@ -59,6 +58,7 @@ remove "required" from inputs
 fix width of lists on fullscreen
 
 DONE
+fix line breaks in notes
 add secret fill profile button
 add "copy #" to note dupes
 Access archived projects
