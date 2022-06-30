@@ -1,8 +1,7 @@
 CURRENTLY
+sort function
 
 TO DO
-prevent empty titles in new proj/task/list/note
-sort function
 fix shadow showing up on drag
 make project titles draggable
 collapse projects
@@ -57,6 +56,7 @@ remove "required" from inputs
 fix width of lists on fullscreen
 
 DONE
+prevent empty titles in new proj/task/list/note
 note boxes height => max(fit-content, 150px), OR min-height
 fix line breaks in notes
 add secret fill profile button
