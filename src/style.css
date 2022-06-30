@@ -398,6 +398,9 @@ li.subtask {
     background-color: rgb(var(--tertiary-color));
     display: flex;
     flex-direction: column;
+    /* height: min(min-content,150px); */
+    min-height: 150px;
+    height: min-content;
 }
 
 .note-container .note-options {
