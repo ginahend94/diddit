@@ -4,7 +4,7 @@ import load from "../functions/load";
 import ProjectManager from "../functions/projectManager";
 import switchActiveProject from "../functions/switchActiveProject";
 import contextMenu from "./context-menu";
-import { createTooltip, handleTooltip, tooltip } from "./tooltip";
+import { createTooltip } from "./tooltip";
 import { resizeSidebar } from "../functions/drag";
 import openProfile from './user-profile';
 

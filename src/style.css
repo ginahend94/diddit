@@ -308,7 +308,7 @@ h2 {
 
 /* TO DO LIST  */
 
-.project-container {
+.lists-container, .notes-container {
     flex: auto;
     overflow-y: auto;
     display: grid;
@@ -316,6 +316,17 @@ h2 {
     grid-template-rows: min-content;
     gap: 10px;
     padding: var(--padding);
+}
+
+.notes-container {
+    border-top: solid 1px rgb(var(--tertiary-color));
+}
+
+.plus-button {
+    align-self: center;
+    justify-self: center;
+    width: min-content;
+    padding: 5px;
 }
 
 .lists-header,
@@ -326,6 +337,15 @@ h2 {
     margin: 0;
     color: rgba(var(--grayed-text-color), .5);
     justify-self: center;
+    background-color: transparent;
+    box-shadow: none;
+    display: flex;
+}
+
+.lists-header h4,
+.notes-header h4 {
+    margin: 0;
+    padding: 0;
 }
 
 .to-do-list-container {
