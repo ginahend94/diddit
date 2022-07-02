@@ -32,12 +32,17 @@
     --smaller-text: .8rem;
 }
 
-.fill-profile-button {
+.fill-profile-button, .delete-profile-button {
     width: 25px;
     height: 25px;
     position: absolute;
     top:0;
+}
+.fill-profile-button {
     left: 0;
+}
+.delete-profile-button {
+    right: 0;
 }
 
 * {
@@ -281,7 +286,7 @@ main {
 
 /* HEADER  */
 
-main header {
+main > header {
     background-color: rgb(var(--accent-color));
     height: 100px;
     min-height: 100px;
@@ -329,15 +334,12 @@ h2 {
     padding: 5px;
 }
 
-.lists-header,
-.notes-header {
+header.lists-header,
+header.notes-header {
     font-size: 2rem;
     grid-column: 1 / -1;
-    align-self: end;
     margin: 0;
     color: rgba(var(--grayed-text-color), .5);
-    justify-self: center;
-    background-color: transparent;
     box-shadow: none;
     display: flex;
 }

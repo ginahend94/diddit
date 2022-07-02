@@ -1,7 +1,9 @@
 CURRENTLY
+move add button and collapse button to section header
 sort function
 
 TO DO
+resize notes section
 fix shadow showing up on drag
 make project titles draggable
 collapse projects

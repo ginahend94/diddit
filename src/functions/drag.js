@@ -127,7 +127,7 @@ export const dragModal = (modalContainer) => {
         }
 } 
 
-export const resizeSidebar = (nav) => {
+export const resize = (nav, direction) => {
     const sideDrag = nav.querySelector('.side-drag');
     let xpos;
     let dragging = false;
