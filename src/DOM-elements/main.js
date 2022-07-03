@@ -48,20 +48,34 @@ export default Profile => {
         projectDescription.textContent = activeProject.description;
     }
 
+    const projectContainer = document.createElement('div');
+    main.append(projectContainer);
+    projectContainer.classList.add('project-container');
+
+
     const listsContainer = document.createElement('div');
-    main.append(listsContainer);
-    listsContainer.classList.add('lists-container');
+    projectContainer.append(listsContainer);
+    listsContainer.classList.add('container');
     
     const listsHeader = document.createElement('header');
     listsContainer.append(listsHeader);
-    listsHeader.classList.add('lists-header');
+    // listsHeader.classList.add('lists-header');
     const listsH4 = document.createElement('h4');
     listsHeader.append(listsH4);
     listsH4.textContent = `Lists (${activeProject.lists.length})`;
 
+    const newListButton = document.createElement('button');
+    newListButton.classList.add('plus-button')
+    newListButton.append(getIcon('plus'));
+    listsHeader.append(newListButton);
+    createTooltip(newListButton, 'New list');
+    newListButton.addEventListener('click', () => {
+        createNew('list');
+    });
+
     const listsInner = document.createElement('div');
     listsContainer.append(listsInner);
-    listsInner.classList.add('list-inner');
+    listsInner.classList.add('project-inner');
 
     activeProject.lists.forEach(list => {
         const newList = ToDoContainer(list);
@@ -71,29 +85,29 @@ export default Profile => {
         });
     })
 
-    const newListButton = document.createElement('button');
-    newListButton.classList.add('plus-button')
-    newListButton.append(getIcon('plus'));
-    listsContainer.append(newListButton);
-    createTooltip(newListButton, 'New list');
-    newListButton.addEventListener('click', () => {
-        createNew('list');
-    });
-
     const notesContainer = document.createElement('div');
-    main.append(notesContainer);
-    notesContainer.classList.add('notes-container');
+    projectContainer.append(notesContainer);
+    notesContainer.classList.add('container');
 
     const notesHeader = document.createElement('header');
     notesContainer.append(notesHeader);
-    notesHeader.classList.add('notes-header');
+    // notesHeader.classList.add('notes-header');
     const notesH4 = document.createElement('h4');
     notesHeader.append(notesH4);
     notesH4.textContent = `Notes (${activeProject.notes.length})`;
 
+    const newNoteButton = document.createElement('button');
+    newNoteButton.classList.add('plus-button')
+    newNoteButton.append(getIcon('plus'));
+    notesHeader.append(newNoteButton);
+    createTooltip(newNoteButton, 'New note');
+    newNoteButton.addEventListener('click', () => {
+        createNew('note');
+    })
+
     const notesInner = document.createElement('div');
     notesContainer.append(notesInner);
-    notesInner.classList.add('note-inner');
+    notesInner.classList.add('project-inner');
 
     let untitledNotes = 0;
 
@@ -101,15 +115,6 @@ export default Profile => {
         if (!note.name) untitledNotes++;
         const newNote = createNoteNode(note, untitledNotes);
         notesInner.append(newNote);
-    })
-
-    const newNoteButton = document.createElement('button');
-    newNoteButton.classList.add('plus-button')
-    newNoteButton.append(getIcon('plus'));
-    notesContainer.append(newNoteButton);
-    createTooltip(newNoteButton, 'New note');
-    newNoteButton.addEventListener('click', () => {
-        createNew('note');
     })
 
     return main;

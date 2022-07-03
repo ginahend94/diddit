@@ -3,6 +3,7 @@ move add button and collapse button to section header
 sort function
 
 TO DO
+keep tasks from being moved to other lists
 resize notes section
 fix shadow showing up on drag
 make project titles draggable
