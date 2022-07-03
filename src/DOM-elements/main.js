@@ -65,6 +65,7 @@ const Main = Profile => {
     const listsInner = document.createElement('div');
     listsContainer.append(listsInner);
     listsInner.classList.add('project-inner');
+    listsInner.style.display = 'grid';
 
     const collapseListButton = collapseButton(listsInner);
     listsHeader.append(collapseListButton);
@@ -93,6 +94,7 @@ const Main = Profile => {
     const notesInner = document.createElement('div');
     notesContainer.append(notesInner);
     notesInner.classList.add('project-inner');
+    notesInner.style.display = 'grid';
 
     const collapseNoteButton = collapseButton(notesInner);
     notesHeader.append(collapseNoteButton);
@@ -108,9 +110,16 @@ const Main = Profile => {
     return main;
 }
 
-const collapse = (section) => {
-    console.log(section);
-}
+const collapse = (() => {
+    const trigger = section => {
+        if (section.style.display == 'grid') {
+            section.style.display = 'none';
+        } else {
+            section.style.display = 'grid';
+        }
+    }
+    return { trigger }
+})();
 
 const newButton = (type) => {
     const button = document.createElement('button');
@@ -129,7 +138,7 @@ const collapseButton = (section) => {
     button.append(getIcon('chevron-double-up'));
     createTooltip(button, 'Collapse/Expand');
     button.addEventListener('click', () => {
-        collapse(section);
+        collapse.trigger(section);
     });
     button.addEventListener('click', () => {
         if (button.classList.contains('flip')) {
