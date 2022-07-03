@@ -7,9 +7,9 @@ import createNoteNode from './note-container';
 import render from '../functions/render';
 import { getIcon } from "../functions/icon";
 import ProjectManager from "../functions/projectManager";
-import { createTooltip } from "./tooltip";
+import { createTooltip, removeTooltip } from "./tooltip";
 
-export default Profile => {
+const Main = Profile => {
 
     const main = document.createElement('main');
 
@@ -17,15 +17,12 @@ export default Profile => {
         return project.active
     });
 
-
-
     const header = document.createElement('header');
     main.append(header);
     const h2 = document.createElement('h2');
     header.append(h2);
 
-    // Display this page if there are no projects yet
-    if (!activeProject) {
+    if (!activeProject) { // Display this page if there are no projects yet
         header.textContent = 'Click the button below to create a project.'
         const noProject = document.createElement('div');
         main.append(noProject);
@@ -52,30 +49,25 @@ export default Profile => {
     main.append(projectContainer);
     projectContainer.classList.add('project-container');
 
-
     const listsContainer = document.createElement('div');
     projectContainer.append(listsContainer);
     listsContainer.classList.add('container');
-    
+
     const listsHeader = document.createElement('header');
     listsContainer.append(listsHeader);
-    // listsHeader.classList.add('lists-header');
     const listsH4 = document.createElement('h4');
     listsHeader.append(listsH4);
     listsH4.textContent = `Lists (${activeProject.lists.length})`;
 
-    const newListButton = document.createElement('button');
-    newListButton.classList.add('plus-button')
-    newListButton.append(getIcon('plus'));
+    const newListButton = newButton('list');
     listsHeader.append(newListButton);
-    createTooltip(newListButton, 'New list');
-    newListButton.addEventListener('click', () => {
-        createNew('list');
-    });
 
     const listsInner = document.createElement('div');
     listsContainer.append(listsInner);
     listsInner.classList.add('project-inner');
+
+    const collapseListButton = collapseButton(listsInner);
+    listsHeader.append(collapseListButton);
 
     activeProject.lists.forEach(list => {
         const newList = ToDoContainer(list);
@@ -91,23 +83,19 @@ export default Profile => {
 
     const notesHeader = document.createElement('header');
     notesContainer.append(notesHeader);
-    // notesHeader.classList.add('notes-header');
     const notesH4 = document.createElement('h4');
     notesHeader.append(notesH4);
     notesH4.textContent = `Notes (${activeProject.notes.length})`;
 
-    const newNoteButton = document.createElement('button');
-    newNoteButton.classList.add('plus-button')
-    newNoteButton.append(getIcon('plus'));
+    const newNoteButton = newButton('note');
     notesHeader.append(newNoteButton);
-    createTooltip(newNoteButton, 'New note');
-    newNoteButton.addEventListener('click', () => {
-        createNew('note');
-    })
 
     const notesInner = document.createElement('div');
     notesContainer.append(notesInner);
     notesInner.classList.add('project-inner');
+
+    const collapseNoteButton = collapseButton(notesInner);
+    notesHeader.append(collapseNoteButton);
 
     let untitledNotes = 0;
 
@@ -119,3 +107,37 @@ export default Profile => {
 
     return main;
 }
+
+const collapse = (section) => {
+    console.log(section);
+}
+
+const newButton = (type) => {
+    const button = document.createElement('button');
+    button.classList.add('plus-button')
+    button.append(getIcon('plus'));
+    createTooltip(button, `New ${type}`);
+    button.addEventListener('click', () => {
+        createNew(type);
+    });
+    return button;
+}
+
+const collapseButton = (section) => {
+    const button = document.createElement('button');
+    button.classList.add('collapse-button');
+    button.append(getIcon('chevron-double-up'));
+    createTooltip(button, 'Collapse/Expand');
+    button.addEventListener('click', () => {
+        collapse(section);
+    });
+    button.addEventListener('click', () => {
+        if (button.classList.contains('flip')) {
+            button.classList.remove('flip');
+        } else {
+            button.classList.add('flip');
+        }
+    })
+    return button;
+}
+export default Main;

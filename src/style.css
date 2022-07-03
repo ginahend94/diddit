@@ -315,22 +315,16 @@ h2 {
 .project-container {
     flex:1;
     overflow: hidden;
-    /* border: solid 1px red; */
     display: flex;
     flex-direction: column;
 }
 
 .project-container .container {
     max-height: calc(100% - 60px);
-    /* border: solid 1px blue; */
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
-
-/* .project-container .container:last-child {
-    border-top: solid 1px rgb(var(--tertiary-color));
-} */
 
 .project-container .container header {
     font-size: 2rem;
@@ -339,7 +333,6 @@ h2 {
     display: flex;
     gap:10px;
     border: solid 1px rgb(var(--tertiary-color));
-    /* box-shadow: 0 2px 5px rgb(var(--secondary-color)); */
 }
 
 .project-container .container header h4 {
@@ -347,7 +340,6 @@ h2 {
 }
 
 .project-inner {
-    /* border: solid 1px yellow; */
     padding: var(--padding);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25ch, 1fr));
@@ -356,23 +348,16 @@ h2 {
     overflow-y: auto;
 }
 
- /* .notes-container, .list-inner {
-    flex: auto;
-    overflow-y: auto;
-    display: grid;
-    gap: 10px;
-    padding: var(--padding);
-} */
-
-/* .notes-container {
-    border-top: solid 1px rgb(var(--tertiary-color));
-} */
-
-.plus-button {
+.project-container header button {
     align-self: center;
     justify-self: center;
     width: min-content;
     padding:0;
+    color: rgb(var(--text-color));
+    transition: rotate 0s;
+}
+.project-container header button.flip {
+    transform: rotate(180deg);
 }
 
 .to-do-list-container {
@@ -445,7 +430,6 @@ li.subtask {
     background-color: rgb(var(--tertiary-color));
     display: flex;
     flex-direction: column;
-    /* height: min(min-content,150px); */
     min-height: 150px;
     height: min-content;
 }
