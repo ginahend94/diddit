@@ -1,9 +1,9 @@
 CURRENTLY
+resize notes section
 sort function
 
 TO DO
 keep tasks from being moved to other lists
-resize notes section
 fix shadow showing up on drag
 make project titles draggable
 collapse projects
