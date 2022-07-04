@@ -1,3 +1,5 @@
+import save from "./save";
+
 export default (page) => {
     const draggables = page.querySelectorAll('.drag-element');
     const containers = page.querySelectorAll('.drag-container');
@@ -127,29 +129,34 @@ export const dragModal = (modalContainer) => {
         }
 } 
 
-export const resizeSidebar = (nav) => {
-    const sideDrag = nav.querySelector('.side-drag');
-    let xpos;
+export const resize = (section, direction) => {
+    const resizeBar = section.querySelector('.resize-bar');
+    let mousePosition;
+    let xOrY = direction == 'width' ? 'X' : 'Y';
     let dragging = false;
 
-    sideDrag.addEventListener('mousedown', e => {
-        xpos = nav.getBoundingClientRect().width + sideDrag.getBoundingClientRect().width / 2;
+    resizeBar.addEventListener('mousedown', e => {
+        mousePosition = section.getBoundingClientRect()[direction] + resizeBar.getBoundingClientRect()[direction] / 2;
+        if (direction == 'height') mousePosition = window.innerHeight - mousePosition;
         dragging = true;
-        sideDrag.classList.add('visible');
+        resizeBar.classList.add('visible');
         document.body.style.userSelect = 'none';
-        document.body.style.cursor = 'col-resize';
+        document.body.style.cursor = `${direction == 'width' ? 'col' : 'row'}-resize`;
     })
     
     document.body.addEventListener('mousemove', e => {
-        xpos = e.clientX;
+        mousePosition = e[`client${xOrY}`];
+        if (direction == 'height') mousePosition = window.innerHeight - mousePosition;
         if (!dragging) return;
-        nav.style.width = xpos + 'px';
+        section.style[direction] = mousePosition + 'px';
+        if (direction == 'width') save('navWidth', section.style[direction]);
+        if (direction == 'height') save('notesHeight', section.style[direction]);
     })
 
     document.body.addEventListener('mouseup', e => {
         document.body.style.cursor = 'auto';
         dragging = false;
-        sideDrag.classList.remove('visible');
+        resizeBar.classList.remove('visible');
         document.body.style.userSelect = 'auto';
     })
 }

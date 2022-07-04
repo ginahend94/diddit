@@ -1,12 +1,12 @@
 CURRENTLY
-sort function
+auto focus new task input
 
 TO DO
+keep tasks from being moved to other lists
 fix shadow showing up on drag
 make project titles draggable
 collapse projects
 email/share to do list
-auto focus new task input
 priority color
 add keyboard shortcuts
 tour/tutorial
@@ -54,8 +54,12 @@ find and display dates according to locale
 projects table in profile
 remove "required" from inputs
 fix width of lists on fullscreen
+sort function
 
 DONE
+resize notes section
+write collapse function
+move add button and collapse button to section header
 prevent empty titles in new proj/task/list/note
 note boxes height => max(fit-content, 150px), OR min-height
 fix line breaks in notes

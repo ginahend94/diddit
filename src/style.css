@@ -32,12 +32,17 @@
     --smaller-text: .8rem;
 }
 
-.fill-profile-button {
+.fill-profile-button, .delete-profile-button {
     width: 25px;
     height: 25px;
     position: absolute;
     top:0;
+}
+.fill-profile-button {
     left: 0;
+}
+.delete-profile-button {
+    right: 0;
 }
 
 * {
@@ -149,7 +154,7 @@ nav header {
     padding-left: 5px;
 }
 
-.side-drag {
+.resize-bar {
     position: absolute;
     width: 5px;
     height: 100%;
@@ -161,11 +166,17 @@ nav header {
     transition: .2s;
 }
 
-.side-drag.visible {
+.container .resize-bar {
+    height: 5px;
+    width: 100%;
+    cursor: row-resize;
+}
+
+.resize-bar.visible {
     opacity: 1;
 }
 
-.side-drag:hover {
+.resize-bar:hover {
     opacity: 1;
 }
 
@@ -281,7 +292,7 @@ main {
 
 /* HEADER  */
 
-main header {
+main > header {
     background-color: rgb(var(--accent-color));
     height: 100px;
     min-height: 100px;
@@ -307,25 +318,59 @@ h2 {
 }
 
 /* TO DO LIST  */
-
 .project-container {
-    flex: auto;
-    overflow-y: auto;
+    flex:1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-container .container {
+    max-height: calc(100% - 60px);
+    min-height: 60px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 50%;
+}
+
+.project-container .container:first-child {
+    flex: 1;
+}
+
+.project-container .container header {
+    font-size: 2rem;
+    padding: var(--padding);
+    color: rgba(var(--grayed-text-color),.5);
+    display: flex;
+    gap:10px;
+    border: solid 1px rgb(var(--tertiary-color));
+}
+
+.project-container .container header h4 {
+    margin: 0;
+}
+
+.project-inner {
+    padding: var(--padding);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25ch, 1fr));
     grid-template-rows: min-content;
-    gap: 10px;
-    padding: var(--padding);
+    gap:var(--padding);
+    overflow-y: auto;
 }
 
-.lists-header,
-.notes-header {
-    font-size: 2rem;
-    grid-column: 1 / -1;
-    align-self: end;
-    margin: 0;
-    color: rgba(var(--grayed-text-color), .5);
+.project-container header button {
+    align-self: center;
     justify-self: center;
+    width: min-content;
+    padding:0;
+    color: rgb(var(--text-color));
+    transition: rotate 0s;
+}
+.project-container header button.flip {
+    transform: rotate(180deg);
 }
 
 .to-do-list-container {
@@ -398,7 +443,6 @@ li.subtask {
     background-color: rgb(var(--tertiary-color));
     display: flex;
     flex-direction: column;
-    /* height: min(min-content,150px); */
     min-height: 150px;
     height: min-content;
 }

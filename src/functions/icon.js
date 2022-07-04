@@ -24,6 +24,8 @@ const getSVG = (() => {
         'drag',
         'folder-outline',
         'chevron-left',
+        'chevron-double-up',
+        'chevron-double-down',
     ]
 
     const iconData = mdiIcons.map(icon => {

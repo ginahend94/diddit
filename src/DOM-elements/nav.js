@@ -4,9 +4,10 @@ import load from "../functions/load";
 import ProjectManager from "../functions/projectManager";
 import switchActiveProject from "../functions/switchActiveProject";
 import contextMenu from "./context-menu";
-import { createTooltip, handleTooltip, tooltip } from "./tooltip";
-import { resizeSidebar } from "../functions/drag";
+import { createTooltip } from "./tooltip";
+import { resize } from "../functions/drag";
 import openProfile from './user-profile';
+import save from "../functions/save";
 
 
 export default Profile => {
@@ -24,6 +25,16 @@ export default Profile => {
     const sidebarLower = document.createElement('div');
     sidebarLower.classList.add('sidebar-lower');
     nav.append(sidebarLower);
+    let navWidth;
+    if (load('navWidth')) {
+        navWidth = load('navWidth');
+    } else {
+        navWidth = '200px';
+        save('navWidth', navWidth);
+    }
+    console.log(navWidth);
+    nav.style.width = navWidth;
+
     const projectListContainer = document.createElement('div');
     sidebarLower.append(projectListContainer);
     projectListContainer.classList.add('project-list-container');
@@ -109,9 +120,9 @@ export default Profile => {
 
     const sideDrag = document.createElement('div');
     sidebarLower.append(sideDrag);
-    sideDrag.classList.add('side-drag');
+    sideDrag.classList.add('resize-bar');
 
-    resizeSidebar(nav);
+    resize(nav, 'width');
 
     return nav;
 }

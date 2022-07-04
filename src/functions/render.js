@@ -3,7 +3,8 @@ import main from "../DOM-elements/main";
 import load from "./load";
 import save from "./save";
 import drag from "./drag";
-import { fillProfileButton } from "./fillProfile";
+import createProfile from './profile';
+import { fillProfileButton, deleteProfileButton } from "./fillProfile";
 
 export default () => {
     let Profile;
@@ -18,6 +19,7 @@ export default () => {
     document.body.append(nav(Profile));
     document.body.append(main(Profile));
     document.body.append(fillProfileButton()); // TESTING
+    document.body.append(deleteProfileButton()); // TESTING
 
     drag(document.body);
     console.log('rendered')
