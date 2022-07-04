@@ -28,6 +28,10 @@
     --grayed-text-color: 133, 133, 133;
     */
 
+    --low-priority: 138, 172, 88;
+    --medium-priority: 234, 203, 92;
+    --high-priority:  196, 62, 74;
+
     --padding: 10px;
     --smaller-text: .8rem;
 }
@@ -405,7 +409,15 @@ h2 {
 .subtask {
     border-bottom: solid 1px rgb(var(--tertiary-color));
     border-right: solid 10px rgb(var(--tertiary-color));
-
+}
+.task>.task-container.medium-priority {
+    border-right: solid 10px rgb(var(--medium-priority));
+}
+.task>.task-container.low-priority {
+    border-right: solid 10px rgb(var(--low-priority));
+}
+.task>.task-container.high-priority {
+    border-right: solid 10px rgb(var(--high-priority));
 }
 
 .task-container {
@@ -548,6 +560,7 @@ li.subtask {
     position: relative;
     transition: .2s;
     display: inline-block;
+    max-width: calc(100% - 45px);
 }
 
 .list-checkbox:checked~.task-text {

@@ -7,6 +7,7 @@ import { defaults } from '@iconify/utils/lib/customisations';
 const getSVG = (() => {
     const mdiIcons = [
         'checkbox-marked-outline',
+        'checkbox-blank-outline',
         'plus',
         'dots-horizontal',
         'dots-vertical',
