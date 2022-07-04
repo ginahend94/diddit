@@ -109,7 +109,7 @@ export default Profile => {
 
     const sideDrag = document.createElement('div');
     sidebarLower.append(sideDrag);
-    sideDrag.classList.add('side-drag');
+    sideDrag.classList.add('resize-bar');
 
     resize(nav, 'width');
 

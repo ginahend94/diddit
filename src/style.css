@@ -154,7 +154,7 @@ nav header {
     padding-left: 5px;
 }
 
-.side-drag {
+.resize-bar {
     position: absolute;
     width: 5px;
     height: 100%;
@@ -166,11 +166,17 @@ nav header {
     transition: .2s;
 }
 
-.side-drag.visible {
+.container .resize-bar {
+    height: 5px;
+    width: 100%;
+    cursor: row-resize;
+}
+
+.resize-bar.visible {
     opacity: 1;
 }
 
-.side-drag:hover {
+.resize-bar:hover {
     opacity: 1;
 }
 
@@ -321,9 +327,15 @@ h2 {
 
 .project-container .container {
     max-height: calc(100% - 60px);
+    min-height: 60px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.project-container .container:first-child {
+    flex: 1;
 }
 
 .project-container .container header {

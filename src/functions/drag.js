@@ -128,23 +128,34 @@ export const dragModal = (modalContainer) => {
 } 
 
 export const resize = (section, direction) => {
-    const resizeBar = section.querySelector('.side-drag');
+    const resizeBar = section.querySelector('.resize-bar');
     let mousePosition;
     let xOrY = direction == 'width' ? 'X' : 'Y';
     let dragging = false;
 
+    // if (direction == 'height') {
+    //     mousePosition = window.innerHeight - section.getBoundingClientRect()[direction] + resizeBar.getBoundingClientRect()[direction] / 2;
+    // }
+
     resizeBar.addEventListener('mousedown', e => {
         mousePosition = section.getBoundingClientRect()[direction] + resizeBar.getBoundingClientRect()[direction] / 2;
+        if (direction == 'height') mousePosition = window.innerHeight - mousePosition;
         dragging = true;
         resizeBar.classList.add('visible');
         document.body.style.userSelect = 'none';
-        document.body.style.cursor = 'col-resize';
+        document.body.style.cursor = `${direction == 'width' ? 'col' : 'row'}-resize`;
     })
     
     document.body.addEventListener('mousemove', e => {
         mousePosition = e[`client${xOrY}`];
+        console.log('mouse pos: ', mousePosition);
+        console.log('innerheight: ', window.innerHeight);
+        console.log('height: ', window.innerHeight - mousePosition)
+        // console.log('max height: ', section.style.maxHeight)
+        if (direction == 'height') mousePosition = window.innerHeight - mousePosition;
         if (!dragging) return;
         section.style[direction] = mousePosition + 'px';
+        console.log('changing to ', section.style.height)
     })
 
     document.body.addEventListener('mouseup', e => {
