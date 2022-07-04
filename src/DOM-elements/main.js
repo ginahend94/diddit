@@ -9,6 +9,8 @@ import { getIcon } from "../functions/icon";
 import ProjectManager from "../functions/projectManager";
 import { createTooltip, removeTooltip } from "./tooltip";
 import { resize } from "../functions/drag";
+import load from "../functions/load";
+import save from "../functions/save";
 
 const Main = Profile => {
 
@@ -82,6 +84,14 @@ const Main = Profile => {
     const notesContainer = document.createElement('div');
     projectContainer.append(notesContainer);
     notesContainer.classList.add('container');
+    let notesHeight;
+    if (load('notesHeight')) {
+        notesHeight = load('notesHeight');
+    } else {
+        notesHeight = '50%';
+        save('notesHeight', notesHeight);
+    }
+    notesContainer.style.height = notesHeight;
 
     const resizeBar = document.createElement('div');
     notesContainer.append(resizeBar);
@@ -112,7 +122,7 @@ const Main = Profile => {
         notesInner.append(newNote);
     })
 
-    resize(notesContainer, 'height')
+    resize(notesContainer, 'height');
 
     return main;
 }

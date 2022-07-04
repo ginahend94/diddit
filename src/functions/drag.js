@@ -1,3 +1,5 @@
+import save from "./save";
+
 export default (page) => {
     const draggables = page.querySelectorAll('.drag-element');
     const containers = page.querySelectorAll('.drag-container');
@@ -133,10 +135,6 @@ export const resize = (section, direction) => {
     let xOrY = direction == 'width' ? 'X' : 'Y';
     let dragging = false;
 
-    // if (direction == 'height') {
-    //     mousePosition = window.innerHeight - section.getBoundingClientRect()[direction] + resizeBar.getBoundingClientRect()[direction] / 2;
-    // }
-
     resizeBar.addEventListener('mousedown', e => {
         mousePosition = section.getBoundingClientRect()[direction] + resizeBar.getBoundingClientRect()[direction] / 2;
         if (direction == 'height') mousePosition = window.innerHeight - mousePosition;
@@ -148,14 +146,12 @@ export const resize = (section, direction) => {
     
     document.body.addEventListener('mousemove', e => {
         mousePosition = e[`client${xOrY}`];
-        console.log('mouse pos: ', mousePosition);
-        console.log('innerheight: ', window.innerHeight);
-        console.log('height: ', window.innerHeight - mousePosition)
-        // console.log('max height: ', section.style.maxHeight)
         if (direction == 'height') mousePosition = window.innerHeight - mousePosition;
         if (!dragging) return;
         section.style[direction] = mousePosition + 'px';
-        console.log('changing to ', section.style.height)
+        console.log(section.style[direction]);
+        if (direction == 'width') save('navWidth', section.style[direction]);
+        if (direction == 'height') save('notesHeight', section.style[direction]);
     })
 
     document.body.addEventListener('mouseup', e => {
