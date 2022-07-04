@@ -1,5 +1,4 @@
 CURRENTLY
-resize notes section
 sort function
 
 TO DO
@@ -58,6 +57,7 @@ remove "required" from inputs
 fix width of lists on fullscreen
 
 DONE
+resize notes section
 write collapse function
 move add button and collapse button to section header
 prevent empty titles in new proj/task/list/note

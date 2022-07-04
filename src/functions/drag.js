@@ -149,7 +149,6 @@ export const resize = (section, direction) => {
         if (direction == 'height') mousePosition = window.innerHeight - mousePosition;
         if (!dragging) return;
         section.style[direction] = mousePosition + 'px';
-        console.log(section.style[direction]);
         if (direction == 'width') save('navWidth', section.style[direction]);
         if (direction == 'height') save('notesHeight', section.style[direction]);
     })
