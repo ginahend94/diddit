@@ -32,7 +32,6 @@ export default Profile => {
         navWidth = '200px';
         save('navWidth', navWidth);
     }
-    console.log(navWidth);
     nav.style.width = navWidth;
 
     const projectListContainer = document.createElement('div');

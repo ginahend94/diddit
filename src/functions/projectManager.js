@@ -55,6 +55,7 @@ export default (() => {
             false
         );
         Modal.open(modal);
+        modal.querySelector('input').focus();
     }
 
     const createProject = (name, description) => {

@@ -59,7 +59,6 @@ export default (() => {
             prettyDate.name = 'pretty-date';
             prettyDate.id = 'pretty-date';
 
-
             prettyDate.addEventListener('change', e => {
                 let dateArray = e.target.value.split('-');
                 if (dateArray.length <= 1) {
@@ -72,8 +71,6 @@ export default (() => {
                 mmSpan.textContent = dateArray[1];
                 ddSpan.textContent = dateArray[2];
             })
-
-
 
             const clearButton = getIcon('close-circle');
             prettyDateContainer.append(clearButton);
@@ -148,7 +145,6 @@ export default (() => {
             inputHigh.value = 'high';
             labelHigh.append('High');
 
-
             taskPriorityList.addEventListener('click', () => {
                 closePriority();
             })
@@ -204,7 +200,6 @@ export default (() => {
                 return subtaskForm.classList.remove('hidden');
             })
 
-
             const notesLabel = document.createElement('label');
             taskDetails.append(notesLabel);
             notesLabel.setAttribute('for', 'notes');
@@ -240,6 +235,7 @@ export default (() => {
             true
         );
         Modal.open(modal);
+        document.getElementById('task-title').focus();
 
         const confirm = (options) => {
             const warning = document.querySelector('.modal-inner small');
@@ -845,9 +841,9 @@ export const duplicateList = list => {
 
     const duplicatedList = {
         ...list,
-        id:`${activeProject.id}.${generateId()}`,
+        id: `${activeProject.id}.${generateId()}`,
     }
-    
+
     for (let task of duplicatedList.tasks) {
         task.container = duplicatedList.id;
         task.id = `${duplicatedList.id}.${generateId()}`;

@@ -1,5 +1,4 @@
 CURRENTLY
-auto focus new task input
 
 TO DO
 keep tasks from being moved to other lists
@@ -18,6 +17,7 @@ prevent flash of unstyled page
 change order of object on reorder (.map?) (children? index = child index?)
 ability to star tasks
 undo/redo
+batch delete
 custom palette w/dynamic favicon and light/dark text
 lil color palette preview
 archive projects
@@ -57,6 +57,7 @@ fix width of lists on fullscreen
 sort function
 
 DONE
+auto focus new task input
 resize notes section
 write collapse function
 move add button and collapse button to section header
