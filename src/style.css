@@ -150,7 +150,6 @@ nav header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* flex: 1; */
     height: 100%;
     position: relative;
 }
@@ -956,6 +955,7 @@ label[for="pretty-date"] {
 
 .task-details.notes {
     white-space: pre-wrap;
+    width:200px
 }
 
 /* CONTEXT MENU */
