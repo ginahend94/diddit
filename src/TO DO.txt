@@ -1,9 +1,8 @@
 CURRENTLY
-priority color
+fix shadow showing up on drag
 
 TO DO
 keep tasks from being moved to other lists
-fix shadow showing up on drag
 make project titles draggable
 collapse projects
 email/share to do list
@@ -57,6 +56,7 @@ fix width of lists on fullscreen
 sort function
 
 DONE
+priority color
 auto focus new task input
 resize notes section
 write collapse function

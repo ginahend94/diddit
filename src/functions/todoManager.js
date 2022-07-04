@@ -363,6 +363,8 @@ export const taskDetails = task => {
             taskDetails.append(priority);
             priority.classList.add('task-details', 'priority');
             priority.textContent = `${task.priority == 'none' ? 'No ' : task.priority + '-'}Priority`;
+            if (task.priority !== 'none') priority.style.backgroundColor = `rgb(var(--${task.priority}-priority))`;
+            if (task.priority == 'medium') priority.style.color = '#282828';
 
             if (task.subtasks.length) {
                 const subtasks = document.createElement('ul');
