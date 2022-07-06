@@ -5,6 +5,7 @@ import { getIcon } from "../functions/icon";
 import icon from '../functions/icon';
 import { unarchiveProject } from '../functions/projectManager';
 import { createTooltip } from "./tooltip";
+import { editProject } from "../functions/projectManager";
 
 export default () => {
     const profile = load('profile');
@@ -136,7 +137,8 @@ export default () => {
             createTooltip(button, 'Edit Project');
             button.addEventListener('click', () => {
                 const id = button.dataset.project;
-                editProject(id);
+                const project = profile.projects[profile.projects.findIndex(a => a.id == id)];
+                editProject(project);
             })
         });
         const backButton = document.createElement('button');

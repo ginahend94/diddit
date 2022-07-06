@@ -1113,8 +1113,8 @@ button.spell-check-false {
 
 /* PROFILE */
 .user-profile {
-    width: min(50%, 500px);
-    min-width: min(300px, 100%);
+    width: clamp(min(500px, 100%), 50%, calc(100% - 40px));
+    /* min-width: 500px; */
 }
 
 .user-profile header {
