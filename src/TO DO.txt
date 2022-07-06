@@ -1,6 +1,4 @@
 CURRENTLY
-fix shadow showing up on drag
-fix task text overflow
 
 TO DO
 keep tasks from being moved to other lists
@@ -56,6 +54,8 @@ fix width of lists on fullscreen
 sort function
 
 DONE
+fix shadow showing up on drag
+fix task text overflow
 priority color
 auto focus new task input
 resize notes section
