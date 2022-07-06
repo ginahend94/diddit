@@ -1177,23 +1177,23 @@ button.spell-check-false {
     cursor: default;
 }
 
-table.archived-projects {
+.user-profile table {
     text-align: left;
     border-spacing: 0;
 }
 
-table.archived-projects tr:nth-child(even) {
+.user-profile table tr:nth-child(even) {
     background-color: rgb(var(--tertiary-color));
 }
 
-table.archived-projects td,
-table.archived-projects th {
+.user-profile table td,
+.user-profile table th {
     padding: 10px;
     border: none;
     margin: 0;
 }
-
-table.archived-projects .project-description:empty::after {
+/*  */
+.user-profile table .project-description:empty::after {
     content: 'No description';
     color: rgb(var(--grayed-text-color));
     font-style: italic;

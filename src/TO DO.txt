@@ -1,4 +1,5 @@
 CURRENTLY
+projects table in profile
 batch delete
 custom palette w/dynamic favicon and light/dark text
 lil color palette preview
@@ -6,7 +7,6 @@ profile img (iconify icon finder?)
 account button lets you add name, pic, bio
 add user acct tooltip
 change user color accent bright to hsl
-projects table in profile
 
 TO DO
 be able to hide sidebar

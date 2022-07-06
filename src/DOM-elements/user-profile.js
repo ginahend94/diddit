@@ -34,7 +34,7 @@ export default () => {
         menu.append(projects);
         projects.append(getIcon('folder-outline'), ` Projects (${profile.projects.length})`);
         projects.addEventListener('click', () => {
-            console.log('Projects: ', profile.projects);
+            showProjects();
         })
 
         const archive = document.createElement('li');
@@ -91,11 +91,52 @@ export default () => {
         const unarchiveButtons = modalBody.querySelectorAll('.unarchive-project button');
         unarchiveButtons.forEach(button => {
             button.append(getIcon('archive-arrow-up-outline'));
-            // button.title = 'Unarchive Project';
             createTooltip(button, 'Unarchive Project');
             button.addEventListener('click', () => {
                 const id = button.dataset.project;
                 unarchiveProject(id);
+            })
+        });
+        const backButton = document.createElement('button');
+        modalBody.append(backButton);
+        backButton.classList.add('back-button');
+        backButton.append(getIcon('chevron-left'), ' Back');
+        backButton.addEventListener('click', e => {
+            modalBody.innerHTML = '';
+            modalBody.append(modalInner());
+        })
+    }
+
+    const showProjects = () => {
+        const modalBody = modal.querySelector('.modal-inner');
+        let innerHTML =
+            `<table class="projects">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Date Created</th>
+                    <th>Edit</th>
+                </tr>`;
+        modalBody.innerHTML = (() => {
+            for (let project in profile.projects) {
+                innerHTML +=
+                    `<tr>
+                            <td class="project-name">${profile.projects[project].name}${profile.projects[project].archived ? '(Archived)' : ''}</td>
+                            <td class="project-description">${profile.projects[project].description}</td>
+                            <td class="project-date">${profile.projects[project].dateCreatedFormatted}</td>
+                            <td class="edit-project"><button data-project='${profile.projects[project].id}'></button></td>
+                        </tr>`;
+            }
+            innerHTML += `</table>`;
+            return innerHTML;
+        })()
+        const editButtons = modalBody.querySelectorAll('.edit-project button');
+        editButtons.forEach(button => {
+            button.append(getIcon('square-edit-outline'));
+            createTooltip(button, 'Edit Project');
+            button.addEventListener('click', () => {
+                const id = button.dataset.project;
+                editProject(id);
             })
         });
         const backButton = document.createElement('button');
