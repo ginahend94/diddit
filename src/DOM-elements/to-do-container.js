@@ -1,12 +1,7 @@
 import load from "../functions/load";
-import save from "../functions/save";
-// editTask 
 import newTask, { handleCheckbox, taskDetails, editTask } from "../functions/todoManager";
-import format from "date-fns/format";
 import { getIcon } from "../functions/icon";
-import Modal from "./modal";
 import contextMenu from "./context-menu";
-// import modalInnerTemplate from './create-edit-task'
 
 const profile = load('profile');
 
@@ -71,10 +66,11 @@ export const createTaskNode = task => {
         contextMenu.openMenu(e, menu);
     });
 
-    const checkboxContainer = document.createElement('label');
-    taskContainer.append(checkboxContainer);
-    checkboxContainer.classList.add('checkbox-container');
-    checkboxContainer.setAttribute('for', `checkbox-${task.id}`);
+    const checkboxEmpty = document.createElement('label');
+    checkboxEmpty.append(getIcon('checkbox-blank-outline'));
+    taskContainer.append(checkboxEmpty);
+    checkboxEmpty.classList.add('checkbox-empty');
+    checkboxEmpty.setAttribute('for', `checkbox-${task.id}`);
 
     const listCheckbox = document.createElement('input');
     taskContainer.append(listCheckbox);
@@ -82,21 +78,22 @@ export const createTaskNode = task => {
     listCheckbox.type = 'checkbox';
     listCheckbox.classList.add('list-checkbox');
     listCheckbox.checked = task.completed;
+    const checkboxChecked = document.createElement('label');
+    checkboxChecked.append(getIcon('checkbox-marked'));
+    taskContainer.append(checkboxChecked);
+    checkboxChecked.classList.add('checkbox-marked');
+    checkboxChecked.setAttribute('for', `checkbox-${task.id}`);
 
-    const checkmarkContainer = document.createElement('label');
-    taskContainer.append(checkmarkContainer);
-    checkmarkContainer.setAttribute('for', `checkbox-${task.id}`);
-    // console.log(task.id)
-    // console.log(task)
-
-    const checkmark = document.createElement('span');
-    checkmarkContainer.append(checkmark);
-    checkmark.classList.add('checkmark');
-
+    const textWrapper = document.createElement('div');
+    taskContainer.append(textWrapper);
     const taskText = document.createElement('span');
-    taskContainer.append(taskText);
+    textWrapper.append(taskText);
     taskText.classList.add('task-text');
     taskText.textContent = task.name;
+    if (task.completed) {
+        textWrapper.classList.add('completed');
+        taskText.classList.add('completed');
+    }
 
     if (task.date) {
         const taskDueDate = document.createElement('span');
@@ -125,29 +122,35 @@ export const createTaskNode = task => {
             subtask.append(taskContainer);
             taskContainer.classList.add('task-container', 'subtask-container');
 
-            const checkboxContainer = document.createElement('label');
-            taskContainer.append(checkboxContainer);
-            checkboxContainer.classList.add('checkbox-container');
-            checkboxContainer.setAttribute('for', `checkbox-${item.id}`);
+            const checkboxEmpty = document.createElement('label');
+            checkboxEmpty.append(getIcon('checkbox-blank-outline'));
+            taskContainer.append(checkboxEmpty);
+            checkboxEmpty.classList.add('checkbox-empty');
+            checkboxEmpty.setAttribute('for', `checkbox-${item.id}`);
+        
             const listCheckbox = document.createElement('input');
             taskContainer.append(listCheckbox);
             listCheckbox.id = `checkbox-${item.id}`;
             listCheckbox.type = 'checkbox';
             listCheckbox.classList.add('list-checkbox', 'subtask-checkbox');
             listCheckbox.checked = item.completed;
+            const checkboxChecked = document.createElement('label');
+            checkboxChecked.append(getIcon('checkbox-marked'));
+            taskContainer.append(checkboxChecked);
+            checkboxChecked.classList.add('checkbox-marked');
+            checkboxChecked.setAttribute('for', `checkbox-${item.id}`);
 
-            const checkmarkContainer = document.createElement('label');
-            taskContainer.append(checkmarkContainer);
-            checkmarkContainer.setAttribute('for', `checkbox-${item.id}`);
 
-            const checkmark = document.createElement('span');
-            checkmarkContainer.append(checkmark);
-            checkmark.classList.add('checkmark');
-
+            const textWrapper = document.createElement('div');
+            taskContainer.append(textWrapper);
             const taskText = document.createElement('span');
-            taskContainer.append(taskText);
+            textWrapper.append(taskText);
             taskText.classList.add('task-text');
             taskText.textContent = item.name;
+            if (item.completed) {
+                textWrapper.classList.add('completed');
+                taskText.classList.add('completed');
+            }
 
             if (item.date) {
                 const taskDueDate = document.createElement('span');

@@ -312,11 +312,36 @@ export const createList = project => {
 
 export const handleCheckbox = (e, task) => {
     const profile = load('profile');
+    const taskNode = document.querySelector(`li[id='${task.id}']`);
     if (e.target.classList.contains('subtask-checkbox')) {
-        const subtask = task.subtasks[task.subtasks.findIndex(a => a.id == e.target.id.slice(9))]
-        subtask.completed = e.target.checked;
-    } else {
+        // const subtask = task.subtasks[task.subtasks.findIndex(a => a.id == e.target.id.slice(9))]
+        // subtask.completed = e.target.checked;
+        // const text = taskNode.querySelector(`li[id='${subtask.id}'] .task-text`);
+        // if (subtask.completed) text.classList.add('completed');
+        // else text.classList.remove('completed');
+        
+        task = task.subtasks[task.subtasks.findIndex(a => a.id == e.target.id.slice(9))]
         task.completed = e.target.checked;
+        const text = taskNode.querySelector(`li[id='${task.id}'] .task-text`);
+        if (task.completed) {
+            text.classList.add('completed');
+            text.parentElement.classList.add('completed');
+        }
+        else {
+            text.classList.remove('completed');
+            text.parentElement.classList.remove('completed');
+        }
+    } else {
+        const text = taskNode.querySelector('.task-text');
+        task.completed = e.target.checked;
+        if (task.completed) {
+            text.classList.add('completed');
+            text.parentElement.classList.add('completed');
+        }
+        else {
+            text.classList.remove('completed');
+            text.parentElement.classList.remove('completed');
+        }
     }
     save('profile', profile);
     return task;

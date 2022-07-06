@@ -8,6 +8,7 @@ const getSVG = (() => {
     const mdiIcons = [
         'checkbox-marked-outline',
         'checkbox-blank-outline',
+        'checkbox-marked',
         'plus',
         'dots-horizontal',
         'dots-vertical',
