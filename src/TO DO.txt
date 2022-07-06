@@ -1,5 +1,4 @@
 CURRENTLY
-remove "required" from inputs
 batch delete
 custom palette w/dynamic favicon and light/dark text
 lil color palette preview
@@ -45,6 +44,7 @@ task info wrap text if overflowing
 remove fill-profile button
 
 DONE
+remove "required" from inputs
 localstorage sidebar width
 fix width of lists on fullscreen
 add tooltip to tasks

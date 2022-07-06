@@ -20,7 +20,6 @@ export default (() => {
             taskTitle.id = 'task-title';
             taskTitle.classList.add('task-title');
             taskTitle.placeholder = 'Enter task here...';
-            taskTitle.required = true;
 
             const small = document.createElement('small');
             taskDetails.append(small);
@@ -496,7 +495,6 @@ export const taskDetails = task => {
                 taskTitle.id = 'task-title';
                 taskTitle.classList.add('task-title');
                 taskTitle.placeholder = task.name;
-                taskTitle.required = true;
                 taskTitle.value = task.name;
 
                 const small = document.createElement('small');

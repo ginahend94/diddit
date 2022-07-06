@@ -28,7 +28,6 @@ export default (() => {
             input.type = 'text';
             input.id = 'new-project-name';
             input.placeholder = 'Enter project name...';
-            input.required = true;
 
             const textarea = document.createElement('textarea');
             modalBody.append(textarea)
@@ -106,7 +105,6 @@ export const editProject = project => {
         input.type = 'text';
         input.id = 'new-project-name';
         input.placeholder = project.name;
-        input.required = true;
         input.value = project.name;
 
         const small = document.createElement('small');
