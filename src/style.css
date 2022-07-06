@@ -28,19 +28,26 @@
     --grayed-text-color: 133, 133, 133;
     */
 
+    --low-priority: 138, 172, 88;
+    --medium-priority: 234, 203, 92;
+    --high-priority: 196, 62, 74;
+
     --padding: 10px;
     --smaller-text: .8rem;
 }
 
-.fill-profile-button, .delete-profile-button {
+.fill-profile-button,
+.delete-profile-button {
     width: 25px;
     height: 25px;
     position: absolute;
-    top:0;
+    top: 0;
 }
+
 .fill-profile-button {
     left: 0;
 }
+
 .delete-profile-button {
     right: 0;
 }
@@ -146,10 +153,10 @@ nav header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* flex: 1; */
     height: 100%;
     position: relative;
 }
+
 .sidebar-lower button {
     padding-left: 5px;
 }
@@ -292,7 +299,7 @@ main {
 
 /* HEADER  */
 
-main > header {
+main>header {
     background-color: rgb(var(--accent-color));
     height: 100px;
     min-height: 100px;
@@ -319,7 +326,7 @@ h2 {
 
 /* TO DO LIST  */
 .project-container {
-    flex:1;
+    flex: 1;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -342,9 +349,9 @@ h2 {
 .project-container .container header {
     font-size: 2rem;
     padding: var(--padding);
-    color: rgba(var(--grayed-text-color),.5);
+    color: rgba(var(--grayed-text-color), .5);
     display: flex;
-    gap:10px;
+    gap: 10px;
     border: solid 1px rgb(var(--tertiary-color));
 }
 
@@ -357,7 +364,7 @@ h2 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25ch, 1fr));
     grid-template-rows: min-content;
-    gap:var(--padding);
+    gap: var(--padding);
     overflow-y: auto;
 }
 
@@ -365,10 +372,11 @@ h2 {
     align-self: center;
     justify-self: center;
     width: min-content;
-    padding:0;
+    padding: 0;
     color: rgb(var(--text-color));
     transition: rotate 0s;
 }
+
 .project-container header button.flip {
     transform: rotate(180deg);
 }
@@ -405,7 +413,18 @@ h2 {
 .subtask {
     border-bottom: solid 1px rgb(var(--tertiary-color));
     border-right: solid 10px rgb(var(--tertiary-color));
+}
 
+.task>.task-container.medium-priority {
+    border-right: solid 10px rgb(var(--medium-priority));
+}
+
+.task>.task-container.low-priority {
+    border-right: solid 10px rgb(var(--low-priority));
+}
+
+.task>.task-container.high-priority {
+    border-right: solid 10px rgb(var(--high-priority));
 }
 
 .task-container {
@@ -415,6 +434,7 @@ h2 {
     position: relative;
     transition: .2s;
     cursor: pointer;
+    align-items: center;
 }
 
 .subtask-container {
@@ -502,60 +522,59 @@ li.subtask {
     cursor: pointer;
 }
 
-.checkbox-container {
-    content: "hello";
-    position: relative;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: solid 1px rgb(var(--grayed-text-color));
-    border-radius: 5px;
-    top: 0;
-    left: 0;
-    transition: .2s;
+.checkbox-empty {
+    color: rgb(var(--grayed-text-color));
     cursor: pointer;
+    transition: .2s;
 }
 
-.checkbox-container:hover {
-    border-color: rgb(var(--text-color));
+.checkbox-empty:hover {
+    color: rgb(var(--text-color));
 }
 
-.list-checkbox+label .checkmark {
+.checkbox-marked {
     position: absolute;
-    width: 8px;
-    height: 18px;
-    transform: rotate(45deg);
-    border: solid rgb(var(--accent-color));
-    border-width: 0 3px 3px 0;
-    bottom: 15px;
-    left: 20px;
+    color: rgb(var(--accent-color));
     transition: .2s;
-    opacity: 0;
     cursor: pointer;
-    box-shadow: 2px -3px 0 2px rgb(var(--main-color)), inset -3px -3px 0 2px rgb(var(--main-color));
+    transition: .2S;
+    opacity: 0;
+    left: 10px;
 }
 
-.list-checkbox:checked+label .checkmark {
+.checkbox-marked:hover {
+    color: rgb(var(--accent-color-bright));
+}
+
+.list-checkbox:checked~.checkbox-marked {
     opacity: 1;
-    transform: rotate(45deg);
-    width: 10px;
-    height: 20px;
 }
 
 /* COMPLETED TASK TEXT  */
 
-.list-checkbox~.task-text {
-    position: relative;
+.task-container div {
+    max-width: calc(100% - 45px);
     transition: .2s;
-    display: inline-block;
+}
+.task-container div.completed {
+    transform: skewX(-15deg);
+}
+.task-text {
+    position: relative;
+    transition: .4s;
+    background-position: 0 60%;
+    background-image: linear-gradient(rgb(var(--text-color)), rgb(var(--text-color)));
+    background-repeat: no-repeat;
+    background-size: 0 1px;
 }
 
-.list-checkbox:checked~.task-text {
+.task-text.completed {
+    background-size: 100% 1px;
+    background-image: linear-gradient(rgb(var(--grayed-text-color)), rgb(var(--grayed-text-color)));
     color: rgb(var(--grayed-text-color));
-    transform: skew(-15deg);
 }
 
-.list-checkbox~.task-text::after {
+/* .list-checkbox~.task-text::after {
     position: absolute;
     content: '';
     height: 1px;
@@ -565,12 +584,12 @@ li.subtask {
     background-color: rgb(var(--text-color));
     width: 0;
     transition: width .4s, background-color .2s;
-}
+} */
 
-.list-checkbox:checked~.task-text::after {
+/* .list-checkbox:checked~.task-text::after {
     width: 100%;
     background-color: rgb(var(--grayed-text-color));
-}
+} */
 
 .to-do-list-container button {
     margin: 10px;
@@ -943,6 +962,7 @@ label[for="pretty-date"] {
 
 .task-details.notes {
     white-space: pre-wrap;
+    width: 200px
 }
 
 /* CONTEXT MENU */

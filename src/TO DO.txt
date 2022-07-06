@@ -1,62 +1,58 @@
 CURRENTLY
-priority color
+remove "required" from inputs
+batch delete
+custom palette w/dynamic favicon and light/dark text
+lil color palette preview
+profile img (iconify icon finder?)
+account button lets you add name, pic, bio
+add user acct tooltip
+change user color accent bright to hsl
+projects table in profile
 
 TO DO
+be able to hide sidebar
+add keyboard shortcuts
 keep tasks from being moved to other lists
-fix shadow showing up on drag
 make project titles draggable
 collapse projects
 email/share to do list
-add keyboard shortcuts
 tour/tutorial
-create split button module
-create input module
-add emoji picker
-be able to hide sidebar
 prevent flash of unstyled page
 change order of object on reorder (.map?) (children? index = child index?)
 ability to star tasks
 undo/redo
-batch delete
-custom palette w/dynamic favicon and light/dark text
-lil color palette preview
-archive projects
 poject tags
-profile img (iconify icon finder?)
-fix task text overflow
-account button lets you add name, pic, bio
 add calendar
 add sort by due date
-add tooltip to tasks
-add context menu to projects and tasks
 remove unnecessary comments
+collapse/hide notes
+refactor edit and create modals DRYly
+add note creation date to details
+make context menu move if off screen
+add "no tasks" message in todolist
+set max height and expand for description
+insert duplicate after original
+localstorage scroll spot on page
+list max height
+find and display dates according to locale
+sort function
 save spellcheck, new type selection in localstorage
 add rich text features to notes
 -add tooltips to style buttons
 -paste plain text
 -new <p> on enter/double enter
-collapse/hide notes
-refactor edit and create modals DRYly
-add note creation date to details
-make context menu move if off screen
-add "no tasks" message in todolist\
+task info wrap text if overflowing
 remove fill-profile button
-set max height and expand for description
-insert duplicate after original
-drag project names
-localstorage sidebar width
-localstorage scroll spot on page
-add title to lists
-list max height
-add user acct tooltip
-change user color accent bright to hsl
-find and display dates according to locale
-projects table in profile
-remove "required" from inputs
-fix width of lists on fullscreen
-sort function
 
 DONE
+localstorage sidebar width
+fix width of lists on fullscreen
+add tooltip to tasks
+archive projects
+add context menu to projects and tasks
+fix shadow showing up on drag
+fix task text overflow
+priority color
 auto focus new task input
 resize notes section
 write collapse function
@@ -126,3 +122,9 @@ add favicon to config
 create context menu
 project options button
 show full project title on hover (custom tooltip)
+
+CANCELLED
+add title to lists
+add emoji picker
+create split button module
+create input module
