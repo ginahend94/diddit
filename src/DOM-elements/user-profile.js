@@ -133,14 +133,19 @@ export default () => {
         })()
         const editButtons = modalBody.querySelectorAll('.edit-project button');
         editButtons.forEach(button => {
+            const id = button.dataset.project;
+            const project = profile.projects[profile.projects.findIndex(a => a.id == id)];
             button.append(getIcon('square-edit-outline'));
-            createTooltip(button, 'Edit Project');
+            createTooltip(button, `Edit "${project.name}"`);
             button.addEventListener('click', () => {
-                const id = button.dataset.project;
-                const project = profile.projects[profile.projects.findIndex(a => a.id == id)];
                 editProject(project);
             })
         });
+        const selectButton = document.createElement('button');
+        modalBody.append(selectButton);
+        selectButton.textContent = 'Select multiple';
+        // selectButton.classList.add('back-button');
+
         const backButton = document.createElement('button');
         modalBody.append(backButton);
         backButton.classList.add('back-button');
