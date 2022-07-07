@@ -1,5 +1,6 @@
 // import { v4 as uuidv4 } from "uuid";
 import { format } from "date-fns";
+import Modal from "../DOM-elements/modal.js";
 import generateId from "./generateId.js";
 import load from "./load.js";
 
@@ -301,4 +302,45 @@ export const gina = {
 
 export const editProfile = () => {
     console.log('will edit');
+    const modalInner = (() => {
+        const body = document.createElement('div');
+
+        const nameInput = document.createElement('input');
+        body.append(nameInput);
+        nameInput.placeholder = Profile.name;
+        nameInput.value = Profile.name;
+
+        const bioInput = document.createElement('textarea');
+        body.append(bioInput);
+        bioInput.placeholder = Profile.bio;
+        bioInput.value = Profile.bio;
+
+        const userIconSelect = 'Icon selector will go here.';
+        body.append(userIconSelect);
+
+        const colorPaletteInput = 'Color picker will go here.';
+        body.append(colorPaletteInput);
+
+        return { body, getName, getBio, getUserIcon, getColorPalette }
+    })();
+    const modal = Modal.create(
+        ['edit-profile'],
+        modalInner.body,
+        () => confirm(),
+        'Save',
+        true,
+        true,
+        true
+    );
+    Modal.open(modal);
+    const confirm = () => {
+        const updatedProfile = {
+            ...Profile,
+            name: modalInner.getName(),
+            bio: modalInner.getBio(),
+            icon: modalInner.getUserIcon(),
+            colorPalette: modalInner.getColorPalette(),
+        }
+        console.log(updatedProfile);
+    }
 }

@@ -199,7 +199,7 @@ export const deleteProjectWarning = project => {
     Modal.open(deleteModal);
 }
 
-const deleteProject = project => {
+export const deleteProject = project => {
     const profile = load('profile');
     let prevProj;
     const updatedProjects = profile.projects.filter((oldProject, i) => {
