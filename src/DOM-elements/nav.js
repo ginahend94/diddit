@@ -8,6 +8,7 @@ import { createTooltip } from "./tooltip";
 import { resize } from "../functions/drag";
 import openProfile from './user-profile';
 import save from "../functions/save";
+import { editProfile } from "../functions/profile";
 
 
 export default Profile => {
@@ -99,7 +100,8 @@ export default Profile => {
         const Profile = load('profile');
         userIcon = icon(Profile.icon) || getIcon('account');
         userName = Profile.name || 'User';
-        account.title = 'Account';
+        // account.title = 'Account';
+        createTooltip(account, 'Account');
     } else {
         userIcon = getIcon('account');
         userName = 'Account';
@@ -111,6 +113,9 @@ export default Profile => {
     settingsMenu.append(settings);
     settings.append(getIcon('cog-outline'));
     settings.append('Settings');
+    settings.addEventListener('click', () => {
+        editProfile();
+    })
 
     const about = document.createElement('li');
     settingsMenu.append(about);

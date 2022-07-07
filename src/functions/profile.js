@@ -307,21 +307,39 @@ export const editProfile = () => {
 
         const nameInput = document.createElement('input');
         body.append(nameInput);
-        nameInput.placeholder = Profile.name;
+        nameInput.type = 'text';
+        nameInput.placeholder = Profile.name || 'Name';
         nameInput.value = Profile.name;
 
         const bioInput = document.createElement('textarea');
         body.append(bioInput);
-        bioInput.placeholder = Profile.bio;
+        bioInput.placeholder = Profile.bio || 'You can enter a short bio here!';
         bioInput.value = Profile.bio;
 
         const userIconSelect = 'Icon selector will go here.';
         body.append(userIconSelect);
 
+        const darkModeCheckbox = document.createElement('label');
+        body.append(darkModeCheckbox);
+        darkModeCheckbox.classList.add('dark-mode-checkbox');
+        const darkModeInput = document.createElement('input');
+        body.append(darkModeInput);
+        darkModeInput.type = 'checkbox';
+        darkModeInput.classList.add('dark-mode-input');
+        const darkModeSlider = document.createElement('span');
+        body.append(darkModeSlider);
+        darkModeSlider.classList.add('dark-mode-slider');
+
         const colorPaletteInput = 'Color picker will go here.';
         body.append(colorPaletteInput);
 
-        return { body, getName, getBio, getUserIcon, getColorPalette }
+        const getName = () => nameInput.value;
+        const getUserIcon = () => userIconSelect.value;
+        const getBio = () => bioInput.value;
+        const getDarkMode = () => darkModeInput.checked;
+        const getColorPalette = () => colorPaletteInput.value;
+
+        return { body, getName, getBio, getUserIcon, getDarkMode, getColorPalette }
     })();
     const modal = Modal.create(
         ['edit-profile'],
@@ -340,6 +358,7 @@ export const editProfile = () => {
             bio: modalInner.getBio(),
             icon: modalInner.getUserIcon(),
             colorPalette: modalInner.getColorPalette(),
+            darkMode: modalInner.getDarkMode(),
         }
         console.log(updatedProfile);
     }
