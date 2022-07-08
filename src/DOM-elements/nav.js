@@ -98,7 +98,8 @@ export default Profile => {
     let userName;
     if (load('profile')) {
         const Profile = load('profile');
-        userIcon = icon(Profile.icon) || getIcon('account');
+        // userIcon = icon(Profile.icon);
+        userIcon = Profile.icon || getIcon('account');
         userName = Profile.name || 'User';
         // account.title = 'Account';
         createTooltip(account, 'Account');

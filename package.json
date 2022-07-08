@@ -21,9 +21,11 @@
   "dependencies": {
     "@iconify-json/mdi": "^1.1.19",
     "@iconify/iconify": "^2.2.1",
+    "@picmo/popup-picker": "^5.2.0",
     "css-loader": "^6.7.1",
     "date-fns": "^2.28.0",
     "path-browserify": "^1.0.1",
+    "picmo": "^5.2.0",
     "style-loader": "^3.3.1",
     "url": "^0.11.0",
     "uuid": "^8.3.2"

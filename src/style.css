@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
 
 :root {
+    --font: 'Roboto', sans-serif;
     --accent-color: 120, 103, 162;
     /* LAVENDER */
     --main-color: 50, 50, 52;
@@ -60,7 +61,7 @@
 body {
     width: 100vw;
     height: 100vh;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font);
     background-color: rgb(var(--main-color));
     color: rgb(var(--text-color));
     overflow: hidden;
@@ -1215,9 +1216,40 @@ button.spell-check-false {
     user-select: none;
 }
 .selectable.selectable:hover {
-    /* border:solid 1px rgb(var(--accent-color-bright)); */
     background-color: rgba(var(--accent-color), .5);
 }
 .selectable.selected {
     border:solid 2px rgb(var(--accent-color-bright));
+}
+
+div.emoji-picker {
+    z-index: 9999999999999999999999999999999999999999;
+    background-color: rgb(var(--main-color)); 
+    --border-color: rgb(var(--grayed-text-color));
+    box-shadow: 2px 2px 5px rgb(var(--secondary-color));
+    --secondary-background-color: rgb(var(--secondary-color));
+    --ui-font: var(--font);
+    min-width: 250px;
+}
+
+.edit-profile header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.emoji-button {
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgb(var(--accent-color));
+    cursor: pointer;
+    transition: .2s;
+    font-size: 1.5rem;
+}
+.emoji-button:hover {
+    background-color: rgb(var(--accent-color-bright));
 }

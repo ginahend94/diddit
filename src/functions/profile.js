@@ -3,6 +3,11 @@ import { format } from "date-fns";
 import Modal from "../DOM-elements/modal.js";
 import generateId from "./generateId.js";
 import load from "./load.js";
+import { createPopup } from "@picmo/popup-picker";
+import { getIcon } from "./icon";
+import { darkTheme, lightTheme } from "picmo";
+import { createTooltip } from '../DOM-elements/tooltip'
+// import { EmojiPicker } from "picmo/dist/views/EmojiPicker.js";
 
 export default (name = '', icon = null, colorPalette = 'default', bio = '') => ({
     name,
@@ -301,12 +306,21 @@ export const gina = {
 }
 
 export const editProfile = () => {
-    console.log('will edit');
     const modalInner = (() => {
         const body = document.createElement('div');
+        body.classList.add('edit-profile');
+
+        const header = document.createElement('header');
+        body.append(header);
+
+        const emojiButton = document.createElement('div');
+        header.append(emojiButton);
+        emojiButton.classList.add('emoji-button');
+        emojiButton.append(Profile.userIcon || getIcon('account'));
+        createTooltip(emojiButton, 'Change profile icon');
 
         const nameInput = document.createElement('input');
-        body.append(nameInput);
+        header.append(nameInput);
         nameInput.type = 'text';
         nameInput.placeholder = Profile.name || 'Name';
         nameInput.value = Profile.name;
@@ -316,8 +330,25 @@ export const editProfile = () => {
         bioInput.placeholder = Profile.bio || 'You can enter a short bio here!';
         bioInput.value = Profile.bio;
 
-        const userIconSelect = 'Icon selector will go here.';
-        body.append(userIconSelect);
+        const picker = createPopup({
+            theme: Profile.darkMode ? darkTheme : lightTheme,
+            emojiSize: '1rem',
+        }, {
+            className: 'emoji-picker',
+            triggerElement: emojiButton,
+            referenceElement: emojiButton,
+            position: 'bottom-start',
+        });
+        emojiButton.addEventListener('click', () => {
+            picker.open();
+        })
+
+        let userIconSelection = '';
+
+        picker.addEventListener('emoji:select', e => {
+            userIconSelection = e.emoji;
+            emojiButton.textContent = e.emoji;
+        });
 
         const darkModeCheckbox = document.createElement('label');
         body.append(darkModeCheckbox);
@@ -334,7 +365,7 @@ export const editProfile = () => {
         body.append(colorPaletteInput);
 
         const getName = () => nameInput.value;
-        const getUserIcon = () => userIconSelect.value;
+        const getUserIcon = () => userIconSelection;
         const getBio = () => bioInput.value;
         const getDarkMode = () => darkModeInput.checked;
         const getColorPalette = () => colorPaletteInput.value;
