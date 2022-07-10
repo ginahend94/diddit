@@ -77,7 +77,7 @@ const slider = (() => {
 
     body.append(preview())
 
-    const getColor = () => ({ h: colorRange.value, s: '70%', l: lum });
+    const getColor = () => ({ h: colorRange.value, s: '70', l: lum });
 
     return { body, getColor }
 })()

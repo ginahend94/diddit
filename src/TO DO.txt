@@ -42,6 +42,7 @@ add rich text features to notes
 -new <p> on enter/double enter
 task info wrap text if overflowing
 remove fill-profile button
+code mobile site
 
 DONE
 add user acct tooltip

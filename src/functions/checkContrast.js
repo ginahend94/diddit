@@ -7,10 +7,11 @@ const HSLToRGB = (h, s, l) => {
     const a = s * Math.min(l, 1 - l);
     const f = n =>
         l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+    console.log([Math.round(255 * f(0)), Math.round(255 * f(8)), Math.round(255 * f(4))])
     return [Math.round(255 * f(0)), Math.round(255 * f(8)), Math.round(255 * f(4))];
 };
 
-// from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+// adapted from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 
 const componentToHex = c => {
     var hex = c.toString(16);
@@ -18,16 +19,35 @@ const componentToHex = c => {
 }
 
 const RGBToHex = (r, g, b) => {
-    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+    return componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
 // ok this is me again
 
 const hexColor = colorObj => {
     const rgb = HSLToRGB(colorObj.h, colorObj.s, colorObj.l);
+    console.log(colorObj)
+    console.log(rgb)
     return RGBToHex(...rgb);
 }
 
-// `https://webaim.org/resources/contrastchecker/?fcolor=#FFFFFF&bcolor=${hexColor(profile.colorPalette)}&api`
+const getRatio = async (hex) => {
+    fetch(`https://webaim.org/resources/contrastchecker/?fcolor=FFFFFF&bcolor=${hex}&api`)
+        .then((response) => response.json())
+        .then(data => { console.log(data); return data.ratio })
+        .then(ratio => switchColor(ratio))
+        .catch(err => console.log(err))
+}
 
-const getBrightness = ([...rgb]) => ((rgb[0] * 299) + (rgb[1] * 587) + (rgb[2] * 114)) / 1000;
+const switchColor = ratio => {
+    const root = document.documentElement;
+    if (ratio >= 6) {
+        root.style.setProperty('--dynamic-color', 'rgb(234,234,234');
+    } else {
+        root.style.setProperty('--dynamic-color', 'rgb(0,0,0)');
+    }
+}
+
+export const checkProfile = colorObj => {
+    getRatio(hexColor(colorObj));
+}
