@@ -1,9 +1,6 @@
-import load from "../functions/load";
 import newTask, { handleCheckbox, taskDetails, editTask } from "../functions/todoManager";
 import { getIcon } from "../functions/icon";
 import contextMenu from "./context-menu";
-
-const profile = load('profile');
 
 export default list => {
 

@@ -1,4 +1,4 @@
-import Iconify, { addCollection } from "@iconify/iconify";
+// import Iconify, { addCollection } from "@iconify/iconify";
 import { icons } from '@iconify-json/mdi';
 import { getIconData } from '@iconify/utils';
 import { iconToSVG } from '@iconify/utils';

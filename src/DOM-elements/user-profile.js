@@ -1,13 +1,9 @@
 import Modal from "./modal";
-import save from "../functions/save";
 import load from "../functions/load";
 import { getIcon } from "../functions/icon";
-import icon from '../functions/icon';
-import { deleteProject, unarchiveProject } from '../functions/projectManager';
+import { unarchiveProject } from '../functions/projectManager';
 import { createTooltip } from "./tooltip";
 import { editProject } from "../functions/projectManager";
-import { selectMultiple } from "../functions/batch";
-import render from "../functions/render";
 
 export default () => {
     const profile = load('profile');

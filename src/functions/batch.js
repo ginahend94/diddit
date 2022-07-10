@@ -3,7 +3,6 @@ export const selectMultiple = (items) => {
     items.forEach(item => {
         console.log(item);
         item.classList.add('selectable');
-            // console.log(getEventListeners(item))
         item.addEventListener('click', () => {
             if (item.classList.contains('selected')) {
                 console.log('removing sel')

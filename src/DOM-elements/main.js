@@ -1,13 +1,10 @@
-import { SplitButton } from "../ignore-me/split-button";
 import createNew from "../functions/createNew";
 import ToDoContainer from './to-do-container';
-import { createList } from '../functions/todoManager';
 import { createTaskNode } from "./to-do-container";
 import createNoteNode from './note-container';
-import render from '../functions/render';
 import { getIcon } from "../functions/icon";
 import ProjectManager from "../functions/projectManager";
-import { createTooltip, removeTooltip } from "./tooltip";
+import { createTooltip } from "./tooltip";
 import { resize } from "../functions/drag";
 import load from "../functions/load";
 import save from "../functions/save";

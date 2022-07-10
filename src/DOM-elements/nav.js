@@ -1,4 +1,3 @@
-import icon from "../functions/icon";
 import { getIcon } from "../functions/icon";
 import load from "../functions/load";
 import ProjectManager from "../functions/projectManager";

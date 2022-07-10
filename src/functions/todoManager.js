@@ -1,4 +1,3 @@
-// import { v4 as uuidv4 } from "uuid";
 import generateId from "./generateId";
 import save from "./save";
 import load from "./load";
@@ -313,11 +312,6 @@ export const handleCheckbox = (e, task) => {
     const profile = load('profile');
     const taskNode = document.querySelector(`li[id='${task.id}']`);
     if (e.target.classList.contains('subtask-checkbox')) {
-        // const subtask = task.subtasks[task.subtasks.findIndex(a => a.id == e.target.id.slice(9))]
-        // subtask.completed = e.target.checked;
-        // const text = taskNode.querySelector(`li[id='${subtask.id}'] .task-text`);
-        // if (subtask.completed) text.classList.add('completed');
-        // else text.classList.remove('completed');
         
         task = task.subtasks[task.subtasks.findIndex(a => a.id == e.target.id.slice(9))]
         task.completed = e.target.checked;
@@ -737,7 +731,6 @@ export const taskDetails = task => {
 
             const options = () => ({
                 name: modalInner.getTaskTitle(),
-                // date: modalInner.getTaskDate ? new Date(modalInner.getTaskDate().valueAsDate.toISOString().slice(0, -1)) : '', // Date without timezone
                 date: new Date(modalInner.getTaskDate()),
                 priority: modalInner.getSelectedPriority(),
                 subtasks: (() => {
@@ -749,7 +742,6 @@ export const taskDetails = task => {
                     }
                     return result;
                 })(),
-                // subtasks: { text:modalInner.getSubtasks(), completed:modalInner.getSubtaskCompletion() },
                 notes: modalInner.getNotes(),
             })
 
@@ -780,10 +772,6 @@ export const taskDetails = task => {
                 const newTask = {
                     ...task,
                     ...options,
-                    // classes: task.classes,
-                    // id: task.id,
-                    // container: task.container,
-                    // completed: task.completed,
                 };
                 if (newTask.subtasks.length) newTask.subtasks.forEach(a => {
                     a.id = `${newTask.id}.${a.id}`;

@@ -4,7 +4,6 @@ import load from "./load";
 import save from "./save";
 import drag from "./drag";
 import createProfile from './profile';
-import { fillProfileButton, deleteProfileButton } from "./fillProfile";
 import { setDarkTheme } from "./profile";
 import { checkProfile } from "./checkContrast";
 
@@ -25,9 +24,6 @@ export default () => {
     document.body.innerHTML = '';
     document.body.append(nav(Profile));
     document.body.append(main(Profile));
-    document.body.append(fillProfileButton()); // TESTING
-    document.body.append(deleteProfileButton()); // TESTING
 
     drag(document.body);
-    // console.log('rendered');
 }
