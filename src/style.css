@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :root {
     --font: 'Roboto', sans-serif;
@@ -1252,4 +1253,86 @@ div.emoji-picker {
 }
 .emoji-button:hover {
     background-color: rgb(var(--accent-color-bright));
+}
+
+.slider-container {
+    user-select: none;
+}
+
+.dark-mode-outer {
+    position: relative;
+	width:50px;
+	display:block;
+	height:24px;
+	border-radius:19px;
+	background-color:rgb(var(--grayed-text-color));
+	transition:.2s;
+    cursor: pointer;
+}
+
+.dark-mode-slider {
+	background-color:white;
+    display: inline-block;
+	/* display: inline-flex;
+    justify-content: center;
+    align-items: center; */
+	position: absolute;
+	top:2px;
+	left:2px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	transition:.2s;
+}
+
+.dark-mode-outer:active .dark-mode-slider {
+	width:30px;
+}
+
+.dark-mode-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0px;
+	height: 0px;
+	opacity: 0;
+    display: block;
+}
+
+.dark-mode-input:checked + .dark-mode-outer .dark-mode-slider {
+	translate:26px;
+}
+.dark-mode-input:checked + .dark-mode-outer:active .dark-mode-slider {
+    translate: 15px;
+}
+
+.dark-mode-input + .dark-mode-outer .dark-mode-slider::after {
+    font-family: 'Material Icons';
+    content:'light_mode';
+    display: block;
+    position: absolute;
+    right: -22px;
+    top:1px;
+    color: rgb(var(--main-color));
+    opacity: 1;
+    transition: .4s;
+}
+.dark-mode-input:checked + .dark-mode-outer .dark-mode-slider::after {
+    opacity: 0;
+    top:1rem;
+}
+.dark-mode-input + .dark-mode-outer .dark-mode-slider::before {
+    font-family: 'Material Icons';
+    content:'dark_mode';
+    display: block;
+    position: absolute;
+    left: -22px;
+    top:1rem;
+    color: rgb(var(--main-color));
+    opacity: 0;
+    transition: .4s;
+}
+.dark-mode-input:checked + .dark-mode-outer .dark-mode-slider::before {
+    opacity: 1;
+    top:1px;
 }
