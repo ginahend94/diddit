@@ -18,7 +18,7 @@ export default (name = '', icon = '', colorPalette = '', bio = '') => ({
     bio,
     icon,
     colorPalette,
-    darkMode: true,
+    darkMode: setDarkTheme(),
     projects: [
         {
             name: 'My Project',
@@ -35,7 +35,16 @@ export default (name = '', icon = '', colorPalette = '', bio = '') => ({
     ],
 });
 
-// export const Profile = load('profile');
+const setDarkTheme = () => {
+    const osTheme = window.matchMedia('(prefers-color-scheme: dark)');
+    osTheme.addEventListener('change', e => {
+        if (e.matches) {
+            console.log('dark theme');
+        }
+        else console.log('light theme');
+        return e.matches;
+    })
+}
 
 // EXAMPLE PROFILE
 

@@ -12,7 +12,8 @@ const toggle = (() => {
     darkModeInput.id = 'dark-mode-input';
     darkModeInput.checked = profile.darkMode;
     darkModeInput.addEventListener('input', e => {
-        createTooltip(outer, `${e.target.checked ? 'Turn on light mode' : 'Turn on dark mode'}`)
+        createTooltip(outer, `${e.target.checked ? 'Turn on light mode' : 'Turn on dark mode'}`);
+        document.documentElement.dataset.theme = darkModeInput.checked ? 'dark' : 'light';
     })
     const outer = document.createElement('label');
     body.append(outer);
