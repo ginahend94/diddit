@@ -35,7 +35,7 @@ export default (name = '', icon = null, colorPalette = 'default', bio = '') => (
     ],
 });
 
-export const Profile = load('profile');
+// export const Profile = load('profile');
 
 // EXAMPLE PROFILE
 
@@ -310,6 +310,7 @@ export const gina = {
 }
 
 export const editProfile = () => {
+    const Profile = load('profile');
     const modalInner = (() => {
         const body = document.createElement('div');
         body.classList.add('edit-profile');
