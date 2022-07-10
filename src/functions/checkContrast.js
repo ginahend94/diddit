@@ -10,6 +10,8 @@ const HSLToRGB = (h, s, l) => {
     return [Math.round(255 * f(0)), Math.round(255 * f(8)), Math.round(255 * f(4))];
 };
 
+// from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+
 const componentToHex = c => {
     var hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
@@ -18,6 +20,8 @@ const componentToHex = c => {
 const RGBToHex = (r, g, b) => {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
+
+// ok this is me again
 
 const hexColor = colorObj => {
     const rgb = HSLToRGB(colorObj.h, colorObj.s, colorObj.l);
