@@ -1,4 +1,4 @@
-import { SplitButton } from "./split-button";
+import { SplitButton } from "../ignore-me/split-button";
 import createNew from "../functions/createNew";
 import ToDoContainer from './to-do-container';
 import { createList } from '../functions/todoManager';
