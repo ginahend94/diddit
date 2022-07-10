@@ -9,6 +9,7 @@ import { resize } from "../functions/drag";
 import openProfile from './user-profile';
 import save from "../functions/save";
 import { editProfile } from "../functions/profile";
+import About from "./about.js";
 
 
 export default Profile => {
@@ -120,6 +121,9 @@ export default Profile => {
     settingsMenu.append(about);
     about.append(getIcon('information-outline'));
     about.append('About');
+    about.addEventListener('click', () => {
+        About()
+    })
 
     const sideDrag = document.createElement('div');
     sidebarLower.append(sideDrag);

@@ -64,6 +64,15 @@
     --slider-bg: var(--accent-color);
 }
 
+a, a:visited {
+    color: var(--accent-color);
+    transition: .2s;
+}
+
+a:hover {
+    color: var(--accent-color-bright);
+}
+
 .fill-profile-button,
 .delete-profile-button {
     width: 25px;
@@ -1263,6 +1272,7 @@ div.emoji-picker {
     --secondary-background-color: rgb(var(--secondary-color));
     --ui-font: var(--font);
     min-width: 250px;
+    --accent-color: hsl(var(--accent-hue), 70%, calc(var(--accent-lightness) * 1%));
 }
 
 .edit-profile header {
@@ -1283,6 +1293,7 @@ div.emoji-picker {
     cursor: pointer;
     transition: .2s;
     font-size: 1.5rem;
+    color: var(--dynamic-color);
 }
 
 .emoji-button:hover {
@@ -1444,7 +1455,7 @@ input[type="range"]:focus::-moz-range-thumb {
 }
 
 button.selected {
-    border-color: rgb(var(--text-color));
+    border-color: var(--dynamic-color);
 }
 
 .color-picker-container input {
@@ -1523,4 +1534,13 @@ button.selected {
 
 .test-text {
     color: var(--dynamic-color)
+}
+
+.modal.about {
+    width: 50%;
+}
+.modal.about .links {
+    display: flex;
+    justify-content: center;
+    gap:20px;
 }

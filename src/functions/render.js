@@ -29,7 +29,5 @@ export default () => {
     document.body.append(deleteProfileButton()); // TESTING
 
     drag(document.body);
-    console.log('rendered')
-    // switchColor()
-    // console.log(Profile)
+    // console.log('rendered');
 }

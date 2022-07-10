@@ -4,8 +4,7 @@ L: pastel:70 muted: 20 bright: 50
 brighter: l + 10
 
 CURRENTLY
-custom palette w/dynamic favicon and light/dark text
-change logo and heading to match contrast of accent color
+dynamic favicon
 fix icon spacing
 
 TO DO
@@ -45,6 +44,8 @@ remove fill-profile button
 code mobile site
 
 DONE
+custom palette w/ light/dark text
+change logo and heading to match contrast of accent color
 add user acct tooltip
 account button lets you add name, pic, bio
 lil color palette preview
