@@ -36,8 +36,8 @@
 
 :root {
     --font: 'Roboto', sans-serif;
-    --default-accent: hsl(275, 70%, 70%);
-    --default-hue: 275;
+    --default-accent: hsl(257, 70%, 70%);
+    --default-hue: 257;
     --default-lightness: 70;
 
     /* --accent-hue: 275;

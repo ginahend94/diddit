@@ -19,6 +19,7 @@ export default () => {
     root.dataset.theme = Profile.darkMode ? 'dark' : 'light';
     root.style.setProperty('--accent-hue', Profile.colorPalette.h || 'var(--default-hue)');
     root.style.setProperty('--accent-lightness', Profile.colorPalette.l || 'var(--default-lightness)');
+    setDarkTheme();
     document.body.innerHTML = '';
     document.body.append(nav(Profile));
     document.body.append(main(Profile));

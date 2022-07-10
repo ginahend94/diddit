@@ -1,4 +1,3 @@
-// import { v4 as uuidv4 } from "uuid";
 import { format } from "date-fns";
 import Modal from "../DOM-elements/modal.js";
 import generateId from "./generateId.js";
@@ -10,8 +9,7 @@ import { createTooltip } from '../DOM-elements/tooltip';
 import toggle from "../DOM-elements/toggle.js";
 import slider from "../DOM-elements/color-input.js";
 import save from "./save.js";
-import render from './render.js'
-// import { EmojiPicker } from "picmo/dist/views/EmojiPicker.js";
+import render from './render.js';
 
 export default (name = '', icon = '', colorPalette = '', bio = '') => ({
     name,
@@ -19,6 +17,7 @@ export default (name = '', icon = '', colorPalette = '', bio = '') => ({
     icon,
     colorPalette,
     darkMode: setDarkTheme(),
+    test: 'hehe',
     projects: [
         {
             name: 'My Project',
@@ -35,15 +34,17 @@ export default (name = '', icon = '', colorPalette = '', bio = '') => ({
     ],
 });
 
-const setDarkTheme = () => {
+export const setDarkTheme = () => {
     const osTheme = window.matchMedia('(prefers-color-scheme: dark)');
     osTheme.addEventListener('change', e => {
         if (e.matches) {
+            console.log(e)
             console.log('dark theme');
         }
         else console.log('light theme');
         return e.matches;
     })
+    return osTheme.matches;
 }
 
 // EXAMPLE PROFILE
@@ -369,9 +370,6 @@ export const editProfile = () => {
         body.append(darkModeHeading);
         body.append(toggle.body);
 
-        // const colorPaletteHeading = document.createElement('h5');
-        // body.append(colorPaletteHeading);
-        // colorPaletteHeading.textContent = 'Color Palette:'
         const colorPaletteInput = slider.body;
         body.append(colorPaletteInput);
 

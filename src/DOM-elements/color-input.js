@@ -1,6 +1,8 @@
+import load from "../functions/load";
 import preview from "./color-preview";
 const slider = (() => {
     const root = document.documentElement;
+    const profile = load('profile');
 
     const body = document.createElement('div');
     body.classList.add('color-picker-container');
@@ -16,18 +18,17 @@ const slider = (() => {
     const pastel = document.createElement('button');
     buttons.append(pastel);
     pastel.textContent = 'Pastel';
+    pastel.classList.add('selected');
 
     const bright = document.createElement('button');
     buttons.append(bright);
     bright.textContent = 'Bright';
-    bright.classList.add('selected');
 
     const dark = document.createElement('button');
     buttons.append(dark);
     dark.textContent = 'Dark';
 
     const colorButtons = buttons.querySelectorAll('button');
-    console.log(colorButtons);
 
     colorButtons.forEach(button => {
         button.addEventListener('click', e => {
@@ -47,15 +48,16 @@ const slider = (() => {
     }
 
     const colorRange = document.createElement('input');
-    body.append(colorRange)
+    body.append(colorRange);
     colorRange.type = 'range';
     colorRange.min = 0;
     colorRange.max = 360;
+    colorRange.value = profile.colorPalette ? profile.colorPalette.h : 257;
     colorRange.addEventListener('input', e => {
         root.style.setProperty('--slider-bg', `hsl(${e.target.value}, 70%, ${lum}%)`);
     })
 
-    let lum = '50';
+    let lum = '70';
     const setLuminance = (e) => {
         switch (e.target.textContent) {
             case 'Pastel':
@@ -68,7 +70,7 @@ const slider = (() => {
                 lum = '50';
                 break;
             default:
-                lum = '50';
+                lum = '70';
                 break;
         }
     }

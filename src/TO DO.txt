@@ -2,12 +2,9 @@ H:user choice
 S:70%
 L: pastel:70 muted: 20 bright: 50
 brighter: l + 10
+
 CURRENTLY
-change user color accent bright to hsl
 custom palette w/dynamic favicon and light/dark text
-lil color palette preview
-account button lets you add name, pic, bio
-add user acct tooltip
 change logo and heading to match contrast of accent color
 fix icon spacing
 
@@ -47,6 +44,10 @@ task info wrap text if overflowing
 remove fill-profile button
 
 DONE
+add user acct tooltip
+account button lets you add name, pic, bio
+lil color palette preview
+change user color accent bright to hsl
 profile img (iconify icon finder?)
 projects table in profile
 remove "required" from inputs
