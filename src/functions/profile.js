@@ -13,7 +13,7 @@ import save from "./save.js";
 import render from './render.js'
 // import { EmojiPicker } from "picmo/dist/views/EmojiPicker.js";
 
-export default (name = '', icon = null, colorPalette = 'default', bio = '') => ({
+export default (name = '', icon = '', colorPalette = '', bio = '') => ({
     name,
     bio,
     icon,
@@ -42,7 +42,7 @@ export default (name = '', icon = null, colorPalette = 'default', bio = '') => (
 export const gina = {
     "name": "Gina Henderson",
     "bio": "I made this!",
-    "icon": 'bxs:dog',
+    "icon": '☺',
     "colorPalette": "#FA88C8",
     darkMode: true,
     "projects": [
@@ -348,7 +348,7 @@ export const editProfile = () => {
             picker.open();
         })
 
-        let userIconSelection = '';
+        let userIconSelection = Profile.icon;
 
         picker.addEventListener('emoji:select', e => {
             userIconSelection = e.emoji;
@@ -370,7 +370,7 @@ export const editProfile = () => {
         const getUserIcon = () => userIconSelection;
         const getBio = () => bioInput.value;
         const getDarkMode = () => toggle.darkMode();
-        const getColorPalette = () => colorPaletteInput.value;
+        const getColorPalette = () => slider.getColor();
 
         return { body, getName, getBio, getUserIcon, getDarkMode, getColorPalette }
     })();

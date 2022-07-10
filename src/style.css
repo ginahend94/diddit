@@ -4,9 +4,9 @@
 @media (prefers-color-scheme: dark) {
     :root {
         /* ACCENT COLOR */
-        --accent-color: 120, 103, 162;
+        /* --accent-color: 120, 103, 162; */
         /* ACCENT COLOR BRIGHTER */
-        --accent-color-bright: 145, 118, 209;
+        /* --accent-color-bright: 145, 118, 209; */
         /* DARK MODE BG */
         --main-color: 50, 50, 52;
         /* DARK MODE SECONDARY */
@@ -23,9 +23,9 @@
 @media (prefers-color-scheme: light) {
     :root {
         /* ACCENT */
-        --accent-color: 169, 133, 255;
+        /* --accent-color: 169, 133, 255; */
         /* ACCENT COLOR BRIGHTER */
-        --accent-color-bright: 184, 153, 255;
+        /* --accent-color-bright: 184, 153, 255; */
         /* BG */
         --main-color: 255, 255, 255;
         /* SECONDARY */
@@ -42,6 +42,15 @@
 
 :root {
     --font: 'Roboto', sans-serif;
+    --default-accent: hsl(275, 70%, 70%);
+    --default-hue:275;
+    --default-lightness:70%;
+
+    /* --accent-hue: 275;
+    --accent-lightness: 70%; */
+    --accent-color: hsl(var(--accent-hue), 70%, calc(var(--accent-lightness) * 1%));
+    --accent-color-bright: hsl(var(--accent-hue), 70%, calc((var(--accent-lightness) + 10) * 1%));
+
 
     /* DANGER */
     --danger: 196, 62, 74;
@@ -54,7 +63,7 @@
     --padding: 10px;
     --smaller-text: .8rem;
 
-    --slider-bg: rgb(var(--accent-color));
+    --slider-bg: var(--accent-color);
 }
 
 .fill-profile-button,
@@ -90,7 +99,7 @@ body {
 }
 
 button {
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
     border: none;
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
@@ -102,11 +111,11 @@ button {
 }
 
 button:hover {
-    background-color: rgb(var(--accent-color-bright));
+    background-color: var(--accent-color-bright);
 }
 
 button:active {
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
 }
 
 button:disabled {
@@ -115,7 +124,7 @@ button:disabled {
 }
 
 button:disabled:hover {
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
 }
 
 /* button .iconify-icon {
@@ -167,7 +176,7 @@ nav header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
     padding: var(--padding);
     width: 100%;
     height: 100px;
@@ -307,11 +316,11 @@ nav ul {
 }
 
 .settings-menu li:hover {
-    color: rgb(var(--accent-color-bright));
+    color: var(--accent-color-bright);
 }
 
 .settings-menu li:active {
-    color: rgb(var(--accent-color));
+    color: var(--accent-color);
 }
 
 /* MAIN */
@@ -325,7 +334,7 @@ main {
 /* HEADER  */
 
 main>header {
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
     height: 100px;
     min-height: 100px;
     padding: var(--padding);
@@ -399,7 +408,7 @@ h2 {
     width: min-content;
     padding: 0;
     color: rgb(var(--text-color));
-    transition: rotate 0s;
+    transition: rotate 0s, background-color .2s;
 }
 
 .project-container header button.flip {
@@ -559,7 +568,7 @@ li.subtask {
 
 .checkbox-marked {
     position: absolute;
-    color: rgb(var(--accent-color));
+    color: var(--accent-color);
     transition: .2s;
     cursor: pointer;
     transition: .2S;
@@ -568,7 +577,7 @@ li.subtask {
 }
 
 .checkbox-marked:hover {
-    color: rgb(var(--accent-color-bright));
+    color: var(--accent-color-bright);
 }
 
 .list-checkbox:checked~.checkbox-marked {
@@ -679,11 +688,11 @@ li.subtask {
 }
 
 .split-button-button:hover+.split-button-dropdown {
-    background-color: rgb(var(--accent-color-bright));
+    background-color: var(--accent-color-bright);
 }
 
 .split-button-button:active+.split-button-dropdown {
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
 }
 
 .split-button-dropdown {
@@ -713,7 +722,7 @@ li.subtask {
     padding: 0;
     list-style: none;
     text-align: left;
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
     border-radius: 0 0 5px 5px
 }
 
@@ -726,11 +735,11 @@ li.subtask {
 }
 
 .split-button-dropdown-list li:hover {
-    background-color: rgb(var(--accent-color-bright));
+    background-color: var(--accent-color-bright);
 }
 
 .split-button-dropdown-list li:active {
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
 }
 
 .split-button-dropdown-list li:last-child {
@@ -957,14 +966,14 @@ label[for="pretty-date"] {
 
 .task-priority-list label {
     padding: 5px;
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
     cursor: pointer;
     position: relative;
     transition: .2s;
 }
 
 .task-priority-list label:hover {
-    background-color: rgb(var(--accent-color-bright));
+    background-color: var(--accent-color-bright);
 }
 
 .task-priority svg {
@@ -1058,7 +1067,7 @@ label[for="pretty-date"] {
 
 .modal-inner .task-details.title {
     margin: 0;
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
     padding: 5px;
 }
 
@@ -1145,7 +1154,7 @@ button.spell-check-false {
 }
 
 .user-profile header {
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
     margin: auto -11px;
     border-top: solid 1px rgb(var(--grayed-text-color));
     border-bottom: solid 1px rgb(var(--grayed-text-color));
@@ -1180,7 +1189,7 @@ button.spell-check-false {
     padding: 0;
     list-style: none;
     justify-content: space-evenly;
-    /* color: rgb(var(--accent-color)); */
+    /* color: var(--accent-color); */
 }
 
 .user-profile li {
@@ -1192,11 +1201,11 @@ button.spell-check-false {
 }
 
 .user-profile li:hover {
-    color: rgb(var(--accent-color-bright));
+    color: var(--accent-color-bright);
 }
 
 .user-profile li:active {
-    color: rgb(var(--accent-color));
+    color: var(--accent-color);
 }
 
 .user-profile li.disabled-link {
@@ -1239,11 +1248,11 @@ button.spell-check-false {
 }
 
 .selectable.selectable:hover {
-    background-color: rgba(var(--accent-color), .5);
+    background-color: hsl(var(--accent-hue), 70%, calc(var(--accent-lightness) - 10%));
 }
 
 .selectable.selected {
-    border: solid 2px rgb(var(--accent-color-bright));
+    border: solid 2px var(--accent-color-bright);
 }
 
 div.emoji-picker {
@@ -1270,14 +1279,14 @@ div.emoji-picker {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: rgb(var(--accent-color));
+    background-color: var(--accent-color);
     cursor: pointer;
     transition: .2s;
     font-size: 1.5rem;
 }
 
 .emoji-button:hover {
-    background-color: rgb(var(--accent-color-bright));
+    background-color: var(--accent-color-bright);
 }
 
 .slider-container {
@@ -1298,9 +1307,6 @@ div.emoji-picker {
 .dark-mode-slider {
     background-color: white;
     display: inline-block;
-    /* display: inline-flex;
-    justify-content: center;
-    align-items: center; */
     position: absolute;
     top: 2px;
     left: 2px;
@@ -1375,70 +1381,142 @@ input[type="range"] {
     appearance: none;
     background: transparent;
     cursor: pointer;
-    width: 25rem;
-  }
-  
-  /* Removes default focus */
-  input[type="range"]:focus {
+    /* width: 25rem; */
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
     outline: none;
-  }
-  
-  /******** Chrome, Safari, Opera and Edge Chromium styles ********/
-  /* slider track */
-  input[type="range"]::-webkit-slider-runnable-track {
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
     background-color: var(--slider-bg);
     border-radius: 0.5rem;
     height: 0.5rem;
-  }
-  
-  /* slider thumb */
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
     appearance: none;
-    margin-top: -4px; /* Centers thumb on the track */
-    background-color: #7f7f7f;
+    margin-top: -4px;
+    /* Centers thumb on the track */
+    background-color: rgb(var(--grayed-text-color));
     border-radius: 0.5rem;
     height: 1rem;
     width: 1rem;
-  }
-  
-  input[type="range"]:focus::-webkit-slider-thumb {
-    outline: 3px solid #7f7f7f;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+    outline: 3px solid rgb(var(--grayed-text-color));
     outline-offset: 0.125rem;
-  }
-  
-  /*********** Firefox styles ***********/
-  /* slider track */
-  input[type="range"]::-moz-range-track {
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+input[type="range"]::-moz-range-track {
     background-color: var(--slider-bg);
     border-radius: 0.5rem;
     height: 0.5rem;
-  }
-  
-  /* slider thumb */
-  input[type="range"]::-moz-range-thumb {
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
     background-color: rgb(var(--main-color));
-    border: solid 2px rgb(var(--grayed-text-color)); /*Removes extra border that FF applies*/
+    border: solid 2px rgb(var(--grayed-text-color));
     border-radius: 50%;
     height: 1rem;
     width: 1rem;
-  }
-  
-  input[type="range"]:focus::-moz-range-thumb{
+}
+
+input[type="range"]:focus::-moz-range-thumb {
     outline: 3px solid rgb(var(--grayed-text-color));
     outline-offset: 0.125rem;
-  }
+}
 
-  /* END */
+/* END */
 
-  .color-picker-container button {
-    border: solid 2px rgb(var(--accent-color));
-  }
+.color-picker-container button {
+    border: solid 2px var(--accent-color);
+}
 
-  button.selected {
-    border-color:rgb(var(--text-color));
+button.selected {
+    border-color: rgb(var(--text-color));
 }
 
 .color-picker-container input {
     margin: 10px;
+    display: inline-block;
+}
+
+/* COLOR PREVIEW */
+.preview,
+.preview span {
+    display: inline-block;
+}
+
+.preview {
+    position: relative;
+    border: solid 1px var(--slider-bg);
+    width: 70px;
+    height: 50px;
+    border-radius: 5px;
+    pointer-events: none;
+    user-select: none;
+    font-size: 5px;
+    margin-top: 10px;
+}
+
+.preview-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 25%;
+    background-color: var(--slider-bg);
+    color: #fff;
+    font-size: 8px;
+    letter-spacing: 1px;
+    padding: 2px;
+}
+
+.preview-sidebar {
+    position: absolute;
+    width: 20px;
+    height: 75%;
+    top: 25%;
+    background-color: rgb(var(--secondary-color));
+    border-radius: 0 0 0 5px;
+}
+
+.preview-point {
+    color: var(--slider-bg);
+    font-size: 8px;
+}
+
+.preview-one {
+    position: absolute;
+    margin: 2px;
+    top: 25%;
+    left: 20px;
+    color: rgb(var(--tertiary-color));
+}
+
+.preview-two {
+    position: absolute;
+    margin: 2px;
+    top: 50%;
+    left: 20px;
+    color: rgb(var(--tertiary-color));
+}
+
+.preview-button {
+    position: absolute;
+    width: 15px;
+    height: 5px;
+    background-color: var(--slider-bg);
+    bottom: 3px;
+    left: 22px;
 }

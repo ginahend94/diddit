@@ -1,3 +1,4 @@
+import preview from "./color-preview";
 const slider = (() => {
     const root = document.documentElement;
 
@@ -21,9 +22,9 @@ const slider = (() => {
     bright.textContent = 'Bright';
     bright.classList.add('selected');
 
-    const muted = document.createElement('button');
-    buttons.append(muted);
-    muted.textContent = 'Muted';
+    const dark = document.createElement('button');
+    buttons.append(dark);
+    dark.textContent = 'Dark';
 
     const colorButtons = buttons.querySelectorAll('button');
     console.log(colorButtons);
@@ -32,6 +33,7 @@ const slider = (() => {
         button.addEventListener('click', e => {
             switchActive(e.target);
             setLuminance(e);
+            updateSliderBg();
         })
     })
 
@@ -40,18 +42,27 @@ const slider = (() => {
         button.classList.add('selected');
     }
 
+    const updateSliderBg = () => {
+        root.style.setProperty('--slider-bg', `hsl(${colorRange.value}, 70%, ${lum}%)`);
+    }
+
     const colorRange = document.createElement('input');
     body.append(colorRange)
     colorRange.type = 'range';
+    colorRange.min = 0;
+    colorRange.max = 360;
+    colorRange.addEventListener('input', e => {
+        root.style.setProperty('--slider-bg', `hsl(${e.target.value}, 70%, ${lum}%)`);
+    })
 
+    let lum = '50';
     const setLuminance = (e) => {
-        let lum = '50';
         switch (e.target.textContent) {
             case 'Pastel':
                 lum = '70';
                 break;
-            case 'Muted':
-                lum = '20';
+            case 'Dark':
+                lum = '30';
                 break;
             case 'Bright':
                 lum = '50';
@@ -60,12 +71,11 @@ const slider = (() => {
                 lum = '50';
                 break;
         }
-        console.log(lum);
-        return lum;
     }
 
+    body.append(preview())
 
-    const getColor = () => console.log();
+    const getColor = () => ({ h: colorRange.value, s: '70%', l: lum });
 
     return { body, getColor }
 })()

@@ -1,6 +1,7 @@
 H:user choice
 S:70%
 L: pastel:70 muted: 20 bright: 50
+brighter: l + 10
 CURRENTLY
 change user color accent bright to hsl
 custom palette w/dynamic favicon and light/dark text
