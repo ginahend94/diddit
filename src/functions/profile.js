@@ -8,6 +8,7 @@ import { getIcon } from "./icon";
 import { darkTheme, lightTheme } from "picmo";
 import { createTooltip } from '../DOM-elements/tooltip';
 import toggle from "../DOM-elements/toggle.js";
+import slider from "../DOM-elements/color-input.js";
 import save from "./save.js";
 import render from './render.js'
 // import { EmojiPicker } from "picmo/dist/views/EmojiPicker.js";
@@ -353,9 +354,15 @@ export const editProfile = () => {
             emojiButton.textContent = e.emoji;
         });
 
+        const darkModeHeading = document.createElement('h5');
+        darkModeHeading.textContent = 'Dark/Light Mode:'
+        body.append(darkModeHeading);
         body.append(toggle.body);
 
-        const colorPaletteInput = 'Color picker will go here.';
+        // const colorPaletteHeading = document.createElement('h5');
+        // body.append(colorPaletteHeading);
+        // colorPaletteHeading.textContent = 'Color Palette:'
+        const colorPaletteInput = slider.body;
         body.append(colorPaletteInput);
 
         const getName = () => nameInput.value;

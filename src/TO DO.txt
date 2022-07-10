@@ -1,9 +1,12 @@
+H:user choice
+S:70%
+L: pastel:70 muted: 20 bright: 50
 CURRENTLY
+change user color accent bright to hsl
 custom palette w/dynamic favicon and light/dark text
 lil color palette preview
 account button lets you add name, pic, bio
 add user acct tooltip
-change user color accent bright to hsl
 change logo and heading to match contrast of accent color
 fix icon spacing
 
