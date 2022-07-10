@@ -8,6 +8,8 @@ import { getIcon } from "./icon";
 import { darkTheme, lightTheme } from "picmo";
 import { createTooltip } from '../DOM-elements/tooltip';
 import toggle from "../DOM-elements/toggle.js";
+import save from "./save.js";
+import render from './render.js'
 // import { EmojiPicker } from "picmo/dist/views/EmojiPicker.js";
 
 export default (name = '', icon = null, colorPalette = 'default', bio = '') => ({
@@ -317,7 +319,7 @@ export const editProfile = () => {
         const emojiButton = document.createElement('div');
         header.append(emojiButton);
         emojiButton.classList.add('emoji-button');
-        emojiButton.append(Profile.userIcon || getIcon('account'));
+        emojiButton.append(Profile.icon || getIcon('account'));
         createTooltip(emojiButton, 'Change profile icon');
 
         const nameInput = document.createElement('input');
@@ -351,17 +353,7 @@ export const editProfile = () => {
             emojiButton.textContent = e.emoji;
         });
 
-        body.append(toggle());
-        // const darkModeCheckbox = document.createElement('label');
-        // body.append(darkModeCheckbox);
-        // darkModeCheckbox.classList.add('dark-mode-checkbox');
-        // const darkModeInput = document.createElement('input');
-        // body.append(darkModeInput);
-        // darkModeInput.type = 'checkbox';
-        // darkModeInput.classList.add('dark-mode-input');
-        // const darkModeSlider = document.createElement('span');
-        // body.append(darkModeSlider);
-        // darkModeSlider.classList.add('dark-mode-slider');
+        body.append(toggle.body);
 
         const colorPaletteInput = 'Color picker will go here.';
         body.append(colorPaletteInput);
@@ -369,7 +361,7 @@ export const editProfile = () => {
         const getName = () => nameInput.value;
         const getUserIcon = () => userIconSelection;
         const getBio = () => bioInput.value;
-        const getDarkMode = () => darkModeInput.checked;
+        const getDarkMode = () => toggle.darkMode();
         const getColorPalette = () => colorPaletteInput.value;
 
         return { body, getName, getBio, getUserIcon, getDarkMode, getColorPalette }
@@ -393,6 +385,7 @@ export const editProfile = () => {
             colorPalette: modalInner.getColorPalette(),
             darkMode: modalInner.getDarkMode(),
         }
-        console.log(updatedProfile);
+        save('profile', updatedProfile);
+        render();
     }
 }

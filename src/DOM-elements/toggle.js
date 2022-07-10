@@ -1,6 +1,8 @@
+import load from "../functions/load";
 import { createTooltip } from "./tooltip";
 
-const toggle = () => {
+const toggle = (() => {
+    const profile = load('profile');
     const body = document.createElement('div');
     body.classList.add('slider-container');
     const darkModeInput = document.createElement('input');
@@ -8,6 +10,7 @@ const toggle = () => {
     darkModeInput.type = 'checkbox';
     darkModeInput.classList.add('dark-mode-input');
     darkModeInput.id = 'dark-mode-input';
+    darkModeInput.checked = profile.darkMode;
     darkModeInput.addEventListener('input', e => {
         createTooltip(outer, `${e.target.checked ? 'Turn on light mode' : 'Turn on dark mode'}`)
     })
@@ -19,7 +22,9 @@ const toggle = () => {
     outer.append(darkModeSlider);
     darkModeSlider.classList.add('dark-mode-slider');
 
-    return body;
-}
+    const darkMode = () => darkModeInput.checked;
+
+    return { body, darkMode };
+})();
 
 export default toggle;

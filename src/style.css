@@ -3,67 +3,50 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --font: 'Roboto', sans-serif;
+        /* ACCENT COLOR */
         --accent-color: 120, 103, 162;
-        /* LAVENDER */
-        --main-color: 50, 50, 52;
-        /* DARK MODE BG */
-        --secondary-color: 40, 40, 42;
-        /* DARK MODE SECONDARY */
-        --tertiary-color: 60, 60, 62;
-        /* DARK MODE TERTIARY */
-        --text-color: 234, 234, 234;
-        /* DARK MODE TEXT */
-        --grayed-text-color: 133, 133, 133;
-        /* DARK MODE TEXT BRIGHTER */
-        --text-color-bright: 245, 245, 245;
-        /* DARK MODE GRAYED-OUT */
+        /* ACCENT COLOR BRIGHTER */
         --accent-color-bright: 145, 118, 209;
+        /* DARK MODE BG */
+        --main-color: 50, 50, 52;
+        /* DARK MODE SECONDARY */
+        --secondary-color: 40, 40, 42;
+        /* DARK MODE TERTIARY */
+        --tertiary-color: 60, 60, 62;
+        /* DARK MODE TEXT */
+        --text-color: 234, 234, 234;
+        /* DARK MODE GRAYED-OUT */
+        --grayed-text-color: 133, 133, 133;
     }
 }
 
 @media (prefers-color-scheme: light) {
     :root {
+        /* ACCENT */
         --accent-color: 169, 133, 255;
-        --secondary-color: 235, 235, 235;
+        /* ACCENT COLOR BRIGHTER */
+        /* TBD */
+        /* BG */
         --main-color: 255, 255, 255;
+        /* SECONDARY */
+        --tertiary-color: 225, 225, 225;
+        /* TERTIARY */
+        --secondary-color: 235, 235, 235;
+        /* TBD */
+        /* TEXT */
         --text-color: 40, 40, 40;
+        /* GRAYED-OUT */
         --grayed-text-color: 133, 133, 133;
     }
 }
 
 :root {
     --font: 'Roboto', sans-serif;
-    
-    /* LAVENDER */
-    --accent-color: 120, 103, 162;
-    --main-color: 50, 50, 52;
-    /* DARK MODE BG */
-    --secondary-color: 40, 40, 42;
-    /* DARK MODE SECONDARY */
-    --tertiary-color: 60, 60, 62;
-    /* DARK MODE TERTIARY */
-    --text-color: 234, 234, 234;
-    /* DARK MODE TEXT */
-    --grayed-text-color: 133, 133, 133;
-    /* DARK MODE TEXT BRIGHTER */
-    --text-color-bright: 245, 245, 245;
-    /* DARK MODE GRAYED-OUT */
-    --accent-color-bright: 145, 118, 209;
-    
-
-    /* LIGHT MODE */
-    /*
-    --accent-color: 169, 133, 255;
-    --secondary-color: 235, 235, 235;
-    --main-color: 255, 255, 255;
-    --text-color: 40, 40, 40;
-    --grayed-text-color: 133, 133, 133;
-    */
 
     /* DANGER */
     --danger: 196, 62, 74;
 
+    /* TASK PRIORITY */
     --low-priority: 138, 172, 88;
     --medium-priority: 234, 203, 92;
     --high-priority: 196, 62, 74;

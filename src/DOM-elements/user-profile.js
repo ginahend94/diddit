@@ -17,9 +17,9 @@ export default () => {
         const header = document.createElement('header');
         body.append(header);
 
-        const profileIcon = icon(profile.icon) || getIcon('account');
+        const profileIcon = profile.icon || getIcon('account');
         header.append(profileIcon);
-        profileIcon.classList.add('user-icon');
+        // profileIcon.classList.add('user-icon');
 
         const userName = document.createElement('span');
         header.append(userName);

@@ -1,11 +1,11 @@
 CURRENTLY
-batch delete
 custom palette w/dynamic favicon and light/dark text
 lil color palette preview
-profile img (iconify icon finder?)
 account button lets you add name, pic, bio
 add user acct tooltip
 change user color accent bright to hsl
+change logo and heading to match contrast of accent color
+fix icon spacing
 
 TO DO
 be able to hide sidebar
@@ -43,6 +43,7 @@ task info wrap text if overflowing
 remove fill-profile button
 
 DONE
+profile img (iconify icon finder?)
 projects table in profile
 remove "required" from inputs
 localstorage sidebar width
@@ -128,3 +129,6 @@ add title to lists
 add emoji picker
 create split button module
 create input module
+
+TABLED
+batch delete
