@@ -1,13 +1,11 @@
+H:user choice
+S:70%
+L: pastel:70 muted: 20 bright: 50
+brighter: l + 10
+
 CURRENTLY
-remove "required" from inputs
-batch delete
-custom palette w/dynamic favicon and light/dark text
-lil color palette preview
-profile img (iconify icon finder?)
-account button lets you add name, pic, bio
-add user acct tooltip
-change user color accent bright to hsl
-projects table in profile
+dynamic favicon
+fix icon spacing
 
 TO DO
 be able to hide sidebar
@@ -43,8 +41,18 @@ add rich text features to notes
 -new <p> on enter/double enter
 task info wrap text if overflowing
 remove fill-profile button
+code mobile site
 
 DONE
+custom palette w/ light/dark text
+change logo and heading to match contrast of accent color
+add user acct tooltip
+account button lets you add name, pic, bio
+lil color palette preview
+change user color accent bright to hsl
+profile img (iconify icon finder?)
+projects table in profile
+remove "required" from inputs
 localstorage sidebar width
 fix width of lists on fullscreen
 add tooltip to tasks
@@ -128,3 +136,6 @@ add title to lists
 add emoji picker
 create split button module
 create input module
+
+TABLED
+batch delete

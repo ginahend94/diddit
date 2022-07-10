@@ -1,14 +1,23 @@
-// import { v4 as uuidv4 } from "uuid";
 import { format } from "date-fns";
+import Modal from "../DOM-elements/modal.js";
 import generateId from "./generateId.js";
 import load from "./load.js";
+import { createPopup } from "@picmo/popup-picker";
+import { getIcon } from "./icon";
+import { darkTheme, lightTheme } from "picmo";
+import { createTooltip } from '../DOM-elements/tooltip';
+import toggle from "../DOM-elements/toggle.js";
+import slider from "../DOM-elements/color-input.js";
+import save from "./save.js";
+import render from './render.js';
 
-export default (name = '', icon = null, colorPalette = 'default', bio = '') => ({
+export default (name = '', icon = '', colorPalette = '', bio = '') => ({
     name,
     bio,
     icon,
     colorPalette,
-    darkMode: true,
+    darkMode: setDarkTheme(),
+    test: 'hehe',
     projects: [
         {
             name: 'My Project',
@@ -25,14 +34,25 @@ export default (name = '', icon = null, colorPalette = 'default', bio = '') => (
     ],
 });
 
-export const Profile = load('profile');
+export const setDarkTheme = () => {
+    const osTheme = window.matchMedia('(prefers-color-scheme: dark)');
+    osTheme.addEventListener('change', e => {
+        if (e.matches) {
+            console.log(e)
+            console.log('dark theme');
+        }
+        else console.log('light theme');
+        return e.matches;
+    })
+    return osTheme.matches;
+}
 
 // EXAMPLE PROFILE
 
 export const gina = {
     "name": "Gina Henderson",
     "bio": "I made this!",
-    "icon": 'bxs:dog',
+    "icon": '☺',
     "colorPalette": "#FA88C8",
     darkMode: true,
     "projects": [
@@ -300,5 +320,87 @@ export const gina = {
 }
 
 export const editProfile = () => {
-    console.log('will edit');
+    const Profile = load('profile');
+    const modalInner = (() => {
+        const body = document.createElement('div');
+        body.classList.add('edit-profile');
+
+        const header = document.createElement('header');
+        body.append(header);
+
+        const emojiButton = document.createElement('div');
+        header.append(emojiButton);
+        emojiButton.classList.add('emoji-button');
+        emojiButton.append(Profile.icon || getIcon('account'));
+        createTooltip(emojiButton, 'Change profile icon');
+
+        const nameInput = document.createElement('input');
+        header.append(nameInput);
+        nameInput.type = 'text';
+        nameInput.placeholder = Profile.name || 'Name';
+        nameInput.value = Profile.name;
+
+        const bioInput = document.createElement('textarea');
+        body.append(bioInput);
+        bioInput.placeholder = Profile.bio || 'You can enter a short bio here!';
+        bioInput.value = Profile.bio;
+
+        const picker = createPopup({
+            theme: Profile.darkMode ? darkTheme : lightTheme,
+            emojiSize: '1rem',
+        }, {
+            className: 'emoji-picker',
+            triggerElement: emojiButton,
+            referenceElement: emojiButton,
+            position: 'bottom-start',
+        });
+        emojiButton.addEventListener('click', () => {
+            picker.open();
+        })
+
+        let userIconSelection = Profile.icon;
+
+        picker.addEventListener('emoji:select', e => {
+            userIconSelection = e.emoji;
+            emojiButton.textContent = e.emoji;
+        });
+
+        const darkModeHeading = document.createElement('h5');
+        darkModeHeading.textContent = 'Dark/Light Mode:'
+        body.append(darkModeHeading);
+        body.append(toggle.body);
+
+        const colorPaletteInput = slider.body;
+        body.append(colorPaletteInput);
+
+        const getName = () => nameInput.value;
+        const getUserIcon = () => userIconSelection;
+        const getBio = () => bioInput.value;
+        const getDarkMode = () => toggle.darkMode();
+        const getColorPalette = () => slider.getColor();
+
+        return { body, getName, getBio, getUserIcon, getDarkMode, getColorPalette }
+    })();
+    const modal = Modal.create(
+        ['edit-profile'],
+        modalInner.body,
+        () => confirm(),
+        'Save',
+        true,
+        true,
+        true
+    );
+    Modal.open(modal);
+    const confirm = () => {
+        const updatedProfile = {
+            ...Profile,
+            name: modalInner.getName(),
+            bio: modalInner.getBio(),
+            icon: modalInner.getUserIcon(),
+            colorPalette: modalInner.getColorPalette(),
+            darkMode: modalInner.getDarkMode(),
+        }
+        save('profile', updatedProfile);
+        render();
+    }
 }

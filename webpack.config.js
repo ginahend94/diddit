@@ -19,7 +19,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Diddit - To Do List',
-            favicon: './src/images/favicon.ico',
+            // favicon: './src/images/favicon.ico',
+            favicon: './src/images/checkbox-marked-outline.svg',
         }),
     ],
     output: {
