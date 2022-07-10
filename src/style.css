@@ -1,10 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --font: 'Roboto', sans-serif;
+        --accent-color: 120, 103, 162;
+        /* LAVENDER */
+        --main-color: 50, 50, 52;
+        /* DARK MODE BG */
+        --secondary-color: 40, 40, 42;
+        /* DARK MODE SECONDARY */
+        --tertiary-color: 60, 60, 62;
+        /* DARK MODE TERTIARY */
+        --text-color: 234, 234, 234;
+        /* DARK MODE TEXT */
+        --grayed-text-color: 133, 133, 133;
+        /* DARK MODE TEXT BRIGHTER */
+        --text-color-bright: 245, 245, 245;
+        /* DARK MODE GRAYED-OUT */
+        --accent-color-bright: 145, 118, 209;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --accent-color: 169, 133, 255;
+        --secondary-color: 235, 235, 235;
+        --main-color: 255, 255, 255;
+        --text-color: 40, 40, 40;
+        --grayed-text-color: 133, 133, 133;
+    }
+}
+
 :root {
     --font: 'Roboto', sans-serif;
-    --accent-color: 120, 103, 162;
+    
     /* LAVENDER */
+    --accent-color: 120, 103, 162;
     --main-color: 50, 50, 52;
     /* DARK MODE BG */
     --secondary-color: 40, 40, 42;
@@ -18,8 +50,7 @@
     --text-color-bright: 245, 245, 245;
     /* DARK MODE GRAYED-OUT */
     --accent-color-bright: 145, 118, 209;
-    /* DANGER */
-    --danger: 196, 62, 74;
+    
 
     /* LIGHT MODE */
     /*
@@ -29,6 +60,9 @@
     --text-color: 40, 40, 40;
     --grayed-text-color: 133, 133, 133;
     */
+
+    /* DANGER */
+    --danger: 196, 62, 74;
 
     --low-priority: 138, 172, 88;
     --medium-priority: 234, 203, 92;
@@ -562,9 +596,11 @@ li.subtask {
     max-width: calc(100% - 45px);
     transition: .2s;
 }
+
 .task-container div.completed {
     transform: skewX(-15deg);
 }
+
 .task-text {
     position: relative;
     transition: .4s;
@@ -1212,20 +1248,22 @@ button.spell-check-false {
 }
 
 .selectable {
-    border:solid 1px rgb(var(--grayed-text-color));
+    border: solid 1px rgb(var(--grayed-text-color));
     cursor: pointer;
     user-select: none;
 }
+
 .selectable.selectable:hover {
     background-color: rgba(var(--accent-color), .5);
 }
+
 .selectable.selected {
-    border:solid 2px rgb(var(--accent-color-bright));
+    border: solid 2px rgb(var(--accent-color-bright));
 }
 
 div.emoji-picker {
     z-index: 9999999999999999999999999999999999999999;
-    background-color: rgb(var(--main-color)); 
+    background-color: rgb(var(--main-color));
     --border-color: rgb(var(--grayed-text-color));
     box-shadow: 2px 2px 5px rgb(var(--secondary-color));
     --secondary-background-color: rgb(var(--secondary-color));
@@ -1238,6 +1276,7 @@ div.emoji-picker {
     gap: 10px;
     align-items: center;
 }
+
 .emoji-button {
     padding: 5px;
     width: 50px;
@@ -1251,6 +1290,7 @@ div.emoji-picker {
     transition: .2s;
     font-size: 1.5rem;
 }
+
 .emoji-button:hover {
     background-color: rgb(var(--accent-color-bright));
 }
@@ -1261,78 +1301,82 @@ div.emoji-picker {
 
 .dark-mode-outer {
     position: relative;
-	width:50px;
-	display:block;
-	height:24px;
-	border-radius:19px;
-	background-color:rgb(var(--grayed-text-color));
-	transition:.2s;
+    width: 50px;
+    display: block;
+    height: 24px;
+    border-radius: 19px;
+    background-color: rgb(var(--grayed-text-color));
+    transition: .2s;
     cursor: pointer;
 }
 
 .dark-mode-slider {
-	background-color:white;
+    background-color: white;
     display: inline-block;
-	/* display: inline-flex;
+    /* display: inline-flex;
     justify-content: center;
     align-items: center; */
-	position: absolute;
-	top:2px;
-	left:2px;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	transition:.2s;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: .2s;
 }
 
 .dark-mode-outer:active .dark-mode-slider {
-	width:30px;
+    width: 30px;
 }
 
 .dark-mode-input {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 0px;
-	height: 0px;
-	opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
     display: block;
 }
 
-.dark-mode-input:checked + .dark-mode-outer .dark-mode-slider {
-	translate:26px;
+.dark-mode-input:checked+.dark-mode-outer .dark-mode-slider {
+    translate: 26px;
 }
-.dark-mode-input:checked + .dark-mode-outer:active .dark-mode-slider {
+
+.dark-mode-input:checked+.dark-mode-outer:active .dark-mode-slider {
     translate: 15px;
 }
 
-.dark-mode-input + .dark-mode-outer .dark-mode-slider::after {
+.dark-mode-input+.dark-mode-outer .dark-mode-slider::after {
     font-family: 'Material Icons';
-    content:'light_mode';
+    content: 'light_mode';
     display: block;
     position: absolute;
     right: -22px;
-    top:1px;
+    top: 1px;
     color: rgb(var(--main-color));
     opacity: 1;
     transition: .4s;
 }
-.dark-mode-input:checked + .dark-mode-outer .dark-mode-slider::after {
+
+.dark-mode-input:checked+.dark-mode-outer .dark-mode-slider::after {
     opacity: 0;
-    top:1rem;
+    top: 1rem;
 }
-.dark-mode-input + .dark-mode-outer .dark-mode-slider::before {
+
+.dark-mode-input+.dark-mode-outer .dark-mode-slider::before {
     font-family: 'Material Icons';
-    content:'dark_mode';
+    content: 'dark_mode';
     display: block;
     position: absolute;
     left: -22px;
-    top:1rem;
+    top: 1rem;
     color: rgb(var(--main-color));
     opacity: 0;
     transition: .4s;
 }
-.dark-mode-input:checked + .dark-mode-outer .dark-mode-slider::before {
+
+.dark-mode-input:checked+.dark-mode-outer .dark-mode-slider::before {
     opacity: 1;
-    top:1px;
+    top: 1px;
 }
